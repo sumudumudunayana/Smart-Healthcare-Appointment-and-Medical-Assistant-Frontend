@@ -1,0 +1,706 @@
+.smarthealth-admin-doctors {
+  width: 100%;
+  min-height: 100%;
+  padding: 28px;
+  box-sizing: border-box;
+  background: #f5f9f7;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.smarthealth-admin-doctors-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 26px;
+}
+
+.smarthealth-admin-doctors-eyebrow {
+  display: block;
+  margin-bottom: 7px;
+  color: #159a68;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.smarthealth-admin-doctors-header h1 {
+  margin: 0;
+  color: #17382c;
+  font-size: 30px;
+  font-weight: 750;
+}
+
+.smarthealth-admin-doctors-header p {
+  margin: 8px 0 0;
+  color: #77867e;
+  font-size: 14px;
+}
+
+.smarthealth-admin-doctors-count {
+  min-width: 115px;
+  padding: 14px 18px;
+  border: 1px solid #dcebe4;
+  border-radius: 14px;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(25, 76, 56, 0.05);
+}
+
+.smarthealth-admin-doctors-count span {
+  display: block;
+  margin-bottom: 4px;
+  color: #84928b;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.smarthealth-admin-doctors-count strong {
+  color: #168c5f;
+  font-size: 26px;
+}
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.smarthealth-admin-doctors-form-card {
+  margin-bottom: 22px;
+  padding: 22px;
+  border: 1px solid #deebe5;
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 5px 18px rgba(28, 76, 57, 0.05);
+}
+
+.smarthealth-admin-doctors-form-header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 20px;
+}
+
+.smarthealth-admin-doctors-form-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 12px;
+  background: #e9f6ef;
+  color: #168c5f;
+  font-size: 25px;
+}
+
+.smarthealth-admin-doctors-form-header h2 {
+  margin: 0;
+  color: #24483a;
+  font-size: 17px;
+}
+
+.smarthealth-admin-doctors-form-header p {
+  margin: 4px 0 0;
+  color: #84918b;
+  font-size: 12px;
+}
+
+.smarthealth-admin-doctors-form {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.smarthealth-admin-doctors-field {
+  min-width: 0;
+}
+
+.smarthealth-admin-doctors-field label {
+  display: block;
+  margin-bottom: 7px;
+  color: #40564b;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.smarthealth-admin-doctors-field input,
+.smarthealth-admin-doctors-field select {
+  width: 100%;
+  height: 44px;
+  padding: 0 13px;
+  border: 1px solid #d7e5df;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #29473b;
+  font-family: inherit;
+  font-size: 13px;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-admin-doctors-field input::placeholder {
+  color: #a1ada7;
+}
+
+.smarthealth-admin-doctors-field input:focus,
+.smarthealth-admin-doctors-field select:focus {
+  border-color: #159a68;
+  box-shadow: 0 0 0 3px rgba(21, 154, 104, 0.09);
+}
+
+.smarthealth-admin-doctors-field input:disabled,
+.smarthealth-admin-doctors-field select:disabled {
+  background: #f5f8f6;
+  cursor: not-allowed;
+}
+
+.smarthealth-admin-doctors-form-actions {
+  display: flex;
+  align-items: flex-end;
+  grid-column: span 4;
+}
+
+.smarthealth-admin-doctors-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 44px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 10px;
+  background: #159a68;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smarthealth-admin-doctors-submit:hover:not(:disabled) {
+  background: #11885b;
+  transform: translateY(-1px);
+}
+
+.smarthealth-admin-doctors-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.smarthealth-admin-doctors-submit > span:first-child {
+  font-size: 18px;
+}
+
+.smarthealth-admin-doctors-button-spinner {
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: smarthealth-admin-doctors-spin 0.7s linear infinite;
+}
+
+/* =========================================================
+   FORM LOADING
+========================================================= */
+
+.smarthealth-admin-doctors-form-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 120px;
+  color: #77867e;
+  font-size: 12px;
+}
+
+.smarthealth-admin-doctors-small-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #dcece5;
+  border-top-color: #159a68;
+  border-radius: 50%;
+  animation: smarthealth-admin-doctors-spin 0.8s linear infinite;
+}
+
+/* =========================================================
+   FILTER CARD
+========================================================= */
+
+.smarthealth-admin-doctors-filter-card {
+  margin-bottom: 22px;
+  padding: 22px;
+  border: 1px solid #deebe5;
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 5px 18px rgba(28, 76, 57, 0.05);
+}
+
+.smarthealth-admin-doctors-filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 17px;
+}
+
+.smarthealth-admin-doctors-filter-header h2 {
+  margin: 0;
+  color: #24483a;
+  font-size: 17px;
+}
+
+.smarthealth-admin-doctors-filter-header p {
+  margin: 5px 0 0;
+  color: #84918b;
+  font-size: 12px;
+}
+
+.smarthealth-admin-doctors-clear-filters {
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid #d7e6df;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #168c5f;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.smarthealth-admin-doctors-clear-filters:hover {
+  background: #edf8f3;
+}
+
+.smarthealth-admin-doctors-filter-controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 12px;
+}
+
+.smarthealth-admin-doctors-search {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 42px;
+  padding: 0 11px;
+  border: 1px solid #dbe8e2;
+  border-radius: 10px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.smarthealth-admin-doctors-search > span {
+  margin-right: 7px;
+  color: #82918a;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.smarthealth-admin-doctors-search input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #334d42;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.smarthealth-admin-doctors-search input::placeholder {
+  color: #a0aba6;
+}
+
+.smarthealth-admin-doctors-search button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #edf3f0;
+  color: #6d7b74;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.smarthealth-admin-doctors-filter-select {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #dbe8e2;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #4a5d54;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.smarthealth-admin-doctors-filter-select:focus {
+  border-color: #159a68;
+  box-shadow: 0 0 0 3px rgba(21, 154, 104, 0.09);
+}
+
+/* =========================================================
+   LIST CARD
+========================================================= */
+
+.smarthealth-admin-doctors-list-card {
+  border: 1px solid #deebe5;
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 5px 18px rgba(28, 76, 57, 0.05);
+  overflow: hidden;
+}
+
+.smarthealth-admin-doctors-list-header {
+  padding: 21px 23px;
+  border-bottom: 1px solid #edf3f0;
+}
+
+.smarthealth-admin-doctors-list-header h2 {
+  margin: 0;
+  color: #24483a;
+  font-size: 17px;
+}
+
+.smarthealth-admin-doctors-list-header p {
+  margin: 5px 0 0;
+  color: #84918b;
+  font-size: 12px;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.smarthealth-admin-doctors-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.smarthealth-admin-doctors-table {
+  width: 100%;
+  min-width: 1000px;
+  border-collapse: collapse;
+}
+
+.smarthealth-admin-doctors-table th {
+  padding: 13px 20px;
+  background: #f8fbfa;
+  color: #74827b;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.smarthealth-admin-doctors-table td {
+  padding: 15px 20px;
+  border-top: 1px solid #edf3f0;
+  color: #43564d;
+  font-size: 12px;
+}
+
+.smarthealth-admin-doctors-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.smarthealth-admin-doctors-table tbody tr:hover {
+  background: #f9fcfb;
+}
+
+/* =========================================================
+   DOCTOR PERSON
+========================================================= */
+
+.smarthealth-admin-doctor-person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.smarthealth-admin-doctor-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  min-width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: #e9f6ef;
+  color: #168c5f;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.smarthealth-admin-doctor-person-details {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.smarthealth-admin-doctor-person-details strong {
+  color: #29473b;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.smarthealth-admin-doctor-person-details span {
+  color: #87938d;
+  font-size: 10px;
+}
+
+/* =========================================================
+   TABLE DATA
+========================================================= */
+
+.smarthealth-admin-doctor-specialization {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 7px;
+  background: #eef8f4;
+  color: #168c5f;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.smarthealth-admin-doctor-department {
+  color: #52665c;
+  font-size: 11px;
+}
+
+.smarthealth-admin-doctor-not-specified {
+  color: #9aa59f;
+  font-size: 11px;
+  font-style: italic;
+}
+
+.smarthealth-admin-doctor-license {
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #f5f8f6;
+  color: #6f7e76;
+  font-family: monospace;
+  font-size: 10px;
+}
+
+.smarthealth-admin-doctor-experience {
+  color: #53675d;
+  font-size: 11px;
+}
+
+.smarthealth-admin-doctors-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.smarthealth-admin-doctors-status-active {
+  background: #e9f6ef;
+  color: #168c5f;
+}
+
+.smarthealth-admin-doctors-status-inactive {
+  background: #f0f2f1;
+  color: #78847f;
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.smarthealth-admin-doctors-loading {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 300px;
+  color: #7c8983;
+}
+
+.smarthealth-admin-doctors-spinner {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 13px;
+  border: 4px solid #dcece5;
+  border-top-color: #159a68;
+  border-radius: 50%;
+  animation: smarthealth-admin-doctors-spin 0.8s linear infinite;
+}
+
+.smarthealth-admin-doctors-loading p {
+  margin: 0;
+  font-size: 12px;
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.smarthealth-admin-doctors-empty {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 300px;
+  padding: 30px;
+  text-align: center;
+}
+
+.smarthealth-admin-doctors-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  margin-bottom: 13px;
+  border-radius: 15px;
+  background: #e9f6ef;
+  color: #168c5f;
+  font-size: 25px;
+}
+
+.smarthealth-admin-doctors-empty h3 {
+  margin: 0;
+  color: #385247;
+  font-size: 15px;
+}
+
+.smarthealth-admin-doctors-empty p {
+  max-width: 420px;
+  margin: 7px 0 15px;
+  color: #87938e;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.smarthealth-admin-doctors-empty button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #e9f6ef;
+  color: #168c5f;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes smarthealth-admin-doctors-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   LARGE TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+  .smarthealth-admin-doctors-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .smarthealth-admin-doctors-form-actions {
+    grid-column: span 2;
+  }
+
+  .smarthealth-admin-doctors-filter-controls {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .smarthealth-admin-doctors-search {
+    grid-column: span 2;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+  .smarthealth-admin-doctors {
+    padding: 22px;
+  }
+
+  .smarthealth-admin-doctors-filter-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .smarthealth-admin-doctors-filter-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-admin-doctors-search {
+    grid-column: span 1;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .smarthealth-admin-doctors {
+    padding: 18px;
+  }
+
+  .smarthealth-admin-doctors-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .smarthealth-admin-doctors-header h1 {
+    font-size: 25px;
+  }
+
+  .smarthealth-admin-doctors-count {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .smarthealth-admin-doctors-form-card,
+  .smarthealth-admin-doctors-filter-card {
+    padding: 18px;
+  }
+
+  .smarthealth-admin-doctors-form {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-admin-doctors-form-actions {
+    grid-column: span 1;
+  }
+
+  .smarthealth-admin-doctors-list-header {
+    padding: 18px;
+  }
+}

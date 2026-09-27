@@ -1,0 +1,61 @@
+/* =========================================================
+   SMARTHEALTHCARE ADMIN LAYOUT
+   ========================================================= */
+
+.smarthealth-admin-layout {
+  width: 100%;
+  min-height: 100vh;
+
+  background: #f8fafc;
+}
+
+.smarthealth-admin-layout-main {
+  min-height: 100vh;
+
+  margin-left: 260px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.smarthealth-admin-layout-content {
+  flex: 1;
+
+  width: 100%;
+
+  padding: 28px;
+
+  box-sizing: border-box;
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   TABLET / MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .smarthealth-admin-layout-main {
+    margin-left: 0;
+  }
+
+  .smarthealth-admin-layout-content {
+    padding: 22px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .smarthealth-admin-layout-content {
+    padding: 16px;
+  }
+
+}
