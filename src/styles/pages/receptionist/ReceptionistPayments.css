@@ -1,0 +1,899 @@
+/* =========================================================
+   SMART HEALTH - RECEPTIONIST PAYMENTS
+   ========================================================= */
+
+.smarthealth-receptionist-payment-page {
+  width: 100%;
+  padding: 28px 30px 40px;
+  box-sizing: border-box;
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.smarthealth-receptionist-payment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 26px;
+}
+
+.smarthealth-receptionist-payment-title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.smarthealth-receptionist-payment-subtitle {
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.smarthealth-receptionist-payment-refresh-button {
+  border: 1px solid #a7f3d0;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #047857;
+  padding: 11px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.smarthealth-receptionist-payment-refresh-button:hover:not(:disabled) {
+  background: #ecfdf5;
+  border-color: #6ee7b7;
+}
+
+.smarthealth-receptionist-payment-refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+   ========================================================= */
+
+.smarthealth-receptionist-payment-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 26px;
+}
+
+.smarthealth-receptionist-payment-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 105px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  box-sizing: border-box;
+}
+
+.smarthealth-receptionist-payment-summary-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 22px;
+}
+
+.smarthealth-receptionist-payment-summary-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.smarthealth-receptionist-payment-summary-value {
+  display: block;
+  color: #0f172a;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   COMMON SECTION
+   ========================================================= */
+
+.smarthealth-receptionist-payment-section,
+.smarthealth-receptionist-payment-history-section,
+.smarthealth-receptionist-payment-form-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.smarthealth-receptionist-payment-section {
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.smarthealth-receptionist-payment-history-section {
+  margin-top: 24px;
+  overflow: hidden;
+}
+
+.smarthealth-receptionist-payment-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.smarthealth-receptionist-payment-section-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-payment-section-description {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.smarthealth-receptionist-payment-count {
+  min-width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background: #d1fae5;
+  color: #047857;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   FILTER BAR
+   ========================================================= */
+
+.smarthealth-receptionist-payment-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 24px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.smarthealth-receptionist-payment-search {
+  width: 100%;
+  max-width: 420px;
+  height: 42px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #334155;
+  font-size: 13px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-receptionist-payment-search::placeholder {
+  color: #94a3b8;
+}
+
+.smarthealth-receptionist-payment-search:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.smarthealth-receptionist-payment-filter-select {
+  min-width: 150px;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #334155;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.smarthealth-receptionist-payment-filter-select:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+
+/* =========================================================
+   BILL LIST
+   ========================================================= */
+
+.smarthealth-receptionist-payment-bill-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.smarthealth-receptionist-payment-bill-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(180px, 1.2fr) minmax(320px, 2fr) auto;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 24px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.smarthealth-receptionist-payment-bill-item:last-child {
+  border-bottom: none;
+}
+
+.smarthealth-receptionist-payment-bill-item:hover {
+  background: #f0fdf4;
+}
+
+.smarthealth-receptionist-payment-bill-item-selected {
+  background: #ecfdf5;
+  box-shadow: inset 4px 0 0 #059669;
+}
+
+.smarthealth-receptionist-payment-bill-main {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.smarthealth-receptionist-payment-bill-main strong {
+  overflow: hidden;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smarthealth-receptionist-payment-bill-main span {
+  overflow: hidden;
+  color: #64748b;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smarthealth-receptionist-payment-bill-amounts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(90px, 1fr));
+  gap: 16px;
+}
+
+.smarthealth-receptionist-payment-bill-amounts div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.smarthealth-receptionist-payment-bill-amounts span {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.smarthealth-receptionist-payment-bill-amounts strong {
+  color: #334155;
+  font-size: 13px;
+}
+
+.smarthealth-receptionist-payment-paid-value {
+  color: #15803d !important;
+}
+
+.smarthealth-receptionist-payment-remaining-value {
+  color: #dc2626 !important;
+}
+
+.smarthealth-receptionist-payment-bill-status {
+  justify-self: end;
+  padding: 6px 11px;
+  border-radius: 20px;
+  background: #fff7ed;
+  color: #c2410c;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   FORM CARD
+   ========================================================= */
+
+.smarthealth-receptionist-payment-form-card {
+  margin-bottom: 24px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.smarthealth-receptionist-payment-placeholder {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.smarthealth-receptionist-payment-placeholder-icon {
+  width: 62px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  border-radius: 16px;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 28px;
+}
+
+.smarthealth-receptionist-payment-placeholder-title {
+  margin: 0;
+  color: #334155;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-payment-placeholder-text {
+  max-width: 420px;
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   PAYMENT FORM HEADER
+   ========================================================= */
+
+.smarthealth-receptionist-payment-form-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.smarthealth-receptionist-payment-form-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-payment-form-subtitle {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.smarthealth-receptionist-payment-close-button {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.smarthealth-receptionist-payment-close-button:hover {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+
+/* =========================================================
+   SELECTED BILL DETAILS
+   ========================================================= */
+
+.smarthealth-receptionist-payment-selected-details {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.smarthealth-receptionist-payment-selected-details > div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #f8fafc;
+}
+
+.smarthealth-receptionist-payment-selected-details span {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.smarthealth-receptionist-payment-selected-details strong {
+  display: block;
+  overflow: hidden;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smarthealth-receptionist-payment-selected-remaining {
+  background: #fff7ed !important;
+  border-color: #fed7aa !important;
+}
+
+.smarthealth-receptionist-payment-selected-remaining strong {
+  color: #c2410c !important;
+}
+
+
+/* =========================================================
+   PAYMENT FORM
+   ========================================================= */
+
+.smarthealth-receptionist-payment-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: end;
+  gap: 18px;
+}
+
+.smarthealth-receptionist-payment-form-group {
+  min-width: 0;
+}
+
+.smarthealth-receptionist-payment-label {
+  display: block;
+  margin-bottom: 7px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-payment-amount-wrapper {
+  position: relative;
+}
+
+.smarthealth-receptionist-payment-currency {
+  position: absolute;
+  top: 50%;
+  left: 13px;
+  transform: translateY(-50%);
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.smarthealth-receptionist-payment-amount-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px 0 42px;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #334155;
+  font-size: 14px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-receptionist-payment-amount-input:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.smarthealth-receptionist-payment-method-select {
+  width: 100%;
+  height: 44px;
+  padding: 0 13px;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #334155;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.smarthealth-receptionist-payment-method-select:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.smarthealth-receptionist-payment-process-button {
+  min-width: 155px;
+  height: 44px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 8px;
+  background: #059669;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-receptionist-payment-process-button:hover:not(:disabled) {
+  background: #047857;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(5, 150, 105, 0.2);
+}
+
+.smarthealth-receptionist-payment-process-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   LOADING / EMPTY STATES
+   ========================================================= */
+
+.smarthealth-receptionist-payment-loading {
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  box-sizing: border-box;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.smarthealth-receptionist-payment-empty {
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.smarthealth-receptionist-payment-empty-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 23px;
+}
+
+.smarthealth-receptionist-payment-empty-title {
+  margin: 0;
+  color: #334155;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-payment-empty-text {
+  margin: 6px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   PAYMENT HISTORY TABLE
+   ========================================================= */
+
+.smarthealth-receptionist-payment-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.smarthealth-receptionist-payment-table {
+  width: 100%;
+  min-width: 950px;
+  border-collapse: collapse;
+}
+
+.smarthealth-receptionist-payment-table th {
+  padding: 14px 18px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.smarthealth-receptionist-payment-table td {
+  padding: 15px 18px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #475569;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.smarthealth-receptionist-payment-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.smarthealth-receptionist-payment-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.smarthealth-receptionist-payment-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.smarthealth-receptionist-payment-patient-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.smarthealth-receptionist-payment-patient-cell strong {
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-payment-patient-cell span {
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.smarthealth-receptionist-payment-history-amount {
+  color: #15803d;
+  font-size: 12px;
+}
+
+.smarthealth-receptionist-payment-method-badge,
+.smarthealth-receptionist-payment-status-badge,
+.smarthealth-receptionist-payment-bill-status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.smarthealth-receptionist-payment-method-badge {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.smarthealth-receptionist-payment-status-badge {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.smarthealth-receptionist-payment-bill-status-badge {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.smarthealth-receptionist-payment-bill-status-paid {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.smarthealth-receptionist-payment-bill-status-partiallypaid {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.smarthealth-receptionist-payment-bill-status-pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .smarthealth-receptionist-payment-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .smarthealth-receptionist-payment-selected-details {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .smarthealth-receptionist-payment-bill-item {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .smarthealth-receptionist-payment-bill-status {
+    justify-self: start;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .smarthealth-receptionist-payment-page {
+    padding: 22px 20px 35px;
+  }
+
+  .smarthealth-receptionist-payment-header {
+    align-items: flex-start;
+  }
+
+  .smarthealth-receptionist-payment-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .smarthealth-receptionist-payment-process-button {
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+
+  .smarthealth-receptionist-payment-selected-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .smarthealth-receptionist-payment-filter-bar {
+    flex-wrap: wrap;
+  }
+
+  .smarthealth-receptionist-payment-search {
+    max-width: none;
+    flex: 1 1 100%;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+  .smarthealth-receptionist-payment-page {
+    padding: 18px 14px 30px;
+  }
+
+  .smarthealth-receptionist-payment-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .smarthealth-receptionist-payment-title {
+    font-size: 25px;
+  }
+
+  .smarthealth-receptionist-payment-refresh-button {
+    width: 100%;
+  }
+
+  .smarthealth-receptionist-payment-summary-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .smarthealth-receptionist-payment-summary-card {
+    min-height: 90px;
+  }
+
+  .smarthealth-receptionist-payment-section-header {
+    align-items: flex-start;
+    padding: 18px;
+  }
+
+  .smarthealth-receptionist-payment-section-title {
+    font-size: 17px;
+  }
+
+  .smarthealth-receptionist-payment-filter-bar {
+    padding: 14px 18px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .smarthealth-receptionist-payment-search,
+  .smarthealth-receptionist-payment-filter-select {
+    width: 100%;
+    max-width: none;
+  }
+
+  .smarthealth-receptionist-payment-bill-item {
+    padding: 17px 18px;
+  }
+
+  .smarthealth-receptionist-payment-bill-amounts {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .smarthealth-receptionist-payment-form-card {
+    padding: 18px;
+  }
+
+  .smarthealth-receptionist-payment-selected-details {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-receptionist-payment-form {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .smarthealth-receptionist-payment-process-button {
+    grid-column: auto;
+  }
+
+  .smarthealth-receptionist-payment-table th,
+  .smarthealth-receptionist-payment-table td {
+    padding: 12px 14px;
+  }
+}
