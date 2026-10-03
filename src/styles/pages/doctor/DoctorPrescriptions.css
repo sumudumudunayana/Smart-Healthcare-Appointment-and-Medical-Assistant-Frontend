@@ -1,0 +1,1102 @@
+/* ============================================================
+   SMART HEALTHCARE
+   DOCTOR PRESCRIPTIONS PAGE
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-page {
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  padding: 28px;
+  box-sizing: border-box;
+  background: #f5f8fb;
+  color: #1f2937;
+  overflow-x: hidden;
+}
+
+.smarthealth-doctor-prescriptions-page *,
+.smarthealth-doctor-prescriptions-page *::before,
+.smarthealth-doctor-prescriptions-page *::after {
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.smarthealth-doctor-prescriptions-header-info {
+  min-width: 0;
+}
+
+.smarthealth-doctor-prescriptions-header-label {
+  display: block;
+  margin: 0 0 6px;
+  color: #0f766e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.smarthealth-doctor-prescriptions-title {
+  margin: 0;
+  color: #172033;
+  font-size: 30px;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.smarthealth-doctor-prescriptions-description {
+  max-width: 650px;
+  margin: 8px 0 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+
+/* ============================================================
+   CREATE BUTTON
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-create-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 155px;
+  height: 42px;
+  padding: 0 16px;
+  flex-shrink: 0;
+  border: 1px solid #0f766e;
+  border-radius: 8px;
+  background: #0f766e;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smarthealth-doctor-prescriptions-create-button:hover {
+  border-color: #0d6b64;
+  background: #0d6b64;
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.18);
+  transform: translateY(-1px);
+}
+
+.smarthealth-doctor-prescriptions-create-icon {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+
+/* ============================================================
+   SUMMARY
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.smarthealth-doctor-prescriptions-summary-card {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.035);
+}
+
+.smarthealth-doctor-prescriptions-summary-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 50%;
+  background: #dff7f2;
+  color: #0f766e;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.smarthealth-doctor-prescriptions-summary-label {
+  display: block;
+  margin-bottom: 7px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.smarthealth-doctor-prescriptions-summary-value {
+  display: block;
+  color: #0f766e;
+  font-size: 27px;
+  font-weight: 750;
+  line-height: 1;
+}
+
+
+/* ============================================================
+   FILTER PANEL
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-toolbar {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  gap: 16px;
+  padding: 18px;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.035);
+}
+
+.smarthealth-doctor-prescriptions-search-wrapper {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.smarthealth-doctor-prescriptions-search-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  z-index: 1;
+  color: #94a3b8;
+  font-size: 19px;
+  line-height: 1;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.smarthealth-doctor-prescriptions-search-input,
+.smarthealth-doctor-prescriptions-filter-select {
+  display: block;
+  width: 100%;
+  height: 41px;
+  padding: 0 12px;
+  border: 1px solid #d6dee8;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #1e293b;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-doctor-prescriptions-search-input {
+  padding-left: 38px;
+}
+
+.smarthealth-doctor-prescriptions-search-input::placeholder {
+  color: #94a3b8;
+}
+
+.smarthealth-doctor-prescriptions-search-input:focus,
+.smarthealth-doctor-prescriptions-filter-select:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.09);
+}
+
+.smarthealth-doctor-prescriptions-filter-select {
+  width: 230px;
+  flex: 0 0 230px;
+  cursor: pointer;
+}
+
+.smarthealth-doctor-prescriptions-refresh-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 95px;
+  height: 41px;
+  padding: 0 15px;
+  flex: 0 0 auto;
+  border: 1px solid #d1dce8;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #334155;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smarthealth-doctor-prescriptions-refresh-button:hover:not(:disabled) {
+  border-color: #0f766e;
+  background: #f8fafc;
+  box-shadow: 0 3px 10px rgba(15, 118, 110, 0.08);
+  transform: translateY(-1px);
+}
+
+.smarthealth-doctor-prescriptions-refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* ============================================================
+   TABLE CARD
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-content {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.035);
+}
+
+.smarthealth-doctor-prescriptions-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.smarthealth-doctor-prescriptions-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.smarthealth-doctor-prescriptions-table thead {
+  background: #f8fafc;
+}
+
+.smarthealth-doctor-prescriptions-table th {
+  height: 44px;
+  padding: 0 14px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 750;
+  line-height: 1;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.smarthealth-doctor-prescriptions-table td {
+  height: 62px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #edf1f5;
+  color: #334155;
+  font-size: 12px;
+  line-height: 1.4;
+  vertical-align: middle;
+}
+
+.smarthealth-doctor-prescriptions-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.smarthealth-doctor-prescriptions-table tbody tr:hover {
+  background: #f8fbfc;
+}
+
+.smarthealth-doctor-prescriptions-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* ============================================================
+   TABLE COLUMN WIDTHS
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-table th:nth-child(1),
+.smarthealth-doctor-prescriptions-table td:nth-child(1) {
+  width: 21%;
+}
+
+.smarthealth-doctor-prescriptions-table th:nth-child(2),
+.smarthealth-doctor-prescriptions-table td:nth-child(2) {
+  width: 17%;
+}
+
+.smarthealth-doctor-prescriptions-table th:nth-child(3),
+.smarthealth-doctor-prescriptions-table td:nth-child(3) {
+  width: 12%;
+}
+
+.smarthealth-doctor-prescriptions-table th:nth-child(4),
+.smarthealth-doctor-prescriptions-table td:nth-child(4) {
+  width: 15%;
+}
+
+.smarthealth-doctor-prescriptions-table th:nth-child(5),
+.smarthealth-doctor-prescriptions-table td:nth-child(5) {
+  width: 12%;
+}
+
+.smarthealth-doctor-prescriptions-table th:nth-child(6),
+.smarthealth-doctor-prescriptions-table td:nth-child(6) {
+  width: 12%;
+}
+
+.smarthealth-doctor-prescriptions-table th:nth-child(7),
+.smarthealth-doctor-prescriptions-table td:nth-child(7) {
+  width: 11%;
+}
+
+
+/* ============================================================
+   PATIENT CELL
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-patient-cell {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 9px;
+  color: #1e293b;
+  font-weight: 650;
+}
+
+.smarthealth-doctor-prescriptions-patient-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border-radius: 50%;
+  background: #dff7f2;
+  color: #0f766e;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.smarthealth-doctor-prescriptions-patient-cell > div:last-child {
+  min-width: 0;
+}
+
+.smarthealth-doctor-prescriptions-patient-cell strong {
+  display: block;
+  overflow: hidden;
+  color: #1e293b;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smarthealth-doctor-prescriptions-patient-cell span {
+  display: block;
+  margin-top: 2px;
+  color: #94a3b8;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.smarthealth-doctor-prescriptions-medicine {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  color: #334155;
+  font-weight: 650;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   VIEW BUTTON
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-view-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 92px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid #b7dcd7;
+  border-radius: 7px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smarthealth-doctor-prescriptions-view-button:hover {
+  border-color: #0f766e;
+  background: #ccfbf1;
+  box-shadow: 0 3px 8px rgba(15, 118, 110, 0.1);
+  transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   LOADING / EMPTY STATE
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-loading,
+.smarthealth-doctor-prescriptions-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  padding: 35px 20px;
+  text-align: center;
+}
+
+.smarthealth-doctor-prescriptions-loading p,
+.smarthealth-doctor-prescriptions-empty p {
+  max-width: 420px;
+  margin: 11px 0 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.smarthealth-doctor-prescriptions-spinner {
+  width: 29px;
+  height: 29px;
+  border: 3px solid #d9efec;
+  border-top-color: #0f766e;
+  border-radius: 50%;
+  animation: smarthealthDoctorPrescriptionsSpin 0.8s linear infinite;
+}
+
+@keyframes smarthealthDoctorPrescriptionsSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.smarthealth-doctor-prescriptions-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.smarthealth-doctor-prescriptions-empty h2 {
+  margin: 14px 0 0;
+  color: #334155;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.smarthealth-doctor-prescriptions-empty-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  margin-top: 17px;
+  padding: 0 16px;
+  border: 1px solid #0f766e;
+  border-radius: 8px;
+  background: #0f766e;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smarthealth-doctor-prescriptions-empty-button:hover {
+  border-color: #0d6b64;
+  background: #0d6b64;
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.18);
+  transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   MODAL BACKDROP
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+  background: rgba(15, 23, 42, 0.48);
+  backdrop-filter: blur(3px);
+}
+
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-view-modal,
+.smarthealth-doctor-prescriptions-create-modal {
+  width: min(700px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow: hidden;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.22);
+  animation: smarthealthDoctorPrescriptionsModalOpen 0.2s ease-out;
+}
+
+.smarthealth-doctor-prescriptions-create-modal {
+  width: min(700px, 100%);
+}
+
+@keyframes smarthealthDoctorPrescriptionsModalOpen {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* ============================================================
+   MODAL HEADER
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px 22px;
+  border-bottom: 1px solid #e8edf3;
+}
+
+.smarthealth-doctor-prescriptions-modal-header > div:first-child {
+  min-width: 0;
+}
+
+.smarthealth-doctor-prescriptions-modal-label {
+  display: block;
+  margin: 0 0 5px;
+  color: #0f766e;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.smarthealth-doctor-prescriptions-modal-header h2 {
+  margin: 0;
+  overflow: hidden;
+  color: #172033;
+  font-size: 20px;
+  font-weight: 750;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+}
+
+.smarthealth-doctor-prescriptions-modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border: none;
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.smarthealth-doctor-prescriptions-modal-close:hover:not(:disabled) {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.smarthealth-doctor-prescriptions-modal-close:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   VIEW PRESCRIPTION CONTENT
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-details {
+  max-height: calc(100vh - 170px);
+  overflow-y: auto;
+  padding: 22px;
+}
+
+.smarthealth-doctor-prescriptions-detail-patient {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 18px;
+  padding: 13px;
+  border-radius: 8px;
+  background: #f0fdfa;
+}
+
+.smarthealth-doctor-prescriptions-detail-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  border-radius: 50%;
+  background: #dff7f2;
+  color: #0f766e;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.smarthealth-doctor-prescriptions-detail-patient span {
+  display: block;
+  margin-bottom: 3px;
+  color: #64748b;
+  font-size: 10px;
+}
+
+.smarthealth-doctor-prescriptions-detail-patient strong {
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smarthealth-doctor-prescriptions-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.smarthealth-doctor-prescriptions-detail-item {
+  padding: 13px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.smarthealth-doctor-prescriptions-detail-item span {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.smarthealth-doctor-prescriptions-detail-item strong {
+  display: block;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.smarthealth-doctor-prescriptions-record-id {
+  overflow: hidden;
+  font-size: 10px !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smarthealth-doctor-prescriptions-instructions {
+  margin-top: 12px;
+  padding: 14px;
+  border-left: 3px solid #0f766e;
+  border-radius: 5px;
+  background: #f0fdfa;
+}
+
+.smarthealth-doctor-prescriptions-instructions span {
+  display: block;
+  margin-bottom: 6px;
+  color: #0f5f59;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.smarthealth-doctor-prescriptions-instructions p {
+  margin: 0;
+  color: #47615e;
+  font-size: 12px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   CREATE FORM
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-form {
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding: 22px;
+}
+
+.smarthealth-doctor-prescriptions-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.smarthealth-doctor-prescriptions-form-group {
+  margin-bottom: 16px;
+}
+
+.smarthealth-doctor-prescriptions-form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #334155;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.smarthealth-doctor-prescriptions-form-group label span {
+  margin-left: 3px;
+  color: #dc2626;
+}
+
+.smarthealth-doctor-prescriptions-form-group input,
+.smarthealth-doctor-prescriptions-form-group select,
+.smarthealth-doctor-prescriptions-form-group textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid #d6dee8;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #1e293b;
+  font-family: inherit;
+  font-size: 12px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-doctor-prescriptions-form-group input,
+.smarthealth-doctor-prescriptions-form-group select {
+  height: 41px;
+  padding: 0 12px;
+}
+
+.smarthealth-doctor-prescriptions-form-group textarea {
+  min-height: 100px;
+  padding: 11px 12px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.smarthealth-doctor-prescriptions-form-group input::placeholder,
+.smarthealth-doctor-prescriptions-form-group textarea::placeholder {
+  color: #94a3b8;
+}
+
+.smarthealth-doctor-prescriptions-form-group input:focus,
+.smarthealth-doctor-prescriptions-form-group select:focus,
+.smarthealth-doctor-prescriptions-form-group textarea:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.09);
+}
+
+.smarthealth-doctor-prescriptions-form-group input:disabled,
+.smarthealth-doctor-prescriptions-form-group select:disabled,
+.smarthealth-doctor-prescriptions-form-group textarea:disabled {
+  background: #f8fafc;
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   FORM / MODAL ACTIONS
+   ============================================================ */
+
+.smarthealth-doctor-prescriptions-modal-footer,
+.smarthealth-doctor-prescriptions-form-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 17px 22px;
+  border-top: 1px solid #e8edf3;
+}
+
+.smarthealth-doctor-prescriptions-secondary-button,
+.smarthealth-doctor-prescriptions-submit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smarthealth-doctor-prescriptions-secondary-button {
+  border: 1px solid #d6dee8;
+  background: #ffffff;
+  color: #475569;
+}
+
+.smarthealth-doctor-prescriptions-secondary-button:hover:not(:disabled) {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+.smarthealth-doctor-prescriptions-submit-button {
+  min-width: 145px;
+  border: 1px solid #0f766e;
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.smarthealth-doctor-prescriptions-submit-button:hover:not(:disabled) {
+  border-color: #0d6b64;
+  background: #0d6b64;
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.18);
+  transform: translateY(-1px);
+}
+
+.smarthealth-doctor-prescriptions-secondary-button:disabled,
+.smarthealth-doctor-prescriptions-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 1050px) {
+  .smarthealth-doctor-prescriptions-page {
+    padding: 22px;
+  }
+
+  .smarthealth-doctor-prescriptions-summary-grid {
+    gap: 12px;
+  }
+
+  .smarthealth-doctor-prescriptions-table {
+    min-width: 940px;
+  }
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+  .smarthealth-doctor-prescriptions-page {
+    padding: 16px;
+  }
+
+  .smarthealth-doctor-prescriptions-header {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .smarthealth-doctor-prescriptions-title {
+    font-size: 25px;
+  }
+
+  .smarthealth-doctor-prescriptions-description {
+    font-size: 13px;
+  }
+
+  .smarthealth-doctor-prescriptions-create-button {
+    width: 100%;
+  }
+
+  .smarthealth-doctor-prescriptions-summary-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .smarthealth-doctor-prescriptions-summary-card {
+    padding: 16px;
+  }
+
+  .smarthealth-doctor-prescriptions-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 13px;
+    padding: 16px;
+  }
+
+  .smarthealth-doctor-prescriptions-search-wrapper,
+  .smarthealth-doctor-prescriptions-filter-select,
+  .smarthealth-doctor-prescriptions-refresh-button {
+    width: 100%;
+    flex: none;
+  }
+
+  .smarthealth-doctor-prescriptions-table {
+    min-width: 940px;
+  }
+
+  .smarthealth-doctor-prescriptions-modal-overlay {
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .smarthealth-doctor-prescriptions-view-modal,
+  .smarthealth-doctor-prescriptions-create-modal {
+    width: 100%;
+    max-height: calc(100vh - 24px);
+    margin: auto 0;
+    border-radius: 12px;
+  }
+
+  .smarthealth-doctor-prescriptions-modal-header {
+    padding: 17px;
+  }
+
+  .smarthealth-doctor-prescriptions-details,
+  .smarthealth-doctor-prescriptions-form {
+    padding: 17px;
+  }
+
+  .smarthealth-doctor-prescriptions-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-doctor-prescriptions-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .smarthealth-doctor-prescriptions-form-footer,
+  .smarthealth-doctor-prescriptions-modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .smarthealth-doctor-prescriptions-secondary-button,
+  .smarthealth-doctor-prescriptions-submit-button {
+    width: 100%;
+  }
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 420px) {
+  .smarthealth-doctor-prescriptions-page {
+    padding: 12px;
+  }
+
+  .smarthealth-doctor-prescriptions-title {
+    font-size: 23px;
+  }
+
+  .smarthealth-doctor-prescriptions-modal-header h2 {
+    font-size: 18px;
+  }
+
+  .smarthealth-doctor-prescriptions-table {
+    min-width: 900px;
+  }
+}
