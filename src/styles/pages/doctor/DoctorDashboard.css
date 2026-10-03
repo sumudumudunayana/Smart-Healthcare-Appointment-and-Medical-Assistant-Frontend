@@ -1,0 +1,674 @@
+.smarthealth-doctor-dashboard {
+  width: 100%;
+  min-height: 100%;
+  padding: 28px;
+  box-sizing: border-box;
+  background: #f5f9f7;
+}
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+.smarthealth-doctor-dashboard-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding: 24px;
+  border: 1px solid #dcebe4;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    #ffffff,
+    #eef9f4
+  );
+  box-shadow: 0 5px 18px rgba(28, 76, 57, 0.05);
+}
+
+.smarthealth-doctor-dashboard-eyebrow {
+  display: block;
+  margin-bottom: 7px;
+  color: #159a68;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.smarthealth-doctor-dashboard-welcome h1 {
+  margin: 0;
+  color: #17382c;
+  font-size: 27px;
+  font-weight: 750;
+}
+
+.smarthealth-doctor-dashboard-welcome p {
+  margin: 8px 0 0;
+  color: #77867e;
+  font-size: 13px;
+}
+
+.smarthealth-doctor-dashboard-profile {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 13px 9px 9px;
+  border: 1px solid #dcebe4;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.smarthealth-doctor-dashboard-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 12px;
+  background: #159a68;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.smarthealth-doctor-dashboard-profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.smarthealth-doctor-dashboard-profile-info strong {
+  color: #29473b;
+  font-size: 12px;
+}
+
+.smarthealth-doctor-dashboard-profile-info span {
+  color: #89958f;
+  font-size: 10px;
+}
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.smarthealth-doctor-dashboard-statistics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.smarthealth-doctor-dashboard-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 88px;
+  padding: 15px;
+  border: 1px solid #deebe5;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 4px 15px rgba(25, 76, 56, 0.05);
+}
+
+.smarthealth-doctor-dashboard-stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  min-width: 43px;
+  height: 43px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.smarthealth-doctor-dashboard-stat-icon-total {
+  background: #eaf6f0;
+  color: #168c5f;
+}
+
+.smarthealth-doctor-dashboard-stat-icon-today {
+  background: #eaf1fa;
+  color: #527eaa;
+}
+
+.smarthealth-doctor-dashboard-stat-icon-upcoming {
+  background: #f3eef9;
+  color: #8662a7;
+}
+
+.smarthealth-doctor-dashboard-stat-icon-completed {
+  background: #e9f6ef;
+  color: #168c5f;
+}
+
+.smarthealth-doctor-dashboard-stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.smarthealth-doctor-dashboard-stat-content span {
+  color: #829089;
+  font-size: 10px;
+}
+
+.smarthealth-doctor-dashboard-stat-content strong {
+  color: #28493c;
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* =========================================================
+   STATUS OVERVIEW
+========================================================= */
+
+.smarthealth-doctor-dashboard-status-overview {
+  margin-bottom: 22px;
+  padding: 21px;
+  border: 1px solid #deebe5;
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 5px 18px rgba(28, 76, 57, 0.05);
+}
+
+.smarthealth-doctor-dashboard-status-overview-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.smarthealth-doctor-dashboard-status-overview-heading h2 {
+  margin: 0;
+  color: #24483a;
+  font-size: 16px;
+}
+
+.smarthealth-doctor-dashboard-status-overview-heading p {
+  margin: 5px 0 0;
+  color: #84918b;
+  font-size: 11px;
+}
+
+.smarthealth-doctor-dashboard-refresh-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 35px;
+  padding: 0 13px;
+  border: 1px solid #d7e6df;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #168c5f;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.smarthealth-doctor-dashboard-refresh-button:hover:not(
+    :disabled
+  ) {
+  background: #edf8f3;
+}
+
+.smarthealth-doctor-dashboard-refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.smarthealth-doctor-dashboard-refresh-icon {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.smarthealth-doctor-dashboard-refresh-spinning {
+  animation: smarthealth-doctor-dashboard-spin
+    0.8s linear infinite;
+}
+
+.smarthealth-doctor-dashboard-status-items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.smarthealth-doctor-dashboard-status-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f8fbfa;
+}
+
+.smarthealth-doctor-dashboard-status-marker {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.smarthealth-doctor-dashboard-status-marker-scheduled {
+  background: #527eaa;
+}
+
+.smarthealth-doctor-dashboard-status-marker-completed {
+  background: #159a68;
+}
+
+.smarthealth-doctor-dashboard-status-marker-cancelled {
+  background: #a96a6a;
+}
+
+.smarthealth-doctor-dashboard-status-marker-noshow {
+  background: #a97835;
+}
+
+.smarthealth-doctor-dashboard-status-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.smarthealth-doctor-dashboard-status-item strong {
+  color: #324c41;
+  font-size: 15px;
+}
+
+.smarthealth-doctor-dashboard-status-item span {
+  color: #8a9690;
+  font-size: 10px;
+}
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.smarthealth-doctor-dashboard-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.smarthealth-doctor-dashboard-panel {
+  min-width: 0;
+  border: 1px solid #deebe5;
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 5px 18px rgba(28, 76, 57, 0.05);
+  overflow: hidden;
+}
+
+.smarthealth-doctor-dashboard-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 21px;
+  border-bottom: 1px solid #edf3f0;
+}
+
+.smarthealth-doctor-dashboard-panel-eyebrow {
+  display: block;
+  margin-bottom: 5px;
+  color: #159a68;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.smarthealth-doctor-dashboard-panel-header h2 {
+  margin: 0;
+  color: #24483a;
+  font-size: 16px;
+}
+
+.smarthealth-doctor-dashboard-panel-header p {
+  margin: 5px 0 0;
+  color: #84918b;
+  font-size: 11px;
+}
+
+.smarthealth-doctor-dashboard-panel-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: #e9f6ef;
+  color: #168c5f;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+/* =========================================================
+   APPOINTMENT LIST
+========================================================= */
+
+.smarthealth-doctor-dashboard-appointment-list {
+  padding: 6px 0;
+}
+
+.smarthealth-doctor-dashboard-appointment-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 15px 21px;
+  border-bottom: 1px solid #f0f4f2;
+}
+
+.smarthealth-doctor-dashboard-appointment-item:last-child {
+  border-bottom: none;
+}
+
+.smarthealth-doctor-dashboard-appointment-time {
+  display: flex;
+  flex-direction: column;
+  width: 75px;
+  min-width: 75px;
+  gap: 4px;
+}
+
+.smarthealth-doctor-dashboard-appointment-time strong {
+  color: #2d4d3f;
+  font-size: 12px;
+}
+
+.smarthealth-doctor-dashboard-appointment-time span {
+  color: #99a49f;
+  font-size: 9px;
+}
+
+.smarthealth-doctor-dashboard-appointment-date {
+  display: flex;
+  flex-direction: column;
+  width: 82px;
+  min-width: 82px;
+  gap: 4px;
+}
+
+.smarthealth-doctor-dashboard-appointment-date strong {
+  color: #2d4d3f;
+  font-size: 11px;
+}
+
+.smarthealth-doctor-dashboard-appointment-date span {
+  color: #99a49f;
+  font-size: 9px;
+}
+
+.smarthealth-doctor-dashboard-appointment-divider {
+  width: 1px;
+  align-self: stretch;
+  min-height: 42px;
+  background: #e8efeb;
+}
+
+.smarthealth-doctor-dashboard-patient {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  gap: 9px;
+}
+
+.smarthealth-doctor-dashboard-patient-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #edf7f2;
+  color: #168c5f;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.smarthealth-doctor-dashboard-patient-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 3px;
+}
+
+.smarthealth-doctor-dashboard-patient-info strong {
+  overflow: hidden;
+  color: #354f44;
+  font-size: 11px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smarthealth-doctor-dashboard-patient-info span {
+  overflow: hidden;
+  color: #919d97;
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   STATUS BADGES
+========================================================= */
+
+.smarthealth-doctor-dashboard-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 9px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.smarthealth-doctor-dashboard-status-scheduled {
+  background: #edf3fb;
+  color: #527eaa;
+}
+
+.smarthealth-doctor-dashboard-status-completed {
+  background: #e9f6ef;
+  color: #168c5f;
+}
+
+.smarthealth-doctor-dashboard-status-cancelled {
+  background: #f8eeee;
+  color: #a05e5e;
+}
+
+.smarthealth-doctor-dashboard-status-noshow {
+  background: #fff5e8;
+  color: #a97835;
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.smarthealth-doctor-dashboard-loading {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 240px;
+  color: #7c8983;
+}
+
+.smarthealth-doctor-dashboard-spinner {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 12px;
+  border: 4px solid #dcece5;
+  border-top-color: #159a68;
+  border-radius: 50%;
+  animation: smarthealth-doctor-dashboard-spin
+    0.8s linear infinite;
+}
+
+.smarthealth-doctor-dashboard-loading p {
+  margin: 0;
+  font-size: 11px;
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.smarthealth-doctor-dashboard-empty {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 240px;
+  padding: 25px;
+  text-align: center;
+}
+
+.smarthealth-doctor-dashboard-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 11px;
+  border-radius: 14px;
+  background: #e9f6ef;
+  color: #168c5f;
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.smarthealth-doctor-dashboard-empty h3 {
+  margin: 0;
+  color: #385247;
+  font-size: 14px;
+}
+
+.smarthealth-doctor-dashboard-empty p {
+  max-width: 280px;
+  margin: 6px 0 0;
+  color: #87938e;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes smarthealth-doctor-dashboard-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+  .smarthealth-doctor-dashboard-statistics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .smarthealth-doctor-dashboard-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 750px) {
+  .smarthealth-doctor-dashboard {
+    padding: 22px;
+  }
+
+  .smarthealth-doctor-dashboard-welcome {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .smarthealth-doctor-dashboard-profile {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .smarthealth-doctor-dashboard-status-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .smarthealth-doctor-dashboard {
+    padding: 18px;
+  }
+
+  .smarthealth-doctor-dashboard-welcome {
+    padding: 19px;
+  }
+
+  .smarthealth-doctor-dashboard-welcome h1 {
+    font-size: 23px;
+  }
+
+  .smarthealth-doctor-dashboard-statistics {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-doctor-dashboard-status-overview {
+    padding: 18px;
+  }
+
+  .smarthealth-doctor-dashboard-status-overview-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .smarthealth-doctor-dashboard-refresh-button {
+    width: 100%;
+  }
+
+  .smarthealth-doctor-dashboard-status-items {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-doctor-dashboard-panel-header {
+    padding: 18px;
+  }
+
+  .smarthealth-doctor-dashboard-appointment-item {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 14px 18px;
+  }
+
+  .smarthealth-doctor-dashboard-appointment-divider {
+    display: none;
+  }
+
+  .smarthealth-doctor-dashboard-patient {
+    min-width: calc(100% - 90px);
+  }
+
+  .smarthealth-doctor-dashboard-status {
+    margin-left: 90px;
+  }
+}
