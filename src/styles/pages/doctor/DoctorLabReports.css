@@ -1,0 +1,1083 @@
+/* ============================================================
+   SMART HEALTHCARE - DOCTOR LAB REPORTS
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-page {
+  min-height: 100%;
+  padding: 30px;
+  background: #f5f8fb;
+  color: #172033;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+
+.smarthealth-doctor-lab-reports-header-info {
+  min-width: 0;
+}
+
+.smarthealth-doctor-lab-reports-header-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #0f766e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.smarthealth-doctor-lab-reports-title {
+  margin: 0;
+  color: #172033;
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.smarthealth-doctor-lab-reports-description {
+  margin: 8px 0 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.smarthealth-doctor-lab-reports-create-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 0 17px;
+  border: 1px solid #0f766e;
+  border-radius: 8px;
+  background: #0f766e;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smarthealth-doctor-lab-reports-create-button:hover {
+  background: #0d6b64;
+  border-color: #0d6b64;
+  transform: translateY(-1px);
+}
+
+.smarthealth-doctor-lab-reports-create-button:active {
+  transform: translateY(0);
+}
+
+.smarthealth-doctor-lab-reports-create-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+/* ============================================================
+   SUMMARY
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.smarthealth-doctor-lab-reports-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 86px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  box-sizing: border-box;
+}
+
+.smarthealth-doctor-lab-reports-summary-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border-radius: 9px;
+  background: #dff7f2;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.smarthealth-doctor-lab-reports-summary-label {
+  display: block;
+  margin-bottom: 4px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.smarthealth-doctor-lab-reports-summary-value {
+  display: block;
+  color: #172033;
+  font-size: 23px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+/* ============================================================
+   TOOLBAR
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.smarthealth-doctor-lab-reports-search-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+}
+
+.smarthealth-doctor-lab-reports-search-icon {
+  position: absolute;
+  top: 50%;
+  left: 13px;
+  z-index: 1;
+  color: #94a3b8;
+  font-size: 19px;
+  line-height: 1;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.smarthealth-doctor-lab-reports-search-input {
+  width: 100%;
+  height: 42px;
+  padding: 0 14px 0 39px;
+  border: 1px solid #d6dee8;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #1e293b;
+  font-family: inherit;
+  font-size: 13px;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-doctor-lab-reports-search-input::placeholder {
+  color: #94a3b8;
+}
+
+.smarthealth-doctor-lab-reports-search-input:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+}
+
+.smarthealth-doctor-lab-reports-filter-select {
+  width: 230px;
+  height: 42px;
+  padding: 0 35px 0 12px;
+  border: 1px solid #d6dee8;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #334155;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.smarthealth-doctor-lab-reports-filter-select:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+}
+
+.smarthealth-doctor-lab-reports-refresh-button {
+  height: 42px;
+  padding: 0 15px;
+  border: 1px solid #d6dee8;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #334155;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.smarthealth-doctor-lab-reports-refresh-button:hover:not(:disabled) {
+  border-color: #0f766e;
+  background: #f0fdfa;
+  color: #0f766e;
+}
+
+.smarthealth-doctor-lab-reports-refresh-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-content {
+  min-width: 0;
+}
+
+.smarthealth-doctor-lab-reports-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 330px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.smarthealth-doctor-lab-reports-spinner {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 12px;
+  border: 3px solid #dff7f2;
+  border-top-color: #0f766e;
+  border-radius: 50%;
+  animation: smarthealth-doctor-lab-reports-spin 0.8s linear infinite;
+}
+
+.smarthealth-doctor-lab-reports-loading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+@keyframes smarthealth-doctor-lab-reports-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  padding: 40px 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.smarthealth-doctor-lab-reports-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  margin-bottom: 17px;
+  border-radius: 12px;
+  background: #dff7f2;
+  color: #0f766e;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.smarthealth-doctor-lab-reports-empty h2 {
+  margin: 0 0 8px;
+  color: #1e293b;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.smarthealth-doctor-lab-reports-empty p {
+  max-width: 400px;
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.smarthealth-doctor-lab-reports-empty-button {
+  margin-top: 18px;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #0f766e;
+  border-radius: 8px;
+  background: #0f766e;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.smarthealth-doctor-lab-reports-empty-button:hover {
+  background: #0d6b64;
+  border-color: #0d6b64;
+}
+
+/* ============================================================
+   TABLE
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.smarthealth-doctor-lab-reports-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+}
+
+.smarthealth-doctor-lab-reports-table thead {
+  background: #f8fafc;
+}
+
+.smarthealth-doctor-lab-reports-table th {
+  padding: 13px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.smarthealth-doctor-lab-reports-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #edf2f7;
+  color: #334155;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.smarthealth-doctor-lab-reports-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.smarthealth-doctor-lab-reports-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.smarthealth-doctor-lab-reports-table tbody tr:hover {
+  background: #f8fbfb;
+}
+
+/* ============================================================
+   PATIENT CELL
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-patient-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 170px;
+}
+
+.smarthealth-doctor-lab-reports-patient-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  border-radius: 50%;
+  background: #dff7f2;
+  color: #0f766e;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.smarthealth-doctor-lab-reports-patient-cell strong {
+  display: block;
+  max-width: 170px;
+  overflow: hidden;
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smarthealth-doctor-lab-reports-patient-cell span {
+  display: block;
+  margin-top: 3px;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+/* ============================================================
+   REPORT CELL
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-report-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 210px;
+}
+
+.smarthealth-doctor-lab-reports-report-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border-radius: 8px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.smarthealth-doctor-lab-reports-report-cell strong {
+  display: block;
+  max-width: 210px;
+  overflow: hidden;
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smarthealth-doctor-lab-reports-report-cell span {
+  display: block;
+  margin-top: 3px;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+/* ============================================================
+   TYPE / RECORD
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-type-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 27px;
+  padding: 0 9px;
+  border: 1px solid #ccfbf1;
+  border-radius: 999px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.smarthealth-doctor-lab-reports-record-text {
+  display: inline-block;
+  padding: 5px 7px;
+  border-radius: 5px;
+  background: #f8fafc;
+  color: #64748b;
+  font-family: monospace;
+  font-size: 11px;
+}
+
+/* ============================================================
+   VIEW BUTTON
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-view-button {
+  min-height: 32px;
+  padding: 0 11px;
+  border: 1px solid #cce7e4;
+  border-radius: 7px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.smarthealth-doctor-lab-reports-view-button:hover {
+  border-color: #0f766e;
+  background: #dff7f2;
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.48);
+  box-sizing: border-box;
+}
+
+.smarthealth-doctor-lab-reports-view-modal,
+.smarthealth-doctor-lab-reports-create-modal {
+  width: min(680px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+}
+
+.smarthealth-doctor-lab-reports-create-modal {
+  width: min(600px, 100%);
+}
+
+/* ============================================================
+   MODAL HEADER
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.smarthealth-doctor-lab-reports-modal-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #0f766e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.smarthealth-doctor-lab-reports-modal-header h2 {
+  margin: 0;
+  color: #172033;
+  font-size: 21px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.smarthealth-doctor-lab-reports-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 21px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.smarthealth-doctor-lab-reports-modal-close:hover:not(:disabled) {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  color: #1e293b;
+}
+
+.smarthealth-doctor-lab-reports-modal-close:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ============================================================
+   DETAILS
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-details {
+  padding: 22px 24px;
+}
+
+.smarthealth-doctor-lab-reports-detail-patient {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 13px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #f8fafc;
+}
+
+.smarthealth-doctor-lab-reports-detail-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 50%;
+  background: #dff7f2;
+  color: #0f766e;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.smarthealth-doctor-lab-reports-detail-patient span {
+  display: block;
+  margin-bottom: 3px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.smarthealth-doctor-lab-reports-detail-patient strong {
+  display: block;
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.smarthealth-doctor-lab-reports-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.smarthealth-doctor-lab-reports-detail-item {
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.smarthealth-doctor-lab-reports-detail-item-wide {
+  grid-column: span 2;
+}
+
+.smarthealth-doctor-lab-reports-detail-item span {
+  display: block;
+  margin-bottom: 5px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.smarthealth-doctor-lab-reports-detail-item strong {
+  display: block;
+  overflow: hidden;
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smarthealth-doctor-lab-reports-record-id {
+  color: #64748b !important;
+  font-family: monospace;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+}
+
+/* ============================================================
+   FILE SECTION
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-file-section {
+  margin-top: 18px;
+}
+
+.smarthealth-doctor-lab-reports-file-section > span {
+  display: block;
+  margin-bottom: 8px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smarthealth-doctor-lab-reports-file-card {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px;
+  border: 1px solid #ccfbf1;
+  border-radius: 8px;
+  background: #f0fdfa;
+}
+
+.smarthealth-doctor-lab-reports-file-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  flex: 0 0 35px;
+  border-radius: 7px;
+  background: #dff7f2;
+  color: #0f766e;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.smarthealth-doctor-lab-reports-file-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.smarthealth-doctor-lab-reports-file-info strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #1e293b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smarthealth-doctor-lab-reports-file-info span {
+  display: block;
+  overflow: hidden;
+  color: #64748b;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smarthealth-doctor-lab-reports-file-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 31px;
+  padding: 0 11px;
+  border: 1px solid #0f766e;
+  border-radius: 6px;
+  background: #0f766e;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.smarthealth-doctor-lab-reports-file-link:hover {
+  background: #0d6b64;
+  border-color: #0d6b64;
+}
+
+.smarthealth-doctor-lab-reports-no-file {
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 12px;
+}
+
+/* ============================================================
+   MODAL FOOTER
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px;
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.smarthealth-doctor-lab-reports-secondary-button {
+  min-height: 38px;
+  padding: 0 15px;
+  border: 1px solid #d6dee8;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #334155;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.smarthealth-doctor-lab-reports-secondary-button:hover:not(:disabled) {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+
+.smarthealth-doctor-lab-reports-secondary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   CREATE FORM
+   ============================================================ */
+
+.smarthealth-doctor-lab-reports-form {
+  padding: 22px 24px;
+}
+
+.smarthealth-doctor-lab-reports-form-group {
+  margin-bottom: 17px;
+}
+
+.smarthealth-doctor-lab-reports-form-group label {
+  display: block;
+  margin-bottom: 7px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smarthealth-doctor-lab-reports-form-group label span {
+  margin-left: 3px;
+  color: #0f766e;
+}
+
+.smarthealth-doctor-lab-reports-form-group input,
+.smarthealth-doctor-lab-reports-form-group select,
+.smarthealth-doctor-lab-reports-form-group textarea {
+  width: 100%;
+  border: 1px solid #d6dee8;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #1e293b;
+  font-family: inherit;
+  font-size: 13px;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-doctor-lab-reports-form-group input,
+.smarthealth-doctor-lab-reports-form-group select {
+  height: 42px;
+  padding: 0 12px;
+}
+
+.smarthealth-doctor-lab-reports-form-group textarea {
+  min-height: 90px;
+  padding: 11px 12px;
+  resize: vertical;
+}
+
+.smarthealth-doctor-lab-reports-form-group input::placeholder,
+.smarthealth-doctor-lab-reports-form-group textarea::placeholder {
+  color: #94a3b8;
+}
+
+.smarthealth-doctor-lab-reports-form-group input:focus,
+.smarthealth-doctor-lab-reports-form-group select:focus,
+.smarthealth-doctor-lab-reports-form-group textarea:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+}
+
+.smarthealth-doctor-lab-reports-form-group input:disabled,
+.smarthealth-doctor-lab-reports-form-group select:disabled,
+.smarthealth-doctor-lab-reports-form-group textarea:disabled {
+  background: #f8fafc;
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.smarthealth-doctor-lab-reports-form-help {
+  display: block;
+  margin-top: 6px;
+  color: #94a3b8;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.smarthealth-doctor-lab-reports-form-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 5px;
+}
+
+.smarthealth-doctor-lab-reports-submit-button {
+  min-height: 38px;
+  padding: 0 16px;
+  border: 1px solid #0f766e;
+  border-radius: 7px;
+  background: #0f766e;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.smarthealth-doctor-lab-reports-submit-button:hover:not(:disabled) {
+  background: #0d6b64;
+  border-color: #0d6b64;
+}
+
+.smarthealth-doctor-lab-reports-submit-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1100px) {
+  .smarthealth-doctor-lab-reports-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 850px) {
+  .smarthealth-doctor-lab-reports-page {
+    padding: 22px;
+  }
+
+  .smarthealth-doctor-lab-reports-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .smarthealth-doctor-lab-reports-create-button {
+    width: 100%;
+  }
+
+  .smarthealth-doctor-lab-reports-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .smarthealth-doctor-lab-reports-search-wrapper {
+    width: 100%;
+  }
+
+  .smarthealth-doctor-lab-reports-filter-select,
+  .smarthealth-doctor-lab-reports-refresh-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .smarthealth-doctor-lab-reports-page {
+    padding: 16px;
+  }
+
+  .smarthealth-doctor-lab-reports-title {
+    font-size: 25px;
+  }
+
+  .smarthealth-doctor-lab-reports-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-doctor-lab-reports-summary-card {
+    min-height: 78px;
+  }
+
+  .smarthealth-doctor-lab-reports-modal-overlay {
+    align-items: flex-start;
+    padding: 12px;
+    overflow-y: auto;
+  }
+
+  .smarthealth-doctor-lab-reports-view-modal,
+  .smarthealth-doctor-lab-reports-create-modal {
+    max-height: calc(100vh - 24px);
+  }
+
+  .smarthealth-doctor-lab-reports-modal-header {
+    padding: 18px;
+  }
+
+  .smarthealth-doctor-lab-reports-details,
+  .smarthealth-doctor-lab-reports-form {
+    padding: 18px;
+  }
+
+  .smarthealth-doctor-lab-reports-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-doctor-lab-reports-detail-item-wide {
+    grid-column: span 1;
+  }
+
+  .smarthealth-doctor-lab-reports-modal-footer {
+    padding: 14px 18px;
+  }
+
+  .smarthealth-doctor-lab-reports-file-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .smarthealth-doctor-lab-reports-file-info {
+    width: calc(100% - 50px);
+    flex: none;
+  }
+
+  .smarthealth-doctor-lab-reports-file-link {
+    width: 100%;
+  }
+
+  .smarthealth-doctor-lab-reports-form-footer {
+    flex-direction: column-reverse;
+  }
+
+  .smarthealth-doctor-lab-reports-form-footer button {
+    width: 100%;
+  }
+}

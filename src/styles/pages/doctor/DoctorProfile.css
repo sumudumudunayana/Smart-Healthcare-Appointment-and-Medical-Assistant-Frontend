@@ -1,0 +1,508 @@
+/* =========================================================
+   DOCTOR PROFILE PAGE
+========================================================= */
+
+.smarthealth-doctor-profile-page {
+  width: 100%;
+  min-height: 100%;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.smarthealth-doctor-profile-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.smarthealth-doctor-profile-eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #16a085;
+}
+
+.smarthealth-doctor-profile-title {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #17202a;
+}
+
+.smarthealth-doctor-profile-subtitle {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: #718096;
+}
+
+/* =========================================================
+   EDIT BUTTON
+========================================================= */
+
+.smarthealth-doctor-profile-edit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 9px;
+  background: #16a085;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-doctor-profile-edit-button:hover {
+  background: #12876f;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(22, 160, 133, 0.22);
+}
+
+.smarthealth-doctor-profile-edit-button:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.smarthealth-doctor-profile-content {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.75fr) minmax(500px, 1.8fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* =========================================================
+   PROFILE SUMMARY
+========================================================= */
+
+.smarthealth-doctor-profile-summary-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 34px 28px;
+  border: 1px solid #e6edf0;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(31, 41, 55, 0.05);
+  text-align: center;
+}
+
+.smarthealth-doctor-profile-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 92px;
+  height: 92px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    #16a085,
+    #2ecc71
+  );
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(22, 160, 133, 0.2);
+}
+
+.smarthealth-doctor-profile-summary-info {
+  width: 100%;
+}
+
+.smarthealth-doctor-profile-name {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 700;
+  color: #17202a;
+  word-break: break-word;
+}
+
+.smarthealth-doctor-profile-email {
+  margin: 8px 0 18px;
+  font-size: 13px;
+  color: #718096;
+  word-break: break-word;
+}
+
+.smarthealth-doctor-profile-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.smarthealth-doctor-profile-role-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 11px;
+  border-radius: 999px;
+  background: #e8f8f5;
+  color: #117a65;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smarthealth-doctor-profile-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 0 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smarthealth-doctor-profile-status-active {
+  background: #eaf8ef;
+  color: #218c4c;
+}
+
+.smarthealth-doctor-profile-status-inactive {
+  background: #fcebea;
+  color: #c0392b;
+}
+
+.smarthealth-doctor-profile-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* =========================================================
+   DETAILS CARD
+========================================================= */
+
+.smarthealth-doctor-profile-details-card {
+  overflow: hidden;
+  border: 1px solid #e6edf0;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(31, 41, 55, 0.05);
+}
+
+.smarthealth-doctor-profile-card-header {
+  padding: 25px 28px;
+  border-bottom: 1px solid #edf2f4;
+}
+
+.smarthealth-doctor-profile-card-title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: #17202a;
+}
+
+.smarthealth-doctor-profile-card-description {
+  margin: 7px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #718096;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.smarthealth-doctor-profile-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  padding: 28px;
+}
+
+.smarthealth-doctor-profile-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.smarthealth-doctor-profile-label {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #34495e;
+}
+
+.smarthealth-doctor-profile-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 13px;
+  box-sizing: border-box;
+  border: 1px solid #dce5e8;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #273746;
+  font-family: inherit;
+  font-size: 14px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.smarthealth-doctor-profile-input:focus {
+  border-color: #16a085;
+  box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.1);
+}
+
+.smarthealth-doctor-profile-input:disabled {
+  cursor: not-allowed;
+}
+
+.smarthealth-doctor-profile-input-readonly {
+  background: #f6f8f9;
+  color: #667784;
+}
+
+.smarthealth-doctor-profile-field-note {
+  margin-top: 7px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #87959d;
+}
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.smarthealth-doctor-profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  grid-column: 1 / -1;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.smarthealth-doctor-profile-cancel-button,
+.smarthealth-doctor-profile-save-button {
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smarthealth-doctor-profile-cancel-button {
+  border: 1px solid #d5dfe3;
+  background: #ffffff;
+  color: #53636d;
+}
+
+.smarthealth-doctor-profile-cancel-button:hover {
+  background: #f5f7f8;
+}
+
+.smarthealth-doctor-profile-save-button {
+  border: 1px solid #16a085;
+  background: #16a085;
+  color: #ffffff;
+}
+
+.smarthealth-doctor-profile-save-button:hover {
+  background: #12876f;
+  border-color: #12876f;
+  transform: translateY(-1px);
+}
+
+.smarthealth-doctor-profile-cancel-button:disabled,
+.smarthealth-doctor-profile-save-button:disabled,
+.smarthealth-doctor-profile-edit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.smarthealth-doctor-profile-loading {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #718096;
+}
+
+.smarthealth-doctor-profile-spinner {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 14px;
+  border: 3px solid #dce9e7;
+  border-top-color: #16a085;
+  border-radius: 50%;
+  animation: smarthealth-doctor-profile-spin 0.8s linear infinite;
+}
+
+.smarthealth-doctor-profile-loading p {
+  margin: 0;
+  font-size: 14px;
+}
+
+@keyframes smarthealth-doctor-profile-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.smarthealth-doctor-profile-error {
+  max-width: 520px;
+  margin: 80px auto;
+  padding: 40px 30px;
+  border: 1px solid #e6edf0;
+  border-radius: 16px;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(31, 41, 55, 0.05);
+}
+
+.smarthealth-doctor-profile-error-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #fcebea;
+  color: #c0392b;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.smarthealth-doctor-profile-error h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: #273746;
+}
+
+.smarthealth-doctor-profile-error p {
+  margin: 0 0 22px;
+  font-size: 14px;
+  color: #718096;
+}
+
+.smarthealth-doctor-profile-retry-button {
+  min-height: 40px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 8px;
+  background: #16a085;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.smarthealth-doctor-profile-retry-button:hover {
+  background: #12876f;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1050px) {
+  .smarthealth-doctor-profile-content {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-doctor-profile-summary-card {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 22px;
+  }
+
+  .smarthealth-doctor-profile-avatar {
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+
+  .smarthealth-doctor-profile-badges {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .smarthealth-doctor-profile-page {
+    padding: 22px 18px;
+  }
+
+  .smarthealth-doctor-profile-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .smarthealth-doctor-profile-title {
+    font-size: 25px;
+  }
+
+  .smarthealth-doctor-profile-edit-button {
+    width: 100%;
+  }
+
+  .smarthealth-doctor-profile-form {
+    grid-template-columns: 1fr;
+    padding: 22px;
+  }
+
+  .smarthealth-doctor-profile-actions {
+    flex-direction: column-reverse;
+  }
+
+  .smarthealth-doctor-profile-cancel-button,
+  .smarthealth-doctor-profile-save-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .smarthealth-doctor-profile-summary-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .smarthealth-doctor-profile-badges {
+    justify-content: center;
+  }
+
+  .smarthealth-doctor-profile-card-header {
+    padding: 22px;
+  }
+}
