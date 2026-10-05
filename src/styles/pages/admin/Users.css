@@ -1,0 +1,661 @@
+.smarthealth-admin-users {
+  width: 100%;
+  min-height: 100%;
+  padding: 28px;
+  box-sizing: border-box;
+  background: #f5f9f7;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.smarthealth-admin-users-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.smarthealth-admin-users-eyebrow {
+  display: block;
+  margin-bottom: 7px;
+  color: #159a68;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.smarthealth-admin-users-header h1 {
+  margin: 0;
+  color: #17382c;
+  font-size: 30px;
+  font-weight: 750;
+}
+
+.smarthealth-admin-users-header p {
+  margin: 8px 0 0;
+  color: #77867e;
+  font-size: 14px;
+}
+
+.smarthealth-admin-users-refresh-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid #d8e7df;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #168c5f;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.smarthealth-admin-users-refresh-button:hover:not(
+    :disabled
+  ) {
+  background: #edf8f3;
+  border-color: #c8dfd5;
+}
+
+.smarthealth-admin-users-refresh-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.smarthealth-admin-users-refresh-icon {
+  display: inline-flex;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.smarthealth-admin-users-refresh-spinning {
+  animation: smarthealth-admin-users-spin 0.8s linear infinite;
+}
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.smarthealth-admin-users-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.smarthealth-admin-users-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 82px;
+  padding: 15px;
+  border: 1px solid #deebe5;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 4px 15px rgba(25, 76, 56, 0.05);
+  box-sizing: border-box;
+}
+
+.smarthealth-admin-users-summary-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.smarthealth-admin-users-summary-icon-total {
+  background: #eaf6f0;
+  color: #168c5f;
+}
+
+.smarthealth-admin-users-summary-icon-active {
+  background: #e8f7ee;
+  color: #168c5f;
+}
+
+.smarthealth-admin-users-summary-icon-doctor {
+  background: #edf3fb;
+  color: #4d78a8;
+}
+
+.smarthealth-admin-users-summary-icon-patient {
+  background: #f4eefb;
+  color: #8662a7;
+}
+
+.smarthealth-admin-users-summary-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.smarthealth-admin-users-summary-content span {
+  color: #829089;
+  font-size: 11px;
+}
+
+.smarthealth-admin-users-summary-content strong {
+  color: #28493c;
+  font-size: 23px;
+  line-height: 1;
+}
+
+/* =========================================================
+   FILTER CARD
+========================================================= */
+
+.smarthealth-admin-users-filter-card {
+  margin-bottom: 22px;
+  padding: 21px;
+  border: 1px solid #deebe5;
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 5px 18px rgba(28, 76, 57, 0.05);
+}
+
+.smarthealth-admin-users-filter-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 16px;
+}
+
+.smarthealth-admin-users-filter-heading h2 {
+  margin: 0;
+  color: #24483a;
+  font-size: 17px;
+}
+
+.smarthealth-admin-users-filter-heading p {
+  margin: 5px 0 0;
+  color: #84918b;
+  font-size: 12px;
+}
+
+.smarthealth-admin-users-clear-button {
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid #d7e6df;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #168c5f;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.smarthealth-admin-users-clear-button:hover {
+  background: #edf8f3;
+}
+
+.smarthealth-admin-users-filter-controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 12px;
+}
+
+.smarthealth-admin-users-search-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 42px;
+  padding: 0 11px;
+  border: 1px solid #dbe8e2;
+  border-radius: 10px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.smarthealth-admin-users-search-box:focus-within {
+  border-color: #159a68;
+  box-shadow: 0 0 0 3px rgba(21, 154, 104, 0.09);
+}
+
+.smarthealth-admin-users-search-icon {
+  margin-right: 7px;
+  color: #82918a;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.smarthealth-admin-users-search-box input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #334d42;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.smarthealth-admin-users-search-box input::placeholder {
+  color: #a0aba6;
+}
+
+.smarthealth-admin-users-search-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #edf3f0;
+  color: #6d7b74;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.smarthealth-admin-users-filter-select {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #dbe8e2;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #4a5d54;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.smarthealth-admin-users-filter-select:focus {
+  border-color: #159a68;
+  box-shadow: 0 0 0 3px rgba(21, 154, 104, 0.09);
+}
+
+/* =========================================================
+   LIST
+========================================================= */
+
+.smarthealth-admin-users-list-card {
+  border: 1px solid #deebe5;
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 5px 18px rgba(28, 76, 57, 0.05);
+  overflow: hidden;
+}
+
+.smarthealth-admin-users-list-header {
+  padding: 21px 23px;
+  border-bottom: 1px solid #edf3f0;
+}
+
+.smarthealth-admin-users-list-header h2 {
+  margin: 0;
+  color: #24483a;
+  font-size: 17px;
+}
+
+.smarthealth-admin-users-list-header p {
+  margin: 5px 0 0;
+  color: #84918b;
+  font-size: 12px;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.smarthealth-admin-users-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.smarthealth-admin-users-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+}
+
+.smarthealth-admin-users-table th {
+  padding: 13px 20px;
+  background: #f8fbfa;
+  color: #74827b;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.smarthealth-admin-users-table td {
+  padding: 15px 20px;
+  border-top: 1px solid #edf3f0;
+  color: #43564d;
+  font-size: 12px;
+}
+
+.smarthealth-admin-users-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.smarthealth-admin-users-table tbody tr:hover {
+  background: #f9fcfb;
+}
+
+/* =========================================================
+   USER
+========================================================= */
+
+.smarthealth-admin-users-person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.smarthealth-admin-users-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  min-width: 39px;
+  height: 39px;
+  border-radius: 11px;
+  background: #e9f6ef;
+  color: #168c5f;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.smarthealth-admin-users-person-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.smarthealth-admin-users-person-info strong {
+  color: #29473b;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.smarthealth-admin-users-person-info span {
+  color: #a0aaa5;
+  font-family: monospace;
+  font-size: 9px;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.smarthealth-admin-users-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.smarthealth-admin-users-contact span {
+  color: #4c6056;
+  font-size: 11px;
+}
+
+.smarthealth-admin-users-contact small {
+  color: #929d97;
+  font-size: 10px;
+}
+
+/* =========================================================
+   ROLE
+========================================================= */
+
+.smarthealth-admin-users-role {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #f0f3f1;
+  color: #6c7973;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.smarthealth-admin-users-role-administrator {
+  background: #f8ecec;
+  color: #a35454;
+}
+
+.smarthealth-admin-users-role-doctor {
+  background: #edf3fb;
+  color: #4d78a8;
+}
+
+.smarthealth-admin-users-role-receptionist {
+  background: #fff5e8;
+  color: #a97835;
+}
+
+.smarthealth-admin-users-role-patient {
+  background: #f3eef9;
+  color: #8662a7;
+}
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.smarthealth-admin-users-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.smarthealth-admin-users-status-active {
+  background: #e9f6ef;
+  color: #168c5f;
+}
+
+.smarthealth-admin-users-status-inactive {
+  background: #f0f2f1;
+  color: #78847f;
+}
+
+.smarthealth-admin-users-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.smarthealth-admin-users-created-date {
+  color: #687970;
+  font-size: 11px;
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.smarthealth-admin-users-loading {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 300px;
+  color: #7c8983;
+}
+
+.smarthealth-admin-users-spinner {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 13px;
+  border: 4px solid #dcece5;
+  border-top-color: #159a68;
+  border-radius: 50%;
+  animation: smarthealth-admin-users-spin 0.8s linear infinite;
+}
+
+.smarthealth-admin-users-loading p {
+  margin: 0;
+  font-size: 12px;
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.smarthealth-admin-users-empty {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 300px;
+  padding: 30px;
+  text-align: center;
+}
+
+.smarthealth-admin-users-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  margin-bottom: 13px;
+  border-radius: 15px;
+  background: #e9f6ef;
+  color: #168c5f;
+  font-size: 20px;
+  font-weight: 750;
+}
+
+.smarthealth-admin-users-empty h3 {
+  margin: 0;
+  color: #385247;
+  font-size: 15px;
+}
+
+.smarthealth-admin-users-empty p {
+  max-width: 420px;
+  margin: 7px 0 15px;
+  color: #87938e;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.smarthealth-admin-users-empty button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #e9f6ef;
+  color: #168c5f;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes smarthealth-admin-users-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+  .smarthealth-admin-users-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .smarthealth-admin-users-filter-controls {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .smarthealth-admin-users-search-box {
+    grid-column: span 2;
+  }
+}
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 750px) {
+  .smarthealth-admin-users {
+    padding: 22px;
+  }
+
+  .smarthealth-admin-users-filter-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .smarthealth-admin-users-filter-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-admin-users-search-box {
+    grid-column: span 1;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .smarthealth-admin-users {
+    padding: 18px;
+  }
+
+  .smarthealth-admin-users-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .smarthealth-admin-users-header h1 {
+    font-size: 25px;
+  }
+
+  .smarthealth-admin-users-refresh-button {
+    width: 100%;
+  }
+
+  .smarthealth-admin-users-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-admin-users-filter-card {
+    padding: 18px;
+  }
+
+  .smarthealth-admin-users-list-header {
+    padding: 18px;
+  }
+}

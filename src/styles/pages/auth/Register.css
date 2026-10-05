@@ -1,0 +1,1162 @@
+/* =========================================================
+   SMART HEALTHCARE REGISTER PAGE
+   MODERN GREEN HEALTHCARE THEME
+   ========================================================= */
+
+/* =========================================================
+   GLOBAL RESET
+   ========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================================================
+   REGISTER PAGE
+   ========================================================= */
+
+.smarthealth-register-page {
+  width: 100%;
+  min-height: 100vh;
+
+  margin: 0;
+  padding: 0;
+
+  position: relative;
+  overflow: hidden;
+
+  background: #f4faf7;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.smarthealth-register-background {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.smarthealth-register-orb {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.smarthealth-register-orb-one {
+  width: 600px;
+  height: 600px;
+
+  top: -350px;
+  left: -220px;
+
+  background: rgba(52, 211, 153, 0.13);
+
+  filter: blur(2px);
+}
+
+.smarthealth-register-orb-two {
+  width: 700px;
+  height: 700px;
+
+  right: -350px;
+  bottom: -400px;
+
+  background: rgba(16, 185, 129, 0.1);
+
+  filter: blur(2px);
+}
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.smarthealth-register-container {
+  width: 100%;
+  min-height: 100vh;
+
+  margin: 0;
+  padding: 0;
+
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns:
+    58%
+    42%;
+}
+
+/* =========================================================
+   LEFT BRAND PANEL
+   ========================================================= */
+
+.smarthealth-register-brand-panel {
+  width: 100%;
+  min-height: 100vh;
+
+  box-sizing: border-box;
+
+  position: relative;
+  overflow: hidden;
+
+  padding: 55px 70px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+    #064e3b 0%,
+    #047857 42%,
+    #059669 72%,
+    #10b981 100%
+  );
+}
+
+/* =========================================================
+   DECORATIVE CIRCLES
+   ========================================================= */
+
+.smarthealth-register-brand-panel::before {
+  content: "";
+
+  position: absolute;
+
+  width: 680px;
+  height: 680px;
+
+  top: -400px;
+  right: -330px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.13);
+
+  pointer-events: none;
+}
+
+.smarthealth-register-brand-panel::after {
+  content: "";
+
+  position: absolute;
+
+  width: 800px;
+  height: 800px;
+
+  bottom: -620px;
+  left: -470px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.smarthealth-register-brand {
+  position: relative;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+}
+
+.smarthealth-register-logo {
+  width: 52px;
+  height: 52px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.16);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+  backdrop-filter: blur(10px);
+}
+
+.smarthealth-register-logo span {
+  color: #ffffff;
+
+  font-size: 31px;
+
+  line-height: 1;
+
+  font-weight: 800;
+}
+
+.smarthealth-register-brand-text h1 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 22px;
+
+  line-height: 1.2;
+
+  font-weight: 750;
+
+  letter-spacing: -0.5px;
+}
+
+.smarthealth-register-brand-text p {
+  margin: 4px 0 0;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 10px;
+
+  letter-spacing: 0.25px;
+}
+
+/* =========================================================
+   BRAND CONTENT
+   ========================================================= */
+
+.smarthealth-register-brand-content {
+  position: relative;
+  z-index: 5;
+
+  max-width: 620px;
+}
+
+.smarthealth-register-badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 8px 14px;
+
+  border-radius: 8px;
+
+  color: #d1fae5;
+
+  background: rgba(255, 255, 255, 0.1);
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.6px;
+
+  backdrop-filter: blur(8px);
+}
+
+.smarthealth-register-brand-content h2 {
+  margin: 24px 0 20px;
+
+  color: #ffffff;
+
+  font-size: clamp(42px, 4.3vw, 68px);
+
+  line-height: 1.02;
+
+  font-weight: 760;
+
+  letter-spacing: -3px;
+}
+
+.smarthealth-register-brand-content h2 span {
+  color: #a7f3d0;
+}
+
+.smarthealth-register-brand-content > p {
+  max-width: 550px;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 14px;
+
+  line-height: 1.8;
+}
+
+/* =========================================================
+   FEATURES
+   ========================================================= */
+
+.smarthealth-register-features {
+  position: relative;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 17px;
+}
+
+.smarthealth-register-feature {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+}
+
+.smarthealth-register-feature-icon {
+  width: 32px;
+  height: 32px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.1);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  color: #a7f3d0;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+.smarthealth-register-feature-text {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.smarthealth-register-feature-text strong {
+  color: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: 650;
+}
+
+.smarthealth-register-feature-text span {
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.smarthealth-register-brand-footer {
+  position: relative;
+  z-index: 5;
+
+  display: flex;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  color: rgba(255, 255, 255, 0.38);
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   RIGHT FORM PANEL
+   ========================================================= */
+
+.smarthealth-register-form-panel {
+  width: 100%;
+  min-height: 100vh;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 35px 45px;
+
+  background: linear-gradient(145deg, #f8fffb 0%, #f4faf7 50%, #eef8f3 100%);
+
+  overflow-y: auto;
+}
+
+/* =========================================================
+   REGISTER CARD
+   ========================================================= */
+
+.smarthealth-register-card {
+  width: 100%;
+
+  max-width: 560px;
+
+  box-sizing: border-box;
+
+  padding: 38px 45px;
+
+  border-radius: 22px;
+
+  background: #ffffff;
+
+  border: none;
+
+  box-shadow:
+    0 25px 70px rgba(6, 78, 59, 0.1),
+    0 5px 20px rgba(6, 78, 59, 0.05);
+}
+
+/* =========================================================
+   MOBILE BRAND
+   ========================================================= */
+
+.smarthealth-register-mobile-brand {
+  display: none;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.smarthealth-register-header {
+  margin-bottom: 25px;
+}
+
+.smarthealth-register-welcome {
+  display: inline-block;
+
+  color: #059669;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.8px;
+}
+
+.smarthealth-register-header h2 {
+  margin: 9px 0 8px;
+
+  color: #064e3b;
+
+  font-size: 29px;
+
+  line-height: 1.2;
+
+  font-weight: 750;
+
+  letter-spacing: -1.1px;
+}
+
+.smarthealth-register-header p {
+  max-width: 440px;
+
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 12px;
+
+  line-height: 1.65;
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.smarthealth-register-error {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+  padding: 11px 13px;
+
+  border-radius: 10px;
+
+  background: #fff5f5;
+
+  border: 1px solid #fecaca;
+
+  color: #b91c1c;
+
+  font-size: 11px;
+
+  line-height: 1.45;
+}
+
+.smarthealth-register-error-icon {
+  width: 22px;
+  height: 22px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: #fee2e2;
+
+  color: #dc2626;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   SUCCESS
+   ========================================================= */
+
+.smarthealth-register-success {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+  padding: 11px 13px;
+
+  border-radius: 10px;
+
+  background: #f0fdf4;
+
+  border: 1px solid #bbf7d0;
+
+  color: #166534;
+
+  font-size: 11px;
+
+  line-height: 1.45;
+}
+
+.smarthealth-register-success-icon {
+  width: 22px;
+  height: 22px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: #dcfce7;
+
+  color: #16a34a;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.smarthealth-register-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 17px;
+}
+
+.smarthealth-register-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+
+  min-width: 0;
+}
+
+.smarthealth-register-fields-row {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap: 14px;
+}
+
+.smarthealth-register-field label {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  color: #334155;
+
+  font-size: 11px;
+
+  font-weight: 650;
+}
+
+.smarthealth-register-optional {
+  color: #94a3b8;
+
+  font-size: 8px;
+
+  font-weight: 500;
+}
+
+/* =========================================================
+   INPUT WRAPPER
+   ========================================================= */
+
+.smarthealth-register-input-wrapper {
+  position: relative;
+
+  width: 100%;
+}
+
+.smarthealth-register-input-icon {
+  position: absolute;
+
+  left: 13px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 21px;
+
+  color: #94a3b8;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  pointer-events: none;
+
+  text-align: center;
+}
+
+.smarthealth-register-input-wrapper input {
+  width: 100%;
+  height: 46px;
+
+  box-sizing: border-box;
+
+  padding: 0 43px;
+
+  border: 1px solid #d7e7df;
+
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #f9fcfa;
+
+  color: #064e3b;
+
+  font-size: 11px;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-register-input-wrapper input::placeholder {
+  color: #a3b5ad;
+}
+
+.smarthealth-register-input-wrapper input:hover {
+  border-color: #a7cdbd;
+}
+
+.smarthealth-register-input-wrapper input:focus {
+  border-color: #10b981;
+
+  background: #ffffff;
+
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.smarthealth-register-input-wrapper input:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   PASSWORD TOGGLE
+   ========================================================= */
+
+.smarthealth-register-password-toggle {
+  position: absolute;
+
+  right: 10px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  padding: 5px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #059669;
+
+  font-size: 8px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+}
+
+.smarthealth-register-password-toggle:hover {
+  color: #047857;
+}
+
+.smarthealth-register-password-toggle:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.5;
+}
+
+/* =========================================================
+   PASSWORD INFO
+   ========================================================= */
+
+.smarthealth-register-password-info {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: -4px;
+
+  color: #64748b;
+
+  font-size: 9px;
+}
+
+.smarthealth-register-password-info-icon {
+  width: 17px;
+  height: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #dcfce7;
+
+  color: #16a34a;
+
+  font-size: 8px;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   REGISTER BUTTON
+   ========================================================= */
+
+.smarthealth-register-button {
+  width: 100%;
+  height: 49px;
+
+  margin-top: 3px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: linear-gradient(135deg, #047857 0%, #059669 50%, #10b981 100%);
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 9px 22px rgba(5, 150, 105, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.smarthealth-register-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  box-shadow: 0 12px 26px rgba(5, 150, 105, 0.27);
+}
+
+.smarthealth-register-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.smarthealth-register-button:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+}
+
+.smarthealth-register-button-arrow {
+  font-size: 17px;
+
+  line-height: 1;
+}
+
+/* =========================================================
+   SPINNER
+   ========================================================= */
+
+.smarthealth-register-spinner {
+  width: 15px;
+  height: 15px;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(255, 255, 255, 0.3);
+
+  border-top-color: #ffffff;
+
+  animation: smarthealth-register-spin 0.7s linear infinite;
+}
+
+@keyframes smarthealth-register-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   LOGIN LINK
+   ========================================================= */
+
+.smarthealth-register-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  margin-top: 21px;
+
+  color: #64748b;
+
+  font-size: 11px;
+}
+
+.smarthealth-register-login a {
+  color: #059669;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.smarthealth-register-login a:hover {
+  color: #047857;
+
+  text-decoration: underline;
+}
+
+/* =========================================================
+   SECURITY BOX
+   ========================================================= */
+
+.smarthealth-register-security {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 10px;
+
+  margin-top: 21px;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  background: #f0fdf4;
+
+  border: 1px solid #dcfce7;
+}
+
+.smarthealth-register-security-icon {
+  width: 27px;
+  height: 27px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: #dcfce7;
+
+  font-size: 10px;
+}
+
+.smarthealth-register-security strong {
+  display: block;
+
+  margin-bottom: 2px;
+
+  color: #166534;
+
+  font-size: 10px;
+
+  font-weight: 750;
+}
+
+.smarthealth-register-security p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 9px;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+  .smarthealth-register-container {
+    grid-template-columns:
+      52%
+      48%;
+  }
+
+  .smarthealth-register-brand-panel {
+    padding: 45px 40px;
+  }
+
+  .smarthealth-register-form-panel {
+    padding: 30px;
+  }
+
+  .smarthealth-register-card {
+    padding: 35px;
+  }
+
+  .smarthealth-register-brand-content h2 {
+    font-size: 48px;
+
+    letter-spacing: -2px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+  .smarthealth-register-page {
+    min-height: 100vh;
+
+    background: linear-gradient(145deg, #ecfdf5 0%, #f5faf7 50%, #f0fdf4 100%);
+  }
+
+  .smarthealth-register-container {
+    display: block;
+
+    width: 100%;
+
+    min-height: 100vh;
+  }
+
+  .smarthealth-register-brand-panel {
+    display: none;
+  }
+
+  .smarthealth-register-form-panel {
+    width: 100%;
+
+    min-height: 100vh;
+
+    box-sizing: border-box;
+
+    padding: 25px 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    overflow-y: auto;
+  }
+
+  .smarthealth-register-card {
+    width: 100%;
+
+    max-width: 520px;
+
+    padding: 32px 25px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 20px 45px rgba(6, 78, 59, 0.09);
+  }
+
+  .smarthealth-register-mobile-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    margin-bottom: 28px;
+  }
+
+  .smarthealth-register-mobile-brand .smarthealth-register-logo {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 11px;
+
+    background: linear-gradient(135deg, #047857, #10b981);
+
+    border: none;
+
+    box-shadow: 0 8px 20px rgba(5, 150, 105, 0.2);
+  }
+
+  .smarthealth-register-mobile-brand .smarthealth-register-logo span {
+    font-size: 26px;
+  }
+
+  .smarthealth-register-mobile-brand .smarthealth-register-brand-text h1 {
+    color: #064e3b;
+
+    font-size: 18px;
+  }
+
+  .smarthealth-register-mobile-brand .smarthealth-register-brand-text p {
+    color: #64748b;
+
+    font-size: 9px;
+  }
+
+  .smarthealth-register-header h2 {
+    font-size: 27px;
+  }
+
+  .smarthealth-register-fields-row {
+    grid-template-columns: 1fr;
+
+    gap: 17px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+  .smarthealth-register-form-panel {
+    padding: 15px 10px;
+  }
+
+  .smarthealth-register-card {
+    padding: 27px 20px;
+
+    border-radius: 17px;
+  }
+
+  .smarthealth-register-mobile-brand {
+    margin-bottom: 25px;
+  }
+
+  .smarthealth-register-header {
+    margin-bottom: 23px;
+  }
+
+  .smarthealth-register-header h2 {
+    font-size: 24px;
+  }
+
+  .smarthealth-register-form {
+    gap: 16px;
+  }
+
+  .smarthealth-register-login {
+    flex-direction: column;
+
+    gap: 3px;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+.smarthealth-register-button:focus-visible,
+.smarthealth-register-password-toggle:focus-visible,
+.smarthealth-register-login a:focus-visible {
+  outline: 3px solid rgba(16, 185, 129, 0.25);
+
+  outline-offset: 3px;
+}
