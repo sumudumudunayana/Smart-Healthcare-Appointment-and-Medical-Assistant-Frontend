@@ -1,0 +1,416 @@
+.smarthealth-receptionist-availability-page {
+  padding: 28px;
+  min-height: 100%;
+  background: #f8fafc;
+}
+
+.smarthealth-receptionist-availability-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.smarthealth-receptionist-availability-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-availability-subtitle {
+  margin: 6px 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.smarthealth-receptionist-availability-refresh-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 16px;
+  background: #059669;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.smarthealth-receptionist-availability-refresh-button:hover {
+  background: #047857;
+}
+
+.smarthealth-receptionist-availability-refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.smarthealth-receptionist-availability-refresh-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.smarthealth-receptionist-availability-layout {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.smarthealth-receptionist-availability-doctors-card,
+.smarthealth-receptionist-availability-schedule-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+}
+
+.smarthealth-receptionist-availability-doctors-card {
+  overflow: hidden;
+}
+
+.smarthealth-receptionist-availability-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.smarthealth-receptionist-availability-card-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-availability-card-description {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.smarthealth-receptionist-availability-doctor-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #d1fae5;
+  color: #047857;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-availability-search-wrapper {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.smarthealth-receptionist-availability-search {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  padding: 11px 13px;
+  outline: none;
+  color: #0f172a;
+  background: #ffffff;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.smarthealth-receptionist-availability-search:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.smarthealth-receptionist-availability-doctor-list {
+  max-height: 620px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.smarthealth-receptionist-availability-doctor-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: none;
+  border-radius: 11px;
+  padding: 13px;
+  margin-bottom: 5px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.smarthealth-receptionist-availability-doctor-item:hover {
+  background: #f0fdf4;
+}
+
+.smarthealth-receptionist-availability-doctor-item-selected {
+  background: #ecfdf5;
+  box-shadow: inset 3px 0 0 #059669;
+}
+
+.smarthealth-receptionist-availability-doctor-avatar {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #d1fae5;
+  color: #047857;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-availability-doctor-info {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.smarthealth-receptionist-availability-doctor-name {
+  overflow: hidden;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smarthealth-receptionist-availability-doctor-specialization {
+  color: #059669;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.smarthealth-receptionist-availability-doctor-department {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.smarthealth-receptionist-availability-doctor-arrow {
+  color: #94a3b8;
+  font-size: 18px;
+}
+
+.smarthealth-receptionist-availability-schedule-card {
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.smarthealth-receptionist-availability-schedule-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 22px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.smarthealth-receptionist-availability-schedule-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-availability-schedule-subtitle {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.smarthealth-receptionist-availability-doctor-status {
+  padding: 6px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.smarthealth-receptionist-availability-doctor-status-active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.smarthealth-receptionist-availability-doctor-status-inactive {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.smarthealth-receptionist-availability-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.smarthealth-receptionist-availability-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.smarthealth-receptionist-availability-table th {
+  padding: 14px 18px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.smarthealth-receptionist-availability-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  font-size: 14px;
+}
+
+.smarthealth-receptionist-availability-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.smarthealth-receptionist-availability-day {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-availability-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-availability-status-available {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.smarthealth-receptionist-availability-status-unavailable {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.smarthealth-receptionist-availability-placeholder,
+.smarthealth-receptionist-availability-empty-schedule {
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+}
+
+.smarthealth-receptionist-availability-placeholder-icon,
+.smarthealth-receptionist-availability-empty-schedule-icon {
+  width: 68px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  font-size: 30px;
+}
+
+.smarthealth-receptionist-availability-placeholder-title,
+.smarthealth-receptionist-availability-empty-schedule-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-availability-placeholder-text,
+.smarthealth-receptionist-availability-empty-schedule-text {
+  max-width: 420px;
+  margin: 8px 0 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.smarthealth-receptionist-availability-loading {
+  padding: 35px 20px;
+  color: #64748b;
+  font-size: 14px;
+  text-align: center;
+}
+
+.smarthealth-receptionist-availability-empty {
+  padding: 35px 20px;
+  color: #64748b;
+  font-size: 14px;
+  text-align: center;
+}
+
+.smarthealth-receptionist-availability-error {
+  margin-top: 18px;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 12px 15px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 13px;
+}
+
+@media (max-width: 1000px) {
+  .smarthealth-receptionist-availability-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-receptionist-availability-doctor-list {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 650px) {
+  .smarthealth-receptionist-availability-page {
+    padding: 18px;
+  }
+
+  .smarthealth-receptionist-availability-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .smarthealth-receptionist-availability-refresh-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .smarthealth-receptionist-availability-title {
+    font-size: 24px;
+  }
+
+  .smarthealth-receptionist-availability-schedule-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .smarthealth-receptionist-availability-table th,
+  .smarthealth-receptionist-availability-table td {
+    padding: 12px;
+    white-space: nowrap;
+  }
+}

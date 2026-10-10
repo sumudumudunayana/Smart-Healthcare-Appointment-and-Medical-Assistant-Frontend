@@ -1,0 +1,863 @@
+/* =========================================================
+   SMART HEALTHCARE
+   RECEPTIONIST - NOTIFICATIONS
+   ========================================================= */
+
+.smarthealth-receptionist-notification-page {
+  width: 100%;
+  min-height: 100%;
+  padding: 28px 30px 40px;
+  box-sizing: border-box;
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.smarthealth-receptionist-notification-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 26px;
+}
+
+.smarthealth-receptionist-notification-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.smarthealth-receptionist-notification-subtitle {
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.smarthealth-receptionist-notification-refresh-button {
+  height: 42px;
+  padding: 0 18px;
+  border: 1px solid #a7f3d0;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #047857;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.smarthealth-receptionist-notification-refresh-button:hover:not(
+    :disabled
+  ) {
+  background: #ecfdf5;
+  border-color: #6ee7b7;
+}
+
+.smarthealth-receptionist-notification-refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.smarthealth-receptionist-notification-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 26px;
+}
+
+.smarthealth-receptionist-notification-summary-card {
+  min-height: 105px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.smarthealth-receptionist-notification-summary-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-notification-summary-icon-unread {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.smarthealth-receptionist-notification-summary-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.smarthealth-receptionist-notification-summary-value {
+  display: block;
+  color: #0f172a;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   MAIN SECTION
+   ========================================================= */
+
+.smarthealth-receptionist-notification-section {
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.smarthealth-receptionist-notification-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.smarthealth-receptionist-notification-section-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-notification-section-description {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.smarthealth-receptionist-notification-count {
+  min-width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background: #d1fae5;
+  color: #047857;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   FILTER BAR
+   ========================================================= */
+
+.smarthealth-receptionist-notification-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 17px 24px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.smarthealth-receptionist-notification-search {
+  width: 100%;
+  max-width: 450px;
+  height: 42px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #334155;
+  font-size: 13px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-receptionist-notification-search::placeholder {
+  color: #94a3b8;
+}
+
+.smarthealth-receptionist-notification-search:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.smarthealth-receptionist-notification-filter-select {
+  min-width: 145px;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #334155;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.smarthealth-receptionist-notification-filter-select:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+/* =========================================================
+   NOTIFICATION LIST
+   ========================================================= */
+
+.smarthealth-receptionist-notification-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.smarthealth-receptionist-notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 21px 24px;
+  border-bottom: 1px solid #f1f5f9;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-receptionist-notification-item:last-child {
+  border-bottom: none;
+}
+
+.smarthealth-receptionist-notification-item:hover {
+  background: #f8fafc;
+}
+
+.smarthealth-receptionist-notification-item-unread {
+  background: #f0fdf4;
+}
+
+.smarthealth-receptionist-notification-item-unread:hover {
+  background: #ecfdf5;
+}
+
+.smarthealth-receptionist-notification-item-read {
+  background: #ffffff;
+}
+
+/* =========================================================
+   NOTIFICATION ICON
+   ========================================================= */
+
+.smarthealth-receptionist-notification-item-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 20px;
+}
+
+.smarthealth-receptionist-notification-type-appointment {
+  background: #ecfdf5;
+}
+
+.smarthealth-receptionist-notification-type-payment {
+  background: #eff6ff;
+}
+
+.smarthealth-receptionist-notification-type-insurance {
+  background: #f5f3ff;
+}
+
+.smarthealth-receptionist-notification-type-medical {
+  background: #fff7ed;
+}
+
+.smarthealth-receptionist-notification-type-default {
+  background: #f1f5f9;
+}
+
+/* =========================================================
+   NOTIFICATION CONTENT
+   ========================================================= */
+
+.smarthealth-receptionist-notification-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.smarthealth-receptionist-notification-item-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.smarthealth-receptionist-notification-item-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.smarthealth-receptionist-notification-type {
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-notification-unread-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 9px;
+  border-radius: 20px;
+  background: #d1fae5;
+  color: #047857;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-notification-relative-time {
+  flex-shrink: 0;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.smarthealth-receptionist-notification-message {
+  max-width: 850px;
+  margin: 8px 0 0;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.smarthealth-receptionist-notification-item-bottom {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 13px;
+}
+
+.smarthealth-receptionist-notification-date {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.smarthealth-receptionist-notification-read-button {
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid #a7f3d0;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #047857;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.smarthealth-receptionist-notification-read-button:hover:not(
+    :disabled
+  ) {
+  background: #ecfdf5;
+  border-color: #6ee7b7;
+}
+
+.smarthealth-receptionist-notification-read-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.smarthealth-receptionist-notification-read-time {
+  color: #15803d;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.smarthealth-receptionist-notification-loading {
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  box-sizing: border-box;
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.smarthealth-receptionist-notification-empty {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.smarthealth-receptionist-notification-empty-icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 25px;
+}
+
+.smarthealth-receptionist-notification-empty-title {
+  margin: 0;
+  color: #334155;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-notification-empty-text {
+  max-width: 430px;
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .smarthealth-receptionist-notification-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
+   SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .smarthealth-receptionist-notification-page {
+    padding: 22px 20px 35px;
+  }
+
+  .smarthealth-receptionist-notification-header {
+    align-items: flex-start;
+  }
+
+  .smarthealth-receptionist-notification-filter-bar {
+    flex-wrap: wrap;
+  }
+
+  .smarthealth-receptionist-notification-search {
+    max-width: none;
+    flex: 1 1 100%;
+  }
+}
+
+
+/* =========================================================
+   SECTION ACTIONS
+   ========================================================= */
+
+.smarthealth-receptionist-notification-section-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.smarthealth-receptionist-notification-create-button {
+  min-height: 42px;
+  padding: 0 17px;
+  border: none;
+  border-radius: 8px;
+  background: #059669;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-receptionist-notification-create-button:hover {
+  background: #047857;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(5, 150, 105, 0.2);
+}
+
+/* =========================================================
+   CREATE NOTIFICATION PANEL
+   ========================================================= */
+
+.smarthealth-receptionist-notification-create-panel {
+  padding: 22px 24px 24px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.smarthealth-receptionist-notification-create-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.smarthealth-receptionist-notification-create-title {
+  margin: 0;
+  color: #334155;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-notification-create-description {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.smarthealth-receptionist-notification-close-button {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.smarthealth-receptionist-notification-close-button:hover:not(
+    :disabled
+  ) {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+.smarthealth-receptionist-notification-close-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   CREATE FORM
+   ========================================================= */
+
+.smarthealth-receptionist-notification-create-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.smarthealth-receptionist-notification-form-group {
+  min-width: 0;
+}
+
+.smarthealth-receptionist-notification-form-group-wide {
+  grid-column: 1 / -1;
+}
+
+.smarthealth-receptionist-notification-form-group label {
+  display: block;
+  margin-bottom: 7px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-notification-form-group select,
+.smarthealth-receptionist-notification-form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #334155;
+  font-family: inherit;
+  font-size: 13px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-receptionist-notification-form-group select {
+  height: 44px;
+  padding: 0 13px;
+  cursor: pointer;
+}
+
+.smarthealth-receptionist-notification-form-group textarea {
+  min-height: 105px;
+  padding: 12px 13px;
+  resize: vertical;
+}
+
+.smarthealth-receptionist-notification-form-group select:focus,
+.smarthealth-receptionist-notification-form-group textarea:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.smarthealth-receptionist-notification-form-group select:disabled,
+.smarthealth-receptionist-notification-form-group textarea:disabled {
+  background: #f1f5f9;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   CREATE FORM ACTIONS
+   ========================================================= */
+
+.smarthealth-receptionist-notification-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.smarthealth-receptionist-notification-cancel-button {
+  min-height: 42px;
+  padding: 0 17px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.smarthealth-receptionist-notification-cancel-button:hover:not(
+    :disabled
+  ) {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.smarthealth-receptionist-notification-submit-button {
+  min-height: 42px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 8px;
+  background: #059669;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-receptionist-notification-submit-button:hover:not(
+    :disabled
+  ) {
+  background: #047857;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(5, 150, 105, 0.2);
+}
+
+.smarthealth-receptionist-notification-submit-button:disabled,
+.smarthealth-receptionist-notification-cancel-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   CREATE FORM RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .smarthealth-receptionist-notification-create-form {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-receptionist-notification-form-group-wide,
+  .smarthealth-receptionist-notification-form-actions {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 650px) {
+  .smarthealth-receptionist-notification-section-actions {
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .smarthealth-receptionist-notification-create-button {
+    width: 100%;
+  }
+
+  .smarthealth-receptionist-notification-create-panel {
+    padding: 18px;
+  }
+
+  .smarthealth-receptionist-notification-create-header {
+    gap: 12px;
+  }
+
+  .smarthealth-receptionist-notification-form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .smarthealth-receptionist-notification-cancel-button,
+  .smarthealth-receptionist-notification-submit-button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+  .smarthealth-receptionist-notification-page {
+    padding: 18px 14px 30px;
+  }
+
+  .smarthealth-receptionist-notification-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .smarthealth-receptionist-notification-title {
+    font-size: 25px;
+  }
+
+  .smarthealth-receptionist-notification-refresh-button {
+    width: 100%;
+  }
+
+  .smarthealth-receptionist-notification-summary-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .smarthealth-receptionist-notification-summary-card {
+    min-height: 90px;
+  }
+
+  .smarthealth-receptionist-notification-section-header {
+    align-items: flex-start;
+    padding: 18px;
+  }
+
+  .smarthealth-receptionist-notification-section-title {
+    font-size: 17px;
+  }
+
+  .smarthealth-receptionist-notification-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 18px;
+  }
+
+  .smarthealth-receptionist-notification-search,
+  .smarthealth-receptionist-notification-filter-select {
+    width: 100%;
+    max-width: none;
+  }
+
+  .smarthealth-receptionist-notification-item {
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .smarthealth-receptionist-notification-item-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    font-size: 18px;
+  }
+
+  .smarthealth-receptionist-notification-item-top {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .smarthealth-receptionist-notification-relative-time {
+    order: 2;
+  }
+
+  .smarthealth-receptionist-notification-item-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .smarthealth-receptionist-notification-read-button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+  .smarthealth-receptionist-notification-section-header {
+    flex-direction: column;
+  }
+
+  .smarthealth-receptionist-notification-count {
+    align-self: flex-start;
+  }
+
+  .smarthealth-receptionist-notification-summary-value {
+    font-size: 19px;
+  }
+}
