@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5244/api",
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -18,7 +18,7 @@ const refreshAccessToken = async () => {
 
   if (!refreshPromise) {
     refreshPromise = axios
-      .post("http://localhost:5244/api/Auth/refresh", {
+      .post(`${import.meta.env.VITE_API_URL}/Auth/refresh`, {
         refreshToken,
       })
       .then((response) => {
