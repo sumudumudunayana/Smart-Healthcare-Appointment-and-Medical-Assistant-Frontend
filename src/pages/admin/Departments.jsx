@@ -29,10 +29,7 @@ const Departments = () => {
 
       setDepartments(data || []);
     } catch (error) {
-      console.error(
-        "Failed to load departments:",
-        error
-      );
+      console.error("Failed to load departments:", error);
 
       const message =
         error.response?.data?.message ||
@@ -53,14 +50,11 @@ const Departments = () => {
     }
 
     return departments.filter((department) => {
-      const name =
-        department.departmentName?.toLowerCase() || "";
+      const name = department.departmentName?.toLowerCase() || "";
 
-      const departmentDescription =
-        department.description?.toLowerCase() || "";
+      const departmentDescription = department.description?.toLowerCase() || "";
 
-      const departmentLocation =
-        department.location?.toLowerCase() || "";
+      const departmentLocation = department.location?.toLowerCase() || "";
 
       return (
         name.includes(term) ||
@@ -91,33 +85,23 @@ const Departments = () => {
     setCreating(true);
 
     try {
-      const created =
-        await departmentService.create({
-          departmentName: name,
-          description:
-            trimmedDescription || null,
-          location:
-            trimmedLocation || null,
-        });
+      const created = await departmentService.create({
+        departmentName: name,
+        description: trimmedDescription || null,
+        location: trimmedLocation || null,
+      });
 
       setDepartments((current) =>
         [...current, created].sort((a, b) =>
-          a.departmentName.localeCompare(
-            b.departmentName
-          )
-        )
+          a.departmentName.localeCompare(b.departmentName),
+        ),
       );
 
       resetForm();
 
-      toast.success(
-        "Department created successfully."
-      );
+      toast.success("Department created successfully.");
     } catch (error) {
-      console.error(
-        "Failed to create department:",
-        error
-      );
+      console.error("Failed to create department:", error);
 
       const message =
         error.response?.data?.message ||
@@ -132,13 +116,11 @@ const Departments = () => {
 
   return (
     <div className="smarthealth-admin-departments">
-
       {/* =====================================================
           PAGE HEADER
       ====================================================== */}
 
       <section className="smarthealth-admin-departments-header">
-
         <div>
           <span className="smarthealth-admin-departments-eyebrow">
             Management
@@ -146,20 +128,14 @@ const Departments = () => {
 
           <h1>Departments</h1>
 
-          <p>
-            Manage the departments available in the
-            healthcare system.
-          </p>
+          <p>Manage the departments available in the healthcare system.</p>
         </div>
 
         <div className="smarthealth-admin-departments-count">
           <span>Total</span>
 
-          <strong>
-            {departments.length}
-          </strong>
+          <strong>{departments.length}</strong>
         </div>
-
       </section>
 
       {/* =====================================================
@@ -167,42 +143,28 @@ const Departments = () => {
       ====================================================== */}
 
       <section className="smarthealth-admin-department-form-card">
-
         <div className="smarthealth-admin-department-form-header">
-
-          <div className="smarthealth-admin-department-form-icon">
-            +
-          </div>
+          <div className="smarthealth-admin-department-form-icon">+</div>
 
           <div>
             <h2>Add Department</h2>
 
-            <p>
-              Create a new healthcare department.
-            </p>
+            <p>Create a new healthcare department.</p>
           </div>
-
         </div>
 
         <form
           className="smarthealth-admin-department-form"
           onSubmit={handleSubmit}
         >
-
           <div className="smarthealth-admin-department-field">
-            <label htmlFor="departmentName">
-              Department Name
-            </label>
+            <label htmlFor="departmentName">Department Name</label>
 
             <input
               id="departmentName"
               type="text"
               value={departmentName}
-              onChange={(event) =>
-                setDepartmentName(
-                  event.target.value
-                )
-              }
+              onChange={(event) => setDepartmentName(event.target.value)}
               placeholder="e.g. Cardiology Department"
               maxLength={100}
               disabled={creating}
@@ -210,17 +172,13 @@ const Departments = () => {
           </div>
 
           <div className="smarthealth-admin-department-field">
-            <label htmlFor="departmentLocation">
-              Location
-            </label>
+            <label htmlFor="departmentLocation">Location</label>
 
             <input
               id="departmentLocation"
               type="text"
               value={location}
-              onChange={(event) =>
-                setLocation(event.target.value)
-              }
+              onChange={(event) => setLocation(event.target.value)}
               placeholder="e.g. Main Building - Floor 2"
               maxLength={150}
               disabled={creating}
@@ -228,25 +186,18 @@ const Departments = () => {
           </div>
 
           <div className="smarthealth-admin-department-field smarthealth-admin-department-description-field">
-            <label htmlFor="departmentDescription">
-              Description
-            </label>
+            <label htmlFor="departmentDescription">Description</label>
 
             <input
               id="departmentDescription"
               type="text"
               value={description}
-              onChange={(event) =>
-                setDescription(
-                  event.target.value
-                )
-              }
+              onChange={(event) => setDescription(event.target.value)}
               placeholder="Brief department description"
               maxLength={300}
               disabled={creating}
             />
           </div>
-
           <button
             type="submit"
             className="smarthealth-admin-department-submit"
@@ -264,9 +215,7 @@ const Departments = () => {
               </>
             )}
           </button>
-
         </form>
-
       </section>
 
       {/* =====================================================
@@ -274,28 +223,20 @@ const Departments = () => {
       ====================================================== */}
 
       <section className="smarthealth-admin-departments-list-card">
-
         <div className="smarthealth-admin-departments-list-header">
-
           <div>
             <h2>All Departments</h2>
 
-            <p>
-              View and search registered healthcare
-              departments.
-            </p>
+            <p>View and search registered healthcare departments.</p>
           </div>
 
           <div className="smarthealth-admin-departments-search">
-
             <span>⌕</span>
 
             <input
               type="text"
               value={searchTerm}
-              onChange={(event) =>
-                setSearchTerm(event.target.value)
-              }
+              onChange={(event) => setSearchTerm(event.target.value)}
               placeholder="Search departments..."
             />
 
@@ -308,9 +249,7 @@ const Departments = () => {
                 ×
               </button>
             )}
-
           </div>
-
         </div>
 
         {/* =================================================
@@ -319,68 +258,45 @@ const Departments = () => {
 
         {loading ? (
           <div className="smarthealth-admin-departments-loading">
-
             <div className="smarthealth-admin-departments-spinner"></div>
 
-            <p>
-              Loading departments...
-            </p>
-
+            <p>Loading departments...</p>
           </div>
         ) : filteredDepartments.length === 0 ? (
-
           /* ===============================================
              EMPTY STATE
           ================================================ */
 
           <div className="smarthealth-admin-departments-empty">
-
-            <div className="smarthealth-admin-departments-empty-icon">
-              ▦
-            </div>
+            <div className="smarthealth-admin-departments-empty-icon">▦</div>
 
             {searchTerm ? (
               <>
-                <h3>
-                  No matching departments
-                </h3>
+                <h3>No matching departments</h3>
 
-                <p>
-                  No department matches "
-                  {searchTerm}".
-                </p>
+                <p>No department matches "{searchTerm}".</p>
 
-                <button
-                  type="button"
-                  onClick={() => setSearchTerm("")}
-                >
+                <button type="button" onClick={() => setSearchTerm("")}>
                   Clear Search
                 </button>
               </>
             ) : (
               <>
-                <h3>
-                  No departments found
-                </h3>
+                <h3>No departments found</h3>
 
                 <p>
-                  Add your first healthcare department
-                  using the form above.
+                  Add your first healthcare department using the form above.
                 </p>
               </>
             )}
-
           </div>
         ) : (
-
           /* ===============================================
              TABLE
           ================================================ */
 
           <div className="smarthealth-admin-departments-table-wrapper">
-
             <table className="smarthealth-admin-departments-table">
-
               <thead>
                 <tr>
                   <th>#</th>
@@ -391,68 +307,49 @@ const Departments = () => {
               </thead>
 
               <tbody>
+                {filteredDepartments.map((department, index) => (
+                  <tr key={department.departmentId}>
+                    <td>
+                      <span className="smarthealth-admin-department-number">
+                        {index + 1}
+                      </span>
+                    </td>
 
-                {filteredDepartments.map(
-                  (department, index) => (
-                    <tr
-                      key={
-                        department.departmentId
-                      }
-                    >
-
-                      <td>
-                        <span className="smarthealth-admin-department-number">
-                          {index + 1}
+                    <td>
+                      <div className="smarthealth-admin-department-name">
+                        <span className="smarthealth-admin-department-icon">
+                          ▦
                         </span>
-                      </td>
 
-                      <td>
-                        <div className="smarthealth-admin-department-name">
+                        <strong>{department.departmentName}</strong>
+                      </div>
+                    </td>
 
-                          <span className="smarthealth-admin-department-icon">
-                            ▦
-                          </span>
-
-                          <strong>
-                            {department.departmentName}
-                          </strong>
-
-                        </div>
-                      </td>
-
-                      <td>
-                        {department.location ? (
-                          <span className="smarthealth-admin-department-location">
-                            <span>⌖</span>
-                            {department.location}
-                          </span>
-                        ) : (
-                          <span className="smarthealth-admin-department-muted">
-                            Not specified
-                          </span>
-                        )}
-                      </td>
-
-                      <td>
-                        <span className="smarthealth-admin-department-description">
-                          {department.description ||
-                            "No description"}
+                    <td>
+                      {department.location ? (
+                        <span className="smarthealth-admin-department-location">
+                          <span>⌖</span>
+                          {department.location}
                         </span>
-                      </td>
+                      ) : (
+                        <span className="smarthealth-admin-department-muted">
+                          Not specified
+                        </span>
+                      )}
+                    </td>
 
-                    </tr>
-                  )
-                )}
-
+                    <td>
+                      <span className="smarthealth-admin-department-description">
+                        {department.description || "No description"}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
-
             </table>
-
           </div>
         )}
-
       </section>
-
     </div>
   );
 };

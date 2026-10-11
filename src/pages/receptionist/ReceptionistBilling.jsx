@@ -18,28 +18,23 @@ const ReceptionistBilling = () => {
   // SELECTION
   // ============================================================
 
-  const [selectedAppointment, setSelectedAppointment] =
-    useState(null);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
 
   // ============================================================
   // APPOINTMENT FILTERS
   // ============================================================
 
-  const [appointmentSearchTerm, setAppointmentSearchTerm] =
-    useState("");
+  const [appointmentSearchTerm, setAppointmentSearchTerm] = useState("");
 
-  const [appointmentStatusFilter, setAppointmentStatusFilter] =
-    useState("All");
+  const [appointmentStatusFilter, setAppointmentStatusFilter] = useState("All");
 
   // ============================================================
   // BILL FILTERS
   // ============================================================
 
-  const [billSearchTerm, setBillSearchTerm] =
-    useState("");
+  const [billSearchTerm, setBillSearchTerm] = useState("");
 
-  const [billStatusFilter, setBillStatusFilter] =
-    useState("All");
+  const [billStatusFilter, setBillStatusFilter] = useState("All");
 
   // ============================================================
   // BILL FORM
@@ -63,32 +58,19 @@ const ReceptionistBilling = () => {
     try {
       setLoading(true);
 
-      const [appointmentsData, billsData] =
-        await Promise.all([
-          appointmentService.getReceptionistAppointments(),
-          billService.getReceptionistBills(),
-        ]);
+      const [appointmentsData, billsData] = await Promise.all([
+        appointmentService.getReceptionistAppointments(),
+        billService.getReceptionistBills(),
+      ]);
 
-      setAppointments(
-        Array.isArray(appointmentsData)
-          ? appointmentsData
-          : []
-      );
+      setAppointments(Array.isArray(appointmentsData) ? appointmentsData : []);
 
-      setBills(
-        Array.isArray(billsData)
-          ? billsData
-          : []
-      );
+      setBills(Array.isArray(billsData) ? billsData : []);
     } catch (error) {
-      console.error(
-        "Failed to load receptionist billing data:",
-        error
-      );
+      console.error("Failed to load receptionist billing data:", error);
 
       toast.error(
-        error?.response?.data?.message ||
-          "Failed to load billing information."
+        error?.response?.data?.message || "Failed to load billing information.",
       );
     } finally {
       setLoading(false);
@@ -104,9 +86,7 @@ const ReceptionistBilling = () => {
   // ============================================================
 
   const billedAppointmentIds = useMemo(() => {
-    return new Set(
-      bills.map((bill) => bill.appointmentId)
-    );
+    return new Set(bills.map((bill) => bill.appointmentId));
   }, [bills]);
 
   // ============================================================
@@ -115,10 +95,7 @@ const ReceptionistBilling = () => {
 
   const unbilledAppointments = useMemo(() => {
     return appointments.filter(
-      (appointment) =>
-        !billedAppointmentIds.has(
-          appointment.appointmentId
-        )
+      (appointment) => !billedAppointmentIds.has(appointment.appointmentId),
     );
   }, [appointments, billedAppointmentIds]);
 
@@ -127,73 +104,50 @@ const ReceptionistBilling = () => {
   // ============================================================
 
   const filteredAppointments = useMemo(() => {
-    const normalizedSearch =
-      appointmentSearchTerm.trim().toLowerCase();
+    const normalizedSearch = appointmentSearchTerm.trim().toLowerCase();
 
-    return unbilledAppointments.filter(
-      (appointment) => {
-        const matchesSearch =
-          !normalizedSearch ||
-          appointment.patientName
-            ?.toLowerCase()
-            .includes(normalizedSearch) ||
-          appointment.doctorName
-            ?.toLowerCase()
-            .includes(normalizedSearch);
+    return unbilledAppointments.filter((appointment) => {
+      const matchesSearch =
+        !normalizedSearch ||
+        appointment.patientName?.toLowerCase().includes(normalizedSearch) ||
+        appointment.doctorName?.toLowerCase().includes(normalizedSearch);
 
-        const matchesStatus =
-          appointmentStatusFilter === "All" ||
-          appointment.status?.toLowerCase() ===
-            appointmentStatusFilter.toLowerCase();
+      const matchesStatus =
+        appointmentStatusFilter === "All" ||
+        appointment.status?.toLowerCase() ===
+          appointmentStatusFilter.toLowerCase();
 
-        return matchesSearch && matchesStatus;
-      }
-    );
-  }, [
-    unbilledAppointments,
-    appointmentSearchTerm,
-    appointmentStatusFilter,
-  ]);
+      return matchesSearch && matchesStatus;
+    });
+  }, [unbilledAppointments, appointmentSearchTerm, appointmentStatusFilter]);
 
   // ============================================================
   // FILTER BILLS
   // ============================================================
 
   const filteredBills = useMemo(() => {
-    const normalizedSearch =
-      billSearchTerm.trim().toLowerCase();
+    const normalizedSearch = billSearchTerm.trim().toLowerCase();
 
     return bills.filter((bill) => {
       const matchesSearch =
         !normalizedSearch ||
-        bill.patientName
-          ?.toLowerCase()
-          .includes(normalizedSearch) ||
-        bill.doctorName
-          ?.toLowerCase()
-          .includes(normalizedSearch);
+        bill.patientName?.toLowerCase().includes(normalizedSearch) ||
+        bill.doctorName?.toLowerCase().includes(normalizedSearch);
 
       const matchesStatus =
         billStatusFilter === "All" ||
-        bill.billStatus?.toLowerCase() ===
-          billStatusFilter.toLowerCase();
+        bill.billStatus?.toLowerCase() === billStatusFilter.toLowerCase();
 
       return matchesSearch && matchesStatus;
     });
-  }, [
-    bills,
-    billSearchTerm,
-    billStatusFilter,
-  ]);
+  }, [bills, billSearchTerm, billStatusFilter]);
 
   // ============================================================
   // BILL STATUS OPTIONS
   // ============================================================
 
   const billStatuses = useMemo(() => {
-    const statuses = bills
-      .map((bill) => bill.billStatus)
-      .filter(Boolean);
+    const statuses = bills.map((bill) => bill.billStatus).filter(Boolean);
 
     return [...new Set(statuses)];
   }, [bills]);
@@ -205,14 +159,12 @@ const ReceptionistBilling = () => {
   const totalBills = bills.length;
 
   const pendingBills = bills.filter(
-    (bill) =>
-      bill.billStatus?.toLowerCase() === "pending"
+    (bill) => bill.billStatus?.toLowerCase() === "pending",
   ).length;
 
   const totalBilledAmount = bills.reduce(
-    (total, bill) =>
-      total + Number(bill.totalAmount || 0),
-    0
+    (total, bill) => total + Number(bill.totalAmount || 0),
+    0,
   );
 
   // ============================================================
@@ -224,9 +176,7 @@ const ReceptionistBilling = () => {
       return "-";
     }
 
-    const date = new Date(
-      `${dateValue}T00:00:00`
-    );
+    const date = new Date(`${dateValue}T00:00:00`);
 
     return date.toLocaleDateString("en-US", {
       month: "short",
@@ -244,17 +194,11 @@ const ReceptionistBilling = () => {
       return "-";
     }
 
-    const [hours, minutes] =
-      timeValue.split(":");
+    const [hours, minutes] = timeValue.split(":");
 
     const date = new Date();
 
-    date.setHours(
-      Number(hours),
-      Number(minutes),
-      0,
-      0
-    );
+    date.setHours(Number(hours), Number(minutes), 0, 0);
 
     return date.toLocaleTimeString("en-US", {
       hour: "numeric",
@@ -267,13 +211,10 @@ const ReceptionistBilling = () => {
   // ============================================================
 
   const formatAmount = (value) => {
-    return Number(value || 0).toLocaleString(
-      "en-US",
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }
-    );
+    return Number(value || 0).toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
   };
 
   // ============================================================
@@ -284,9 +225,7 @@ const ReceptionistBilling = () => {
     event.preventDefault();
 
     if (!selectedAppointment) {
-      toast.error(
-        "Please select an appointment."
-      );
+      toast.error("Please select an appointment.");
 
       return;
     }
@@ -294,20 +233,13 @@ const ReceptionistBilling = () => {
     const numericAmount = Number(amount);
 
     if (!amount.trim()) {
-      toast.error(
-        "Please enter the bill amount."
-      );
+      toast.error("Please enter the bill amount.");
 
       return;
     }
 
-    if (
-      Number.isNaN(numericAmount) ||
-      numericAmount < 0
-    ) {
-      toast.error(
-        "Bill amount must be zero or greater."
-      );
+    if (Number.isNaN(numericAmount) || numericAmount < 0) {
+      toast.error("Bill amount must be zero or greater.");
 
       return;
     }
@@ -316,8 +248,7 @@ const ReceptionistBilling = () => {
       setCreatingBill(true);
 
       const bill = await billService.create({
-        appointmentId:
-          selectedAppointment.appointmentId,
+        appointmentId: selectedAppointment.appointmentId,
 
         totalAmount: numericAmount,
       });
@@ -326,9 +257,7 @@ const ReceptionistBilling = () => {
 
       setAmount("");
 
-      toast.success(
-        "Bill created successfully."
-      );
+      toast.success("Bill created successfully.");
 
       // Reload both appointments and bills.
       // This causes the billed appointment to
@@ -343,15 +272,9 @@ const ReceptionistBilling = () => {
       // successful billing.
       setSelectedAppointment(null);
     } catch (error) {
-      console.error(
-        "Failed to create bill:",
-        error
-      );
+      console.error("Failed to create bill:", error);
 
-      toast.error(
-        error?.response?.data?.message ||
-          "Failed to create bill."
-      );
+      toast.error(error?.response?.data?.message || "Failed to create bill.");
     } finally {
       setCreatingBill(false);
     }
@@ -361,9 +284,7 @@ const ReceptionistBilling = () => {
   // SELECT APPOINTMENT
   // ============================================================
 
-  const handleSelectAppointment = (
-    appointment
-  ) => {
+  const handleSelectAppointment = (appointment) => {
     setSelectedAppointment(appointment);
     setCreatedBill(null);
     setAmount("");
@@ -386,9 +307,7 @@ const ReceptionistBilling = () => {
   const handleRefresh = async () => {
     await loadBillingData();
 
-    toast.success(
-      "Billing information refreshed."
-    );
+    toast.success("Billing information refreshed.");
   };
 
   // ============================================================
@@ -397,21 +316,16 @@ const ReceptionistBilling = () => {
 
   return (
     <div className="smarthealth-receptionist-billing-page">
-
       {/* ======================================================
           HEADER
       ======================================================= */}
 
       <div className="smarthealth-receptionist-billing-header">
-
         <div>
-          <h1 className="smarthealth-receptionist-billing-title">
-            Billing
-          </h1>
+          <h1 className="smarthealth-receptionist-billing-title">Billing</h1>
 
           <p className="smarthealth-receptionist-billing-subtitle">
-            Manage appointment billing and
-            billed appointments.
+            Manage appointment billing and billed appointments.
           </p>
         </div>
 
@@ -423,7 +337,6 @@ const ReceptionistBilling = () => {
         >
           ↻ Refresh
         </button>
-
       </div>
 
       {/* ======================================================
@@ -431,9 +344,7 @@ const ReceptionistBilling = () => {
       ======================================================= */}
 
       <div className="smarthealth-receptionist-billing-summary-grid">
-
         <div className="smarthealth-receptionist-billing-summary-card">
-
           <div className="smarthealth-receptionist-billing-summary-icon">
             📋
           </div>
@@ -447,11 +358,9 @@ const ReceptionistBilling = () => {
               {unbilledAppointments.length}
             </strong>
           </div>
-
         </div>
 
         <div className="smarthealth-receptionist-billing-summary-card">
-
           <div className="smarthealth-receptionist-billing-summary-icon">
             💳
           </div>
@@ -465,11 +374,9 @@ const ReceptionistBilling = () => {
               {totalBills}
             </strong>
           </div>
-
         </div>
 
         <div className="smarthealth-receptionist-billing-summary-card">
-
           <div className="smarthealth-receptionist-billing-summary-icon">
             ⏳
           </div>
@@ -483,11 +390,9 @@ const ReceptionistBilling = () => {
               {pendingBills}
             </strong>
           </div>
-
         </div>
 
         <div className="smarthealth-receptionist-billing-summary-card">
-
           <div className="smarthealth-receptionist-billing-summary-icon">
             💰
           </div>
@@ -501,9 +406,7 @@ const ReceptionistBilling = () => {
               Rs. {formatAmount(totalBilledAmount)}
             </strong>
           </div>
-
         </div>
-
       </div>
 
       {/* ======================================================
@@ -511,9 +414,7 @@ const ReceptionistBilling = () => {
       ======================================================= */}
 
       <section className="smarthealth-receptionist-billing-section">
-
         <div className="smarthealth-receptionist-billing-section-header">
-
           <div>
             <h2 className="smarthealth-receptionist-billing-section-title">
               Appointments To Bill
@@ -527,55 +428,34 @@ const ReceptionistBilling = () => {
           <span className="smarthealth-receptionist-billing-count">
             {filteredAppointments.length}
           </span>
-
         </div>
 
         {/* FILTERS */}
 
         <div className="smarthealth-receptionist-billing-filters">
-
           <input
             type="text"
             placeholder="Search patient or doctor..."
             value={appointmentSearchTerm}
-            onChange={(event) =>
-              setAppointmentSearchTerm(
-                event.target.value
-              )
-            }
+            onChange={(event) => setAppointmentSearchTerm(event.target.value)}
             className="smarthealth-receptionist-billing-search"
           />
 
           <select
             value={appointmentStatusFilter}
-            onChange={(event) =>
-              setAppointmentStatusFilter(
-                event.target.value
-              )
-            }
+            onChange={(event) => setAppointmentStatusFilter(event.target.value)}
             className="smarthealth-receptionist-billing-status-filter"
           >
-            <option value="All">
-              All Statuses
-            </option>
+            <option value="All">All Statuses</option>
 
-            <option value="Scheduled">
-              Scheduled
-            </option>
+            <option value="Scheduled">Scheduled</option>
 
-            <option value="Completed">
-              Completed
-            </option>
+            <option value="Completed">Completed</option>
 
-            <option value="Cancelled">
-              Cancelled
-            </option>
+            <option value="Cancelled">Cancelled</option>
 
-            <option value="NoShow">
-              No Show
-            </option>
+            <option value="NoShow">No Show</option>
           </select>
-
         </div>
 
         {/* APPOINTMENT LIST */}
@@ -586,90 +466,58 @@ const ReceptionistBilling = () => {
           </div>
         ) : filteredAppointments.length === 0 ? (
           <div className="smarthealth-receptionist-billing-empty">
-
-            <div className="smarthealth-receptionist-billing-empty-icon">
-              ✓
-            </div>
+            <div className="smarthealth-receptionist-billing-empty-icon">✓</div>
 
             <h3 className="smarthealth-receptionist-billing-empty-title">
               No appointments to bill
             </h3>
 
             <p className="smarthealth-receptionist-billing-empty-text">
-              All available appointments have
-              already been billed.
+              All available appointments have already been billed.
             </p>
-
           </div>
         ) : (
           <div className="smarthealth-receptionist-billing-appointment-list">
+            {filteredAppointments.map((appointment) => {
+              const isSelected =
+                selectedAppointment?.appointmentId ===
+                appointment.appointmentId;
 
-            {filteredAppointments.map(
-              (appointment) => {
+              return (
+                <button
+                  type="button"
+                  key={appointment.appointmentId}
+                  onClick={() => handleSelectAppointment(appointment)}
+                  className={`smarthealth-receptionist-billing-appointment-item ${
+                    isSelected
+                      ? "smarthealth-receptionist-billing-appointment-item-selected"
+                      : ""
+                  }`}
+                >
+                  <div className="smarthealth-receptionist-billing-appointment-date">
+                    <strong>{formatDate(appointment.appointmentDate)}</strong>
 
-                const isSelected =
-                  selectedAppointment?.appointmentId ===
-                  appointment.appointmentId;
+                    <span>{formatTime(appointment.appointmentTime)}</span>
+                  </div>
 
-                return (
-                  <button
-                    type="button"
-                    key={appointment.appointmentId}
-                    onClick={() =>
-                      handleSelectAppointment(
-                        appointment
-                      )
-                    }
-                    className={`smarthealth-receptionist-billing-appointment-item ${
-                      isSelected
-                        ? "smarthealth-receptionist-billing-appointment-item-selected"
-                        : ""
-                    }`}
-                  >
+                  <div className="smarthealth-receptionist-billing-appointment-info">
+                    <strong>
+                      {appointment.patientName || "Unknown Patient"}
+                    </strong>
 
-                    <div className="smarthealth-receptionist-billing-appointment-date">
-
-                      <strong>
-                        {formatDate(
-                          appointment.appointmentDate
-                        )}
-                      </strong>
-
-                      <span>
-                        {formatTime(
-                          appointment.appointmentTime
-                        )}
-                      </span>
-
-                    </div>
-
-                    <div className="smarthealth-receptionist-billing-appointment-info">
-
-                      <strong>
-                        {appointment.patientName ||
-                          "Unknown Patient"}
-                      </strong>
-
-                      <span>
-                        Dr.{" "}
-                        {appointment.doctorName ||
-                          "Unknown Doctor"}
-                      </span>
-
-                    </div>
-
-                    <span className="smarthealth-receptionist-billing-appointment-status">
-                      {appointment.status}
+                    <span>
+                      Dr. {appointment.doctorName || "Unknown Doctor"}
                     </span>
+                  </div>
 
-                  </button>
-                );
-              }
-            )}
-
+                  <span className="smarthealth-receptionist-billing-appointment-status">
+                    {appointment.status}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         )}
-
       </section>
 
       {/* ======================================================
@@ -677,11 +525,8 @@ const ReceptionistBilling = () => {
       ======================================================= */}
 
       <section className="smarthealth-receptionist-billing-form-card">
-
         {!selectedAppointment ? (
-
           <div className="smarthealth-receptionist-billing-placeholder">
-
             <div className="smarthealth-receptionist-billing-placeholder-icon">
               💳
             </div>
@@ -700,82 +545,56 @@ const ReceptionistBilling = () => {
 
             {createdBill && (
               <div className="smarthealth-receptionist-billing-created-summary">
-
                 <div>
                   <span>Bill ID</span>
 
-                  <strong>
-                    {createdBill.billId}
-                  </strong>
+                  <strong>{createdBill.billId}</strong>
                 </div>
 
                 <div>
                   <span>Patient</span>
 
-                  <strong>
-                    {createdBill.patientName}
-                  </strong>
+                  <strong>{createdBill.patientName}</strong>
                 </div>
 
                 <div>
                   <span>Doctor</span>
 
-                  <strong>
-                    Dr.{" "}
-                    {createdBill.doctorName}
-                  </strong>
+                  <strong>Dr. {createdBill.doctorName}</strong>
                 </div>
 
                 <div>
                   <span>Total Amount</span>
 
-                  <strong>
-                    Rs.{" "}
-                    {formatAmount(
-                      createdBill.totalAmount
-                    )}
-                  </strong>
+                  <strong>Rs. {formatAmount(createdBill.totalAmount)}</strong>
                 </div>
 
                 <div>
                   <span>Status</span>
 
-                  <strong>
-                    {createdBill.billStatus}
-                  </strong>
+                  <strong>{createdBill.billStatus}</strong>
                 </div>
 
                 <div>
                   <span>Generated Date</span>
 
-                  <strong>
-                    {formatDate(
-                      createdBill.generatedDate
-                    )}
-                  </strong>
+                  <strong>{formatDate(createdBill.generatedDate)}</strong>
                 </div>
-
               </div>
             )}
-
           </div>
-
         ) : (
-
           <div>
-
             {/* FORM HEADER */}
 
             <div className="smarthealth-receptionist-billing-form-header">
-
               <div>
                 <h2 className="smarthealth-receptionist-billing-form-title">
                   Create Bill
                 </h2>
 
                 <p className="smarthealth-receptionist-billing-form-subtitle">
-                  Enter the total amount for
-                  this appointment.
+                  Enter the total amount for this appointment.
                 </p>
               </div>
 
@@ -786,19 +605,16 @@ const ReceptionistBilling = () => {
               >
                 ✕
               </button>
-
             </div>
 
             {/* SELECTED APPOINTMENT DETAILS */}
 
             <div className="smarthealth-receptionist-billing-selected-details">
-
               <div>
                 <span>Patient</span>
 
                 <strong>
-                  {selectedAppointment.patientName ||
-                    "Unknown Patient"}
+                  {selectedAppointment.patientName || "Unknown Patient"}
                 </strong>
               </div>
 
@@ -806,9 +622,7 @@ const ReceptionistBilling = () => {
                 <span>Doctor</span>
 
                 <strong>
-                  Dr.{" "}
-                  {selectedAppointment.doctorName ||
-                    "Unknown Doctor"}
+                  Dr. {selectedAppointment.doctorName || "Unknown Doctor"}
                 </strong>
               </div>
 
@@ -816,24 +630,16 @@ const ReceptionistBilling = () => {
                 <span>Appointment</span>
 
                 <strong>
-                  {formatDate(
-                    selectedAppointment.appointmentDate
-                  )}{" "}
-                  ·{" "}
-                  {formatTime(
-                    selectedAppointment.appointmentTime
-                  )}
+                  {formatDate(selectedAppointment.appointmentDate)} ·{" "}
+                  {formatTime(selectedAppointment.appointmentTime)}
                 </strong>
               </div>
 
               <div>
                 <span>Status</span>
 
-                <strong>
-                  {selectedAppointment.status}
-                </strong>
+                <strong>{selectedAppointment.status}</strong>
               </div>
-
             </div>
 
             {/* BILL FORM */}
@@ -842,9 +648,7 @@ const ReceptionistBilling = () => {
               onSubmit={handleCreateBill}
               className="smarthealth-receptionist-billing-form"
             >
-
               <div className="smarthealth-receptionist-billing-form-group">
-
                 <label
                   htmlFor="smarthealth-receptionist-billing-amount"
                   className="smarthealth-receptionist-billing-label"
@@ -853,7 +657,6 @@ const ReceptionistBilling = () => {
                 </label>
 
                 <div className="smarthealth-receptionist-billing-amount-wrapper">
-
                   <span className="smarthealth-receptionist-billing-currency">
                     Rs.
                   </span>
@@ -864,17 +667,11 @@ const ReceptionistBilling = () => {
                     min="0"
                     step="0.01"
                     value={amount}
-                    onChange={(event) =>
-                      setAmount(
-                        event.target.value
-                      )
-                    }
+                    onChange={(event) => setAmount(event.target.value)}
                     placeholder="0.00"
                     className="smarthealth-receptionist-billing-amount-input"
                   />
-
                 </div>
-
               </div>
 
               <button
@@ -882,17 +679,11 @@ const ReceptionistBilling = () => {
                 className="smarthealth-receptionist-billing-create-button"
                 disabled={creatingBill}
               >
-                {creatingBill
-                  ? "Creating Bill..."
-                  : "Create Bill"}
+                {creatingBill ? "Creating Bill..." : "Create Bill"}
               </button>
-
             </form>
-
           </div>
-
         )}
-
       </section>
 
       {/* ======================================================
@@ -900,9 +691,7 @@ const ReceptionistBilling = () => {
       ======================================================= */}
 
       <section className="smarthealth-receptionist-billing-billed-section">
-
         <div className="smarthealth-receptionist-billing-section-header">
-
           <div>
             <h2 className="smarthealth-receptionist-billing-section-title">
               Billed Appointments
@@ -916,49 +705,32 @@ const ReceptionistBilling = () => {
           <span className="smarthealth-receptionist-billing-count">
             {filteredBills.length}
           </span>
-
         </div>
 
         {/* BILL FILTERS */}
 
         <div className="smarthealth-receptionist-billing-filters">
-
           <input
             type="text"
             placeholder="Search patient or doctor..."
             value={billSearchTerm}
-            onChange={(event) =>
-              setBillSearchTerm(
-                event.target.value
-              )
-            }
+            onChange={(event) => setBillSearchTerm(event.target.value)}
             className="smarthealth-receptionist-billing-search"
           />
 
           <select
             value={billStatusFilter}
-            onChange={(event) =>
-              setBillStatusFilter(
-                event.target.value
-              )
-            }
+            onChange={(event) => setBillStatusFilter(event.target.value)}
             className="smarthealth-receptionist-billing-status-filter"
           >
-            <option value="All">
-              All Bill Statuses
-            </option>
+            <option value="All">All Bill Statuses</option>
 
             {billStatuses.map((status) => (
-              <option
-                key={status}
-                value={status}
-              >
+              <option key={status} value={status}>
                 {status}
               </option>
             ))}
-
           </select>
-
         </div>
 
         {/* BILLS */}
@@ -969,7 +741,6 @@ const ReceptionistBilling = () => {
           </div>
         ) : filteredBills.length === 0 ? (
           <div className="smarthealth-receptionist-billing-empty">
-
             <div className="smarthealth-receptionist-billing-empty-icon">
               💳
             </div>
@@ -979,18 +750,13 @@ const ReceptionistBilling = () => {
             </h3>
 
             <p className="smarthealth-receptionist-billing-empty-text">
-              Bills created for appointments will
-              appear here.
+              Bills created for appointments will appear here.
             </p>
-
           </div>
         ) : (
           <div className="smarthealth-receptionist-billing-table-wrapper">
-
             <table className="smarthealth-receptionist-billing-table">
-
               <thead>
-
                 <tr>
                   <th>Patient</th>
                   <th>Doctor</th>
@@ -999,35 +765,20 @@ const ReceptionistBilling = () => {
                   <th>Status</th>
                   <th>Generated Date</th>
                 </tr>
-
               </thead>
 
               <tbody>
-
                 {filteredBills.map((bill) => (
-
                   <tr key={bill.billId}>
-
                     <td>
                       <div className="smarthealth-receptionist-billing-patient-cell">
+                        <strong>{bill.patientName || "Unknown Patient"}</strong>
 
-                        <strong>
-                          {bill.patientName ||
-                            "Unknown Patient"}
-                        </strong>
-
-                        <span>
-                          {bill.billId}
-                        </span>
-
+                        <span>{bill.billId}</span>
                       </div>
                     </td>
 
-                    <td>
-                      Dr.{" "}
-                      {bill.doctorName ||
-                        "Unknown Doctor"}
-                    </td>
+                    <td>Dr. {bill.doctorName || "Unknown Doctor"}</td>
 
                     <td>
                       <span className="smarthealth-receptionist-billing-appointment-id">
@@ -1037,46 +788,30 @@ const ReceptionistBilling = () => {
 
                     <td>
                       <strong className="smarthealth-receptionist-billing-amount-value">
-                        Rs.{" "}
-                        {formatAmount(
-                          bill.totalAmount
-                        )}
+                        Rs. {formatAmount(bill.totalAmount)}
                       </strong>
                     </td>
 
                     <td>
-
                       <span
                         className={`smarthealth-receptionist-billing-bill-status smarthealth-receptionist-billing-bill-status-${String(
-                          bill.billStatus || "unknown"
+                          bill.billStatus || "unknown",
                         )
                           .toLowerCase()
                           .replace(/\s+/g, "-")}`}
                       >
                         {bill.billStatus || "-"}
                       </span>
-
                     </td>
 
-                    <td>
-                      {formatDate(
-                        bill.generatedDate
-                      )}
-                    </td>
-
+                    <td>{formatDate(bill.generatedDate)}</td>
                   </tr>
-
                 ))}
-
               </tbody>
-
             </table>
-
           </div>
         )}
-
       </section>
-
     </div>
   );
 };

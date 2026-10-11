@@ -16,12 +16,10 @@ const ReceptionistInsurance = () => {
   const [processingClaim, setProcessingClaim] = useState(false);
 
   const [policySearchTerm, setPolicySearchTerm] = useState("");
-  const [policyStatusFilter, setPolicyStatusFilter] =
-    useState("All");
+  const [policyStatusFilter, setPolicyStatusFilter] = useState("All");
 
   const [claimSearchTerm, setClaimSearchTerm] = useState("");
-  const [claimStatusFilter, setClaimStatusFilter] =
-    useState("All");
+  const [claimStatusFilter, setClaimStatusFilter] = useState("All");
 
   const [showPolicyForm, setShowPolicyForm] = useState(false);
   const [showClaimForm, setShowClaimForm] = useState(false);
@@ -55,13 +53,9 @@ const ReceptionistInsurance = () => {
         billService.getReceptionistBills(),
       ]);
 
-      const safePolicies = Array.isArray(policiesData)
-        ? policiesData
-        : [];
+      const safePolicies = Array.isArray(policiesData) ? policiesData : [];
 
-      const safeBills = Array.isArray(billsData)
-        ? billsData
-        : [];
+      const safeBills = Array.isArray(billsData) ? billsData : [];
 
       setPolicies(safePolicies);
       setBills(safeBills);
@@ -70,23 +64,20 @@ const ReceptionistInsurance = () => {
       const claimResults = await Promise.all(
         safeBills.map(async (bill) => {
           try {
-            const billClaims =
-              await insuranceService.getClaimsByBill(
-                bill.billId
-              );
+            const billClaims = await insuranceService.getClaimsByBill(
+              bill.billId,
+            );
 
-            return Array.isArray(billClaims)
-              ? billClaims
-              : [];
+            return Array.isArray(billClaims) ? billClaims : [];
           } catch (error) {
             console.error(
               `Failed to load claims for bill ${bill.billId}:`,
-              error
+              error,
             );
 
             return [];
           }
-        })
+        }),
       );
 
       const flattenedClaims = claimResults.flat();
@@ -94,23 +85,17 @@ const ReceptionistInsurance = () => {
       // Prevent duplicate claims if any are returned more than once.
       const uniqueClaims = Array.from(
         new Map(
-          flattenedClaims.map((claim) => [
-            claim.claimId,
-            claim,
-          ])
-        ).values()
+          flattenedClaims.map((claim) => [claim.claimId, claim]),
+        ).values(),
       );
 
       setClaims(uniqueClaims);
     } catch (error) {
-      console.error(
-        "Failed to load insurance information:",
-        error
-      );
+      console.error("Failed to load insurance information:", error);
 
       toast.error(
         error?.response?.data?.message ||
-          "Failed to load insurance information."
+          "Failed to load insurance information.",
       );
     } finally {
       setLoading(false);
@@ -131,88 +116,60 @@ const ReceptionistInsurance = () => {
     }
 
     const today = new Date();
-    const endDate = new Date(
-      `${policy.endDate}T23:59:59`
-    );
+    const endDate = new Date(`${policy.endDate}T23:59:59`);
 
     return endDate < today;
   };
 
   const activePolicies = policies.filter(
     (policy) =>
-      policy.status?.toLowerCase() === "active" &&
-      !isPolicyExpired(policy)
+      policy.status?.toLowerCase() === "active" && !isPolicyExpired(policy),
   );
 
   const expiredPolicies = policies.filter(
     (policy) =>
-      isPolicyExpired(policy) ||
-      policy.status?.toLowerCase() === "expired"
+      isPolicyExpired(policy) || policy.status?.toLowerCase() === "expired",
   );
 
   const filteredPolicies = useMemo(() => {
-    const search =
-      policySearchTerm.trim().toLowerCase();
+    const search = policySearchTerm.trim().toLowerCase();
 
     return policies.filter((policy) => {
       const matchesSearch =
         !search ||
-        policy.patientName
-          ?.toLowerCase()
-          .includes(search) ||
-        policy.providerName
-          ?.toLowerCase()
-          .includes(search) ||
-        policy.policyNumber
-          ?.toLowerCase()
-          .includes(search);
+        policy.patientName?.toLowerCase().includes(search) ||
+        policy.providerName?.toLowerCase().includes(search) ||
+        policy.policyNumber?.toLowerCase().includes(search);
 
       const matchesStatus =
         policyStatusFilter === "All" ||
-        policy.status?.toLowerCase() ===
-          policyStatusFilter.toLowerCase();
+        policy.status?.toLowerCase() === policyStatusFilter.toLowerCase();
 
       return matchesSearch && matchesStatus;
     });
-  }, [
-    policies,
-    policySearchTerm,
-    policyStatusFilter,
-  ]);
+  }, [policies, policySearchTerm, policyStatusFilter]);
 
   // ============================================================
   // CLAIM FILTERING
   // ============================================================
 
   const filteredClaims = useMemo(() => {
-    const search =
-      claimSearchTerm.trim().toLowerCase();
+    const search = claimSearchTerm.trim().toLowerCase();
 
     return claims.filter((claim) => {
       const matchesSearch =
         !search ||
-        claim.patientName
-          ?.toLowerCase()
-          .includes(search) ||
-        claim.providerName
-          ?.toLowerCase()
-          .includes(search) ||
-        claim.policyNumber
-          ?.toLowerCase()
-          .includes(search);
+        claim.patientName?.toLowerCase().includes(search) ||
+        claim.providerName?.toLowerCase().includes(search) ||
+        claim.policyNumber?.toLowerCase().includes(search);
 
       const matchesStatus =
         claimStatusFilter === "All" ||
-        claim.status?.toLowerCase() ===
-          claimStatusFilter.toLowerCase();
+        claim.status?.toLowerCase() === claimStatusFilter.toLowerCase();
 
       return matchesSearch && matchesStatus;
     });
-  }, [
-    claims,
-    claimSearchTerm,
-    claimStatusFilter,
-  ]);
+  }, [claims, claimSearchTerm, claimStatusFilter]);
 
   // ============================================================
   // BILL HELPERS
@@ -228,9 +185,7 @@ const ReceptionistInsurance = () => {
     }
 
     const selectedPolicy = policies.find(
-      (policy) =>
-        policy.insurancePolicyId ===
-        claimForm.insurancePolicyId
+      (policy) => policy.insurancePolicyId === claimForm.insurancePolicyId,
     );
 
     if (!selectedPolicy) {
@@ -238,8 +193,7 @@ const ReceptionistInsurance = () => {
     }
 
     return bills.filter(
-      (bill) =>
-        getBillPatientId(bill) === selectedPolicy.patientId
+      (bill) => getBillPatientId(bill) === selectedPolicy.patientId,
     );
   };
 
@@ -289,9 +243,7 @@ const ReceptionistInsurance = () => {
     }
 
     if (!policyForm.providerName.trim()) {
-      toast.error(
-        "Please enter the insurance provider name."
-      );
+      toast.error("Please enter the insurance provider name.");
       return;
     }
 
@@ -301,30 +253,19 @@ const ReceptionistInsurance = () => {
     }
 
     if (!policyForm.startDate || !policyForm.endDate) {
-      toast.error(
-        "Please select the policy start and end dates."
-      );
+      toast.error("Please select the policy start and end dates.");
       return;
     }
 
     if (policyForm.endDate < policyForm.startDate) {
-      toast.error(
-        "End date cannot be before the start date."
-      );
+      toast.error("End date cannot be before the start date.");
       return;
     }
 
-    const coverageAmount = Number(
-      policyForm.coverageAmount
-    );
+    const coverageAmount = Number(policyForm.coverageAmount);
 
-    if (
-      Number.isNaN(coverageAmount) ||
-      coverageAmount < 0
-    ) {
-      toast.error(
-        "Coverage amount cannot be negative."
-      );
+    if (Number.isNaN(coverageAmount) || coverageAmount < 0) {
+      toast.error("Coverage amount cannot be negative.");
       return;
     }
 
@@ -340,9 +281,7 @@ const ReceptionistInsurance = () => {
         coverageAmount,
       });
 
-      toast.success(
-        "Insurance policy created successfully."
-      );
+      toast.success("Insurance policy created successfully.");
 
       setPolicyForm({
         patientId: "",
@@ -357,14 +296,10 @@ const ReceptionistInsurance = () => {
 
       await loadInsuranceData();
     } catch (error) {
-      console.error(
-        "Failed to create insurance policy:",
-        error
-      );
+      console.error("Failed to create insurance policy:", error);
 
       toast.error(
-        error?.response?.data?.message ||
-          "Failed to create insurance policy."
+        error?.response?.data?.message || "Failed to create insurance policy.",
       );
     } finally {
       setProcessingPolicy(false);
@@ -388,23 +323,14 @@ const ReceptionistInsurance = () => {
       return;
     }
 
-    const claimAmount = Number(
-      claimForm.claimAmount
-    );
+    const claimAmount = Number(claimForm.claimAmount);
 
-    if (
-      Number.isNaN(claimAmount) ||
-      claimAmount <= 0
-    ) {
-      toast.error(
-        "Claim amount must be greater than zero."
-      );
+    if (Number.isNaN(claimAmount) || claimAmount <= 0) {
+      toast.error("Claim amount must be greater than zero.");
       return;
     }
 
-    const selectedBill = bills.find(
-      (bill) => bill.billId === claimForm.billId
-    );
+    const selectedBill = bills.find((bill) => bill.billId === claimForm.billId);
 
     if (!selectedBill) {
       toast.error("Selected bill was not found.");
@@ -412,9 +338,7 @@ const ReceptionistInsurance = () => {
     }
 
     if (claimAmount > Number(selectedBill.totalAmount)) {
-      toast.error(
-        "Claim amount cannot exceed the bill amount."
-      );
+      toast.error("Claim amount cannot exceed the bill amount.");
       return;
     }
 
@@ -422,17 +346,13 @@ const ReceptionistInsurance = () => {
       setProcessingClaim(true);
 
       await insuranceService.createClaim({
-        insurancePolicyId:
-          claimForm.insurancePolicyId,
+        insurancePolicyId: claimForm.insurancePolicyId,
         billId: claimForm.billId,
         claimAmount,
-        claimDetails:
-          claimForm.claimDetails.trim() || null,
+        claimDetails: claimForm.claimDetails.trim() || null,
       });
 
-      toast.success(
-        "Insurance claim submitted successfully."
-      );
+      toast.success("Insurance claim submitted successfully.");
 
       setClaimForm({
         insurancePolicyId: "",
@@ -445,14 +365,10 @@ const ReceptionistInsurance = () => {
 
       await loadInsuranceData();
     } catch (error) {
-      console.error(
-        "Failed to create insurance claim:",
-        error
-      );
+      console.error("Failed to create insurance claim:", error);
 
       toast.error(
-        error?.response?.data?.message ||
-          "Failed to create insurance claim."
+        error?.response?.data?.message || "Failed to create insurance claim.",
       );
     } finally {
       setProcessingClaim(false);
@@ -468,9 +384,7 @@ const ReceptionistInsurance = () => {
       return "-";
     }
 
-    const date = new Date(
-      `${dateValue}T00:00:00`
-    );
+    const date = new Date(`${dateValue}T00:00:00`);
 
     return date.toLocaleDateString("en-US", {
       month: "short",
@@ -484,23 +398,17 @@ const ReceptionistInsurance = () => {
       return "-";
     }
 
-    return new Date(dateValue).toLocaleString(
-      "en-US",
-      {
-        dateStyle: "medium",
-        timeStyle: "short",
-      }
-    );
+    return new Date(dateValue).toLocaleString("en-US", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
   };
 
   const formatAmount = (value) => {
-    return Number(value || 0).toLocaleString(
-      "en-US",
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }
-    );
+    return Number(value || 0).toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
   };
 
   // ============================================================
@@ -509,9 +417,7 @@ const ReceptionistInsurance = () => {
 
   const handleRefresh = async () => {
     await loadInsuranceData();
-    toast.success(
-      "Insurance information refreshed."
-    );
+    toast.success("Insurance information refreshed.");
   };
 
   // ============================================================
@@ -520,7 +426,6 @@ const ReceptionistInsurance = () => {
 
   return (
     <div className="smarthealth-receptionist-insurance-page">
-
       {/* ======================================================
           HEADER
       ======================================================= */}
@@ -532,8 +437,7 @@ const ReceptionistInsurance = () => {
           </h1>
 
           <p className="smarthealth-receptionist-insurance-subtitle">
-            Manage patient insurance policies and
-            insurance claims.
+            Manage patient insurance policies and insurance claims.
           </p>
         </div>
 
@@ -552,7 +456,6 @@ const ReceptionistInsurance = () => {
       ======================================================= */}
 
       <div className="smarthealth-receptionist-insurance-summary-grid">
-
         <div className="smarthealth-receptionist-insurance-summary-card">
           <div className="smarthealth-receptionist-insurance-summary-icon">
             🛡️
@@ -616,7 +519,6 @@ const ReceptionistInsurance = () => {
             </strong>
           </div>
         </div>
-
       </div>
 
       {/* ======================================================
@@ -624,41 +526,30 @@ const ReceptionistInsurance = () => {
       ======================================================= */}
 
       <section className="smarthealth-receptionist-insurance-section">
-
         <div className="smarthealth-receptionist-insurance-section-header">
-
           <div>
             <h2 className="smarthealth-receptionist-insurance-section-title">
               Insurance Policies
             </h2>
 
             <p className="smarthealth-receptionist-insurance-section-description">
-              View and manage patient insurance
-              policies.
+              View and manage patient insurance policies.
             </p>
           </div>
 
           <button
             type="button"
             className="smarthealth-receptionist-insurance-primary-button"
-            onClick={() =>
-              setShowPolicyForm(
-                (previous) => !previous
-              )
-            }
+            onClick={() => setShowPolicyForm((previous) => !previous)}
           >
-            {showPolicyForm
-              ? "Close Form"
-              : "+ Add Policy"}
+            {showPolicyForm ? "Close Form" : "+ Add Policy"}
           </button>
-
         </div>
 
         {/* Policy Form */}
 
         {showPolicyForm && (
           <div className="smarthealth-receptionist-insurance-form-panel">
-
             <div className="smarthealth-receptionist-insurance-form-header">
               <div>
                 <h3 className="smarthealth-receptionist-insurance-form-title">
@@ -666,8 +557,7 @@ const ReceptionistInsurance = () => {
                 </h3>
 
                 <p className="smarthealth-receptionist-insurance-form-description">
-                  Create a new insurance policy for
-                  a patient.
+                  Create a new insurance policy for a patient.
                 </p>
               </div>
             </div>
@@ -676,11 +566,8 @@ const ReceptionistInsurance = () => {
               onSubmit={handleCreatePolicy}
               className="smarthealth-receptionist-insurance-form"
             >
-
               <div className="smarthealth-receptionist-insurance-form-group">
-                <label>
-                  Patient
-                </label>
+                <label>Patient</label>
 
                 <select
                   name="patientId"
@@ -688,24 +575,17 @@ const ReceptionistInsurance = () => {
                   onChange={handlePolicyChange}
                   required
                 >
-                  <option value="">
-                    Select patient
-                  </option>
+                  <option value="">Select patient</option>
 
                   {bills
                     .filter(
                       (bill, index, array) =>
                         array.findIndex(
-                          (item) =>
-                            item.patientId ===
-                            bill.patientId
-                        ) === index
+                          (item) => item.patientId === bill.patientId,
+                        ) === index,
                     )
                     .map((bill) => (
-                      <option
-                        key={bill.patientId}
-                        value={bill.patientId}
-                      >
+                      <option key={bill.patientId} value={bill.patientId}>
                         {bill.patientName}
                       </option>
                     ))}
@@ -713,9 +593,7 @@ const ReceptionistInsurance = () => {
               </div>
 
               <div className="smarthealth-receptionist-insurance-form-group">
-                <label>
-                  Provider Name
-                </label>
+                <label>Provider Name</label>
 
                 <input
                   type="text"
@@ -728,9 +606,7 @@ const ReceptionistInsurance = () => {
               </div>
 
               <div className="smarthealth-receptionist-insurance-form-group">
-                <label>
-                  Policy Number
-                </label>
+                <label>Policy Number</label>
 
                 <input
                   type="text"
@@ -743,9 +619,7 @@ const ReceptionistInsurance = () => {
               </div>
 
               <div className="smarthealth-receptionist-insurance-form-group">
-                <label>
-                  Start Date
-                </label>
+                <label>Start Date</label>
 
                 <input
                   type="date"
@@ -757,9 +631,7 @@ const ReceptionistInsurance = () => {
               </div>
 
               <div className="smarthealth-receptionist-insurance-form-group">
-                <label>
-                  End Date
-                </label>
+                <label>End Date</label>
 
                 <input
                   type="date"
@@ -771,9 +643,7 @@ const ReceptionistInsurance = () => {
               </div>
 
               <div className="smarthealth-receptionist-insurance-form-group">
-                <label>
-                  Coverage Amount
-                </label>
+                <label>Coverage Amount</label>
 
                 <input
                   type="number"
@@ -788,13 +658,10 @@ const ReceptionistInsurance = () => {
               </div>
 
               <div className="smarthealth-receptionist-insurance-form-actions">
-
                 <button
                   type="button"
                   className="smarthealth-receptionist-insurance-secondary-button"
-                  onClick={() =>
-                    setShowPolicyForm(false)
-                  }
+                  onClick={() => setShowPolicyForm(false)}
                   disabled={processingPolicy}
                 >
                   Cancel
@@ -805,13 +672,9 @@ const ReceptionistInsurance = () => {
                   className="smarthealth-receptionist-insurance-primary-button"
                   disabled={processingPolicy}
                 >
-                  {processingPolicy
-                    ? "Creating..."
-                    : "Create Policy"}
+                  {processingPolicy ? "Creating..." : "Create Policy"}
                 </button>
-
               </div>
-
             </form>
           </div>
         )}
@@ -819,49 +682,31 @@ const ReceptionistInsurance = () => {
         {/* Policy Filters */}
 
         <div className="smarthealth-receptionist-insurance-filter-bar">
-
           <input
             type="text"
             value={policySearchTerm}
-            onChange={(event) =>
-              setPolicySearchTerm(
-                event.target.value
-              )
-            }
+            onChange={(event) => setPolicySearchTerm(event.target.value)}
             placeholder="Search patient, provider or policy..."
             className="smarthealth-receptionist-insurance-search"
           />
 
           <select
             value={policyStatusFilter}
-            onChange={(event) =>
-              setPolicyStatusFilter(
-                event.target.value
-              )
-            }
+            onChange={(event) => setPolicyStatusFilter(event.target.value)}
             className="smarthealth-receptionist-insurance-filter-select"
           >
-            <option value="All">
-              All Statuses
-            </option>
+            <option value="All">All Statuses</option>
 
-            <option value="Active">
-              Active
-            </option>
+            <option value="Active">Active</option>
 
-            <option value="Expired">
-              Expired
-            </option>
+            <option value="Expired">Expired</option>
 
-            <option value="Inactive">
-              Inactive
-            </option>
+            <option value="Inactive">Inactive</option>
           </select>
 
           <span className="smarthealth-receptionist-insurance-count">
             {filteredPolicies.length}
           </span>
-
         </div>
 
         {/* Policy Table */}
@@ -881,15 +726,12 @@ const ReceptionistInsurance = () => {
             </h3>
 
             <p className="smarthealth-receptionist-insurance-empty-text">
-              No insurance policies match the
-              current filters.
+              No insurance policies match the current filters.
             </p>
           </div>
         ) : (
           <div className="smarthealth-receptionist-insurance-table-wrapper">
-
             <table className="smarthealth-receptionist-insurance-table">
-
               <thead>
                 <tr>
                   <th>Patient</th>
@@ -903,86 +745,53 @@ const ReceptionistInsurance = () => {
               </thead>
 
               <tbody>
-                {filteredPolicies.map(
-                  (policy) => {
+                {filteredPolicies.map((policy) => {
+                  const expired = isPolicyExpired(policy);
 
-                    const expired =
-                      isPolicyExpired(policy);
+                  return (
+                    <tr key={policy.insurancePolicyId}>
+                      <td>
+                        <strong>
+                          {policy.patientName || "Unknown Patient"}
+                        </strong>
+                      </td>
 
-                    return (
-                      <tr
-                        key={
-                          policy.insurancePolicyId
-                        }
-                      >
-                        <td>
-                          <strong>
-                            {policy.patientName ||
-                              "Unknown Patient"}
-                          </strong>
-                        </td>
+                      <td>{policy.providerName}</td>
 
-                        <td>
-                          {policy.providerName}
-                        </td>
+                      <td>
+                        <span className="smarthealth-receptionist-insurance-policy-number">
+                          {policy.policyNumber}
+                        </span>
+                      </td>
 
-                        <td>
-                          <span className="smarthealth-receptionist-insurance-policy-number">
-                            {policy.policyNumber}
-                          </span>
-                        </td>
+                      <td>Rs. {formatAmount(policy.coverageAmount)}</td>
 
-                        <td>
-                          Rs.{" "}
-                          {formatAmount(
-                            policy.coverageAmount
-                          )}
-                        </td>
+                      <td>{formatDate(policy.startDate)}</td>
 
-                        <td>
-                          {formatDate(
-                            policy.startDate
-                          )}
-                        </td>
+                      <td>{formatDate(policy.endDate)}</td>
 
-                        <td>
-                          {formatDate(
-                            policy.endDate
-                          )}
-                        </td>
-
-                        <td>
-                          <span
-                            className={`smarthealth-receptionist-insurance-status-badge ${
-                              expired
-                                ? "smarthealth-receptionist-insurance-status-expired"
-                                : `smarthealth-receptionist-insurance-status-${String(
-                                    policy.status ||
-                                      "unknown"
-                                  )
-                                    .toLowerCase()
-                                    .replace(
-                                      /\s+/g,
-                                      "-"
-                                    )}`
-                            }`}
-                          >
-                            {expired
-                              ? "Expired"
-                              : policy.status}
-                          </span>
-                        </td>
-                      </tr>
-                    );
-                  }
-                )}
+                      <td>
+                        <span
+                          className={`smarthealth-receptionist-insurance-status-badge ${
+                            expired
+                              ? "smarthealth-receptionist-insurance-status-expired"
+                              : `smarthealth-receptionist-insurance-status-${String(
+                                  policy.status || "unknown",
+                                )
+                                  .toLowerCase()
+                                  .replace(/\s+/g, "-")}`
+                          }`}
+                        >
+                          {expired ? "Expired" : policy.status}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
-
             </table>
-
           </div>
         )}
-
       </section>
 
       {/* ======================================================
@@ -990,41 +799,30 @@ const ReceptionistInsurance = () => {
       ======================================================= */}
 
       <section className="smarthealth-receptionist-insurance-section">
-
         <div className="smarthealth-receptionist-insurance-section-header">
-
           <div>
             <h2 className="smarthealth-receptionist-insurance-section-title">
               Insurance Claims
             </h2>
 
             <p className="smarthealth-receptionist-insurance-section-description">
-              Submit and view insurance claims
-              linked to patient bills.
+              Submit and view insurance claims linked to patient bills.
             </p>
           </div>
 
           <button
             type="button"
             className="smarthealth-receptionist-insurance-primary-button"
-            onClick={() =>
-              setShowClaimForm(
-                (previous) => !previous
-              )
-            }
+            onClick={() => setShowClaimForm((previous) => !previous)}
           >
-            {showClaimForm
-              ? "Close Form"
-              : "+ Create Claim"}
+            {showClaimForm ? "Close Form" : "+ Create Claim"}
           </button>
-
         </div>
 
         {/* Claim Form */}
 
         {showClaimForm && (
           <div className="smarthealth-receptionist-insurance-form-panel">
-
             <div className="smarthealth-receptionist-insurance-form-header">
               <div>
                 <h3 className="smarthealth-receptionist-insurance-form-title">
@@ -1032,8 +830,7 @@ const ReceptionistInsurance = () => {
                 </h3>
 
                 <p className="smarthealth-receptionist-insurance-form-description">
-                  Submit a claim against an
-                  eligible patient bill.
+                  Submit a claim against an eligible patient bill.
                 </p>
               </div>
             </div>
@@ -1042,55 +839,37 @@ const ReceptionistInsurance = () => {
               onSubmit={handleCreateClaim}
               className="smarthealth-receptionist-insurance-form"
             >
-
               <div className="smarthealth-receptionist-insurance-form-group">
-                <label>
-                  Insurance Policy
-                </label>
+                <label>Insurance Policy</label>
 
                 <select
                   name="insurancePolicyId"
-                  value={
-                    claimForm.insurancePolicyId
-                  }
+                  value={claimForm.insurancePolicyId}
                   onChange={handleClaimChange}
                   required
                 >
-                  <option value="">
-                    Select insurance policy
-                  </option>
+                  <option value="">Select insurance policy</option>
 
-                  {activePolicies.map(
-                    (policy) => (
-                      <option
-                        key={
-                          policy.insurancePolicyId
-                        }
-                        value={
-                          policy.insurancePolicyId
-                        }
-                      >
-                        {policy.patientName} —{" "}
-                        {policy.providerName} (
-                        {policy.policyNumber})
-                      </option>
-                    )
-                  )}
+                  {activePolicies.map((policy) => (
+                    <option
+                      key={policy.insurancePolicyId}
+                      value={policy.insurancePolicyId}
+                    >
+                      {policy.patientName} — {policy.providerName} (
+                      {policy.policyNumber})
+                    </option>
+                  ))}
                 </select>
               </div>
 
               <div className="smarthealth-receptionist-insurance-form-group">
-                <label>
-                  Bill
-                </label>
+                <label>Bill</label>
 
                 <select
                   name="billId"
                   value={claimForm.billId}
                   onChange={handleClaimChange}
-                  disabled={
-                    !claimForm.insurancePolicyId
-                  }
+                  disabled={!claimForm.insurancePolicyId}
                   required
                 >
                   <option value="">
@@ -1099,26 +878,16 @@ const ReceptionistInsurance = () => {
                       : "Select bill"}
                   </option>
 
-                  {eligibleBills.map(
-                    (bill) => (
-                      <option
-                        key={bill.billId}
-                        value={bill.billId}
-                      >
-                        {bill.patientName} — Rs.{" "}
-                        {formatAmount(
-                          bill.totalAmount
-                        )}
-                      </option>
-                    )
-                  )}
+                  {eligibleBills.map((bill) => (
+                    <option key={bill.billId} value={bill.billId}>
+                      {bill.patientName} — Rs. {formatAmount(bill.totalAmount)}
+                    </option>
+                  ))}
                 </select>
               </div>
 
               <div className="smarthealth-receptionist-insurance-form-group">
-                <label>
-                  Claim Amount
-                </label>
+                <label>Claim Amount</label>
 
                 <input
                   type="number"
@@ -1133,9 +902,7 @@ const ReceptionistInsurance = () => {
               </div>
 
               <div className="smarthealth-receptionist-insurance-form-group smarthealth-receptionist-insurance-form-group-wide">
-                <label>
-                  Claim Details
-                </label>
+                <label>Claim Details</label>
 
                 <textarea
                   name="claimDetails"
@@ -1147,13 +914,10 @@ const ReceptionistInsurance = () => {
               </div>
 
               <div className="smarthealth-receptionist-insurance-form-actions">
-
                 <button
                   type="button"
                   className="smarthealth-receptionist-insurance-secondary-button"
-                  onClick={() =>
-                    setShowClaimForm(false)
-                  }
+                  onClick={() => setShowClaimForm(false)}
                   disabled={processingClaim}
                 >
                   Cancel
@@ -1164,13 +928,9 @@ const ReceptionistInsurance = () => {
                   className="smarthealth-receptionist-insurance-primary-button"
                   disabled={processingClaim}
                 >
-                  {processingClaim
-                    ? "Submitting..."
-                    : "Submit Claim"}
+                  {processingClaim ? "Submitting..." : "Submit Claim"}
                 </button>
-
               </div>
-
             </form>
           </div>
         )}
@@ -1178,49 +938,31 @@ const ReceptionistInsurance = () => {
         {/* Claim Filters */}
 
         <div className="smarthealth-receptionist-insurance-filter-bar">
-
           <input
             type="text"
             value={claimSearchTerm}
-            onChange={(event) =>
-              setClaimSearchTerm(
-                event.target.value
-              )
-            }
+            onChange={(event) => setClaimSearchTerm(event.target.value)}
             placeholder="Search patient, provider or policy..."
             className="smarthealth-receptionist-insurance-search"
           />
 
           <select
             value={claimStatusFilter}
-            onChange={(event) =>
-              setClaimStatusFilter(
-                event.target.value
-              )
-            }
+            onChange={(event) => setClaimStatusFilter(event.target.value)}
             className="smarthealth-receptionist-insurance-filter-select"
           >
-            <option value="All">
-              All Statuses
-            </option>
+            <option value="All">All Statuses</option>
 
-            <option value="Pending">
-              Pending
-            </option>
+            <option value="Pending">Pending</option>
 
-            <option value="Approved">
-              Approved
-            </option>
+            <option value="Approved">Approved</option>
 
-            <option value="Rejected">
-              Rejected
-            </option>
+            <option value="Rejected">Rejected</option>
           </select>
 
           <span className="smarthealth-receptionist-insurance-count">
             {filteredClaims.length}
           </span>
-
         </div>
 
         {/* Claim Table */}
@@ -1240,15 +982,12 @@ const ReceptionistInsurance = () => {
             </h3>
 
             <p className="smarthealth-receptionist-insurance-empty-text">
-              Submitted insurance claims will
-              appear here.
+              Submitted insurance claims will appear here.
             </p>
           </div>
         ) : (
           <div className="smarthealth-receptionist-insurance-table-wrapper">
-
             <table className="smarthealth-receptionist-insurance-table">
-
               <thead>
                 <tr>
                   <th>Patient</th>
@@ -1262,77 +1001,48 @@ const ReceptionistInsurance = () => {
               </thead>
 
               <tbody>
-                {filteredClaims.map(
-                  (claim) => (
-                    <tr key={claim.claimId}>
+                {filteredClaims.map((claim) => (
+                  <tr key={claim.claimId}>
+                    <td>
+                      <strong>{claim.patientName || "Unknown Patient"}</strong>
+                    </td>
 
-                      <td>
-                        <strong>
-                          {claim.patientName ||
-                            "Unknown Patient"}
-                        </strong>
-                      </td>
+                    <td>{claim.providerName}</td>
 
-                      <td>
-                        {claim.providerName}
-                      </td>
+                    <td>
+                      <span className="smarthealth-receptionist-insurance-policy-number">
+                        {claim.policyNumber}
+                      </span>
+                    </td>
 
-                      <td>
-                        <span className="smarthealth-receptionist-insurance-policy-number">
-                          {claim.policyNumber}
-                        </span>
-                      </td>
+                    <td>Rs. {formatAmount(claim.billAmount)}</td>
 
-                      <td>
-                        Rs.{" "}
-                        {formatAmount(
-                          claim.billAmount
-                        )}
-                      </td>
+                    <td>
+                      <strong className="smarthealth-receptionist-insurance-claim-amount">
+                        Rs. {formatAmount(claim.claimAmount)}
+                      </strong>
+                    </td>
 
-                      <td>
-                        <strong className="smarthealth-receptionist-insurance-claim-amount">
-                          Rs.{" "}
-                          {formatAmount(
-                            claim.claimAmount
-                          )}
-                        </strong>
-                      </td>
+                    <td>{formatDateTime(claim.submittedAt)}</td>
 
-                      <td>
-                        {formatDateTime(
-                          claim.submittedAt
-                        )}
-                      </td>
-
-                      <td>
-                        <span
-                          className={`smarthealth-receptionist-insurance-status-badge smarthealth-receptionist-insurance-claim-status-${String(
-                            claim.status ||
-                              "unknown"
-                          )
-                            .toLowerCase()
-                            .replace(
-                              /\s+/g,
-                              "-"
-                            )}`}
-                        >
-                          {claim.status}
-                        </span>
-                      </td>
-
-                    </tr>
-                  )
-                )}
+                    <td>
+                      <span
+                        className={`smarthealth-receptionist-insurance-status-badge smarthealth-receptionist-insurance-claim-status-${String(
+                          claim.status || "unknown",
+                        )
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
+                      >
+                        {claim.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
-
             </table>
-
           </div>
         )}
-
       </section>
-
     </div>
   );
 };

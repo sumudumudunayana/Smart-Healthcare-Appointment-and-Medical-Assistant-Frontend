@@ -14,8 +14,7 @@ const ReceptionistNotifications = () => {
   const [showCreateForm, setShowCreateForm] = useState(false);
 
   const [selectedUserId, setSelectedUserId] = useState("");
-  const [notificationType, setNotificationType] =
-    useState("Appointment");
+  const [notificationType, setNotificationType] = useState("Appointment");
   const [message, setMessage] = useState("");
 
   const [loading, setLoading] = useState(true);
@@ -24,55 +23,40 @@ const ReceptionistNotifications = () => {
   const [creating, setCreating] = useState(false);
   const [markingId, setMarkingId] = useState(null);
 
-  const loadNotifications = useCallback(
-    async (showRefreshing = false) => {
-      try {
-        if (showRefreshing) {
-          setRefreshing(true);
-        } else {
-          setLoading(true);
-        }
-
-        const data =
-          await notificationService.getMyNotifications();
-
-        setNotifications(Array.isArray(data) ? data : []);
-      } catch (error) {
-        console.error(
-          "Failed to load notifications:",
-          error
-        );
-
-        toast.error(
-          error?.response?.data?.message ||
-            "Failed to load notifications."
-        );
-      } finally {
-        setLoading(false);
-        setRefreshing(false);
+  const loadNotifications = useCallback(async (showRefreshing = false) => {
+    try {
+      if (showRefreshing) {
+        setRefreshing(true);
+      } else {
+        setLoading(true);
       }
-    },
-    []
-  );
+
+      const data = await notificationService.getMyNotifications();
+
+      setNotifications(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Failed to load notifications:", error);
+
+      toast.error(
+        error?.response?.data?.message || "Failed to load notifications.",
+      );
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  }, []);
 
   const loadUsers = useCallback(async () => {
     try {
       setLoadingUsers(true);
 
-      const data =
-        await notificationService.getNotificationUsers();
+      const data = await notificationService.getNotificationUsers();
 
       setUsers(Array.isArray(data) ? data : []);
     } catch (error) {
-      console.error(
-        "Failed to load notification users:",
-        error
-      );
+      console.error("Failed to load notification users:", error);
 
-      toast.error(
-        error?.response?.data?.message ||
-          "Failed to load users."
-      );
+      toast.error(error?.response?.data?.message || "Failed to load users.");
     } finally {
       setLoadingUsers(false);
     }
@@ -91,19 +75,17 @@ const ReceptionistNotifications = () => {
   const unreadCount = useMemo(
     () =>
       notifications.filter(
-        (notification) =>
-          notification.status?.toLowerCase() === "unread"
+        (notification) => notification.status?.toLowerCase() === "unread",
       ).length,
-    [notifications]
+    [notifications],
   );
 
   const readCount = useMemo(
     () =>
       notifications.filter(
-        (notification) =>
-          notification.status?.toLowerCase() === "read"
+        (notification) => notification.status?.toLowerCase() === "read",
       ).length,
-    [notifications]
+    [notifications],
   );
 
   const todayCount = useMemo(() => {
@@ -134,34 +116,19 @@ const ReceptionistNotifications = () => {
     return notifications.filter((notification) => {
       const matchesSearch =
         !search ||
-        notification.message
-          ?.toLowerCase()
-          .includes(search) ||
-        notification.notificationType
-          ?.toLowerCase()
-          .includes(search);
+        notification.message?.toLowerCase().includes(search) ||
+        notification.notificationType?.toLowerCase().includes(search);
 
       const matchesStatus =
         statusFilter === "All" ||
-        notification.status?.toLowerCase() ===
-          statusFilter.toLowerCase();
+        notification.status?.toLowerCase() === statusFilter.toLowerCase();
 
       const matchesType =
-        typeFilter === "All" ||
-        notification.notificationType === typeFilter;
+        typeFilter === "All" || notification.notificationType === typeFilter;
 
-      return (
-        matchesSearch &&
-        matchesStatus &&
-        matchesType
-      );
+      return matchesSearch && matchesStatus && matchesType;
     });
-  }, [
-    notifications,
-    searchTerm,
-    statusFilter,
-    typeFilter,
-  ]);
+  }, [notifications, searchTerm, statusFilter, typeFilter]);
 
   const handleOpenCreateForm = () => {
     setShowCreateForm(true);
@@ -215,14 +182,10 @@ const ReceptionistNotifications = () => {
 
       await loadNotifications(true);
     } catch (error) {
-      console.error(
-        "Failed to create notification:",
-        error
-      );
+      console.error("Failed to create notification:", error);
 
       toast.error(
-        error?.response?.data?.message ||
-          "Failed to create notification."
+        error?.response?.data?.message || "Failed to create notification.",
       );
     } finally {
       setCreating(false);
@@ -234,28 +197,23 @@ const ReceptionistNotifications = () => {
       setMarkingId(notificationId);
 
       const updatedNotification =
-        await notificationService.markAsRead(
-          notificationId
-        );
+        await notificationService.markAsRead(notificationId);
 
       setNotifications((current) =>
         current.map((notification) =>
           notification.notificationId === notificationId
             ? updatedNotification
-            : notification
-        )
+            : notification,
+        ),
       );
 
       toast.success("Notification marked as read.");
     } catch (error) {
-      console.error(
-        "Failed to mark notification as read:",
-        error
-      );
+      console.error("Failed to mark notification as read:", error);
 
       toast.error(
         error?.response?.data?.message ||
-          "Failed to mark notification as read."
+          "Failed to mark notification as read.",
       );
     } finally {
       setMarkingId(null);
@@ -293,8 +251,7 @@ const ReceptionistNotifications = () => {
       return "";
     }
 
-    const difference =
-      new Date().getTime() - date.getTime();
+    const difference = new Date().getTime() - date.getTime();
 
     const minutes = Math.floor(difference / 60000);
     const hours = Math.floor(difference / 3600000);
@@ -305,21 +262,15 @@ const ReceptionistNotifications = () => {
     }
 
     if (minutes < 60) {
-      return `${minutes} minute${
-        minutes === 1 ? "" : "s"
-      } ago`;
+      return `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
     }
 
     if (hours < 24) {
-      return `${hours} hour${
-        hours === 1 ? "" : "s"
-      } ago`;
+      return `${hours} hour${hours === 1 ? "" : "s"} ago`;
     }
 
     if (days < 7) {
-      return `${days} day${
-        days === 1 ? "" : "s"
-      } ago`;
+      return `${days} day${days === 1 ? "" : "s"} ago`;
     }
 
     return formatDate(dateValue);
@@ -328,38 +279,23 @@ const ReceptionistNotifications = () => {
   const getNotificationIcon = (type) => {
     const normalized = type?.toLowerCase() || "";
 
-    if (
-      normalized.includes("appointment") ||
-      normalized.includes("schedule")
-    ) {
+    if (normalized.includes("appointment") || normalized.includes("schedule")) {
       return "📅";
     }
 
-    if (
-      normalized.includes("payment") ||
-      normalized.includes("bill")
-    ) {
+    if (normalized.includes("payment") || normalized.includes("bill")) {
       return "💳";
     }
 
-    if (
-      normalized.includes("insurance") ||
-      normalized.includes("claim")
-    ) {
+    if (normalized.includes("insurance") || normalized.includes("claim")) {
       return "🛡️";
     }
 
-    if (
-      normalized.includes("medical") ||
-      normalized.includes("record")
-    ) {
+    if (normalized.includes("medical") || normalized.includes("record")) {
       return "🩺";
     }
 
-    if (
-      normalized.includes("system") ||
-      normalized.includes("admin")
-    ) {
+    if (normalized.includes("system") || normalized.includes("admin")) {
       return "⚙️";
     }
 
@@ -373,24 +309,15 @@ const ReceptionistNotifications = () => {
       return "smarthealth-receptionist-notification-type-appointment";
     }
 
-    if (
-      normalized.includes("payment") ||
-      normalized.includes("bill")
-    ) {
+    if (normalized.includes("payment") || normalized.includes("bill")) {
       return "smarthealth-receptionist-notification-type-payment";
     }
 
-    if (
-      normalized.includes("insurance") ||
-      normalized.includes("claim")
-    ) {
+    if (normalized.includes("insurance") || normalized.includes("claim")) {
       return "smarthealth-receptionist-notification-type-insurance";
     }
 
-    if (
-      normalized.includes("medical") ||
-      normalized.includes("record")
-    ) {
+    if (normalized.includes("medical") || normalized.includes("record")) {
       return "smarthealth-receptionist-notification-type-medical";
     }
 
@@ -545,35 +472,22 @@ const ReceptionistNotifications = () => {
               onSubmit={handleCreateNotification}
             >
               <div className="smarthealth-receptionist-notification-form-group">
-                <label htmlFor="notification-recipient">
-                  Recipient
-                </label>
+                <label htmlFor="notification-recipient">Recipient</label>
 
                 <select
                   id="notification-recipient"
                   value={selectedUserId}
-                  onChange={(event) =>
-                    setSelectedUserId(event.target.value)
-                  }
+                  onChange={(event) => setSelectedUserId(event.target.value)}
                   disabled={loadingUsers || creating}
                 >
                   <option value="">
-                    {loadingUsers
-                      ? "Loading users..."
-                      : "Select a recipient"}
+                    {loadingUsers ? "Loading users..." : "Select a recipient"}
                   </option>
 
                   {users
-                    .filter(
-                      (user) =>
-                        user.status?.toLowerCase() ===
-                        "active"
-                    )
+                    .filter((user) => user.status?.toLowerCase() === "active")
                     .map((user) => (
-                      <option
-                        key={user.userId}
-                        value={user.userId}
-                      >
+                      <option key={user.userId} value={user.userId}>
                         {user.fullName} — {user.email}
                       </option>
                     ))}
@@ -581,55 +495,35 @@ const ReceptionistNotifications = () => {
               </div>
 
               <div className="smarthealth-receptionist-notification-form-group">
-                <label htmlFor="notification-type">
-                  Notification Type
-                </label>
+                <label htmlFor="notification-type">Notification Type</label>
 
                 <select
                   id="notification-type"
                   value={notificationType}
-                  onChange={(event) =>
-                    setNotificationType(event.target.value)
-                  }
+                  onChange={(event) => setNotificationType(event.target.value)}
                   disabled={creating}
                 >
-                  <option value="Appointment">
-                    Appointment
-                  </option>
+                  <option value="Appointment">Appointment</option>
 
-                  <option value="Payment">
-                    Payment
-                  </option>
+                  <option value="Payment">Payment</option>
 
-                  <option value="Insurance">
-                    Insurance
-                  </option>
+                  <option value="Insurance">Insurance</option>
 
-                  <option value="Medical">
-                    Medical
-                  </option>
+                  <option value="Medical">Medical</option>
 
-                  <option value="System">
-                    System
-                  </option>
+                  <option value="System">System</option>
 
-                  <option value="General">
-                    General
-                  </option>
+                  <option value="General">General</option>
                 </select>
               </div>
 
               <div className="smarthealth-receptionist-notification-form-group smarthealth-receptionist-notification-form-group-wide">
-                <label htmlFor="notification-message">
-                  Message
-                </label>
+                <label htmlFor="notification-message">Message</label>
 
                 <textarea
                   id="notification-message"
                   value={message}
-                  onChange={(event) =>
-                    setMessage(event.target.value)
-                  }
+                  onChange={(event) => setMessage(event.target.value)}
                   placeholder="Enter notification message..."
                   disabled={creating}
                   rows={4}
@@ -651,9 +545,7 @@ const ReceptionistNotifications = () => {
                   className="smarthealth-receptionist-notification-submit-button"
                   disabled={creating || loadingUsers}
                 >
-                  {creating
-                    ? "Creating..."
-                    : "Create Notification"}
+                  {creating ? "Creating..." : "Create Notification"}
                 </button>
               </div>
             </form>
@@ -667,17 +559,13 @@ const ReceptionistNotifications = () => {
             className="smarthealth-receptionist-notification-search"
             placeholder="Search notifications..."
             value={searchTerm}
-            onChange={(event) =>
-              setSearchTerm(event.target.value)
-            }
+            onChange={(event) => setSearchTerm(event.target.value)}
           />
 
           <select
             className="smarthealth-receptionist-notification-filter-select"
             value={statusFilter}
-            onChange={(event) =>
-              setStatusFilter(event.target.value)
-            }
+            onChange={(event) => setStatusFilter(event.target.value)}
           >
             <option value="All">All Status</option>
             <option value="Unread">Unread</option>
@@ -687,9 +575,7 @@ const ReceptionistNotifications = () => {
           <select
             className="smarthealth-receptionist-notification-filter-select"
             value={typeFilter}
-            onChange={(event) =>
-              setTypeFilter(event.target.value)
-            }
+            onChange={(event) => setTypeFilter(event.target.value)}
           >
             <option value="All">All Types</option>
 
@@ -725,9 +611,7 @@ const ReceptionistNotifications = () => {
         ) : (
           <div className="smarthealth-receptionist-notification-list">
             {filteredNotifications.map((notification) => {
-              const isUnread =
-                notification.status?.toLowerCase() ===
-                "unread";
+              const isUnread = notification.status?.toLowerCase() === "unread";
 
               return (
                 <article
@@ -740,20 +624,17 @@ const ReceptionistNotifications = () => {
                 >
                   <div
                     className={`smarthealth-receptionist-notification-item-icon ${getTypeClass(
-                      notification.notificationType
+                      notification.notificationType,
                     )}`}
                   >
-                    {getNotificationIcon(
-                      notification.notificationType
-                    )}
+                    {getNotificationIcon(notification.notificationType)}
                   </div>
 
                   <div className="smarthealth-receptionist-notification-item-content">
                     <div className="smarthealth-receptionist-notification-item-top">
                       <div className="smarthealth-receptionist-notification-item-heading">
                         <span className="smarthealth-receptionist-notification-type">
-                          {notification.notificationType ||
-                            "Notification"}
+                          {notification.notificationType || "Notification"}
                         </span>
 
                         {isUnread && (
@@ -764,9 +645,7 @@ const ReceptionistNotifications = () => {
                       </div>
 
                       <span className="smarthealth-receptionist-notification-relative-time">
-                        {formatRelativeTime(
-                          notification.createdAt
-                        )}
+                        {formatRelativeTime(notification.createdAt)}
                       </span>
                     </div>
 
@@ -784,17 +663,11 @@ const ReceptionistNotifications = () => {
                           type="button"
                           className="smarthealth-receptionist-notification-read-button"
                           onClick={() =>
-                            handleMarkAsRead(
-                              notification.notificationId
-                            )
+                            handleMarkAsRead(notification.notificationId)
                           }
-                          disabled={
-                            markingId ===
-                            notification.notificationId
-                          }
+                          disabled={markingId === notification.notificationId}
                         >
-                          {markingId ===
-                          notification.notificationId
+                          {markingId === notification.notificationId
                             ? "Updating..."
                             : "Mark as Read"}
                         </button>
@@ -802,10 +675,7 @@ const ReceptionistNotifications = () => {
 
                       {!isUnread && notification.readAt && (
                         <span className="smarthealth-receptionist-notification-read-time">
-                          Read{" "}
-                          {formatRelativeTime(
-                            notification.readAt
-                          )}
+                          Read {formatRelativeTime(notification.readAt)}
                         </span>
                       )}
                     </div>

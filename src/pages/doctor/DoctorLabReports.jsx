@@ -39,8 +39,7 @@ const DoctorLabReports = () => {
       console.error("Failed to load lab reports:", error);
 
       const message =
-        error.response?.data?.message ||
-        "Failed to load lab reports.";
+        error.response?.data?.message || "Failed to load lab reports.";
 
       toast.error(message);
     } finally {
@@ -52,19 +51,14 @@ const DoctorLabReports = () => {
     try {
       setLoadingRecords(true);
 
-      const data =
-        await medicalRecordService.getMyDoctorRecords();
+      const data = await medicalRecordService.getMyDoctorRecords();
 
       setMedicalRecords(Array.isArray(data) ? data : []);
     } catch (error) {
-      console.error(
-        "Failed to load medical records:",
-        error
-      );
+      console.error("Failed to load medical records:", error);
 
       const message =
-        error.response?.data?.message ||
-        "Failed to load medical records.";
+        error.response?.data?.message || "Failed to load medical records.";
 
       toast.error(message);
     } finally {
@@ -111,28 +105,18 @@ const DoctorLabReports = () => {
   };
 
   const filteredLabReports = useMemo(() => {
-    const normalizedSearch =
-      searchTerm.trim().toLowerCase();
+    const normalizedSearch = searchTerm.trim().toLowerCase();
 
     return labReports.filter((report) => {
       const matchesSearch =
         !normalizedSearch ||
-        report.patientName
-          ?.toLowerCase()
-          .includes(normalizedSearch) ||
-        report.reportName
-          ?.toLowerCase()
-          .includes(normalizedSearch) ||
-        report.reportType
-          ?.toLowerCase()
-          .includes(normalizedSearch) ||
-        report.doctorName
-          ?.toLowerCase()
-          .includes(normalizedSearch);
+        report.patientName?.toLowerCase().includes(normalizedSearch) ||
+        report.reportName?.toLowerCase().includes(normalizedSearch) ||
+        report.reportType?.toLowerCase().includes(normalizedSearch) ||
+        report.doctorName?.toLowerCase().includes(normalizedSearch);
 
       const matchesRecord =
-        recordFilter === "all" ||
-        report.recordId === recordFilter;
+        recordFilter === "all" || report.recordId === recordFilter;
 
       return matchesSearch && matchesRecord;
     });
@@ -192,36 +176,24 @@ const DoctorLabReports = () => {
       const requestData = {
         recordId: formData.recordId,
         reportName: formData.reportName.trim(),
-        reportType:
-          formData.reportType.trim() || null,
-        filePath:
-          formData.filePath.trim() || null,
+        reportType: formData.reportType.trim() || null,
+        filePath: formData.filePath.trim() || null,
       };
 
-      const createdReport =
-        await labReportService.create(requestData);
+      const createdReport = await labReportService.create(requestData);
 
-      toast.success(
-        "Lab report created successfully."
-      );
+      toast.success("Lab report created successfully.");
 
-      setLabReports((previous) => [
-        createdReport,
-        ...previous,
-      ]);
+      setLabReports((previous) => [createdReport, ...previous]);
 
       setSelectedReport(createdReport);
       setShowCreatePanel(false);
       resetForm();
     } catch (error) {
-      console.error(
-        "Failed to create lab report:",
-        error
-      );
+      console.error("Failed to create lab report:", error);
 
       const message =
-        error.response?.data?.message ||
-        "Failed to create lab report.";
+        error.response?.data?.message || "Failed to create lab report.";
 
       toast.error(message);
     } finally {
@@ -231,28 +203,21 @@ const DoctorLabReports = () => {
 
   const totalReports = labReports.length;
 
-  const uniquePatients = new Set(
-    labReports.map((report) => report.patientId)
-  ).size;
+  const uniquePatients = new Set(labReports.map((report) => report.patientId))
+    .size;
 
   const reportTypes = new Set(
-    labReports
-      .map((report) => report.reportType)
-      .filter(Boolean)
+    labReports.map((report) => report.reportType).filter(Boolean),
   ).size;
 
   const recentReports = labReports.filter((report) => {
     if (!report.uploadedAt) return false;
 
-    const uploadedDate = new Date(
-      report.uploadedAt
-    );
+    const uploadedDate = new Date(report.uploadedAt);
 
     const sevenDaysAgo = new Date();
 
-    sevenDaysAgo.setDate(
-      sevenDaysAgo.getDate() - 7
-    );
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
     return uploadedDate >= sevenDaysAgo;
   }).length;
@@ -268,13 +233,11 @@ const DoctorLabReports = () => {
             MEDICAL MANAGEMENT
           </span>
 
-          <h1 className="smarthealth-doctor-lab-reports-title">
-            Lab Reports
-          </h1>
+          <h1 className="smarthealth-doctor-lab-reports-title">Lab Reports</h1>
 
           <p className="smarthealth-doctor-lab-reports-description">
-            Manage laboratory reports associated with
-            your patients' medical records.
+            Manage laboratory reports associated with your patients' medical
+            records.
           </p>
         </div>
 
@@ -283,10 +246,7 @@ const DoctorLabReports = () => {
           className="smarthealth-doctor-lab-reports-create-button"
           onClick={handleOpenCreatePanel}
         >
-          <span className="smarthealth-doctor-lab-reports-create-icon">
-            +
-          </span>
-
+          <span className="smarthealth-doctor-lab-reports-create-icon">+</span>
           New Lab Report
         </button>
       </div>
@@ -296,9 +256,7 @@ const DoctorLabReports = () => {
       ====================================================== */}
       <div className="smarthealth-doctor-lab-reports-summary-grid">
         <div className="smarthealth-doctor-lab-reports-summary-card">
-          <div className="smarthealth-doctor-lab-reports-summary-icon">
-            LR
-          </div>
+          <div className="smarthealth-doctor-lab-reports-summary-icon">LR</div>
 
           <div>
             <span className="smarthealth-doctor-lab-reports-summary-label">
@@ -312,9 +270,7 @@ const DoctorLabReports = () => {
         </div>
 
         <div className="smarthealth-doctor-lab-reports-summary-card">
-          <div className="smarthealth-doctor-lab-reports-summary-icon">
-            P
-          </div>
+          <div className="smarthealth-doctor-lab-reports-summary-icon">P</div>
 
           <div>
             <span className="smarthealth-doctor-lab-reports-summary-label">
@@ -328,9 +284,7 @@ const DoctorLabReports = () => {
         </div>
 
         <div className="smarthealth-doctor-lab-reports-summary-card">
-          <div className="smarthealth-doctor-lab-reports-summary-icon">
-            T
-          </div>
+          <div className="smarthealth-doctor-lab-reports-summary-icon">T</div>
 
           <div>
             <span className="smarthealth-doctor-lab-reports-summary-label">
@@ -344,9 +298,7 @@ const DoctorLabReports = () => {
         </div>
 
         <div className="smarthealth-doctor-lab-reports-summary-card">
-          <div className="smarthealth-doctor-lab-reports-summary-icon">
-            7d
-          </div>
+          <div className="smarthealth-doctor-lab-reports-summary-icon">7d</div>
 
           <div>
             <span className="smarthealth-doctor-lab-reports-summary-label">
@@ -365,39 +317,27 @@ const DoctorLabReports = () => {
       ====================================================== */}
       <div className="smarthealth-doctor-lab-reports-toolbar">
         <div className="smarthealth-doctor-lab-reports-search-wrapper">
-          <span className="smarthealth-doctor-lab-reports-search-icon">
-            ⌕
-          </span>
+          <span className="smarthealth-doctor-lab-reports-search-icon">⌕</span>
 
           <input
             type="text"
             className="smarthealth-doctor-lab-reports-search-input"
             placeholder="Search patient, report name, type..."
             value={searchTerm}
-            onChange={(event) =>
-              setSearchTerm(event.target.value)
-            }
+            onChange={(event) => setSearchTerm(event.target.value)}
           />
         </div>
 
         <select
           className="smarthealth-doctor-lab-reports-filter-select"
           value={recordFilter}
-          onChange={(event) =>
-            setRecordFilter(event.target.value)
-          }
+          onChange={(event) => setRecordFilter(event.target.value)}
         >
-          <option value="all">
-            All Medical Records
-          </option>
+          <option value="all">All Medical Records</option>
 
           {medicalRecords.map((record) => (
-            <option
-              key={record.recordId}
-              value={record.recordId}
-            >
-              {record.patientName} -{" "}
-              {formatDate(record.appointmentDate)}
+            <option key={record.recordId} value={record.recordId}>
+              {record.patientName} - {formatDate(record.appointmentDate)}
             </option>
           ))}
         </select>
@@ -408,9 +348,7 @@ const DoctorLabReports = () => {
           onClick={loadLabReports}
           disabled={loadingReports}
         >
-          {loadingReports
-            ? "Loading..."
-            : "Refresh"}
+          {loadingReports ? "Loading..." : "Refresh"}
         </button>
       </div>
 
@@ -426,29 +364,25 @@ const DoctorLabReports = () => {
           </div>
         ) : filteredLabReports.length === 0 ? (
           <div className="smarthealth-doctor-lab-reports-empty">
-            <div className="smarthealth-doctor-lab-reports-empty-icon">
-              LR
-            </div>
+            <div className="smarthealth-doctor-lab-reports-empty-icon">LR</div>
 
             <h2>No lab reports found</h2>
 
             <p>
-              {searchTerm ||
-              recordFilter !== "all"
+              {searchTerm || recordFilter !== "all"
                 ? "Try changing your search or filter."
                 : "Create your first lab report to see it here."}
             </p>
 
-            {!searchTerm &&
-              recordFilter === "all" && (
-                <button
-                  type="button"
-                  className="smarthealth-doctor-lab-reports-empty-button"
-                  onClick={handleOpenCreatePanel}
-                >
-                  Create Lab Report
-                </button>
-              )}
+            {!searchTerm && recordFilter === "all" && (
+              <button
+                type="button"
+                className="smarthealth-doctor-lab-reports-empty-button"
+                onClick={handleOpenCreatePanel}
+              >
+                Create Lab Report
+              </button>
+            )}
           </div>
         ) : (
           <div className="smarthealth-doctor-lab-reports-table-wrapper">
@@ -465,90 +399,67 @@ const DoctorLabReports = () => {
               </thead>
 
               <tbody>
-                {filteredLabReports.map(
-                  (report) => (
-                    <tr key={report.labReportId}>
-                      <td>
-                        <div className="smarthealth-doctor-lab-reports-patient-cell">
-                          <div className="smarthealth-doctor-lab-reports-patient-avatar">
-                            {report.patientName
-                              ?.charAt(0)
-                              ?.toUpperCase() ||
-                              "P"}
-                          </div>
-
-                          <div>
-                            <strong>
-                              {report.patientName ||
-                                "Unknown Patient"}
-                            </strong>
-
-                            <span>
-                              Patient
-                            </span>
-                          </div>
+                {filteredLabReports.map((report) => (
+                  <tr key={report.labReportId}>
+                    <td>
+                      <div className="smarthealth-doctor-lab-reports-patient-cell">
+                        <div className="smarthealth-doctor-lab-reports-patient-avatar">
+                          {report.patientName?.charAt(0)?.toUpperCase() || "P"}
                         </div>
-                      </td>
 
-                      <td>
-                        <div className="smarthealth-doctor-lab-reports-report-cell">
-                          <span className="smarthealth-doctor-lab-reports-report-icon">
-                            LR
+                        <div>
+                          <strong>
+                            {report.patientName || "Unknown Patient"}
+                          </strong>
+
+                          <span>Patient</span>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div className="smarthealth-doctor-lab-reports-report-cell">
+                        <span className="smarthealth-doctor-lab-reports-report-icon">
+                          LR
+                        </span>
+
+                        <div>
+                          <strong>{report.reportName}</strong>
+
+                          <span>
+                            {report.reportType || "Laboratory Report"}
                           </span>
-
-                          <div>
-                            <strong>
-                              {report.reportName}
-                            </strong>
-
-                            <span>
-                              {report.reportType ||
-                                "Laboratory Report"}
-                            </span>
-                          </div>
                         </div>
-                      </td>
+                      </div>
+                    </td>
 
-                      <td>
-                        <span className="smarthealth-doctor-lab-reports-type-badge">
-                          {report.reportType ||
-                            "General"}
-                        </span>
-                      </td>
+                    <td>
+                      <span className="smarthealth-doctor-lab-reports-type-badge">
+                        {report.reportType || "General"}
+                      </span>
+                    </td>
 
-                      <td>
-                        <span className="smarthealth-doctor-lab-reports-record-text">
-                          {report.recordId
-                            ? `${report.recordId.slice(
-                                0,
-                                8
-                              )}...`
-                            : "N/A"}
-                        </span>
-                      </td>
+                    <td>
+                      <span className="smarthealth-doctor-lab-reports-record-text">
+                        {report.recordId
+                          ? `${report.recordId.slice(0, 8)}...`
+                          : "N/A"}
+                      </span>
+                    </td>
 
-                      <td>
-                        {formatDate(
-                          report.uploadedAt
-                        )}
-                      </td>
+                    <td>{formatDate(report.uploadedAt)}</td>
 
-                      <td>
-                        <button
-                          type="button"
-                          className="smarthealth-doctor-lab-reports-view-button"
-                          onClick={() =>
-                            setSelectedReport(
-                              report
-                            )
-                          }
-                        >
-                          View
-                        </button>
-                      </td>
-                    </tr>
-                  )
-                )}
+                    <td>
+                      <button
+                        type="button"
+                        className="smarthealth-doctor-lab-reports-view-button"
+                        onClick={() => setSelectedReport(report)}
+                      >
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -558,175 +469,138 @@ const DoctorLabReports = () => {
       {/* =====================================================
           VIEW REPORT MODAL
       ====================================================== */}
-      {selectedReport &&
-        !showCreatePanel && (
-          <div
-            className="smarthealth-doctor-lab-reports-modal-overlay"
-            onMouseDown={(event) => {
-              if (
-                event.target ===
-                event.currentTarget
-              ) {
-                setSelectedReport(null);
-              }
-            }}
-          >
-            <div className="smarthealth-doctor-lab-reports-view-modal">
-              <div className="smarthealth-doctor-lab-reports-modal-header">
+      {selectedReport && !showCreatePanel && (
+        <div
+          className="smarthealth-doctor-lab-reports-modal-overlay"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              setSelectedReport(null);
+            }
+          }}
+        >
+          <div className="smarthealth-doctor-lab-reports-view-modal">
+            <div className="smarthealth-doctor-lab-reports-modal-header">
+              <div>
+                <span className="smarthealth-doctor-lab-reports-modal-label">
+                  LAB REPORT DETAILS
+                </span>
+
+                <h2>{selectedReport.reportName}</h2>
+              </div>
+
+              <button
+                type="button"
+                className="smarthealth-doctor-lab-reports-modal-close"
+                onClick={() => setSelectedReport(null)}
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="smarthealth-doctor-lab-reports-details">
+              {/* Patient */}
+              <div className="smarthealth-doctor-lab-reports-detail-patient">
+                <div className="smarthealth-doctor-lab-reports-detail-avatar">
+                  {selectedReport.patientName?.charAt(0)?.toUpperCase() || "P"}
+                </div>
+
                 <div>
-                  <span className="smarthealth-doctor-lab-reports-modal-label">
-                    LAB REPORT DETAILS
-                  </span>
+                  <span>Patient</span>
 
-                  <h2>
-                    {selectedReport.reportName}
-                  </h2>
-                </div>
-
-                <button
-                  type="button"
-                  className="smarthealth-doctor-lab-reports-modal-close"
-                  onClick={() =>
-                    setSelectedReport(null)
-                  }
-                >
-                  ×
-                </button>
-              </div>
-
-              <div className="smarthealth-doctor-lab-reports-details">
-                {/* Patient */}
-                <div className="smarthealth-doctor-lab-reports-detail-patient">
-                  <div className="smarthealth-doctor-lab-reports-detail-avatar">
-                    {selectedReport.patientName
-                      ?.charAt(0)
-                      ?.toUpperCase() ||
-                      "P"}
-                  </div>
-
-                  <div>
-                    <span>Patient</span>
-
-                    <strong>
-                      {selectedReport.patientName ||
-                        "Unknown Patient"}
-                    </strong>
-                  </div>
-                </div>
-
-                {/* Details */}
-                <div className="smarthealth-doctor-lab-reports-detail-grid">
-                  <div className="smarthealth-doctor-lab-reports-detail-item">
-                    <span>Report Name</span>
-
-                    <strong>
-                      {selectedReport.reportName}
-                    </strong>
-                  </div>
-
-                  <div className="smarthealth-doctor-lab-reports-detail-item">
-                    <span>Report Type</span>
-
-                    <strong>
-                      {selectedReport.reportType ||
-                        "General"}
-                    </strong>
-                  </div>
-
-                  <div className="smarthealth-doctor-lab-reports-detail-item">
-                    <span>Doctor</span>
-
-                    <strong>
-                      {selectedReport.doctorName ||
-                        "N/A"}
-                    </strong>
-                  </div>
-
-                  <div className="smarthealth-doctor-lab-reports-detail-item">
-                    <span>Uploaded</span>
-
-                    <strong>
-                      {formatDateTime(
-                        selectedReport.uploadedAt
-                      )}
-                    </strong>
-                  </div>
-
-                  <div className="smarthealth-doctor-lab-reports-detail-item smarthealth-doctor-lab-reports-detail-item-wide">
-                    <span>Medical Record ID</span>
-
-                    <strong className="smarthealth-doctor-lab-reports-record-id">
-                      {selectedReport.recordId ||
-                        "N/A"}
-                    </strong>
-                  </div>
-
-                  <div className="smarthealth-doctor-lab-reports-detail-item smarthealth-doctor-lab-reports-detail-item-wide">
-                    <span>Report ID</span>
-
-                    <strong className="smarthealth-doctor-lab-reports-record-id">
-                      {selectedReport.labReportId ||
-                        "N/A"}
-                    </strong>
-                  </div>
-                </div>
-
-                {/* File Path */}
-                <div className="smarthealth-doctor-lab-reports-file-section">
-                  <span>Report File</span>
-
-                  {selectedReport.filePath ? (
-                    <div className="smarthealth-doctor-lab-reports-file-card">
-                      <div className="smarthealth-doctor-lab-reports-file-icon">
-                        ↗
-                      </div>
-
-                      <div className="smarthealth-doctor-lab-reports-file-info">
-                        <strong>
-                          Report file available
-                        </strong>
-
-                        <span>
-                          {selectedReport.filePath}
-                        </span>
-                      </div>
-
-                      <a
-                        href={
-                          selectedReport.filePath
-                        }
-                        target="_blank"
-                        rel="noreferrer"
-                        className="smarthealth-doctor-lab-reports-file-link"
-                      >
-                        Open
-                      </a>
-                    </div>
-                  ) : (
-                    <div className="smarthealth-doctor-lab-reports-no-file">
-                      <span>
-                        No report file/path has
-                        been provided.
-                      </span>
-                    </div>
-                  )}
+                  <strong>
+                    {selectedReport.patientName || "Unknown Patient"}
+                  </strong>
                 </div>
               </div>
 
-              <div className="smarthealth-doctor-lab-reports-modal-footer">
-                <button
-                  type="button"
-                  className="smarthealth-doctor-lab-reports-secondary-button"
-                  onClick={() =>
-                    setSelectedReport(null)
-                  }
-                >
-                  Close
-                </button>
+              {/* Details */}
+              <div className="smarthealth-doctor-lab-reports-detail-grid">
+                <div className="smarthealth-doctor-lab-reports-detail-item">
+                  <span>Report Name</span>
+
+                  <strong>{selectedReport.reportName}</strong>
+                </div>
+
+                <div className="smarthealth-doctor-lab-reports-detail-item">
+                  <span>Report Type</span>
+
+                  <strong>{selectedReport.reportType || "General"}</strong>
+                </div>
+
+                <div className="smarthealth-doctor-lab-reports-detail-item">
+                  <span>Doctor</span>
+
+                  <strong>{selectedReport.doctorName || "N/A"}</strong>
+                </div>
+
+                <div className="smarthealth-doctor-lab-reports-detail-item">
+                  <span>Uploaded</span>
+
+                  <strong>{formatDateTime(selectedReport.uploadedAt)}</strong>
+                </div>
+
+                <div className="smarthealth-doctor-lab-reports-detail-item smarthealth-doctor-lab-reports-detail-item-wide">
+                  <span>Medical Record ID</span>
+
+                  <strong className="smarthealth-doctor-lab-reports-record-id">
+                    {selectedReport.recordId || "N/A"}
+                  </strong>
+                </div>
+
+                <div className="smarthealth-doctor-lab-reports-detail-item smarthealth-doctor-lab-reports-detail-item-wide">
+                  <span>Report ID</span>
+
+                  <strong className="smarthealth-doctor-lab-reports-record-id">
+                    {selectedReport.labReportId || "N/A"}
+                  </strong>
+                </div>
+              </div>
+
+              {/* File Path */}
+              <div className="smarthealth-doctor-lab-reports-file-section">
+                <span>Report File</span>
+
+                {selectedReport.filePath ? (
+                  <div className="smarthealth-doctor-lab-reports-file-card">
+                    <div className="smarthealth-doctor-lab-reports-file-icon">
+                      ↗
+                    </div>
+
+                    <div className="smarthealth-doctor-lab-reports-file-info">
+                      <strong>Report file available</strong>
+
+                      <span>{selectedReport.filePath}</span>
+                    </div>
+
+                    <a
+                      href={selectedReport.filePath}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="smarthealth-doctor-lab-reports-file-link"
+                    >
+                      Open
+                    </a>
+                  </div>
+                ) : (
+                  <div className="smarthealth-doctor-lab-reports-no-file">
+                    <span>No report file/path has been provided.</span>
+                  </div>
+                )}
               </div>
             </div>
+
+            <div className="smarthealth-doctor-lab-reports-modal-footer">
+              <button
+                type="button"
+                className="smarthealth-doctor-lab-reports-secondary-button"
+                onClick={() => setSelectedReport(null)}
+              >
+                Close
+              </button>
+            </div>
           </div>
-        )}
+        </div>
+      )}
 
       {/* =====================================================
           CREATE REPORT MODAL
@@ -735,11 +609,7 @@ const DoctorLabReports = () => {
         <div
           className="smarthealth-doctor-lab-reports-modal-overlay"
           onMouseDown={(event) => {
-            if (
-              event.target ===
-                event.currentTarget &&
-              !savingReport
-            ) {
+            if (event.target === event.currentTarget && !savingReport) {
               handleCloseCreatePanel();
             }
           }}
@@ -757,9 +627,7 @@ const DoctorLabReports = () => {
               <button
                 type="button"
                 className="smarthealth-doctor-lab-reports-modal-close"
-                onClick={
-                  handleCloseCreatePanel
-                }
+                onClick={handleCloseCreatePanel}
                 disabled={savingReport}
               >
                 ×
@@ -781,13 +649,8 @@ const DoctorLabReports = () => {
                   id="smarthealth-lab-report-record"
                   name="recordId"
                   value={formData.recordId}
-                  onChange={
-                    handleInputChange
-                  }
-                  disabled={
-                    loadingRecords ||
-                    savingReport
-                  }
+                  onChange={handleInputChange}
+                  disabled={loadingRecords || savingReport}
                   required
                 >
                   <option value="">
@@ -796,24 +659,13 @@ const DoctorLabReports = () => {
                       : "Select a medical record"}
                   </option>
 
-                  {medicalRecords.map(
-                    (record) => (
-                      <option
-                        key={record.recordId}
-                        value={
-                          record.recordId
-                        }
-                      >
-                        {record.patientName} —{" "}
-                        {formatDate(
-                          record.appointmentDate
-                        )}
-                        {record.diagnosis
-                          ? ` — ${record.diagnosis}`
-                          : ""}
-                      </option>
-                    )
-                  )}
+                  {medicalRecords.map((record) => (
+                    <option key={record.recordId} value={record.recordId}>
+                      {record.patientName} —{" "}
+                      {formatDate(record.appointmentDate)}
+                      {record.diagnosis ? ` — ${record.diagnosis}` : ""}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -830,9 +682,7 @@ const DoctorLabReports = () => {
                   name="reportName"
                   placeholder="e.g. Complete Blood Count"
                   value={formData.reportName}
-                  onChange={
-                    handleInputChange
-                  }
+                  onChange={handleInputChange}
                   disabled={savingReport}
                   required
                 />
@@ -840,9 +690,7 @@ const DoctorLabReports = () => {
 
               {/* Report Type */}
               <div className="smarthealth-doctor-lab-reports-form-group">
-                <label htmlFor="smarthealth-lab-report-type">
-                  Report Type
-                </label>
+                <label htmlFor="smarthealth-lab-report-type">Report Type</label>
 
                 <input
                   id="smarthealth-lab-report-type"
@@ -850,9 +698,7 @@ const DoctorLabReports = () => {
                   name="reportType"
                   placeholder="e.g. Blood Test, X-Ray, MRI"
                   value={formData.reportType}
-                  onChange={
-                    handleInputChange
-                  }
+                  onChange={handleInputChange}
                   disabled={savingReport}
                 />
               </div>
@@ -869,17 +715,13 @@ const DoctorLabReports = () => {
                   name="filePath"
                   placeholder="e.g. https://example.com/report.pdf"
                   value={formData.filePath}
-                  onChange={
-                    handleInputChange
-                  }
+                  onChange={handleInputChange}
                   disabled={savingReport}
                 />
 
                 <small className="smarthealth-doctor-lab-reports-form-help">
-                  Enter the stored report path or
-                  URL. File uploading is not
-                  implemented by the current
-                  backend.
+                  Enter the stored report path or URL. File uploading is not
+                  implemented by the current backend.
                 </small>
               </div>
 
@@ -888,9 +730,7 @@ const DoctorLabReports = () => {
                 <button
                   type="button"
                   className="smarthealth-doctor-lab-reports-secondary-button"
-                  onClick={
-                    handleCloseCreatePanel
-                  }
+                  onClick={handleCloseCreatePanel}
                   disabled={savingReport}
                 >
                   Cancel
@@ -901,9 +741,7 @@ const DoctorLabReports = () => {
                   className="smarthealth-doctor-lab-reports-submit-button"
                   disabled={savingReport}
                 >
-                  {savingReport
-                    ? "Creating..."
-                    : "Create Lab Report"}
+                  {savingReport ? "Creating..." : "Create Lab Report"}
                 </button>
               </div>
             </form>

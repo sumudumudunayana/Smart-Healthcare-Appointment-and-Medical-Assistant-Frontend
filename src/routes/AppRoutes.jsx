@@ -14,6 +14,7 @@ import Departments from "../pages/admin/Departments";
 import Doctors from "../pages/admin/Doctors";
 import Users from "../pages/admin/Users";
 import Receptionists from "../pages/admin/Receptionists";
+import AdminAI from "../pages/admin/AdminAI";
 
 import DoctorDashboard from "../pages/doctor/DoctorDashboard";
 import DoctorProfile from "../pages/doctor/DoctorProfile";
@@ -22,6 +23,7 @@ import DoctorAppointments from "../pages/doctor/DoctorAppointments";
 import DoctorMedicalRecords from "../pages/doctor/DoctorMedicalRecords";
 import DoctorPrescriptions from "../pages/doctor/DoctorPrescriptions";
 import DoctorLabReports from "../pages/doctor/DoctorLabReports";
+import DoctorAI from "../pages/doctor/DoctorAI";
 
 import ReceptionistAppointments from "../pages/receptionist/ReceptionistAppointments";
 import ReceptionistAvailability from "../pages/receptionist/ReceptionistAvailability";
@@ -30,6 +32,7 @@ import ReceptionistBilling from "../pages/receptionist/ReceptionistBilling";
 import ReceptionistPayments from "../pages/receptionist/ReceptionistPayments";
 import ReceptionistInsurance from "../pages/receptionist/ReceptionistInsurance";
 import ReceptionistNotifications from "../pages/receptionist/ReceptionistNotifications";
+import ReceptionistAIBilling from "../pages/receptionist/ReceptionistAIBilling";
 
 /* =========================================================
    PROTECTED ROUTE
@@ -140,6 +143,8 @@ const AppRoutes = () => {
         <Route path="users" element={<Users />} />
 
         <Route path="receptionists" element={<Receptionists />} />
+
+        <Route path="ai" element={<AdminAI />} />
       </Route>
 
       {/* ===================================================
@@ -161,13 +166,16 @@ const AppRoutes = () => {
         <Route path="profile" element={<DoctorProfile />} />
 
         <Route path="schedule" element={<DoctorSchedule />} />
+
         <Route path="appointments" element={<DoctorAppointments />} />
-        <Route
-          path="/doctor/medical-records"
-          element={<DoctorMedicalRecords />}
-        />
+
+        <Route path="medical-records" element={<DoctorMedicalRecords />} />
+
         <Route path="prescriptions" element={<DoctorPrescriptions />} />
+
         <Route path="lab-reports" element={<DoctorLabReports />} />
+
+        <Route path="ai" element={<DoctorAI />} />
       </Route>
 
       {/* ===================================================
@@ -184,12 +192,18 @@ const AppRoutes = () => {
       >
         <Route path="dashboard" element={<ReceptionistDashboard />} />
 
-        <Route path="dashboard" element={<ReceptionistLayoutTest />} />
         <Route path="appointments" element={<ReceptionistAppointments />} />
+
         <Route path="availability" element={<ReceptionistAvailability />} />
+
         <Route path="billing" element={<ReceptionistBilling />} />
+
+        <Route path="ai-billing" element={<ReceptionistAIBilling />} />
+
         <Route path="payments" element={<ReceptionistPayments />} />
+
         <Route path="insurance" element={<ReceptionistInsurance />} />
+
         <Route path="notifications" element={<ReceptionistNotifications />} />
       </Route>
 

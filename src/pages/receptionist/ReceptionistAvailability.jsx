@@ -32,8 +32,7 @@ const ReceptionistAvailability = () => {
       setDoctors(Array.isArray(data) ? data : []);
     } catch (error) {
       const message =
-        error?.response?.data?.message ||
-        "Failed to load doctors.";
+        error?.response?.data?.message || "Failed to load doctors.";
 
       setErrorMessage(message);
       toast.error(message);
@@ -52,14 +51,12 @@ const ReceptionistAvailability = () => {
       setLoadingSchedules(true);
       setErrorMessage("");
 
-      const data =
-        await doctorScheduleService.getByDoctorId(doctorId);
+      const data = await doctorScheduleService.getByDoctorId(doctorId);
 
       setSchedules(Array.isArray(data) ? data : []);
     } catch (error) {
       const message =
-        error?.response?.data?.message ||
-        "Failed to load doctor availability.";
+        error?.response?.data?.message || "Failed to load doctor availability.";
 
       setSchedules([]);
       setErrorMessage(message);
@@ -94,18 +91,14 @@ const ReceptionistAvailability = () => {
     return doctors.filter((doctor) => {
       return (
         doctor.fullName?.toLowerCase().includes(normalizedSearch) ||
-        doctor.specialization
-          ?.toLowerCase()
-          .includes(normalizedSearch) ||
-        doctor.department
-          ?.toLowerCase()
-          .includes(normalizedSearch)
+        doctor.specialization?.toLowerCase().includes(normalizedSearch) ||
+        doctor.department?.toLowerCase().includes(normalizedSearch)
       );
     });
   }, [doctors, searchTerm]);
 
   const selectedDoctor = doctors.find(
-    (doctor) => doctor.doctorId === selectedDoctorId
+    (doctor) => doctor.doctorId === selectedDoctorId,
   );
 
   const formatTime = (time) => {
@@ -186,9 +179,7 @@ const ReceptionistAvailability = () => {
             <input
               type="text"
               value={searchTerm}
-              onChange={(event) =>
-                setSearchTerm(event.target.value)
-              }
+              onChange={(event) => setSearchTerm(event.target.value)}
               placeholder="Search doctor, specialization..."
               className="smarthealth-receptionist-availability-search"
             />
@@ -205,8 +196,7 @@ const ReceptionistAvailability = () => {
           ) : (
             <div className="smarthealth-receptionist-availability-doctor-list">
               {filteredDoctors.map((doctor) => {
-                const isSelected =
-                  selectedDoctorId === doctor.doctorId;
+                const isSelected = selectedDoctorId === doctor.doctorId;
 
                 return (
                   <button
@@ -223,9 +213,7 @@ const ReceptionistAvailability = () => {
                     }}
                   >
                     <div className="smarthealth-receptionist-availability-doctor-avatar">
-                      {doctor.fullName
-                        ?.charAt(0)
-                        ?.toUpperCase() || "D"}
+                      {doctor.fullName?.charAt(0)?.toUpperCase() || "D"}
                     </div>
 
                     <div className="smarthealth-receptionist-availability-doctor-info">
@@ -266,8 +254,8 @@ const ReceptionistAvailability = () => {
               </h2>
 
               <p className="smarthealth-receptionist-availability-placeholder-text">
-                Select a doctor from the list to view their
-                availability schedule.
+                Select a doctor from the list to view their availability
+                schedule.
               </p>
             </div>
           ) : (
@@ -279,16 +267,14 @@ const ReceptionistAvailability = () => {
                   </h2>
 
                   <p className="smarthealth-receptionist-availability-schedule-subtitle">
-                    {selectedDoctor?.specialization ||
-                      "Doctor availability"}
+                    {selectedDoctor?.specialization || "Doctor availability"}
                   </p>
                 </div>
 
                 {selectedDoctor?.status && (
                   <span
                     className={`smarthealth-receptionist-availability-doctor-status ${
-                      selectedDoctor.status.toLowerCase() ===
-                      "active"
+                      selectedDoctor.status.toLowerCase() === "active"
                         ? "smarthealth-receptionist-availability-doctor-status-active"
                         : "smarthealth-receptionist-availability-doctor-status-inactive"
                     }`}
@@ -313,8 +299,7 @@ const ReceptionistAvailability = () => {
                   </h3>
 
                   <p className="smarthealth-receptionist-availability-empty-schedule-text">
-                    This doctor does not have any schedules
-                    configured yet.
+                    This doctor does not have any schedules configured yet.
                   </p>
                 </div>
               ) : (
@@ -338,18 +323,14 @@ const ReceptionistAvailability = () => {
                             </span>
                           </td>
 
-                          <td>
-                            {formatTime(schedule.startTime)}
-                          </td>
+                          <td>{formatTime(schedule.startTime)}</td>
 
-                          <td>
-                            {formatTime(schedule.endTime)}
-                          </td>
+                          <td>{formatTime(schedule.endTime)}</td>
 
                           <td>
                             <span
                               className={`smarthealth-receptionist-availability-status ${getStatusClass(
-                                schedule.availabilityStatus
+                                schedule.availabilityStatus,
                               )}`}
                             >
                               {schedule.availabilityStatus}
