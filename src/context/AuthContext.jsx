@@ -41,10 +41,7 @@ export const AuthProvider = ({ children }) => {
 
     localStorage.setItem("token", response.token);
 
-    localStorage.setItem(
-      "refreshToken",
-      response.refreshToken
-    );
+    localStorage.setItem("refreshToken", response.refreshToken);
 
     const userData = {
       userId: response.userId,
@@ -53,10 +50,7 @@ export const AuthProvider = ({ children }) => {
       role: response.role,
     };
 
-    localStorage.setItem(
-      "user",
-      JSON.stringify(userData)
-    );
+    localStorage.setItem("user", JSON.stringify(userData));
 
     setUser(userData);
 
@@ -67,12 +61,7 @@ export const AuthProvider = ({ children }) => {
   // REGISTER
   // ============================================================
 
-  const register = async (
-    fullName,
-    email,
-    phone,
-    password
-  ) => {
+  const register = async (fullName, email, phone, password) => {
     const response = await authService.register({
       fullName,
       email,
@@ -88,8 +77,7 @@ export const AuthProvider = ({ children }) => {
   // ============================================================
 
   const logout = async () => {
-    const refreshToken =
-      localStorage.getItem("refreshToken");
+    const refreshToken = localStorage.getItem("refreshToken");
 
     try {
       await authService.logout(refreshToken);
@@ -114,20 +102,14 @@ export const AuthProvider = ({ children }) => {
     logout,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error(
-      "useAuth must be used inside an AuthProvider"
-    );
+    throw new Error("useAuth must be used inside an AuthProvider");
   }
 
   return context;
