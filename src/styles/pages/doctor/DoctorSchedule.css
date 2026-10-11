@@ -1,6 +1,7 @@
 /* =========================================================
    DOCTOR SCHEDULE PAGE
-========================================================= */
+   Smart Healthcare Appointment & Medical Assistant
+   ========================================================= */
 
 .smarthealth-doctor-schedule-page {
   width: 100%;
@@ -11,7 +12,7 @@
 
 /* =========================================================
    HEADER
-========================================================= */
+   ========================================================= */
 
 .smarthealth-doctor-schedule-header {
   display: flex;
@@ -19,6 +20,10 @@
   justify-content: space-between;
   gap: 24px;
   margin-bottom: 24px;
+}
+
+.smarthealth-doctor-schedule-header-content {
+  min-width: 0;
 }
 
 .smarthealth-doctor-schedule-eyebrow {
@@ -42,11 +47,23 @@
   margin: 8px 0 0;
   color: #718096;
   font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   HEADER ACTIONS
+   ========================================================= */
+
+.smarthealth-doctor-schedule-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 /* =========================================================
    REFRESH BUTTON
-========================================================= */
+   ========================================================= */
 
 .smarthealth-doctor-schedule-refresh-button {
   display: inline-flex;
@@ -86,8 +103,51 @@
 }
 
 /* =========================================================
+   CREATE BUTTON
+   ========================================================= */
+
+.smarthealth-doctor-schedule-create-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 18px;
+  border: 1px solid #16a085;
+  border-radius: 9px;
+  background: #16a085;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(22, 160, 133, 0.14);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-doctor-schedule-create-button:hover {
+  background: #138d75;
+  border-color: #138d75;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(22, 160, 133, 0.18);
+}
+
+.smarthealth-doctor-schedule-create-button:active {
+  transform: translateY(0);
+}
+
+.smarthealth-doctor-schedule-create-icon {
+  font-size: 17px;
+  line-height: 1;
+}
+
+/* =========================================================
    DOCTOR CARD
-========================================================= */
+   ========================================================= */
 
 .smarthealth-doctor-schedule-doctor-card {
   display: flex;
@@ -109,11 +169,7 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    #16a085,
-    #2ecc71
-  );
+  background: linear-gradient(135deg, #16a085, #2ecc71);
   color: #ffffff;
   font-size: 25px;
   font-weight: 700;
@@ -143,7 +199,7 @@
 
 /* =========================================================
    SUMMARY
-========================================================= */
+   ========================================================= */
 
 .smarthealth-doctor-schedule-summary {
   display: grid;
@@ -194,7 +250,7 @@
 
 /* =========================================================
    WEEK CARD
-========================================================= */
+   ========================================================= */
 
 .smarthealth-doctor-schedule-week-card {
   overflow: hidden;
@@ -205,8 +261,16 @@
 }
 
 .smarthealth-doctor-schedule-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
   padding: 24px 26px;
   border-bottom: 1px solid #edf2f3;
+}
+
+.smarthealth-doctor-schedule-section-header-content {
+  min-width: 0;
 }
 
 .smarthealth-doctor-schedule-section-header h2 {
@@ -223,7 +287,7 @@
 
 /* =========================================================
    DAY LIST
-========================================================= */
+   ========================================================= */
 
 .smarthealth-doctor-schedule-day-list {
   width: 100%;
@@ -274,6 +338,10 @@
   padding: 16px 22px;
 }
 
+/* =========================================================
+   SCHEDULE SLOT
+   ========================================================= */
+
 .smarthealth-doctor-schedule-slot {
   display: inline-flex;
   align-items: center;
@@ -284,6 +352,28 @@
   border: 1px solid #e2e9eb;
   border-radius: 9px;
   background: #ffffff;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-doctor-schedule-slot:hover {
+  border-color: #c9ddda;
+  box-shadow: 0 3px 10px rgba(31, 41, 55, 0.04);
+}
+
+/*
+   Keeps the time/status area together while allowing
+   the new edit/delete buttons to sit on the right.
+*/
+
+.smarthealth-doctor-schedule-slot-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-width: 0;
+  flex: 1;
 }
 
 .smarthealth-doctor-schedule-time {
@@ -335,6 +425,70 @@
   font-style: italic;
 }
 
+/* =========================================================
+   SLOT ACTIONS
+   ========================================================= */
+
+.smarthealth-doctor-schedule-slot-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.smarthealth-doctor-schedule-edit-button,
+.smarthealth-doctor-schedule-delete-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 30px;
+  padding: 0 9px;
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.smarthealth-doctor-schedule-edit-button {
+  border: 1px solid #d5e7e3;
+  background: #f3faf8;
+  color: #16a085;
+}
+
+.smarthealth-doctor-schedule-edit-button:hover {
+  border-color: #16a085;
+  background: #e8f8f5;
+  color: #117a65;
+}
+
+.smarthealth-doctor-schedule-delete-button {
+  border: 1px solid #f0d8d5;
+  background: #fff8f7;
+  color: #c0392b;
+}
+
+.smarthealth-doctor-schedule-delete-button:hover {
+  border-color: #e5aaa5;
+  background: #fcebea;
+  color: #a93226;
+}
+
+.smarthealth-doctor-schedule-edit-button:disabled,
+.smarthealth-doctor-schedule-delete-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   EMPTY DAY ROW
+   ========================================================= */
+
 .smarthealth-doctor-schedule-day-row-empty
   .smarthealth-doctor-schedule-day-name {
   background: #fafbfb;
@@ -342,7 +496,7 @@
 
 /* =========================================================
    EMPTY STATE
-========================================================= */
+   ========================================================= */
 
 .smarthealth-doctor-schedule-empty {
   padding: 60px 25px;
@@ -370,15 +524,41 @@
 
 .smarthealth-doctor-schedule-empty p {
   max-width: 450px;
-  margin: 0 auto;
+  margin: 0 auto 18px;
   color: #87959d;
   font-size: 13px;
   line-height: 1.5;
 }
 
+.smarthealth-doctor-schedule-empty-create-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 16px;
+  border: 1px solid #16a085;
+  border-radius: 8px;
+  background: #16a085;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smarthealth-doctor-schedule-empty-create-button:hover {
+  background: #138d75;
+  border-color: #138d75;
+  transform: translateY(-1px);
+}
+
 /* =========================================================
    LOADING
-========================================================= */
+   ========================================================= */
 
 .smarthealth-doctor-schedule-loading {
   min-height: 420px;
@@ -411,8 +591,197 @@
 }
 
 /* =========================================================
+   SCHEDULE MODAL
+   ========================================================= */
+
+.smarthealth-doctor-schedule-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(23, 32, 42, 0.48);
+}
+
+.smarthealth-doctor-schedule-modal {
+  width: 100%;
+  max-width: 500px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border: 1px solid #e3ecea;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 15px 45px rgba(31, 41, 55, 0.18);
+}
+
+.smarthealth-doctor-schedule-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 22px;
+  border-bottom: 1px solid #edf2f3;
+}
+
+.smarthealth-doctor-schedule-modal-eyebrow {
+  display: block;
+  margin-bottom: 5px;
+  color: #16a085;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.smarthealth-doctor-schedule-modal-title {
+  margin: 0;
+  color: #17202a;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.smarthealth-doctor-schedule-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border: 1px solid #e0e7e6;
+  border-radius: 8px;
+  background: #f8fbfa;
+  color: #718096;
+  font-size: 20px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.smarthealth-doctor-schedule-modal-close:hover {
+  border-color: #16a085;
+  background: #e8f8f5;
+  color: #16a085;
+}
+
+/* =========================================================
+   MODAL FORM
+   ========================================================= */
+
+.smarthealth-doctor-schedule-modal-form {
+  padding: 22px;
+}
+
+.smarthealth-doctor-schedule-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 17px;
+}
+
+.smarthealth-doctor-schedule-form-field label {
+  color: #34495e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smarthealth-doctor-schedule-form-field input,
+.smarthealth-doctor-schedule-form-field select {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  border: 1px solid #d7e3e1;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #34495e;
+  font-family: inherit;
+  font-size: 13px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-doctor-schedule-form-field input:focus,
+.smarthealth-doctor-schedule-form-field select:focus {
+  border-color: #16a085;
+  box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.09);
+}
+
+.smarthealth-doctor-schedule-form-field input::placeholder {
+  color: #a0aeb5;
+}
+
+.smarthealth-doctor-schedule-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+/* =========================================================
+   MODAL ACTIONS
+   ========================================================= */
+
+.smarthealth-doctor-schedule-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  padding-top: 5px;
+}
+
+.smarthealth-doctor-schedule-modal-cancel,
+.smarthealth-doctor-schedule-modal-submit {
+  min-height: 40px;
+  padding: 0 17px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smarthealth-doctor-schedule-modal-cancel {
+  border: 1px solid #d7e3e1;
+  background: #ffffff;
+  color: #34495e;
+}
+
+.smarthealth-doctor-schedule-modal-cancel:hover {
+  border-color: #b8cbc7;
+  background: #f8fbfa;
+}
+
+.smarthealth-doctor-schedule-modal-submit {
+  border: 1px solid #16a085;
+  background: #16a085;
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(22, 160, 133, 0.12);
+}
+
+.smarthealth-doctor-schedule-modal-submit:hover {
+  border-color: #138d75;
+  background: #138d75;
+  transform: translateY(-1px);
+}
+
+.smarthealth-doctor-schedule-modal-cancel:disabled,
+.smarthealth-doctor-schedule-modal-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================================================
    RESPONSIVE
-========================================================= */
+   ========================================================= */
 
 @media (max-width: 950px) {
   .smarthealth-doctor-schedule-summary {
@@ -438,8 +807,13 @@
     align-items: flex-start;
   }
 
-  .smarthealth-doctor-schedule-refresh-button {
+  .smarthealth-doctor-schedule-header-actions {
     width: 100%;
+  }
+
+  .smarthealth-doctor-schedule-refresh-button,
+  .smarthealth-doctor-schedule-create-button {
+    flex: 1;
   }
 
   .smarthealth-doctor-schedule-title {
@@ -463,6 +837,36 @@
     min-width: 0;
     box-sizing: border-box;
   }
+
+  .smarthealth-doctor-schedule-slot-main {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .smarthealth-doctor-schedule-modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .smarthealth-doctor-schedule-modal {
+    max-height: 92vh;
+    border-radius: 15px 15px 0 0;
+  }
+
+  .smarthealth-doctor-schedule-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .smarthealth-doctor-schedule-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .smarthealth-doctor-schedule-modal-cancel,
+  .smarthealth-doctor-schedule-modal-submit {
+    width: 100%;
+  }
 }
 
 @media (max-width: 500px) {
@@ -479,8 +883,21 @@
 
   .smarthealth-doctor-schedule-slot {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 9px;
+  }
+
+  .smarthealth-doctor-schedule-slot-main {
+    width: 100%;
+  }
+
+  .smarthealth-doctor-schedule-slot-actions {
+    width: 100%;
+  }
+
+  .smarthealth-doctor-schedule-edit-button,
+  .smarthealth-doctor-schedule-delete-button {
+    flex: 1;
   }
 
   .smarthealth-doctor-schedule-status {

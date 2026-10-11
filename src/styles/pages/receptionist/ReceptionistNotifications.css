@@ -52,9 +52,7 @@
   transition: all 0.2s ease;
 }
 
-.smarthealth-receptionist-notification-refresh-button:hover:not(
-    :disabled
-  ) {
+.smarthealth-receptionist-notification-refresh-button:hover:not(:disabled) {
   background: #ecfdf5;
   border-color: #6ee7b7;
 }
@@ -384,9 +382,7 @@
   transition: all 0.2s ease;
 }
 
-.smarthealth-receptionist-notification-read-button:hover:not(
-    :disabled
-  ) {
+.smarthealth-receptionist-notification-read-button:hover:not(:disabled) {
   background: #ecfdf5;
   border-color: #6ee7b7;
 }
@@ -493,7 +489,6 @@
   }
 }
 
-
 /* =========================================================
    SECTION ACTIONS
    ========================================================= */
@@ -573,9 +568,7 @@
   transition: all 0.2s ease;
 }
 
-.smarthealth-receptionist-notification-close-button:hover:not(
-    :disabled
-  ) {
+.smarthealth-receptionist-notification-close-button:hover:not(:disabled) {
   background: #fef2f2;
   border-color: #fecaca;
   color: #dc2626;
@@ -678,9 +671,7 @@
   transition: all 0.2s ease;
 }
 
-.smarthealth-receptionist-notification-cancel-button:hover:not(
-    :disabled
-  ) {
+.smarthealth-receptionist-notification-cancel-button:hover:not(:disabled) {
   background: #f8fafc;
   border-color: #94a3b8;
 }
@@ -701,9 +692,7 @@
     box-shadow 0.2s ease;
 }
 
-.smarthealth-receptionist-notification-submit-button:hover:not(
-    :disabled
-  ) {
+.smarthealth-receptionist-notification-submit-button:hover:not(:disabled) {
   background: #047857;
   transform: translateY(-1px);
   box-shadow: 0 5px 14px rgba(5, 150, 105, 0.2);
