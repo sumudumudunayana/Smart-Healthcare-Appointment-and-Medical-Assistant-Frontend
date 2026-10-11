@@ -18,19 +18,14 @@ const ReceptionistDashboard = () => {
     try {
       setLoading(true);
 
-      const data =
-        await appointmentService.getReceptionistAppointments();
+      const data = await appointmentService.getReceptionistAppointments();
 
       setAppointments(Array.isArray(data) ? data : []);
     } catch (error) {
-      console.error(
-        "Failed to load receptionist dashboard:",
-        error
-      );
+      console.error("Failed to load receptionist dashboard:", error);
 
       toast.error(
-        error?.response?.data?.message ||
-          "Failed to load dashboard data."
+        error?.response?.data?.message || "Failed to load dashboard data.",
       );
     } finally {
       setLoading(false);
@@ -74,23 +69,19 @@ const ReceptionistDashboard = () => {
     const today = getTodayString();
 
     const scheduled = appointments.filter(
-      (appointment) =>
-        appointment.status?.toLowerCase() === "scheduled"
+      (appointment) => appointment.status?.toLowerCase() === "scheduled",
     );
 
     const completed = appointments.filter(
-      (appointment) =>
-        appointment.status?.toLowerCase() === "completed"
+      (appointment) => appointment.status?.toLowerCase() === "completed",
     );
 
     const cancelled = appointments.filter(
-      (appointment) =>
-        appointment.status?.toLowerCase() === "cancelled"
+      (appointment) => appointment.status?.toLowerCase() === "cancelled",
     );
 
     const todayAppointments = appointments.filter(
-      (appointment) =>
-        getAppointmentDate(appointment) === today
+      (appointment) => getAppointmentDate(appointment) === today,
     );
 
     return {
@@ -110,14 +101,10 @@ const ReceptionistDashboard = () => {
     const today = getTodayString();
 
     return appointments
-      .filter(
-        (appointment) =>
-          getAppointmentDate(appointment) === today
-      )
+      .filter((appointment) => getAppointmentDate(appointment) === today)
       .sort(
         (first, second) =>
-          getAppointmentDateTime(first) -
-          getAppointmentDateTime(second)
+          getAppointmentDateTime(first) - getAppointmentDateTime(second),
       );
   }, [appointments]);
 
@@ -130,18 +117,15 @@ const ReceptionistDashboard = () => {
 
     return appointments
       .filter((appointment) => {
-        const status =
-          appointment.status?.toLowerCase();
+        const status = appointment.status?.toLowerCase();
 
         return (
-          status === "scheduled" &&
-          getAppointmentDateTime(appointment) >= now
+          status === "scheduled" && getAppointmentDateTime(appointment) >= now
         );
       })
       .sort(
         (first, second) =>
-          getAppointmentDateTime(first) -
-          getAppointmentDateTime(second)
+          getAppointmentDateTime(first) - getAppointmentDateTime(second),
       )
       .slice(0, 5);
   }, [appointments]);
@@ -177,12 +161,7 @@ const ReceptionistDashboard = () => {
 
     const date = new Date();
 
-    date.setHours(
-      Number(hours),
-      Number(minutes),
-      0,
-      0
-    );
+    date.setHours(Number(hours), Number(minutes), 0, 0);
 
     return date.toLocaleTimeString("en-US", {
       hour: "numeric",
@@ -195,8 +174,7 @@ const ReceptionistDashboard = () => {
   // ============================================================
 
   const getStatusClass = (status) => {
-    const normalizedStatus =
-      status?.toLowerCase();
+    const normalizedStatus = status?.toLowerCase();
 
     if (normalizedStatus === "completed") {
       return "smarthealth-receptionist-dashboard-status-completed";
@@ -224,13 +202,11 @@ const ReceptionistDashboard = () => {
 
   return (
     <div className="smarthealth-receptionist-dashboard-page">
-
       {/* ======================================================
           HEADER
       ======================================================= */}
 
       <div className="smarthealth-receptionist-dashboard-header">
-
         <div>
           <p className="smarthealth-receptionist-dashboard-welcome-label">
             Welcome back
@@ -241,8 +217,7 @@ const ReceptionistDashboard = () => {
           </h1>
 
           <p className="smarthealth-receptionist-dashboard-subtitle">
-            Manage appointments and hospital operations
-            from one place.
+            Manage appointments and hospital operations from one place.
           </p>
         </div>
 
@@ -255,7 +230,6 @@ const ReceptionistDashboard = () => {
           <span className="smarthealth-receptionist-dashboard-refresh-icon">
             ↻
           </span>
-
           Refresh
         </button>
       </div>
@@ -265,9 +239,7 @@ const ReceptionistDashboard = () => {
       ======================================================= */}
 
       <div className="smarthealth-receptionist-dashboard-stat-grid">
-
         <div className="smarthealth-receptionist-dashboard-stat-card">
-
           <div className="smarthealth-receptionist-dashboard-stat-icon smarthealth-receptionist-dashboard-stat-icon-total">
             📋
           </div>
@@ -281,11 +253,9 @@ const ReceptionistDashboard = () => {
               {loading ? "—" : statistics.total}
             </strong>
           </div>
-
         </div>
 
         <div className="smarthealth-receptionist-dashboard-stat-card">
-
           <div className="smarthealth-receptionist-dashboard-stat-icon smarthealth-receptionist-dashboard-stat-icon-scheduled">
             📅
           </div>
@@ -299,11 +269,9 @@ const ReceptionistDashboard = () => {
               {loading ? "—" : statistics.scheduled}
             </strong>
           </div>
-
         </div>
 
         <div className="smarthealth-receptionist-dashboard-stat-card">
-
           <div className="smarthealth-receptionist-dashboard-stat-icon smarthealth-receptionist-dashboard-stat-icon-completed">
             ✓
           </div>
@@ -317,11 +285,9 @@ const ReceptionistDashboard = () => {
               {loading ? "—" : statistics.completed}
             </strong>
           </div>
-
         </div>
 
         <div className="smarthealth-receptionist-dashboard-stat-card">
-
           <div className="smarthealth-receptionist-dashboard-stat-icon smarthealth-receptionist-dashboard-stat-icon-cancelled">
             ×
           </div>
@@ -335,9 +301,7 @@ const ReceptionistDashboard = () => {
               {loading ? "—" : statistics.cancelled}
             </strong>
           </div>
-
         </div>
-
       </div>
 
       {/* ======================================================
@@ -345,9 +309,7 @@ const ReceptionistDashboard = () => {
       ======================================================= */}
 
       <section className="smarthealth-receptionist-dashboard-section">
-
         <div className="smarthealth-receptionist-dashboard-section-header">
-
           <div>
             <h2 className="smarthealth-receptionist-dashboard-section-title">
               Quick Actions
@@ -357,17 +319,13 @@ const ReceptionistDashboard = () => {
               Access frequently used receptionist functions.
             </p>
           </div>
-
         </div>
 
         <div className="smarthealth-receptionist-dashboard-action-grid">
-
           <button
             type="button"
             className="smarthealth-receptionist-dashboard-action-card"
-            onClick={() =>
-              navigate("/receptionist/appointments")
-            }
+            onClick={() => navigate("/receptionist/appointments")}
           >
             <span className="smarthealth-receptionist-dashboard-action-icon">
               📅
@@ -375,9 +333,7 @@ const ReceptionistDashboard = () => {
 
             <span className="smarthealth-receptionist-dashboard-action-content">
               <strong>Appointments</strong>
-              <small>
-                View and manage appointments
-              </small>
+              <small>View and manage appointments</small>
             </span>
 
             <span className="smarthealth-receptionist-dashboard-action-arrow">
@@ -388,9 +344,7 @@ const ReceptionistDashboard = () => {
           <button
             type="button"
             className="smarthealth-receptionist-dashboard-action-card"
-            onClick={() =>
-              navigate("/receptionist/availability")
-            }
+            onClick={() => navigate("/receptionist/availability")}
           >
             <span className="smarthealth-receptionist-dashboard-action-icon">
               🩺
@@ -398,9 +352,7 @@ const ReceptionistDashboard = () => {
 
             <span className="smarthealth-receptionist-dashboard-action-content">
               <strong>Doctor Availability</strong>
-              <small>
-                View doctor schedules
-              </small>
+              <small>View doctor schedules</small>
             </span>
 
             <span className="smarthealth-receptionist-dashboard-action-arrow">
@@ -411,9 +363,7 @@ const ReceptionistDashboard = () => {
           <button
             type="button"
             className="smarthealth-receptionist-dashboard-action-card"
-            onClick={() =>
-              navigate("/receptionist/billing")
-            }
+            onClick={() => navigate("/receptionist/billing")}
           >
             <span className="smarthealth-receptionist-dashboard-action-icon">
               💳
@@ -421,9 +371,7 @@ const ReceptionistDashboard = () => {
 
             <span className="smarthealth-receptionist-dashboard-action-content">
               <strong>Billing</strong>
-              <small>
-                Manage patient billing
-              </small>
+              <small>Manage patient billing</small>
             </span>
 
             <span className="smarthealth-receptionist-dashboard-action-arrow">
@@ -434,9 +382,7 @@ const ReceptionistDashboard = () => {
           <button
             type="button"
             className="smarthealth-receptionist-dashboard-action-card"
-            onClick={() =>
-              navigate("/receptionist/payments")
-            }
+            onClick={() => navigate("/receptionist/payments")}
           >
             <span className="smarthealth-receptionist-dashboard-action-icon">
               💰
@@ -444,9 +390,7 @@ const ReceptionistDashboard = () => {
 
             <span className="smarthealth-receptionist-dashboard-action-content">
               <strong>Payments</strong>
-              <small>
-                View payment information
-              </small>
+              <small>View payment information</small>
             </span>
 
             <span className="smarthealth-receptionist-dashboard-action-arrow">
@@ -457,9 +401,7 @@ const ReceptionistDashboard = () => {
           <button
             type="button"
             className="smarthealth-receptionist-dashboard-action-card"
-            onClick={() =>
-              navigate("/receptionist/insurance")
-            }
+            onClick={() => navigate("/receptionist/insurance")}
           >
             <span className="smarthealth-receptionist-dashboard-action-icon">
               🛡️
@@ -467,18 +409,14 @@ const ReceptionistDashboard = () => {
 
             <span className="smarthealth-receptionist-dashboard-action-content">
               <strong>Insurance</strong>
-              <small>
-                Manage insurance information
-              </small>
+              <small>Manage insurance information</small>
             </span>
 
             <span className="smarthealth-receptionist-dashboard-action-arrow">
               →
             </span>
           </button>
-
         </div>
-
       </section>
 
       {/* ======================================================
@@ -486,13 +424,10 @@ const ReceptionistDashboard = () => {
       ======================================================= */}
 
       <div className="smarthealth-receptionist-dashboard-content-grid">
-
         {/* TODAY */}
 
         <section className="smarthealth-receptionist-dashboard-panel">
-
           <div className="smarthealth-receptionist-dashboard-panel-header">
-
             <div>
               <h2 className="smarthealth-receptionist-dashboard-panel-title">
                 Today's Appointments
@@ -506,7 +441,6 @@ const ReceptionistDashboard = () => {
             <span className="smarthealth-receptionist-dashboard-panel-count">
               {loading ? "—" : statistics.today}
             </span>
-
           </div>
 
           {loading ? (
@@ -519,67 +453,48 @@ const ReceptionistDashboard = () => {
                 📅
               </span>
 
-              <strong>
-                No appointments today
-              </strong>
+              <strong>No appointments today</strong>
 
-              <span>
-                There are no appointments scheduled
-                for today.
-              </span>
+              <span>There are no appointments scheduled for today.</span>
             </div>
           ) : (
             <div className="smarthealth-receptionist-dashboard-appointment-list">
+              {todayAppointments.slice(0, 6).map((appointment) => (
+                <div
+                  key={appointment.appointmentId}
+                  className="smarthealth-receptionist-dashboard-appointment-item"
+                >
+                  <div className="smarthealth-receptionist-dashboard-appointment-time">
+                    {formatTime(appointment.appointmentTime)}
+                  </div>
 
-              {todayAppointments
-                .slice(0, 6)
-                .map((appointment) => (
-                  <div
-                    key={appointment.appointmentId}
-                    className="smarthealth-receptionist-dashboard-appointment-item"
-                  >
-                    <div className="smarthealth-receptionist-dashboard-appointment-time">
-                      {formatTime(
-                        appointment.appointmentTime
-                      )}
-                    </div>
+                  <div className="smarthealth-receptionist-dashboard-appointment-info">
+                    <strong>
+                      {appointment.patientName || "Unknown Patient"}
+                    </strong>
 
-                    <div className="smarthealth-receptionist-dashboard-appointment-info">
-
-                      <strong>
-                        {appointment.patientName ||
-                          "Unknown Patient"}
-                      </strong>
-
-                      <span>
-                        Dr.{" "}
-                        {appointment.doctorName ||
-                          "Unknown Doctor"}
-                      </span>
-
-                    </div>
-
-                    <span
-                      className={`smarthealth-receptionist-dashboard-status ${getStatusClass(
-                        appointment.status
-                      )}`}
-                    >
-                      {appointment.status}
+                    <span>
+                      Dr. {appointment.doctorName || "Unknown Doctor"}
                     </span>
                   </div>
-                ))}
 
+                  <span
+                    className={`smarthealth-receptionist-dashboard-status ${getStatusClass(
+                      appointment.status,
+                    )}`}
+                  >
+                    {appointment.status}
+                  </span>
+                </div>
+              ))}
             </div>
           )}
-
         </section>
 
         {/* UPCOMING */}
 
         <section className="smarthealth-receptionist-dashboard-panel">
-
           <div className="smarthealth-receptionist-dashboard-panel-header">
-
             <div>
               <h2 className="smarthealth-receptionist-dashboard-panel-title">
                 Upcoming Appointments
@@ -593,13 +508,10 @@ const ReceptionistDashboard = () => {
             <button
               type="button"
               className="smarthealth-receptionist-dashboard-view-all-button"
-              onClick={() =>
-                navigate("/receptionist/appointments")
-              }
+              onClick={() => navigate("/receptionist/appointments")}
             >
               View All
             </button>
-
           </div>
 
           {loading ? (
@@ -612,75 +524,46 @@ const ReceptionistDashboard = () => {
                 🗓️
               </span>
 
-              <strong>
-                No upcoming appointments
-              </strong>
+              <strong>No upcoming appointments</strong>
 
-              <span>
-                There are no upcoming scheduled
-                appointments.
-              </span>
+              <span>There are no upcoming scheduled appointments.</span>
             </div>
           ) : (
             <div className="smarthealth-receptionist-dashboard-upcoming-list">
+              {upcomingAppointments.map((appointment) => (
+                <div
+                  key={appointment.appointmentId}
+                  className="smarthealth-receptionist-dashboard-upcoming-item"
+                >
+                  <div className="smarthealth-receptionist-dashboard-upcoming-date">
+                    <strong>{formatDate(appointment.appointmentDate)}</strong>
 
-              {upcomingAppointments.map(
-                (appointment) => (
-                  <div
-                    key={appointment.appointmentId}
-                    className="smarthealth-receptionist-dashboard-upcoming-item"
-                  >
-
-                    <div className="smarthealth-receptionist-dashboard-upcoming-date">
-
-                      <strong>
-                        {formatDate(
-                          appointment.appointmentDate
-                        )}
-                      </strong>
-
-                      <span>
-                        {formatTime(
-                          appointment.appointmentTime
-                        )}
-                      </span>
-
-                    </div>
-
-                    <div className="smarthealth-receptionist-dashboard-upcoming-info">
-
-                      <strong>
-                        {appointment.patientName ||
-                          "Unknown Patient"}
-                      </strong>
-
-                      <span>
-                        Dr.{" "}
-                        {appointment.doctorName ||
-                          "Unknown Doctor"}
-                      </span>
-
-                    </div>
-
-                    <span
-                      className={`smarthealth-receptionist-dashboard-status ${getStatusClass(
-                        appointment.status
-                      )}`}
-                    >
-                      {appointment.status}
-                    </span>
-
+                    <span>{formatTime(appointment.appointmentTime)}</span>
                   </div>
-                )
-              )}
 
+                  <div className="smarthealth-receptionist-dashboard-upcoming-info">
+                    <strong>
+                      {appointment.patientName || "Unknown Patient"}
+                    </strong>
+
+                    <span>
+                      Dr. {appointment.doctorName || "Unknown Doctor"}
+                    </span>
+                  </div>
+
+                  <span
+                    className={`smarthealth-receptionist-dashboard-status ${getStatusClass(
+                      appointment.status,
+                    )}`}
+                  >
+                    {appointment.status}
+                  </span>
+                </div>
+              ))}
             </div>
           )}
-
         </section>
-
       </div>
-
     </div>
   );
 };
