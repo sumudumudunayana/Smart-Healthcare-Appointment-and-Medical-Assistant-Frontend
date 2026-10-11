@@ -113,11 +113,7 @@
   height: 92px;
   margin-bottom: 20px;
   border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    #16a085,
-    #2ecc71
-  );
+  background: linear-gradient(135deg, #16a085, #2ecc71);
   color: #ffffff;
   font-size: 36px;
   font-weight: 700;

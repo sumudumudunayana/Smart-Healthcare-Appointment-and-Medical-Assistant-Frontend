@@ -1,0 +1,641 @@
+.smarthealth-receptionist-ai-billing {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.smarthealth-receptionist-ai-billing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+  padding: 30px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ffffff, #f0fdfa);
+  border: 1px solid #d9f0eb;
+  box-shadow: 0 8px 30px rgba(15, 118, 110, 0.07);
+}
+
+.smarthealth-receptionist-ai-billing-header-content {
+  min-width: 0;
+}
+
+.smarthealth-receptionist-ai-billing-eyebrow {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.smarthealth-receptionist-ai-billing-header h1 {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.2;
+  color: #12343b;
+}
+
+.smarthealth-receptionist-ai-billing-header p {
+  max-width: 760px;
+  margin: 10px 0 0;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.smarthealth-receptionist-ai-billing-header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  border-radius: 18px;
+  background: #ccfbf1;
+  color: #0f766e;
+  font-size: 34px;
+}
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+.smarthealth-receptionist-ai-billing-panel {
+  margin-bottom: 24px;
+  padding: 26px;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.05);
+}
+
+.smarthealth-receptionist-ai-billing-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.smarthealth-receptionist-ai-billing-section-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.smarthealth-receptionist-ai-billing-panel-header h2 {
+  margin: 0;
+  color: #12343b;
+  font-size: 22px;
+}
+
+.smarthealth-receptionist-ai-billing-panel-header p {
+  max-width: 850px;
+  margin: 7px 0 0;
+  color: #64748b;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.smarthealth-receptionist-ai-billing-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.smarthealth-receptionist-ai-billing-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.smarthealth-receptionist-ai-billing-field label {
+  color: #334155;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.smarthealth-receptionist-ai-billing-field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 13px;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #1e293b;
+  font: inherit;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-receptionist-ai-billing-field select:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+}
+
+.smarthealth-receptionist-ai-billing-field select:disabled {
+  background: #f8fafc;
+  cursor: not-allowed;
+}
+
+.smarthealth-receptionist-ai-billing-primary-button,
+.smarthealth-receptionist-ai-billing-secondary-button {
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.smarthealth-receptionist-ai-billing-primary-button {
+  min-height: 46px;
+  padding: 0 20px;
+  white-space: nowrap;
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.smarthealth-receptionist-ai-billing-primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 18px rgba(15, 118, 110, 0.2);
+}
+
+.smarthealth-receptionist-ai-billing-primary-button:disabled,
+.smarthealth-receptionist-ai-billing-secondary-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   SELECTED BILL
+========================================================= */
+
+.smarthealth-receptionist-ai-billing-selected {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #f0fdfa;
+  border: 1px solid #ccfbf1;
+}
+
+.smarthealth-receptionist-ai-billing-selected-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.smarthealth-receptionist-ai-billing-selected-heading span {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.smarthealth-receptionist-ai-billing-selected-heading strong {
+  color: #115e59;
+}
+
+.smarthealth-receptionist-ai-billing-selected-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.smarthealth-receptionist-ai-billing-selected-grid > div {
+  padding: 12px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #d9f0eb;
+}
+
+.smarthealth-receptionist-ai-billing-selected-grid span {
+  display: block;
+  margin-bottom: 5px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.smarthealth-receptionist-ai-billing-selected-grid strong {
+  display: block;
+  color: #334155;
+  font-size: 14px;
+}
+
+.smarthealth-receptionist-ai-billing-id {
+  overflow-wrap: anywhere;
+  font-size: 12px !important;
+}
+
+/* =========================================================
+   AI RESULT
+========================================================= */
+
+.smarthealth-receptionist-ai-billing-result {
+  margin-top: 24px;
+  padding: 22px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.smarthealth-receptionist-ai-billing-result-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.smarthealth-receptionist-ai-billing-result-heading > div:first-child span {
+  display: block;
+  margin-bottom: 5px;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.smarthealth-receptionist-ai-billing-result-heading h3 {
+  margin: 0;
+  color: #12343b;
+  font-size: 20px;
+}
+
+.smarthealth-receptionist-ai-billing-result-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.smarthealth-receptionist-ai-billing-valid-badge,
+.smarthealth-receptionist-ai-billing-invalid-badge,
+.smarthealth-receptionist-ai-billing-warning-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-ai-billing-valid-badge {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.smarthealth-receptionist-ai-billing-invalid-badge {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.smarthealth-receptionist-ai-billing-warning-badge {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* =========================================================
+   RESULT BLOCK
+========================================================= */
+
+.smarthealth-receptionist-ai-billing-result-block {
+  margin-top: 20px;
+}
+
+.smarthealth-receptionist-ai-billing-result-block h4 {
+  margin: 0 0 8px;
+  color: #334155;
+  font-size: 15px;
+}
+
+.smarthealth-receptionist-ai-billing-result-block > p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   VALIDATION CHECKS
+========================================================= */
+
+.smarthealth-receptionist-ai-billing-check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.smarthealth-receptionist-ai-billing-check {
+  padding: 14px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.smarthealth-receptionist-ai-billing-check strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #334155;
+  font-size: 14px;
+}
+
+.smarthealth-receptionist-ai-billing-check span {
+  display: inline-block;
+  margin-bottom: 5px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-ai-billing-check p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.55;
+  font-size: 13px;
+}
+
+/* =========================================================
+   ISSUES / WARNINGS
+========================================================= */
+
+.smarthealth-receptionist-ai-billing-result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.smarthealth-receptionist-ai-billing-result-card {
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.smarthealth-receptionist-ai-billing-result-card h4 {
+  margin: 0 0 10px;
+  color: #334155;
+  font-size: 14px;
+}
+
+.smarthealth-receptionist-ai-billing-result-card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.smarthealth-receptionist-ai-billing-result-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #475569;
+}
+
+.smarthealth-receptionist-ai-billing-result-card li {
+  margin-bottom: 7px;
+  line-height: 1.5;
+}
+
+.smarthealth-receptionist-ai-billing-issue-card {
+  border-color: #fecaca;
+  background: #fffafa;
+}
+
+.smarthealth-receptionist-ai-billing-issue-card h4 {
+  color: #991b1b;
+}
+
+.smarthealth-receptionist-ai-billing-warning-card {
+  border-color: #fde68a;
+  background: #fffdf5;
+}
+
+.smarthealth-receptionist-ai-billing-warning-card h4 {
+  color: #92400e;
+}
+
+/* =========================================================
+   AI REASONING
+========================================================= */
+
+.smarthealth-receptionist-ai-billing-reasoning {
+  margin-top: 20px;
+  padding: 16px;
+  border-left: 4px solid #0f766e;
+  border-radius: 8px;
+  background: #f0fdfa;
+}
+
+.smarthealth-receptionist-ai-billing-reasoning strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #334155;
+}
+
+.smarthealth-receptionist-ai-billing-reasoning p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   WORKFLOW
+========================================================= */
+
+.smarthealth-receptionist-ai-billing-workflow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.smarthealth-receptionist-ai-billing-workflow span {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.smarthealth-receptionist-ai-billing-workflow code {
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   HUMAN REVIEW
+========================================================= */
+
+.smarthealth-receptionist-ai-billing-review {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid #fde68a;
+  border-radius: 14px;
+  background: #fffbeb;
+}
+
+.smarthealth-receptionist-ai-billing-review-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 50%;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.smarthealth-receptionist-ai-billing-review span {
+  display: block;
+  margin-bottom: 5px;
+  color: #92400e;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.smarthealth-receptionist-ai-billing-review h2 {
+  margin: 0;
+  color: #451a03;
+  font-size: 19px;
+}
+
+.smarthealth-receptionist-ai-billing-review p {
+  margin: 8px 0 0;
+  color: #78350f;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.smarthealth-receptionist-ai-billing-empty {
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.smarthealth-receptionist-ai-billing-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: #ccfbf1;
+  color: #0f766e;
+  font-weight: 800;
+}
+
+.smarthealth-receptionist-ai-billing-empty h3 {
+  margin: 0 0 6px;
+  color: #334155;
+}
+
+.smarthealth-receptionist-ai-billing-empty p {
+  margin: 0;
+  color: #64748b;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .smarthealth-receptionist-ai-billing {
+    padding: 20px;
+  }
+
+  .smarthealth-receptionist-ai-billing-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .smarthealth-receptionist-ai-billing-primary-button {
+    width: 100%;
+  }
+
+  .smarthealth-receptionist-ai-billing-selected-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .smarthealth-receptionist-ai-billing-result-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .smarthealth-receptionist-ai-billing {
+    padding: 14px;
+  }
+
+  .smarthealth-receptionist-ai-billing-header {
+    padding: 22px;
+  }
+
+  .smarthealth-receptionist-ai-billing-header-icon {
+    display: none;
+  }
+
+  .smarthealth-receptionist-ai-billing-header h1 {
+    font-size: 26px;
+  }
+
+  .smarthealth-receptionist-ai-billing-panel {
+    padding: 18px;
+  }
+
+  .smarthealth-receptionist-ai-billing-panel-header,
+  .smarthealth-receptionist-ai-billing-result-heading {
+    flex-direction: column;
+  }
+
+  .smarthealth-receptionist-ai-billing-result-badges {
+    justify-content: flex-start;
+  }
+
+  .smarthealth-receptionist-ai-billing-selected-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-receptionist-ai-billing-review {
+    flex-direction: column;
+  }
+}
