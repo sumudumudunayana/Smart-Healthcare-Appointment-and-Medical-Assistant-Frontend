@@ -56,7 +56,8 @@ const Login = () => {
       if (
         response.role !== "Administrator" &&
         response.role !== "Doctor" &&
-        response.role !== "Receptionist"
+        response.role !== "Receptionist" &&
+        response.role !== "Patient"
       ) {
         toast.error("Your account does not have a valid system role.");
         return;
@@ -83,6 +84,10 @@ const Login = () => {
 
         case "Receptionist":
           navigate("/receptionist/dashboard", { replace: true });
+          break;
+
+        case "Patient":
+          navigate("/patient/dashboard", { replace: true });
           break;
 
         default:
