@@ -55,6 +55,30 @@ const appointmentService = {
 
     return response.data;
   },
+
+  // ============================================================
+  // GET DOCTOR APPOINTMENTS FOR A SPECIFIC DATE
+  // Used to identify booked appointment slots.
+  // ============================================================
+  getDoctorAppointmentsByDate: async (doctorId, date) => {
+    const response = await api.get(
+      `/Appointments/doctor/${doctorId}/date/${date}`
+    );
+
+    return response.data;
+  },
+
+  // ============================================================
+  // CREATE APPOINTMENT FOR A PATIENT (RECEPTIONIST)
+  // ============================================================
+  createForReceptionist: async (appointmentData) => {
+    const response = await api.post(
+      "/Appointments/receptionist",
+      appointmentData
+    );
+
+    return response.data;
+  },
 };
 
 export default appointmentService;
