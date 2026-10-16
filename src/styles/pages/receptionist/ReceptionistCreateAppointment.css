@@ -1,0 +1,724 @@
+/* =========================================================
+   RECEPTIONIST - CREATE APPOINTMENT
+   Theme: Consistent with View Appointments
+========================================================= */
+
+.smarthealth-receptionist-booking {
+  width: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 28px;
+  background: #f4faf7;
+  color: #334155;
+  font-family: inherit;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.smarthealth-receptionist-booking *,
+.smarthealth-receptionist-booking *::before,
+.smarthealth-receptionist-booking *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.smarthealth-receptionist-booking__header {
+  margin-bottom: 26px;
+}
+
+.smarthealth-receptionist-booking__eyebrow {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #059669;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.smarthealth-receptionist-booking__header h1 {
+  margin: 0;
+  color: #064e3b;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.smarthealth-receptionist-booking__header p {
+  max-width: 650px;
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   FORM LAYOUT
+========================================================= */
+
+.smarthealth-receptionist-booking__form {
+  display: grid;
+  gap: 22px;
+  width: 100%;
+}
+
+/* =========================================================
+   FORM SECTIONS / CARDS
+========================================================= */
+
+.smarthealth-receptionist-booking__section {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+}
+
+/* =========================================================
+   SECTION HEADINGS
+========================================================= */
+
+.smarthealth-receptionist-booking__section-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-bottom: 22px;
+}
+
+.smarthealth-receptionist-booking__section-heading > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  border-radius: 12px;
+  background: #d1fae5;
+  color: #047857;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.smarthealth-receptionist-booking__section-heading h2 {
+  margin: 0;
+  color: #064e3b;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.smarthealth-receptionist-booking__section-heading p {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   FORM FIELDS
+========================================================= */
+
+.smarthealth-receptionist-booking__field {
+  display: grid;
+  gap: 9px;
+  margin-bottom: 20px;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.smarthealth-receptionist-booking__field:last-child {
+  margin-bottom: 0;
+}
+
+.smarthealth-receptionist-booking__field input,
+.smarthealth-receptionist-booking__field select,
+.smarthealth-receptionist-booking__field textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 11px 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  outline: none;
+  background: #ffffff;
+  color: #334155;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-receptionist-booking__field input,
+.smarthealth-receptionist-booking__field select {
+  min-height: 42px;
+}
+
+.smarthealth-receptionist-booking__field textarea {
+  min-height: 110px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.smarthealth-receptionist-booking__field input::placeholder,
+.smarthealth-receptionist-booking__field textarea::placeholder {
+  color: #94a3b8;
+}
+
+.smarthealth-receptionist-booking__field input:focus,
+.smarthealth-receptionist-booking__field select:focus,
+.smarthealth-receptionist-booking__field textarea:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.smarthealth-receptionist-booking__field input:disabled,
+.smarthealth-receptionist-booking__field select:disabled,
+.smarthealth-receptionist-booking__field textarea:disabled {
+  background: #f8fafc;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   SEARCH RESULTS
+========================================================= */
+
+.smarthealth-receptionist-booking__results {
+  display: grid;
+  max-height: 310px;
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.smarthealth-receptionist-booking__results > p {
+  padding: 18px;
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Individual patient / doctor result */
+
+.smarthealth-receptionist-booking__result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 15px 17px;
+  border: none;
+  border-bottom: 1px solid #f1f5f9;
+  background: #ffffff;
+  color: #334155;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.smarthealth-receptionist-booking__result:last-child {
+  border-bottom: none;
+}
+
+.smarthealth-receptionist-booking__result:hover {
+  background: #f0fdf4;
+}
+
+.smarthealth-receptionist-booking__result:focus-visible {
+  outline: 2px solid #059669;
+  outline-offset: -2px;
+}
+
+.smarthealth-receptionist-booking__result > span:first-child {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.smarthealth-receptionist-booking__result strong {
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.smarthealth-receptionist-booking__result small {
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.smarthealth-receptionist-booking__result > span:last-child {
+  flex-shrink: 0;
+  color: #047857;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   SELECTED PATIENT / DOCTOR
+========================================================= */
+
+.smarthealth-receptionist-booking__selected {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 17px;
+  border: 1px solid #a7f3d0;
+  border-radius: 12px;
+  background: #f0fdf4;
+}
+
+.smarthealth-receptionist-booking__selected > div {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.smarthealth-receptionist-booking__selected strong {
+  color: #064e3b;
+  font-size: 14px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.smarthealth-receptionist-booking__selected span {
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.smarthealth-receptionist-booking__selected button {
+  flex-shrink: 0;
+  padding: 8px 12px;
+  border: 1px solid #a7f3d0;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #047857;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.smarthealth-receptionist-booking__selected button:hover {
+  border-color: #059669;
+  background: #d1fae5;
+}
+
+/* =========================================================
+   HINT / HELPER TEXT
+========================================================= */
+
+.smarthealth-receptionist-booking__hint {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   APPOINTMENT SLOT SECTION
+========================================================= */
+
+.smarthealth-receptionist-booking__slots {
+  margin-top: 22px;
+}
+
+.smarthealth-receptionist-booking__slots-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.smarthealth-receptionist-booking__slots-heading h3,
+.smarthealth-receptionist-booking__summary h3 {
+  margin: 0;
+  color: #064e3b;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.smarthealth-receptionist-booking__slots-heading span {
+  color: #64748b;
+  font-size: 12px;
+}
+
+/* Available time slots */
+
+.smarthealth-receptionist-booking__slot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.smarthealth-receptionist-booking__slot {
+  min-width: 0;
+  min-height: 42px;
+  padding: 11px 8px;
+  border: 1px solid #a7f3d0;
+  border-radius: 9px;
+  background: #f0fdf4;
+  color: #047857;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-receptionist-booking__slot:not(:disabled):hover {
+  border-color: #059669;
+  background: #d1fae5;
+}
+
+.smarthealth-receptionist-booking__slot:focus-visible {
+  outline: 2px solid #059669;
+  outline-offset: 2px;
+}
+
+/* Selected slot */
+
+.smarthealth-receptionist-booking__slot.is-selected {
+  border-color: #059669;
+  background: #059669;
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(5, 150, 105, 0.18);
+}
+
+/* Booked or past slots */
+
+.smarthealth-receptionist-booking__slot.is-booked,
+.smarthealth-receptionist-booking__slot.is-past {
+  border-color: #e2e8f0;
+  background: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.smarthealth-receptionist-booking__slot:disabled {
+  cursor: not-allowed;
+}
+
+.smarthealth-receptionist-booking__slots > p {
+  margin: 14px 0 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   APPOINTMENT SUMMARY
+========================================================= */
+
+.smarthealth-receptionist-booking__summary {
+  display: grid;
+  gap: 0;
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.smarthealth-receptionist-booking__summary h3 {
+  margin-bottom: 14px;
+}
+
+.smarthealth-receptionist-booking__summary > div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 11px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.smarthealth-receptionist-booking__summary > div:last-child {
+  border-bottom: none;
+}
+
+.smarthealth-receptionist-booking__summary span {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.smarthealth-receptionist-booking__summary strong {
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   FORM FOOTER / ACTION BUTTONS
+========================================================= */
+
+.smarthealth-receptionist-booking__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.smarthealth-receptionist-booking__cancel,
+.smarthealth-receptionist-booking__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+/* Cancel button */
+
+.smarthealth-receptionist-booking__cancel {
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #475569;
+}
+
+.smarthealth-receptionist-booking__cancel:hover:not(:disabled) {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+/* Create appointment button */
+
+.smarthealth-receptionist-booking__submit {
+  border: 1px solid #059669;
+  background: #059669;
+  color: #ffffff;
+}
+
+.smarthealth-receptionist-booking__submit:hover:not(:disabled) {
+  border-color: #047857;
+  background: #047857;
+  box-shadow: 0 3px 8px rgba(5, 150, 105, 0.16);
+}
+
+.smarthealth-receptionist-booking__cancel:focus-visible,
+.smarthealth-receptionist-booking__submit:focus-visible {
+  outline: 2px solid #059669;
+  outline-offset: 3px;
+}
+
+.smarthealth-receptionist-booking__cancel:disabled,
+.smarthealth-receptionist-booking__submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* =========================================================
+   LOADING / EMPTY STATES
+========================================================= */
+
+.smarthealth-receptionist-booking__state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 180px;
+  padding: 28px;
+  color: #64748b;
+  text-align: center;
+}
+
+.smarthealth-receptionist-booking__state p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.smarthealth-receptionist-booking__spinner {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 14px;
+  border: 3px solid #d1fae5;
+  border-top-color: #059669;
+  border-radius: 50%;
+  animation: smarthealth-receptionist-booking-spin 0.8s linear infinite;
+}
+
+@keyframes smarthealth-receptionist-booking-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   SCROLLBARS
+========================================================= */
+
+.smarthealth-receptionist-booking__results::-webkit-scrollbar {
+  width: 7px;
+}
+
+.smarthealth-receptionist-booking__results::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.smarthealth-receptionist-booking__results::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.smarthealth-receptionist-booking__results::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* =========================================================
+   RESPONSIVE: TABLETS
+========================================================= */
+
+@media (max-width: 1100px) {
+  .smarthealth-receptionist-booking {
+    padding: 24px;
+  }
+
+  .smarthealth-receptionist-booking__slot-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
+   RESPONSIVE: MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+  .smarthealth-receptionist-booking {
+    padding: 18px;
+  }
+
+  .smarthealth-receptionist-booking__header {
+    margin-bottom: 22px;
+  }
+
+  .smarthealth-receptionist-booking__header h1 {
+    font-size: 24px;
+  }
+
+  .smarthealth-receptionist-booking__section {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .smarthealth-receptionist-booking__section-heading {
+    gap: 11px;
+    margin-bottom: 19px;
+  }
+
+  .smarthealth-receptionist-booking__section-heading h2 {
+    font-size: 15px;
+  }
+
+  .smarthealth-receptionist-booking__section-heading p {
+    font-size: 12px;
+  }
+
+  .smarthealth-receptionist-booking__slot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .smarthealth-receptionist-booking__result {
+    align-items: flex-start;
+    gap: 10px;
+    padding: 13px;
+  }
+
+  .smarthealth-receptionist-booking__result > span:last-child {
+    white-space: nowrap;
+  }
+
+  .smarthealth-receptionist-booking__selected {
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .smarthealth-receptionist-booking__footer {
+    flex-direction: column-reverse;
+  }
+
+  .smarthealth-receptionist-booking__cancel,
+  .smarthealth-receptionist-booking__submit {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE: SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+  .smarthealth-receptionist-booking {
+    padding: 15px;
+  }
+
+  .smarthealth-receptionist-booking__header h1 {
+    font-size: 22px;
+  }
+
+  .smarthealth-receptionist-booking__section {
+    padding: 15px;
+  }
+
+  .smarthealth-receptionist-booking__section-heading > span {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+    border-radius: 10px;
+  }
+
+  .smarthealth-receptionist-booking__summary {
+    padding: 15px;
+  }
+
+  .smarthealth-receptionist-booking__summary > div {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .smarthealth-receptionist-booking__summary strong {
+    text-align: left;
+  }
+
+  .smarthealth-receptionist-booking__slots-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
