@@ -20,20 +20,66 @@ const ReceptionistSidebar = ({ onNavigate }) => {
           }
         >
           <span className="smarthealth-sidebar-link-icon">⌂</span>
-
           <span className="smarthealth-sidebar-link-text">Dashboard</span>
         </NavLink>
       </div>
 
       {/* =====================================================
-          APPOINTMENTS
+          PATIENTS & APPOINTMENTS
       ====================================================== */}
 
       <div className="smarthealth-sidebar-section">
-        <span className="smarthealth-sidebar-section-title">APPOINTMENTS</span>
+        <span className="smarthealth-sidebar-section-title">PATIENTS</span>
+
+        <NavLink
+          to="/receptionist/patients/add"
+          onClick={onNavigate}
+          className={({ isActive }) =>
+            `smarthealth-sidebar-link ${
+              isActive ? "smarthealth-sidebar-link-active" : ""
+            }`
+          }
+        >
+          <span className="smarthealth-sidebar-link-icon">+</span>
+          <span className="smarthealth-sidebar-link-text">Add Patient</span>
+        </NavLink>
+
+        <NavLink
+          to="/receptionist/patients"
+          end
+          onClick={onNavigate}
+          className={({ isActive }) =>
+            `smarthealth-sidebar-link ${
+              isActive ? "smarthealth-sidebar-link-active" : ""
+            }`
+          }
+        >
+          <span className="smarthealth-sidebar-link-icon">♙</span>
+          <span className="smarthealth-sidebar-link-text">Manage Patients</span>
+        </NavLink>
+
+        {/* Create Appointment */}
+
+        <NavLink
+          to="/receptionist/appointments/create"
+          onClick={onNavigate}
+          className={({ isActive }) =>
+            `smarthealth-sidebar-link ${
+              isActive ? "smarthealth-sidebar-link-active" : ""
+            }`
+          }
+        >
+          <span className="smarthealth-sidebar-link-icon">＋</span>
+          <span className="smarthealth-sidebar-link-text">
+            Create Appointment
+          </span>
+        </NavLink>
+
+        {/* Manage Appointments */}
 
         <NavLink
           to="/receptionist/appointments"
+          end
           onClick={onNavigate}
           className={({ isActive }) =>
             `smarthealth-sidebar-link ${
@@ -42,9 +88,10 @@ const ReceptionistSidebar = ({ onNavigate }) => {
           }
         >
           <span className="smarthealth-sidebar-link-icon">▣</span>
-
           <span className="smarthealth-sidebar-link-text">Appointments</span>
         </NavLink>
+
+        {/* Doctor Availability */}
 
         <NavLink
           to="/receptionist/availability"
@@ -56,7 +103,6 @@ const ReceptionistSidebar = ({ onNavigate }) => {
           }
         >
           <span className="smarthealth-sidebar-link-icon">◷</span>
-
           <span className="smarthealth-sidebar-link-text">
             Doctor Availability
           </span>
@@ -80,7 +126,6 @@ const ReceptionistSidebar = ({ onNavigate }) => {
           }
         >
           <span className="smarthealth-sidebar-link-icon">▤</span>
-
           <span className="smarthealth-sidebar-link-text">Billing</span>
         </NavLink>
 
@@ -94,7 +139,6 @@ const ReceptionistSidebar = ({ onNavigate }) => {
           }
         >
           <span className="smarthealth-sidebar-link-icon">$</span>
-
           <span className="smarthealth-sidebar-link-text">Payments</span>
         </NavLink>
 
@@ -108,7 +152,6 @@ const ReceptionistSidebar = ({ onNavigate }) => {
           }
         >
           <span className="smarthealth-sidebar-link-icon">◈</span>
-
           <span className="smarthealth-sidebar-link-text">Insurance</span>
         </NavLink>
       </div>
@@ -118,7 +161,9 @@ const ReceptionistSidebar = ({ onNavigate }) => {
       ====================================================== */}
 
       <div className="smarthealth-sidebar-section">
-        <span className="smarthealth-sidebar-section-title">COMMUNICATION</span>
+        <span className="smarthealth-sidebar-section-title">
+          COMMUNICATION
+        </span>
 
         <NavLink
           to="/receptionist/notifications"
@@ -130,28 +175,34 @@ const ReceptionistSidebar = ({ onNavigate }) => {
           }
         >
           <span className="smarthealth-sidebar-link-icon">🔔</span>
-
           <span className="smarthealth-sidebar-link-text">Notifications</span>
         </NavLink>
       </div>
 
+      {/* =====================================================
+          AI AGENT HELP
+      ====================================================== */}
 
-      <span className="smarthealth-sidebar-section-title">AI AGENT HELP </span>
-      <NavLink
-        to="/receptionist/ai-billing"
-        onClick={onNavigate}
-        className={({ isActive }) =>
-          `smarthealth-sidebar-link ${
-            isActive ? "smarthealth-sidebar-link-active" : ""
-          }`
-        }
-      >
-        <span className="smarthealth-sidebar-link-icon">✦</span>
-
-        <span className="smarthealth-sidebar-link-text">
-          AI Billing Assistant
+      <div className="smarthealth-sidebar-section">
+        <span className="smarthealth-sidebar-section-title">
+          AI AGENT HELP
         </span>
-      </NavLink>
+
+        <NavLink
+          to="/receptionist/ai-billing"
+          onClick={onNavigate}
+          className={({ isActive }) =>
+            `smarthealth-sidebar-link ${
+              isActive ? "smarthealth-sidebar-link-active" : ""
+            }`
+          }
+        >
+          <span className="smarthealth-sidebar-link-icon">✦</span>
+          <span className="smarthealth-sidebar-link-text">
+            AI Billing Assistant
+          </span>
+        </NavLink>
+      </div>
     </div>
   );
 };

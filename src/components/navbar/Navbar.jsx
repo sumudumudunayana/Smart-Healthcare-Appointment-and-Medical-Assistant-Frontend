@@ -65,16 +65,7 @@ const Navbar = ({ onMenuClick }) => {
 
         {/* Page Branding */}
 
-        <div className="smarthealth-navbar-brand">
-          <div className="smarthealth-navbar-logo">
-            <span>+</span>
-          </div>
-
-          <div className="smarthealth-navbar-brand-text">
-            <h1>SmartHealthcare</h1>
-            <span>Healthcare Management System</span>
-          </div>
-        </div>
+        
       </div>
 
       {/* =====================================================
@@ -86,15 +77,7 @@ const Navbar = ({ onMenuClick }) => {
             NOTIFICATION BUTTON
         ==================================================== */}
 
-        <button
-          type="button"
-          className="smarthealth-navbar-notification"
-          aria-label="Notifications"
-        >
-          <span className="smarthealth-navbar-notification-icon">🔔</span>
-
-          <span className="smarthealth-navbar-notification-dot"></span>
-        </button>
+        
 
         {/* ===================================================
             PROFILE
