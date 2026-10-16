@@ -1,0 +1,387 @@
+/* =========================================================
+   SMARTHEALTHCARE PATIENT SIDEBAR
+   ========================================================= */
+
+.smarthealth-patient-sidebar {
+  width: 260px;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+
+  box-sizing: border-box;
+  z-index: 200;
+
+  transition: transform 0.25s ease;
+}
+
+/* =========================================================
+   SIDEBAR HEADER
+   ========================================================= */
+
+.smarthealth-patient-sidebar-header {
+  height: 76px;
+  min-height: 76px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 20px;
+  border-bottom: 1px solid #f0f0f0;
+
+  box-sizing: border-box;
+}
+
+.smarthealth-patient-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.smarthealth-patient-sidebar-logo {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: linear-gradient(135deg, #047857, #10b981);
+  box-shadow: 0 5px 14px rgba(5, 150, 105, 0.2);
+}
+
+.smarthealth-patient-sidebar-logo span {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.smarthealth-patient-sidebar-brand-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.smarthealth-patient-sidebar-brand-text strong {
+  color: #064e3b;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.smarthealth-patient-sidebar-brand-text span {
+  margin-top: 3px;
+
+  color: #059669;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.smarthealth-patient-sidebar-close {
+  display: none;
+
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #f3f4f6;
+  color: #374151;
+
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* =========================================================
+   PATIENT INFORMATION
+   ========================================================= */
+
+.smarthealth-patient-sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  margin: 18px 16px;
+  padding: 12px;
+
+  border-radius: 13px;
+
+  background: #f0fdf4;
+  border: 1px solid #dcfce7;
+}
+
+.smarthealth-patient-sidebar-avatar {
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #047857, #10b981);
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smarthealth-patient-sidebar-user-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.smarthealth-patient-sidebar-user-info strong {
+  color: #111827;
+  font-size: 12px;
+  font-weight: 650;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smarthealth-patient-sidebar-user-info span {
+  margin-top: 3px;
+
+  color: #059669;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.smarthealth-patient-sidebar-navigation {
+  flex: 1;
+  min-height: 0;
+
+  overflow-y: auto;
+  padding: 0 12px 20px;
+
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+
+.smarthealth-patient-sidebar-navigation::-webkit-scrollbar {
+  width: 5px;
+}
+
+.smarthealth-patient-sidebar-navigation::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.smarthealth-patient-sidebar-navigation::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+/* =========================================================
+   NAVIGATION SECTIONS
+   ========================================================= */
+
+.smarthealth-patient-sidebar-section {
+  margin-bottom: 22px;
+}
+
+.smarthealth-patient-sidebar-section-title {
+  display: block;
+
+  padding: 0 11px;
+  margin-bottom: 7px;
+
+  color: #9ca3af;
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+/* =========================================================
+   NAVIGATION LINKS
+   ========================================================= */
+
+.smarthealth-patient-sidebar-link {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 3px;
+  padding: 10px 11px;
+
+  border-radius: 10px;
+  box-sizing: border-box;
+
+  color: #4b5563;
+  text-decoration: none;
+
+  font-size: 12px;
+  font-weight: 550;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smarthealth-patient-sidebar-link:hover {
+  background: #f0fdf4;
+  color: #047857;
+}
+
+.smarthealth-patient-sidebar-link:active {
+  transform: scale(0.99);
+}
+
+/* =========================================================
+   LINK ICONS
+   ========================================================= */
+
+.smarthealth-patient-sidebar-icon {
+  width: 22px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #6b7280;
+  font-size: 16px;
+
+  transition: color 0.2s ease;
+}
+
+.smarthealth-patient-sidebar-link:hover
+.smarthealth-patient-sidebar-icon {
+  color: #059669;
+}
+
+/* =========================================================
+   ACTIVE LINK
+   ========================================================= */
+
+.smarthealth-patient-sidebar-link-active {
+  background: linear-gradient(90deg, #ecfdf5, #f0fdf4);
+
+  color: #047857;
+  font-weight: 650;
+
+  box-shadow: inset 3px 0 0 #10b981;
+}
+
+.smarthealth-patient-sidebar-link-active
+.smarthealth-patient-sidebar-icon {
+  color: #047857;
+}
+
+/* =========================================================
+   SIDEBAR FOOTER
+   ========================================================= */
+
+.smarthealth-patient-sidebar-footer {
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 14px 18px;
+  box-sizing: border-box;
+
+  border-top: 1px solid #f0f0f0;
+
+  color: #6b7280;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.smarthealth-patient-sidebar-status-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+  background: #10b981;
+
+  box-shadow: 0 0 0 3px #d1fae5;
+}
+
+/* =========================================================
+   MOBILE OVERLAY
+   ========================================================= */
+
+.smarthealth-patient-sidebar-overlay {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  background: rgba(15, 23, 42, 0.45);
+  z-index: 150;
+}
+
+/* =========================================================
+   TABLET / MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .smarthealth-patient-sidebar {
+    transform: translateX(-100%);
+
+    box-shadow: 15px 0 40px rgba(15, 23, 42, 0.12);
+  }
+
+  .smarthealth-patient-sidebar-open {
+    transform: translateX(0);
+  }
+
+  .smarthealth-patient-sidebar-overlay {
+    display: block;
+  }
+
+  .smarthealth-patient-sidebar-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .smarthealth-patient-sidebar {
+    width: 280px;
+  }
+
+  .smarthealth-patient-sidebar-header {
+    height: 68px;
+    min-height: 68px;
+  }
+}

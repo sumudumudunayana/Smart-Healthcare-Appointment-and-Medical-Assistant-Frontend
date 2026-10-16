@@ -1,0 +1,690 @@
+/* =========================================================
+   FIND DOCTOR — PAGE
+========================================================= */
+
+.smarthealth-find-doctor {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 28px;
+  color: #183b35;
+  box-sizing: border-box;
+}
+
+.smarthealth-find-doctor *,
+.smarthealth-find-doctor *::before,
+.smarthealth-find-doctor *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.smarthealth-find-doctor__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 34px;
+  margin-bottom: 28px;
+  overflow: hidden;
+  border: 1px solid #dcece6;
+  border-radius: 22px;
+  background: linear-gradient(125deg, #eff9f4 0%, #f8fcfa 65%, #e8f5ef 100%);
+}
+
+.smarthealth-find-doctor__heading-content {
+  max-width: 720px;
+}
+
+.smarthealth-find-doctor__eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #188365;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+}
+
+.smarthealth-find-doctor__header h1 {
+  margin: 0 0 12px;
+  color: #153f35;
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.smarthealth-find-doctor__header p {
+  max-width: 620px;
+  margin: 0;
+  color: #60766f;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.smarthealth-find-doctor__header-icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  border: 1px solid #cde8dc;
+  border-radius: 25px;
+  background: #ffffff;
+  color: #20886b;
+  font-size: 48px;
+  box-shadow: 0 8px 24px rgb(24 95 72 / 7%);
+}
+
+/* =========================================================
+   SEARCH AND FILTER PANEL
+========================================================= */
+
+.smarthealth-find-doctor__filter-panel {
+  padding: 28px;
+  margin-bottom: 32px;
+  border: 1px solid #e3ece8;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 5px 22px rgb(25 65 52 / 4%);
+}
+
+.smarthealth-find-doctor__section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.smarthealth-find-doctor__section-heading h2,
+.smarthealth-find-doctor__results-heading h2 {
+  margin: 0 0 7px;
+  color: #183f35;
+  font-size: 21px;
+  font-weight: 750;
+}
+
+.smarthealth-find-doctor__section-heading p,
+.smarthealth-find-doctor__results-heading p {
+  margin: 0;
+  color: #75877f;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.smarthealth-find-doctor__filters {
+  display: grid;
+  grid-template-columns: minmax(240px, 1.6fr) minmax(180px, 1fr) minmax(180px, 1fr);
+  gap: 18px;
+}
+
+.smarthealth-find-doctor__field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.smarthealth-find-doctor__field label {
+  color: #35584e;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.smarthealth-find-doctor__field select,
+.smarthealth-find-doctor__search-input {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #dce7e2;
+  border-radius: 11px;
+  background: #ffffff;
+  color: #25483d;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-find-doctor__field select {
+  padding: 0 13px;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+}
+
+.smarthealth-find-doctor__field select:focus,
+.smarthealth-find-doctor__search-input:focus-within {
+  border-color: #269876;
+  box-shadow: 0 0 0 3px rgb(38 152 118 / 12%);
+}
+
+.smarthealth-find-doctor__field select:disabled {
+  background: #f4f7f5;
+  cursor: not-allowed;
+}
+
+.smarthealth-find-doctor__search-input {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 14px;
+}
+
+.smarthealth-find-doctor__search-input > span {
+  flex-shrink: 0;
+  color: #218768;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.smarthealth-find-doctor__search-input input {
+  width: 100%;
+  min-width: 0;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #25483d;
+  font: inherit;
+  font-size: 14px;
+}
+
+.smarthealth-find-doctor__search-input input::placeholder {
+  color: #9aa9a2;
+}
+
+.smarthealth-find-doctor__clear-button {
+  flex-shrink: 0;
+  padding: 9px 13px;
+  border: 1px solid #cce7db;
+  border-radius: 9px;
+  background: #f1faf5;
+  color: #187b5d;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.smarthealth-find-doctor__clear-button:hover {
+  border-color: #9bd4bc;
+  background: #e5f5ed;
+}
+
+/* =========================================================
+   RESULTS HEADER
+========================================================= */
+
+.smarthealth-find-doctor__results-section {
+  min-width: 0;
+}
+
+.smarthealth-find-doctor__results-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+/* =========================================================
+   DOCTOR CARD GRID
+========================================================= */
+
+.smarthealth-find-doctor__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.smarthealth-find-doctor__card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #e0ebe5;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgb(25 65 52 / 4%);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.smarthealth-find-doctor__card:hover {
+  transform: translateY(-4px);
+  border-color: #c4e3d5;
+  box-shadow: 0 12px 28px rgb(25 65 52 / 9%);
+}
+
+.smarthealth-find-doctor__card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 23px 22px 0;
+}
+
+.smarthealth-find-doctor__avatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  border: 1px solid #d4ebe0;
+  border-radius: 17px;
+  background: linear-gradient(145deg, #e5f5ed, #f2faf6);
+  color: #197c5e;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.smarthealth-find-doctor__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 750;
+  text-transform: capitalize;
+}
+
+.smarthealth-find-doctor__status--active {
+  border-color: #c8ead8;
+  background: #ecf9f1;
+  color: #19764f;
+}
+
+.smarthealth-find-doctor__status--inactive {
+  border-color: #e6e3df;
+  background: #f6f5f3;
+  color: #77736e;
+}
+
+.smarthealth-find-doctor__status-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.smarthealth-find-doctor__card-content {
+  flex: 1;
+  padding: 22px;
+}
+
+.smarthealth-find-doctor__card-content h3 {
+  overflow-wrap: anywhere;
+  margin: 0 0 8px;
+  color: #1b4338;
+  font-size: 19px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.smarthealth-find-doctor__specialization {
+  margin: 0;
+  color: #21876a;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.6;
+}
+
+.smarthealth-find-doctor__details {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding-top: 23px;
+  margin-top: 22px;
+  border-top: 1px solid #edf2ef;
+}
+
+.smarthealth-find-doctor__detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.smarthealth-find-doctor__detail > span {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #f0f8f4;
+  color: #248668;
+  font-size: 18px;
+}
+
+.smarthealth-find-doctor__detail > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.smarthealth-find-doctor__detail-label {
+  color: #8a9a92;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.smarthealth-find-doctor__detail strong {
+  overflow-wrap: anywhere;
+  color: #3a574d;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.smarthealth-find-doctor__card-footer {
+  padding: 0 22px 22px;
+}
+
+.smarthealth-find-doctor__profile-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 46px;
+  padding: 0 15px;
+  border: 1px solid #bfe3d1;
+  border-radius: 11px;
+  background: #f1faf5;
+  color: #187c5e;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 750;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.smarthealth-find-doctor__profile-link span {
+  font-size: 19px;
+  transition: transform 0.2s ease;
+}
+
+.smarthealth-find-doctor__profile-link:hover {
+  border-color: #218a68;
+  background: #218a68;
+  color: #ffffff;
+}
+
+.smarthealth-find-doctor__profile-link:hover span {
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   LOADING, ERROR AND EMPTY STATES
+========================================================= */
+
+.smarthealth-find-doctor__state {
+  display: flex;
+  min-height: 300px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 22px;
+  border: 1px dashed #d4e5dc;
+  border-radius: 18px;
+  background: #fbfdfc;
+  text-align: center;
+}
+
+.smarthealth-find-doctor__state-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 66px;
+  height: 66px;
+  margin-bottom: 18px;
+  border: 1px solid #d4ebe0;
+  border-radius: 20px;
+  background: #edf8f2;
+  color: #248768;
+  font-size: 30px;
+}
+
+.smarthealth-find-doctor__state h3 {
+  margin: 0 0 10px;
+  color: #24483c;
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.smarthealth-find-doctor__state p {
+  max-width: 440px;
+  margin: 0;
+  color: #7b8c83;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.smarthealth-find-doctor__spinner {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 20px;
+  border: 4px solid #dcefe5;
+  border-top-color: #21896a;
+  border-radius: 50%;
+  animation: smarthealth-find-doctor-spin 0.8s linear infinite;
+}
+
+@keyframes smarthealth-find-doctor-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.smarthealth-find-doctor__primary-button {
+  min-height: 44px;
+  padding: 0 20px;
+  margin-top: 22px;
+  border: 1px solid #21896a;
+  border-radius: 10px;
+  background: #21896a;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.smarthealth-find-doctor__primary-button:hover {
+  border-color: #176e53;
+  background: #176e53;
+}
+
+.smarthealth-find-doctor__primary-button:focus-visible,
+.smarthealth-find-doctor__clear-button:focus-visible,
+.smarthealth-find-doctor__profile-link:focus-visible {
+  outline: 3px solid rgb(33 137 106 / 30%);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   RESPONSIVE LAYOUT
+========================================================= */
+
+@media (max-width: 1100px) {
+  .smarthealth-find-doctor__filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .smarthealth-find-doctor__search-field {
+    grid-column: 1 / -1;
+  }
+
+  .smarthealth-find-doctor__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .smarthealth-find-doctor {
+    padding: 18px;
+  }
+
+  .smarthealth-find-doctor__header {
+    padding: 25px 22px;
+    border-radius: 17px;
+  }
+
+  .smarthealth-find-doctor__header-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    font-size: 34px;
+  }
+
+  .smarthealth-find-doctor__header h1 {
+    font-size: 28px;
+  }
+
+  .smarthealth-find-doctor__header p {
+    font-size: 14px;
+  }
+
+  .smarthealth-find-doctor__filter-panel {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .smarthealth-find-doctor__section-heading {
+    align-items: flex-start;
+  }
+
+  .smarthealth-find-doctor__filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .smarthealth-find-doctor__search-field {
+    grid-column: auto;
+  }
+
+  .smarthealth-find-doctor__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 17px;
+  }
+
+  .smarthealth-find-doctor__card-top {
+    padding: 20px 20px 0;
+  }
+
+  .smarthealth-find-doctor__card-content {
+    padding: 20px;
+  }
+
+  .smarthealth-find-doctor__card-footer {
+    padding: 0 20px 20px;
+  }
+}
+
+@media (max-width: 450px) {
+  .smarthealth-find-doctor {
+    padding: 13px;
+  }
+
+  .smarthealth-find-doctor__header {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 22px 17px;
+  }
+
+  .smarthealth-find-doctor__header-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    font-size: 27px;
+  }
+
+  .smarthealth-find-doctor__header h1 {
+    font-size: 24px;
+  }
+
+  .smarthealth-find-doctor__eyebrow {
+    font-size: 10px;
+  }
+
+  .smarthealth-find-doctor__header p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .smarthealth-find-doctor__section-heading {
+    flex-direction: column;
+  }
+
+  .smarthealth-find-doctor__clear-button {
+    align-self: flex-start;
+  }
+
+  .smarthealth-find-doctor__status {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smarthealth-find-doctor__card,
+  .smarthealth-find-doctor__profile-link,
+  .smarthealth-find-doctor__profile-link span,
+  .smarthealth-find-doctor__primary-button {
+    transition: none;
+  }
+
+  .smarthealth-find-doctor__spinner {
+    animation-duration: 1.8s;
+  }
+}
+
+.smarthealth-find-doctor__profile-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border: 1px solid #0f766e;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f766e;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.smarthealth-find-doctor__profile-link:hover {
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.smarthealth-find-doctor__profile-link:focus-visible {
+  outline: 3px solid rgba(15, 118, 110, 0.3);
+  outline-offset: 3px;
+}
