@@ -1,0 +1,975 @@
+/* =========================================
+   LAB REPORTS PAGE
+========================================= */
+
+.lab-reports-page {
+  width: 100%;
+  min-height: 100%;
+  padding: 4px 0 30px;
+  color: #0f172a;
+}
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.lab-reports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.lab-reports-heading-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.lab-reports-heading-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: #ccfbf1;
+  color: #0d9488;
+  font-size: 27px;
+}
+
+.lab-reports-heading-content h1 {
+  margin: 0 0 7px;
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 750;
+  letter-spacing: -0.7px;
+}
+
+.lab-reports-heading-content p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.lab-reports-refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 43px;
+  padding: 0 17px;
+  border: 1px solid #99f6e4;
+  border-radius: 10px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.lab-reports-refresh-btn:hover:not(:disabled) {
+  background: #ccfbf1;
+  border-color: #5eead4;
+  transform: translateY(-1px);
+}
+
+.lab-reports-refresh-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.lab-reports-spinning {
+  animation: labReportsSpin 1s linear infinite;
+}
+
+@keyframes labReportsSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   SUMMARY CARDS
+========================================= */
+
+.lab-reports-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.lab-reports-stat-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+  padding: 23px 22px;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.035);
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.lab-reports-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+}
+
+.lab-reports-stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  font-size: 22px;
+}
+
+.lab-reports-stat-icon-teal {
+  background: #ccfbf1;
+  color: #0d9488;
+}
+
+.lab-reports-stat-icon-green {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.lab-reports-stat-icon-light {
+  background: #f0fdfa;
+  color: #0f766e;
+}
+
+.lab-reports-stat-info {
+  min-width: 0;
+}
+
+.lab-reports-stat-info > span {
+  display: block;
+  margin: 2px 0 8px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.lab-reports-stat-info h2 {
+  margin: 0 0 6px;
+  color: #0f172a;
+  font-size: 29px;
+  font-weight: 750;
+  line-height: 1.1;
+}
+
+.lab-reports-stat-info p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.lab-reports-content {
+  padding: 25px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.025);
+}
+
+.lab-reports-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 23px;
+}
+
+.lab-reports-section-header h2 {
+  margin: 0 0 7px;
+  color: #0f172a;
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.lab-reports-section-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.lab-reports-count {
+  flex-shrink: 0;
+  padding: 7px 12px;
+  border: 1px solid #ccfbf1;
+  border-radius: 20px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================================
+   SEARCH AND FILTERS
+========================================= */
+
+.lab-reports-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.lab-reports-search {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex: 1;
+  min-width: 180px;
+  height: 45px;
+  padding: 0 13px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #94a3b8;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.lab-reports-search:focus-within {
+  border-color: #5eead4;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.09);
+}
+
+.lab-reports-search > svg {
+  flex-shrink: 0;
+  font-size: 17px;
+}
+
+.lab-reports-search input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.lab-reports-search input::placeholder {
+  color: #94a3b8;
+}
+
+.lab-reports-clear-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 27px;
+  height: 27px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.lab-reports-clear-search:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.lab-reports-filter {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+  height: 45px;
+  padding: 0 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #64748b;
+}
+
+.lab-reports-filter > svg {
+  font-size: 16px;
+}
+
+.lab-reports-filter select {
+  max-width: 150px;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #334155;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.lab-reports-reset-btn {
+  flex-shrink: 0;
+  padding: 9px 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #0f766e;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.lab-reports-reset-btn:hover {
+  background: #f0fdfa;
+}
+
+/* =========================================
+   REPORT GRID
+========================================= */
+
+.lab-reports-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.lab-report-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #ffffff;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.lab-report-card:hover {
+  border-color: #99f6e4;
+  box-shadow: 0 7px 20px rgba(15, 118, 110, 0.07);
+  transform: translateY(-2px);
+}
+
+.lab-report-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.lab-report-file-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #f0fdfa;
+  color: #0d9488;
+  font-size: 22px;
+}
+
+.lab-report-type {
+  display: inline-flex;
+  align-items: center;
+  max-width: 65%;
+  padding: 6px 10px;
+  overflow: hidden;
+  border: 1px solid #ccfbf1;
+  border-radius: 7px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 11px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lab-report-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.lab-report-card-body h3 {
+  margin: 0 0 16px;
+  overflow-wrap: anywhere;
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 750;
+  line-height: 1.5;
+}
+
+.lab-report-meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-bottom: 11px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.lab-report-meta svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #0d9488;
+  font-size: 15px;
+}
+
+.lab-report-meta span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.lab-report-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.lab-report-uploaded-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 550;
+}
+
+.lab-report-uploaded-label svg {
+  color: #0d9488;
+  font-size: 14px;
+}
+
+.lab-report-view-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 35px;
+  padding: 0 13px;
+  border: 1px solid #99f6e4;
+  border-radius: 8px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.lab-report-view-btn:hover {
+  border-color: #5eead4;
+  background: #ccfbf1;
+}
+
+/* =========================================
+   LOADING, ERROR AND EMPTY STATES
+========================================= */
+
+.lab-reports-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  padding: 35px 20px;
+  text-align: center;
+}
+
+.lab-reports-loader {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 18px;
+  border: 3px solid #ccfbf1;
+  border-top-color: #0d9488;
+  border-radius: 50%;
+  animation: labReportsSpin 0.8s linear infinite;
+}
+
+.lab-reports-state-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 65px;
+  margin-bottom: 17px;
+  border-radius: 18px;
+  background: #f0fdfa;
+  color: #0d9488;
+  font-size: 29px;
+}
+
+.lab-reports-error-state .lab-reports-state-icon {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.lab-reports-state h3 {
+  margin: 0 0 9px;
+  color: #0f172a;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.lab-reports-state p {
+  max-width: 440px;
+  margin: 0 0 18px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.lab-reports-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 17px;
+  border: 1px solid #0d9488;
+  border-radius: 9px;
+  background: #0d9488;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.lab-reports-primary-btn:hover {
+  border-color: #0f766e;
+  background: #0f766e;
+}
+
+/* =========================================
+   REPORT DETAILS MODAL
+========================================= */
+
+.lab-report-modal-overlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(3px);
+}
+
+.lab-report-modal {
+  width: 100%;
+  max-width: 570px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 25px 70px rgba(15, 23, 42, 0.2);
+  animation: labReportModalIn 0.2s ease;
+}
+
+@keyframes labReportModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.lab-report-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 23px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.lab-report-modal-title-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.lab-report-modal-title-group > div:last-child {
+  min-width: 0;
+}
+
+.lab-report-modal-title-group > div:last-child > span {
+  display: block;
+  margin-bottom: 5px;
+  color: #0d9488;
+  font-size: 11px;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.lab-report-modal-title-group h2 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #0f172a;
+  font-size: 19px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.lab-report-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  border: none;
+  border-radius: 9px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 19px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.lab-report-modal-close:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.lab-report-modal-body {
+  padding: 10px 23px;
+}
+
+.lab-report-detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.lab-report-detail-item:last-of-type {
+  border-bottom: none;
+}
+
+.lab-report-detail-item > span {
+  flex-shrink: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.lab-report-detail-item > strong {
+  max-width: 65%;
+  overflow-wrap: anywhere;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.6;
+  text-align: right;
+}
+
+.lab-report-record-id {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+}
+
+.lab-report-file-link-container {
+  padding: 16px 0 8px;
+}
+
+.lab-report-file-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid #99f6e4;
+  border-radius: 9px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.lab-report-file-link:hover {
+  border-color: #5eead4;
+  background: #ccfbf1;
+}
+
+.lab-report-file-unavailable {
+  margin: 15px 0 8px;
+  padding: 12px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.lab-report-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 18px 23px 23px;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1100px) {
+  .lab-reports-stats {
+    gap: 14px;
+  }
+
+  .lab-reports-stat-card {
+    gap: 12px;
+    padding: 19px 16px;
+  }
+
+  .lab-reports-stat-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 19px;
+  }
+
+  .lab-reports-stat-info h2 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 850px) {
+  .lab-reports-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lab-reports-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-reports-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .lab-reports-search {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .lab-reports-page {
+    padding-bottom: 20px;
+  }
+
+  .lab-reports-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+
+  .lab-reports-heading-content {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .lab-reports-heading-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    font-size: 22px;
+  }
+
+  .lab-reports-heading-content h1 {
+    font-size: 23px;
+  }
+
+  .lab-reports-heading-content p {
+    font-size: 13px;
+  }
+
+  .lab-reports-refresh-btn {
+    width: 100%;
+  }
+
+  .lab-reports-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+
+  .lab-reports-stat-card {
+    padding: 17px;
+  }
+
+  .lab-reports-content {
+    padding: 17px;
+    border-radius: 13px;
+  }
+
+  .lab-reports-section-header {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .lab-reports-section-header h2 {
+    font-size: 17px;
+  }
+
+  .lab-reports-section-header p {
+    font-size: 12px;
+  }
+
+  .lab-reports-count {
+    padding: 6px 9px;
+    font-size: 11px;
+  }
+
+  .lab-reports-toolbar {
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .lab-reports-search {
+    flex-basis: 100%;
+    height: 43px;
+  }
+
+  .lab-reports-filter {
+    flex: 1;
+    min-width: 0;
+    height: 43px;
+  }
+
+  .lab-reports-filter select {
+    width: 100%;
+    max-width: none;
+  }
+
+  .lab-reports-reset-btn {
+    padding: 0 10px;
+  }
+
+  .lab-report-card {
+    padding: 17px;
+  }
+
+  .lab-report-card-footer {
+    align-items: flex-start;
+  }
+
+  .lab-report-uploaded-label {
+    padding-top: 8px;
+  }
+
+  .lab-report-modal-overlay {
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .lab-report-modal {
+    max-height: calc(100vh - 24px);
+    margin: auto 0;
+  }
+
+  .lab-report-modal-header {
+    padding: 17px;
+  }
+
+  .lab-report-modal-title-group {
+    gap: 10px;
+  }
+
+  .lab-report-modal-title-group .lab-report-file-icon {
+    width: 39px;
+    height: 39px;
+    font-size: 19px;
+  }
+
+  .lab-report-modal-title-group h2 {
+    font-size: 16px;
+  }
+
+  .lab-report-modal-body {
+    padding: 8px 17px;
+  }
+
+  .lab-report-detail-item {
+    gap: 12px;
+  }
+
+  .lab-report-detail-item > span,
+  .lab-report-detail-item > strong {
+    font-size: 12px;
+  }
+
+  .lab-report-modal-footer {
+    padding: 15px 17px 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-reports-page *,
+  .lab-reports-page *::before,
+  .lab-reports-page *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
+
 import { toast } from "sonner";
 
 import appointmentService from "../../services/appointmentService";
+
 import aiService from "../../services/aiService";
 
 import "../../styles/pages/doctor/DoctorAI.css";
@@ -10,9 +12,11 @@ const DoctorAI = () => {
   const [appointments, setAppointments] = useState([]);
 
   const [selectedPatientId, setSelectedPatientId] = useState("");
+
   const [selectedPatientName, setSelectedPatientName] = useState("");
 
   const [symptoms, setSymptoms] = useState("");
+
   const [triageResult, setTriageResult] = useState(null);
 
   const [medicalSummary, setMedicalSummary] = useState(null);
@@ -22,15 +26,18 @@ const DoctorAI = () => {
   const [pendingApprovals, setPendingApprovals] = useState([]);
 
   const [loadingPatients, setLoadingPatients] = useState(true);
+
   const [summaryLoading, setSummaryLoading] = useState(false);
+
   const [triageLoading, setTriageLoading] = useState(false);
+
   const [approvalLoading, setApprovalLoading] = useState(false);
 
   const [approvalComments, setApprovalComments] = useState({});
 
-
   useEffect(() => {
     loadDoctorAppointments();
+
     loadPendingApprovals();
   }, []);
 
@@ -71,9 +78,13 @@ const DoctorAI = () => {
   };
 
   /*
+
    * =========================================================
+
    * UNIQUE PATIENTS FROM REAL DOCTOR APPOINTMENTS
+
    * =========================================================
+
    */
 
   const patients = useMemo(() => {
@@ -87,6 +98,7 @@ const DoctorAI = () => {
       if (!patientMap.has(appointment.patientId)) {
         patientMap.set(appointment.patientId, {
           patientId: appointment.patientId,
+
           patientName: appointment.patientName || "Unnamed Patient",
         });
       }
@@ -98,9 +110,13 @@ const DoctorAI = () => {
   }, [appointments]);
 
   /*
+
    * =========================================================
+
    * PATIENT SELECTION
+
    * =========================================================
+
    */
 
   const handlePatientChange = (event) => {
@@ -115,18 +131,24 @@ const DoctorAI = () => {
     setSelectedPatientName(selectedPatient?.patientName || "");
 
     setMedicalSummary(null);
+
     setRecommendations([]);
   };
 
   /*
+
    * =========================================================
+
    * MEDICAL SUMMARY
+
    * =========================================================
+
    */
 
   const handleGenerateMedicalSummary = async () => {
     if (!selectedPatientId) {
       toast.error("Please select a patient first.");
+
       return;
     }
 
@@ -136,11 +158,13 @@ const DoctorAI = () => {
       const response = await aiService.process({
         request:
           "Generate a medical summary for this patient using the patient's medical history and records.",
+
         patientId: selectedPatientId,
       });
 
       if (!response?.success) {
         toast.error(response?.message || "Failed to generate medical summary.");
+
         return;
       }
 
@@ -154,6 +178,7 @@ const DoctorAI = () => {
 
       setMedicalSummary({
         ...response,
+
         parsedOutput,
       });
 
@@ -176,14 +201,19 @@ const DoctorAI = () => {
   };
 
   /*
+
    * =========================================================
+
    * TRIAGE
+
    * =========================================================
+
    */
 
   const handleTriage = async () => {
     if (!symptoms.trim()) {
       toast.error("Please enter the patient's symptoms.");
+
       return;
     }
 
@@ -192,11 +222,13 @@ const DoctorAI = () => {
 
       const response = await aiService.process({
         request: `Patient symptom assessment: ${symptoms}`,
+
         patientId: selectedPatientId || null,
       });
 
       if (!response?.success) {
         toast.error(response?.message || "Failed to perform AI triage.");
+
         return;
       }
 
@@ -210,6 +242,7 @@ const DoctorAI = () => {
 
       setTriageResult({
         ...response,
+
         parsedOutput,
       });
 
@@ -238,9 +271,13 @@ const DoctorAI = () => {
   };
 
   /*
+
    * =========================================================
+
    * RECOMMENDATIONS
+
    * =========================================================
+
    */
 
   const loadRecommendations = async (workflowId) => {
@@ -254,22 +291,31 @@ const DoctorAI = () => {
   };
 
   /*
+
    * =========================================================
+
    * APPROVAL COMMENTS
+
    * =========================================================
+
    */
 
   const handleApprovalCommentChange = (approvalId, value) => {
     setApprovalComments((previous) => ({
       ...previous,
+
       [approvalId]: value,
     }));
   };
 
   /*
+
    * =========================================================
+
    * APPROVE
+
    * =========================================================
+
    */
 
   const handleApprove = async (approvalId) => {
@@ -297,9 +343,13 @@ const DoctorAI = () => {
   };
 
   /*
+
    * =========================================================
+
    * REJECT
+
    * =========================================================
+
    */
 
   const handleReject = async (approvalId) => {
@@ -307,6 +357,7 @@ const DoctorAI = () => {
 
     if (!comments) {
       toast.error("Please provide a reason before rejecting.");
+
       return;
     }
 
@@ -332,9 +383,13 @@ const DoctorAI = () => {
   };
 
   /*
+
    * =========================================================
+
    * OUTPUT HELPERS
+
    * =========================================================
+
    */
 
   const getSummaryValue = (key) => {
@@ -345,11 +400,61 @@ const DoctorAI = () => {
     return triageResult?.parsedOutput?.[key];
   };
 
+  const parseRecommendation = (value) => {
+    if (value && typeof value === "object") return value;
+    if (typeof value !== "string") return null;
+
+    const trimmed = value.trim();
+    if (!trimmed) return null;
+
+    try {
+      const parsed = JSON.parse(trimmed);
+      return parsed && typeof parsed === "object" ? parsed : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const getRecommendationField = (data, ...keys) => {
+    if (!data) return undefined;
+    for (const key of keys) {
+      const match = Object.keys(data).find(
+        (candidate) => candidate.toLowerCase() === key.toLowerCase(),
+      );
+      if (
+        match &&
+        data[match] !== null &&
+        data[match] !== undefined &&
+        data[match] !== ""
+      ) {
+        return data[match];
+      }
+    }
+    return undefined;
+  };
+
+  const formatRecommendationLabel = (value) =>
+    String(value || "AI Recommendation")
+      .replace(/([a-z])([A-Z])/g, "$1 $2")
+      .replace(/[-_]/g, " ")
+      .replace(/\b\w/g, (character) => character.toUpperCase());
+
+  const formatRecommendationValue = (value) => {
+    if (Array.isArray(value))
+      return value.map((item) => String(item)).join(", ");
+    if (typeof value === "boolean") return value ? "Yes" : "No";
+    if (value && typeof value === "object")
+      return JSON.stringify(value, null, 2);
+    return String(value ?? "");
+  };
+
   return (
     <div className="smarthealth-doctor-ai">
       {/* =====================================================
+
           HEADER
-      ====================================================== */}
+
+      \====================================================== */}
 
       <section className="smarthealth-doctor-ai-header">
         <div className="smarthealth-doctor-ai-header-content">
@@ -369,8 +474,10 @@ const DoctorAI = () => {
       </section>
 
       {/* =====================================================
+
           MEDICAL SUMMARY
-      ====================================================== */}
+
+      \====================================================== */}
 
       <section className="smarthealth-doctor-ai-panel">
         <div className="smarthealth-doctor-ai-panel-header">
@@ -423,6 +530,7 @@ const DoctorAI = () => {
         {selectedPatientName && (
           <div className="smarthealth-doctor-ai-selected-patient">
             <span>Selected patient</span>
+
             <strong>{selectedPatientName}</strong>
           </div>
         )}
@@ -533,8 +641,10 @@ const DoctorAI = () => {
       </section>
 
       {/* =====================================================
+
           TRIAGE
-      ====================================================== */}
+
+      \====================================================== */}
 
       <section className="smarthealth-doctor-ai-panel">
         <div className="smarthealth-doctor-ai-panel-header">
@@ -576,68 +686,14 @@ const DoctorAI = () => {
           </button>
         </div>
 
-        {triageResult && (
-          <div className="smarthealth-doctor-ai-triage-result">
-            <div className="smarthealth-doctor-ai-result-heading">
-              <div>
-                <span>AI Triage Result</span>
-                <h3>Clinical Assessment</h3>
-              </div>
-
-              {triageResult.requiresHumanApproval && (
-                <span className="smarthealth-doctor-ai-warning-badge">
-                  Human Review Required
-                </span>
-              )}
-            </div>
-
-            <div className="smarthealth-doctor-ai-triage-grid">
-              <div className="smarthealth-doctor-ai-triage-card">
-                <span>Urgency Level</span>
-
-                <strong>
-                  {getTriageValue("urgencyLevel") || "Not provided"}
-                </strong>
-              </div>
-
-              <div className="smarthealth-doctor-ai-triage-card">
-                <span>Recommended Specialization</span>
-
-                <strong>
-                  {getTriageValue("recommendedSpecialization") ||
-                    "Not provided"}
-                </strong>
-              </div>
-
-              <div className="smarthealth-doctor-ai-triage-card">
-                <span>Emergency Indicator</span>
-
-                <strong
-                  className={
-                    getTriageValue("emergencyIndicator")
-                      ? "smarthealth-doctor-ai-emergency"
-                      : "smarthealth-doctor-ai-no-emergency"
-                  }
-                >
-                  {getTriageValue("emergencyIndicator") ? "Yes" : "No"}
-                </strong>
-              </div>
-            </div>
-
-            {getTriageValue("reasoning") && (
-              <div className="smarthealth-doctor-ai-result-block">
-                <h4>AI Reasoning</h4>
-
-                <p>{getTriageValue("reasoning")}</p>
-              </div>
-            )}
-          </div>
-        )}
+        
       </section>
 
       {/* =====================================================
+
           AI RECOMMENDATIONS
-      ====================================================== */}
+
+      \====================================================== */}
 
       {recommendations.length > 0 && (
         <section className="smarthealth-doctor-ai-panel">
@@ -654,35 +710,173 @@ const DoctorAI = () => {
           </div>
 
           <div className="smarthealth-doctor-ai-recommendation-list">
-            {recommendations.map((recommendation) => (
-              <div
-                className="smarthealth-doctor-ai-recommendation"
-                key={recommendation.recommendationId}
-              >
-                <div className="smarthealth-doctor-ai-recommendation-header">
-                  <span>{recommendation.recommendationType}</span>
+            {recommendations.map((recommendation) => {
+              const parsed = parseRecommendation(recommendation.recommendation);
+              const type = recommendation.recommendationType || "HealthcareAI";
+              const normalizedType = String(type).toLowerCase();
+              const urgency = getRecommendationField(
+                parsed,
+                "urgencyLevel",
+                "urgency",
+              );
+              const specialization = getRecommendationField(
+                parsed,
+                "recommendedSpecialization",
+                "specialization",
+              );
+              const emergency = getRecommendationField(
+                parsed,
+                "emergencyIndicator",
+                "isEmergency",
+              );
+              const reasoning =
+                getRecommendationField(parsed, "reasoning") ||
+                recommendation.reasoning;
+              const status = recommendation.status || "Pending";
+              const isTriage =
+                normalizedType.includes("triage") ||
+                urgency !== undefined ||
+                emergency !== undefined;
+              const displayedFields = parsed
+                ? Object.entries(parsed).filter(
+                    ([key, value]) =>
+                      ![
+                        "reasoning",
+                        "urgencylevel",
+                        "recommendedspecialization",
+                        "emergencyindicator",
+                        "isemergency",
+                      ].includes(key.toLowerCase()) &&
+                      value !== null &&
+                      value !== undefined &&
+                      value !== "",
+                  )
+                : [];
 
-                  <small>{recommendation.status}</small>
-                </div>
-
-                <p>{recommendation.recommendation}</p>
-
-                {recommendation.reasoning && (
-                  <div className="smarthealth-doctor-ai-recommendation-reasoning">
-                    <strong>Reasoning</strong>
-
-                    <p>{recommendation.reasoning}</p>
+              return (
+                <article
+                  className="smarthealth-doctor-ai-recommendation"
+                  key={
+                    recommendation.recommendationId ||
+                    `${type}-${recommendation.createdAt || "recommendation"}`
+                  }
+                >
+                  <div className="smarthealth-doctor-ai-recommendation-header">
+                    <div className="smarthealth-doctor-ai-recommendation-title-group">
+                      <span className="smarthealth-doctor-ai-recommendation-kicker">
+                        AI INSIGHT
+                      </span>
+                      <h3>{formatRecommendationLabel(type)}</h3>
+                    </div>
+                    <span
+                      className={`smarthealth-doctor-ai-status-badge smarthealth-doctor-ai-status-${String(
+                        status,
+                      )
+                        .toLowerCase()
+                        .replace(/[^a-z]+/g, "-")}`}
+                    >
+                      <span className="smarthealth-doctor-ai-status-dot" />
+                      {formatRecommendationLabel(status)}
+                    </span>
                   </div>
-                )}
-              </div>
-            ))}
+
+                  {parsed ? (
+                    <div className="smarthealth-doctor-ai-recommendation-content">
+                      {isTriage ? (
+                        <>
+                          <div className="smarthealth-doctor-ai-clinical-metrics">
+                            {urgency !== undefined && (
+                              <div
+                                className={`smarthealth-doctor-ai-clinical-metric ${String(urgency).toLowerCase() === "emergency" || String(urgency).toLowerCase() === "urgent" ? "is-alert" : ""}`}
+                              >
+                                <span>Urgency level</span>
+                                <strong>
+                                  {formatRecommendationValue(urgency)}
+                                </strong>
+                              </div>
+                            )}
+                            {specialization !== undefined && (
+                              <div className="smarthealth-doctor-ai-clinical-metric">
+                                <span>Recommended specialty</span>
+                                <strong>
+                                  {formatRecommendationValue(specialization)}
+                                </strong>
+                              </div>
+                            )}
+                            {emergency !== undefined && (
+                              <div
+                                className={`smarthealth-doctor-ai-clinical-metric ${emergency ? "is-alert" : "is-safe"}`}
+                              >
+                                <span>Emergency indicator</span>
+                                <strong>
+                                  {emergency
+                                    ? "Emergency indicated"
+                                    : "No emergency indicated"}
+                                </strong>
+                              </div>
+                            )}
+                          </div>
+                          {displayedFields.length > 0 && (
+                            <div className="smarthealth-doctor-ai-recommendation-details">
+                              {displayedFields.map(([key, value]) => (
+                                <div
+                                  className="smarthealth-doctor-ai-recommendation-detail"
+                                  key={key}
+                                >
+                                  <span>{formatRecommendationLabel(key)}</span>
+                                  <p>{formatRecommendationValue(value)}</p>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <div className="smarthealth-doctor-ai-recommendation-details">
+                          {Object.entries(parsed).map(([key, value]) => (
+                            <div
+                              className="smarthealth-doctor-ai-recommendation-detail"
+                              key={key}
+                            >
+                              <span>{formatRecommendationLabel(key)}</span>
+                              <p>{formatRecommendationValue(value)}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <p className="smarthealth-doctor-ai-recommendation-text">
+                      {recommendation.recommendation ||
+                        "No recommendation details were provided."}
+                    </p>
+                  )}
+
+                  {reasoning && (
+                    <div className="smarthealth-doctor-ai-recommendation-reasoning">
+                      <span
+                        className="smarthealth-doctor-ai-reasoning-mark"
+                        aria-hidden="true"
+                      >
+                        i
+                      </span>
+                      <div>
+                        <strong>Clinical reasoning</strong>
+                        <p>{reasoning}</p>
+                      </div>
+                    </div>
+                  )}
+                </article>
+              );
+            })}
           </div>
         </section>
       )}
 
       {/* =====================================================
+
           HUMAN APPROVAL
-      ====================================================== */}
+
+      \====================================================== */}
 
       <section className="smarthealth-doctor-ai-panel">
         <div className="smarthealth-doctor-ai-panel-header">
@@ -758,6 +952,7 @@ const DoctorAI = () => {
                     onChange={(event) =>
                       handleApprovalCommentChange(
                         approval.approvalId,
+
                         event.target.value,
                       )
                     }

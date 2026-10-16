@@ -33,6 +33,20 @@ import ReceptionistPayments from "../pages/receptionist/ReceptionistPayments";
 import ReceptionistInsurance from "../pages/receptionist/ReceptionistInsurance";
 import ReceptionistNotifications from "../pages/receptionist/ReceptionistNotifications";
 import ReceptionistAIBilling from "../pages/receptionist/ReceptionistAIBilling";
+import ReceptionistAddPatient from "../pages/receptionist/ReceptionistAddPatient";
+import ReceptionistPatients from "../pages/receptionist/ReceptionistPatients";
+import ReceptionistCreateAppointment from "../pages/receptionist/ReceptionistCreateAppointment";
+
+import PatientLayout from "../layouts/PatientLayout";
+import PatientDashboard from "../pages/patient/PatientDashboard";
+import FindDoctor from "../pages/patient/FindDoctor";
+import BookAppointment from "../pages/patient/BookAppointment";
+import MyAppointments from "../pages/patient/MyAppointments";
+import MedicalRecords from "../pages/patient/MedicalRecords";
+import Prescriptions from "../pages/patient/Prescriptions";
+import LabReports from "../pages/patient/LabReports";
+import PatientProfile from "../pages/patient/PatientProfile";
+import AIAssistant from "../pages/patient/AIAssistant";
 
 /* =========================================================
    PROTECTED ROUTE
@@ -192,6 +206,10 @@ const AppRoutes = () => {
       >
         <Route path="dashboard" element={<ReceptionistDashboard />} />
 
+        <Route path="patients" element={<ReceptionistPatients />} />
+
+        <Route path="patients/add" element={<ReceptionistAddPatient />} />
+
         <Route path="appointments" element={<ReceptionistAppointments />} />
 
         <Route path="availability" element={<ReceptionistAvailability />} />
@@ -205,6 +223,43 @@ const AppRoutes = () => {
         <Route path="insurance" element={<ReceptionistInsurance />} />
 
         <Route path="notifications" element={<ReceptionistNotifications />} />
+        <Route
+          path="/receptionist/appointments/create"
+          element={<ReceptionistCreateAppointment />}
+        />
+      </Route>
+
+      {/* ===================================================
+    PATIENT ROUTES
+==================================================== */}
+
+      <Route
+        path="/patient"
+        element={
+          <RoleRoute allowedRoles={["Patient"]}>
+            <PatientLayout />
+          </RoleRoute>
+        }
+      >
+        <Route index element={<Navigate to="/patient/dashboard" replace />} />
+
+        <Route path="dashboard" element={<PatientDashboard />} />
+
+        <Route path="doctors" element={<FindDoctor />} />
+
+        <Route path="book-appointment" element={<BookAppointment />} />
+
+        <Route path="appointments" element={<MyAppointments />} />
+
+        <Route path="medical-records" element={<MedicalRecords />} />
+
+        <Route path="prescriptions" element={<Prescriptions />} />
+
+        <Route path="lab-reports" element={<LabReports />} />
+
+        <Route path="profile" element={<PatientProfile />} />
+
+        <Route path="ai-assistant" element={<AIAssistant />} />
       </Route>
 
       {/* ===================================================

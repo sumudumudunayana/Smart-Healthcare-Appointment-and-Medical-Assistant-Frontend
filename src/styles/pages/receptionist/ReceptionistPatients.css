@@ -1,0 +1,694 @@
+.smarthealth-receptionist-patients-page {
+  min-height: 100%;
+  padding: 28px;
+  background: #f4faf7;
+}
+.smarthealth-receptionist-patients-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.smarthealth-receptionist-patients-eyebrow {
+  display: block;
+  margin-bottom: 7px;
+  color: #059669;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.smarthealth-receptionist-patients-header h1 {
+  margin: 0;
+  color: #064e3b;
+  font-size: 28px;
+  font-weight: 800;
+}
+.smarthealth-receptionist-patients-header p {
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+.smarthealth-receptionist-patients-primary-button,
+.smarthealth-receptionist-patients-secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  box-sizing: border-box;
+  border-radius: 9px;
+  padding: 9px 15px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+.smarthealth-receptionist-patients-primary-button {
+  border: 1px solid #059669;
+  background: #059669;
+  color: #fff;
+}
+.smarthealth-receptionist-patients-primary-button:hover {
+  background: #047857;
+}
+.smarthealth-receptionist-patients-secondary-button {
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #334155;
+}
+.smarthealth-receptionist-patients-secondary-button:hover {
+  background: #f8fafc;
+}
+.smarthealth-receptionist-patients-primary-button:disabled,
+.smarthealth-receptionist-patients-secondary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.smarthealth-receptionist-patient-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 220px));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.smarthealth-receptionist-patient-summary > div {
+  padding: 17px 19px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+}
+.smarthealth-receptionist-patient-summary span {
+  display: block;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+.smarthealth-receptionist-patient-summary strong {
+  display: block;
+  margin-top: 4px;
+  color: #064e3b;
+  font-size: 24px;
+}
+.smarthealth-receptionist-patient-toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #fff;
+}
+.smarthealth-receptionist-patient-search {
+  position: relative;
+  flex: 1;
+}
+.smarthealth-receptionist-patient-search span {
+  position: absolute;
+  top: 9px;
+  left: 13px;
+  color: #94a3b8;
+  font-size: 20px;
+}
+.smarthealth-receptionist-patient-search input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  padding: 10px 12px 10px 36px;
+  color: #334155;
+  outline: none;
+  font-size: 13px;
+}
+.smarthealth-receptionist-patient-search input:focus,
+.smarthealth-receptionist-patient-field input:focus,
+.smarthealth-receptionist-patient-field select:focus,
+.smarthealth-receptionist-patient-field textarea:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+.smarthealth-receptionist-patient-table-card,
+.smarthealth-receptionist-patient-form {
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+}
+.smarthealth-receptionist-patient-table-scroll {
+  overflow-x: auto;
+}
+.smarthealth-receptionist-patient-table-card table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: collapse;
+}
+.smarthealth-receptionist-patient-table-card th {
+  padding: 14px 18px;
+  background: #f8fafc;
+  color: #64748b;
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.smarthealth-receptionist-patient-table-card td {
+  padding: 14px 18px;
+  border-top: 1px solid #f1f5f9;
+  color: #475569;
+  font-size: 13px;
+}
+.smarthealth-receptionist-patient-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.smarthealth-receptionist-patient-identity > span {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  background: #d1fae5;
+  color: #047857;
+  font-size: 12px;
+  font-weight: 800;
+}
+.smarthealth-receptionist-patient-identity strong,
+.smarthealth-receptionist-patient-identity small {
+  display: block;
+}
+.smarthealth-receptionist-patient-identity strong {
+  color: #1e293b;
+}
+.smarthealth-receptionist-patient-identity small {
+  margin-top: 3px;
+  color: #94a3b8;
+  font-size: 11px;
+}
+.smarthealth-receptionist-patient-status {
+  border-radius: 20px;
+  padding: 5px 9px;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 11px;
+  font-weight: 700;
+}
+.smarthealth-receptionist-patient-empty {
+  padding: 42px !important;
+  color: #64748b !important;
+  text-align: center;
+}
+.smarthealth-receptionist-patient-form section {
+  padding: 23px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.smarthealth-receptionist-patient-form section h2 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 16px;
+}
+.smarthealth-receptionist-patient-form section p {
+  margin: 5px 0 18px;
+  color: #64748b;
+  font-size: 13px;
+}
+.smarthealth-receptionist-patient-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.smarthealth-receptionist-patient-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+}
+.smarthealth-receptionist-patient-field input,
+.smarthealth-receptionist-patient-field select,
+.smarthealth-receptionist-patient-field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px 11px;
+  background: #fff;
+  color: #334155;
+  font: inherit;
+  font-weight: 400;
+  outline: none;
+  resize: vertical;
+}
+.smarthealth-receptionist-patient-field-wide {
+  grid-column: 1 / -1;
+}
+.smarthealth-receptionist-patient-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px 23px;
+}
+@media (max-width: 720px) {
+  .smarthealth-receptionist-patients-page {
+    padding: 18px;
+  }
+  .smarthealth-receptionist-patients-header {
+    flex-direction: column;
+  }
+  .smarthealth-receptionist-patient-summary,
+  .smarthealth-receptionist-patient-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .smarthealth-receptionist-patient-toolbar {
+    flex-direction: column;
+  }
+}
+
+
+
+
+
+/* =====================================================
+   PATIENT ACTION BUTTONS
+===================================================== */
+
+.smarthealth-receptionist-patient-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.smarthealth-receptionist-patient-actions button {
+  border: 1px solid transparent;
+  border-radius: 7px;
+  padding: 7px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.smarthealth-patient-action-view {
+  border-color: #bfdbfe !important;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.smarthealth-patient-action-view:hover {
+  background: #dbeafe;
+}
+
+.smarthealth-patient-action-edit {
+  border-color: #a7f3d0 !important;
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.smarthealth-patient-action-edit:hover {
+  background: #d1fae5;
+}
+
+.smarthealth-patient-action-deactivate {
+  border-color: #fecaca !important;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.smarthealth-patient-action-deactivate:hover {
+  background: #fee2e2;
+}
+
+.smarthealth-receptionist-patient-actions button:disabled {
+  border-color: #e2e8f0 !important;
+  background: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* =====================================================
+   PATIENT STATUS
+===================================================== */
+
+.smarthealth-receptionist-patient-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.smarthealth-patient-status-inactive {
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+}
+
+/* =====================================================
+   MODAL OVERLAY
+===================================================== */
+
+.smarthealth-patient-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.58);
+  backdrop-filter: blur(4px);
+  animation: smarthealth-patient-overlay-in 0.2s ease;
+}
+
+.smarthealth-patient-modal {
+  width: 100%;
+  max-width: 760px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.22);
+  animation: smarthealth-patient-modal-in 0.22s ease;
+}
+
+/* =====================================================
+   MODAL HEADER
+===================================================== */
+
+.smarthealth-patient-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 27px 21px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.smarthealth-patient-modal-header h2 {
+  margin: 0;
+  color: #064e3b;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.smarthealth-patient-modal-header p {
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.smarthealth-patient-modal-close {
+  display: grid;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.smarthealth-patient-modal-close:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.smarthealth-patient-modal-close:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* =====================================================
+   PATIENT PROFILE
+===================================================== */
+
+.smarthealth-patient-modal-profile {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 20px 27px 0;
+  padding: 15px;
+  border: 1px solid #d1fae5;
+  border-radius: 12px;
+  background: #f0fdf4;
+}
+
+.smarthealth-patient-modal-profile > span:first-child {
+  display: grid;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 50%;
+  background: #d1fae5;
+  color: #047857;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.smarthealth-patient-modal-profile > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.smarthealth-patient-modal-profile strong,
+.smarthealth-patient-modal-profile small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.smarthealth-patient-modal-profile strong {
+  color: #064e3b;
+  font-size: 15px;
+}
+
+.smarthealth-patient-modal-profile small {
+  margin-top: 5px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+/* =====================================================
+   MODAL BODY
+===================================================== */
+
+.smarthealth-patient-modal-body {
+  padding: 24px 27px;
+}
+
+.smarthealth-patient-modal-loading {
+  padding: 60px 20px;
+  color: #64748b;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* =====================================================
+   VIEW PATIENT DETAILS
+===================================================== */
+
+.smarthealth-patient-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 24px;
+}
+
+.smarthealth-patient-details-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  padding: 15px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.smarthealth-patient-details-grid > div > span {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.smarthealth-patient-details-grid > div > strong {
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+
+.smarthealth-patient-detail-wide {
+  grid-column: 1 / -1;
+}
+
+.smarthealth-patient-details-grid .smarthealth-patient-id {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+/* =====================================================
+   EDIT PATIENT FORM
+===================================================== */
+
+.smarthealth-patient-edit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 19px;
+}
+
+.smarthealth-patient-edit-wide {
+  grid-column: 1 / -1;
+}
+
+.smarthealth-patient-edit-grid
+  .smarthealth-receptionist-patient-field
+  input,
+.smarthealth-patient-edit-grid
+  .smarthealth-receptionist-patient-field
+  select,
+.smarthealth-patient-edit-grid
+  .smarthealth-receptionist-patient-field
+  textarea {
+  min-height: 42px;
+  border-color: #cbd5e1;
+  border-radius: 9px;
+  background: #ffffff;
+  font-size: 13px;
+}
+
+.smarthealth-patient-edit-grid
+  .smarthealth-receptionist-patient-field
+  textarea {
+  min-height: 90px;
+}
+
+.smarthealth-patient-inactive-notice {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border: 1px solid #fecaca;
+  border-radius: 9px;
+  background: #fef2f2;
+  color: #991b1b;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* =====================================================
+   MODAL FOOTER
+===================================================== */
+
+.smarthealth-patient-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 27px;
+  border-top: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.smarthealth-patient-modal-footer button {
+  min-height: 40px;
+}
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes smarthealth-patient-overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes smarthealth-patient-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+
+@media (max-width: 720px) {
+  .smarthealth-patient-modal-overlay {
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .smarthealth-patient-modal {
+    max-height: calc(100vh - 24px);
+    border-radius: 14px;
+  }
+
+  .smarthealth-patient-modal-header {
+    padding: 20px;
+  }
+
+  .smarthealth-patient-modal-header h2 {
+    font-size: 20px;
+  }
+
+  .smarthealth-patient-modal-profile {
+    margin: 16px 20px 0;
+    flex-wrap: wrap;
+  }
+
+  .smarthealth-patient-modal-body {
+    padding: 20px;
+  }
+
+  .smarthealth-patient-details-grid,
+  .smarthealth-patient-edit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .smarthealth-patient-detail-wide,
+  .smarthealth-patient-edit-wide {
+    grid-column: auto;
+  }
+
+  .smarthealth-patient-modal-footer {
+    flex-wrap: wrap;
+    padding: 16px 20px;
+  }
+
+  .smarthealth-patient-modal-footer button {
+    flex: 1;
+  }
+
+  .smarthealth-receptionist-patient-actions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smarthealth-patient-modal-overlay,
+  .smarthealth-patient-modal {
+    animation: none;
+  }
+}
