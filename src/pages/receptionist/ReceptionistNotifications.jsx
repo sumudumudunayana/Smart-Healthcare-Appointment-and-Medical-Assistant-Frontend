@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
+
 import notificationService from "../../services/notificationService";
+
 import "../../styles/pages/receptionist/ReceptionistNotifications.css";
 
 const ReceptionistNotifications = () => {
@@ -21,8 +23,8 @@ const ReceptionistNotifications = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [loadingUsers, setLoadingUsers] = useState(false);
   const [creating, setCreating] = useState(false);
-  const [markingId, setMarkingId] = useState(null);
 
+  // Load notifications created by the currently logged-in receptionist.
   const loadNotifications = useCallback(async (showRefreshing = false) => {
     try {
       if (showRefreshing) {
@@ -31,14 +33,15 @@ const ReceptionistNotifications = () => {
         setLoading(true);
       }
 
-      const data = await notificationService.getMyNotifications();
+      const data = await notificationService.getCreatedByMe();
 
       setNotifications(Array.isArray(data) ? data : []);
     } catch (error) {
-      console.error("Failed to load notifications:", error);
+      console.error("Failed to load created notifications:", error);
 
       toast.error(
-        error?.response?.data?.message || "Failed to load notifications.",
+        error?.response?.data?.message ||
+          "Failed to load notifications.",
       );
     } finally {
       setLoading(false);
@@ -46,6 +49,7 @@ const ReceptionistNotifications = () => {
     }
   }, []);
 
+  // Load users available as notification recipients.
   const loadUsers = useCallback(async () => {
     try {
       setLoadingUsers(true);
@@ -56,7 +60,10 @@ const ReceptionistNotifications = () => {
     } catch (error) {
       console.error("Failed to load notification users:", error);
 
-      toast.error(error?.response?.data?.message || "Failed to load users.");
+      toast.error(
+        error?.response?.data?.message ||
+          "Failed to load users.",
+      );
     } finally {
       setLoadingUsers(false);
     }
@@ -72,27 +79,36 @@ const ReceptionistNotifications = () => {
     }
   }, [showCreateForm, users.length, loadUsers]);
 
+  // Summary: unread notifications.
   const unreadCount = useMemo(
     () =>
       notifications.filter(
-        (notification) => notification.status?.toLowerCase() === "unread",
+        (notification) =>
+          notification.status?.toLowerCase() === "unread",
       ).length,
     [notifications],
   );
 
+  // Summary: read notifications.
   const readCount = useMemo(
     () =>
       notifications.filter(
-        (notification) => notification.status?.toLowerCase() === "read",
+        (notification) =>
+          notification.status?.toLowerCase() === "read",
       ).length,
     [notifications],
   );
 
+  // Summary: notifications created today.
   const todayCount = useMemo(() => {
     const today = new Date();
 
     return notifications.filter((notification) => {
       const date = new Date(notification.createdAt);
+
+      if (Number.isNaN(date.getTime())) {
+        return false;
+      }
 
       return (
         date.getDate() === today.getDate() &&
@@ -102,6 +118,7 @@ const ReceptionistNotifications = () => {
     }).length;
   }, [notifications]);
 
+  // Build the notification type filter from available notifications.
   const notificationTypes = useMemo(() => {
     const types = notifications
       .map((notification) => notification.notificationType)
@@ -110,21 +127,34 @@ const ReceptionistNotifications = () => {
     return [...new Set(types)];
   }, [notifications]);
 
+  // Search and filter notifications.
   const filteredNotifications = useMemo(() => {
     const search = searchTerm.trim().toLowerCase();
 
     return notifications.filter((notification) => {
+      const messageText = notification.message?.toLowerCase() || "";
+      const typeText =
+        notification.notificationType?.toLowerCase() || "";
+      const recipientName =
+        notification.recipientName?.toLowerCase() || "";
+      const recipientEmail =
+        notification.recipientEmail?.toLowerCase() || "";
+
       const matchesSearch =
         !search ||
-        notification.message?.toLowerCase().includes(search) ||
-        notification.notificationType?.toLowerCase().includes(search);
+        messageText.includes(search) ||
+        typeText.includes(search) ||
+        recipientName.includes(search) ||
+        recipientEmail.includes(search);
 
       const matchesStatus =
         statusFilter === "All" ||
-        notification.status?.toLowerCase() === statusFilter.toLowerCase();
+        notification.status?.toLowerCase() ===
+          statusFilter.toLowerCase();
 
       const matchesType =
-        typeFilter === "All" || notification.notificationType === typeFilter;
+        typeFilter === "All" ||
+        notification.notificationType === typeFilter;
 
       return matchesSearch && matchesStatus && matchesType;
     });
@@ -149,6 +179,7 @@ const ReceptionistNotifications = () => {
     setMessage("");
   };
 
+  // Create a notification for a selected recipient.
   const handleCreateNotification = async (event) => {
     event.preventDefault();
 
@@ -167,6 +198,13 @@ const ReceptionistNotifications = () => {
       return;
     }
 
+    if (message.trim().length > 2000) {
+      toast.error(
+        "Notification message cannot exceed 2000 characters.",
+      );
+      return;
+    }
+
     try {
       setCreating(true);
 
@@ -178,45 +216,23 @@ const ReceptionistNotifications = () => {
 
       toast.success("Notification created successfully.");
 
-      handleCloseCreateForm();
+      // Close and reset the form before refreshing.
+      setShowCreateForm(false);
+      setSelectedUserId("");
+      setNotificationType("Appointment");
+      setMessage("");
 
+      // Refresh the receptionist's created notifications.
       await loadNotifications(true);
     } catch (error) {
       console.error("Failed to create notification:", error);
 
       toast.error(
-        error?.response?.data?.message || "Failed to create notification.",
+        error?.response?.data?.message ||
+          "Failed to create notification.",
       );
     } finally {
       setCreating(false);
-    }
-  };
-
-  const handleMarkAsRead = async (notificationId) => {
-    try {
-      setMarkingId(notificationId);
-
-      const updatedNotification =
-        await notificationService.markAsRead(notificationId);
-
-      setNotifications((current) =>
-        current.map((notification) =>
-          notification.notificationId === notificationId
-            ? updatedNotification
-            : notification,
-        ),
-      );
-
-      toast.success("Notification marked as read.");
-    } catch (error) {
-      console.error("Failed to mark notification as read:", error);
-
-      toast.error(
-        error?.response?.data?.message ||
-          "Failed to mark notification as read.",
-      );
-    } finally {
-      setMarkingId(null);
     }
   };
 
@@ -251,7 +267,10 @@ const ReceptionistNotifications = () => {
       return "";
     }
 
-    const difference = new Date().getTime() - date.getTime();
+    const difference = Math.max(
+      0,
+      new Date().getTime() - date.getTime(),
+    );
 
     const minutes = Math.floor(difference / 60000);
     const hours = Math.floor(difference / 3600000);
@@ -279,23 +298,38 @@ const ReceptionistNotifications = () => {
   const getNotificationIcon = (type) => {
     const normalized = type?.toLowerCase() || "";
 
-    if (normalized.includes("appointment") || normalized.includes("schedule")) {
+    if (
+      normalized.includes("appointment") ||
+      normalized.includes("schedule")
+    ) {
       return "📅";
     }
 
-    if (normalized.includes("payment") || normalized.includes("bill")) {
+    if (
+      normalized.includes("payment") ||
+      normalized.includes("bill")
+    ) {
       return "💳";
     }
 
-    if (normalized.includes("insurance") || normalized.includes("claim")) {
+    if (
+      normalized.includes("insurance") ||
+      normalized.includes("claim")
+    ) {
       return "🛡️";
     }
 
-    if (normalized.includes("medical") || normalized.includes("record")) {
+    if (
+      normalized.includes("medical") ||
+      normalized.includes("record")
+    ) {
       return "🩺";
     }
 
-    if (normalized.includes("system") || normalized.includes("admin")) {
+    if (
+      normalized.includes("system") ||
+      normalized.includes("admin")
+    ) {
       return "⚙️";
     }
 
@@ -309,15 +343,24 @@ const ReceptionistNotifications = () => {
       return "smarthealth-receptionist-notification-type-appointment";
     }
 
-    if (normalized.includes("payment") || normalized.includes("bill")) {
+    if (
+      normalized.includes("payment") ||
+      normalized.includes("bill")
+    ) {
       return "smarthealth-receptionist-notification-type-payment";
     }
 
-    if (normalized.includes("insurance") || normalized.includes("claim")) {
+    if (
+      normalized.includes("insurance") ||
+      normalized.includes("claim")
+    ) {
       return "smarthealth-receptionist-notification-type-insurance";
     }
 
-    if (normalized.includes("medical") || normalized.includes("record")) {
+    if (
+      normalized.includes("medical") ||
+      normalized.includes("record")
+    ) {
       return "smarthealth-receptionist-notification-type-medical";
     }
 
@@ -334,7 +377,8 @@ const ReceptionistNotifications = () => {
           </h1>
 
           <p className="smarthealth-receptionist-notification-subtitle">
-            Review and manage healthcare system notifications.
+            Review notifications you have sent and check their
+            delivery status.
           </p>
         </div>
 
@@ -424,7 +468,8 @@ const ReceptionistNotifications = () => {
             </h2>
 
             <p className="smarthealth-receptionist-notification-section-description">
-              Search, filter, and manage notifications.
+              Search notifications, view recipients, and check
+              whether recipients have read your messages.
             </p>
           </div>
 
@@ -462,6 +507,7 @@ const ReceptionistNotifications = () => {
                 className="smarthealth-receptionist-notification-close-button"
                 onClick={handleCloseCreateForm}
                 disabled={creating}
+                aria-label="Close notification form"
               >
                 ×
               </button>
@@ -472,22 +518,35 @@ const ReceptionistNotifications = () => {
               onSubmit={handleCreateNotification}
             >
               <div className="smarthealth-receptionist-notification-form-group">
-                <label htmlFor="notification-recipient">Recipient</label>
+                <label htmlFor="notification-recipient">
+                  Recipient
+                </label>
 
                 <select
                   id="notification-recipient"
                   value={selectedUserId}
-                  onChange={(event) => setSelectedUserId(event.target.value)}
+                  onChange={(event) =>
+                    setSelectedUserId(event.target.value)
+                  }
                   disabled={loadingUsers || creating}
+                  required
                 >
                   <option value="">
-                    {loadingUsers ? "Loading users..." : "Select a recipient"}
+                    {loadingUsers
+                      ? "Loading users..."
+                      : "Select a recipient"}
                   </option>
 
                   {users
-                    .filter((user) => user.status?.toLowerCase() === "active")
+                    .filter(
+                      (user) =>
+                        user.status?.toLowerCase() === "active",
+                    )
                     .map((user) => (
-                      <option key={user.userId} value={user.userId}>
+                      <option
+                        key={user.userId}
+                        value={user.userId}
+                      >
                         {user.fullName} — {user.email}
                       </option>
                     ))}
@@ -495,39 +554,49 @@ const ReceptionistNotifications = () => {
               </div>
 
               <div className="smarthealth-receptionist-notification-form-group">
-                <label htmlFor="notification-type">Notification Type</label>
+                <label htmlFor="notification-type">
+                  Notification Type
+                </label>
 
                 <select
                   id="notification-type"
                   value={notificationType}
-                  onChange={(event) => setNotificationType(event.target.value)}
+                  onChange={(event) =>
+                    setNotificationType(event.target.value)
+                  }
                   disabled={creating}
+                  required
                 >
                   <option value="Appointment">Appointment</option>
-
                   <option value="Payment">Payment</option>
-
                   <option value="Insurance">Insurance</option>
-
                   <option value="Medical">Medical</option>
-
                   <option value="System">System</option>
-
                   <option value="General">General</option>
                 </select>
               </div>
 
               <div className="smarthealth-receptionist-notification-form-group smarthealth-receptionist-notification-form-group-wide">
-                <label htmlFor="notification-message">Message</label>
+                <label htmlFor="notification-message">
+                  Message
+                </label>
 
                 <textarea
                   id="notification-message"
                   value={message}
-                  onChange={(event) => setMessage(event.target.value)}
+                  onChange={(event) =>
+                    setMessage(event.target.value)
+                  }
                   placeholder="Enter notification message..."
                   disabled={creating}
                   rows={4}
+                  maxLength={2000}
+                  required
                 />
+
+                <small className="smarthealth-receptionist-notification-character-count">
+                  {message.length}/2000 characters
+                </small>
               </div>
 
               <div className="smarthealth-receptionist-notification-form-actions">
@@ -545,27 +614,31 @@ const ReceptionistNotifications = () => {
                   className="smarthealth-receptionist-notification-submit-button"
                   disabled={creating || loadingUsers}
                 >
-                  {creating ? "Creating..." : "Create Notification"}
+                  {creating
+                    ? "Creating..."
+                    : "Create Notification"}
                 </button>
               </div>
             </form>
           </div>
         )}
 
-        {/* FILTERS */}
+        {/* SEARCH AND FILTERS */}
         <div className="smarthealth-receptionist-notification-filter-bar">
           <input
             type="text"
             className="smarthealth-receptionist-notification-search"
-            placeholder="Search notifications..."
+            placeholder="Search message, recipient name, or email..."
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
+            aria-label="Search notifications"
           />
 
           <select
             className="smarthealth-receptionist-notification-filter-select"
             value={statusFilter}
             onChange={(event) => setStatusFilter(event.target.value)}
+            aria-label="Filter by read status"
           >
             <option value="All">All Status</option>
             <option value="Unread">Unread</option>
@@ -576,6 +649,7 @@ const ReceptionistNotifications = () => {
             className="smarthealth-receptionist-notification-filter-select"
             value={typeFilter}
             onChange={(event) => setTypeFilter(event.target.value)}
+            aria-label="Filter by notification type"
           >
             <option value="All">All Types</option>
 
@@ -604,14 +678,15 @@ const ReceptionistNotifications = () => {
 
             <p className="smarthealth-receptionist-notification-empty-text">
               {notifications.length === 0
-                ? "You don't have any notifications yet."
+                ? "You haven't created any notifications yet."
                 : "No notifications match your current search or filters."}
             </p>
           </div>
         ) : (
           <div className="smarthealth-receptionist-notification-list">
             {filteredNotifications.map((notification) => {
-              const isUnread = notification.status?.toLowerCase() === "unread";
+              const isUnread =
+                notification.status?.toLowerCase() === "unread";
 
               return (
                 <article
@@ -627,55 +702,76 @@ const ReceptionistNotifications = () => {
                       notification.notificationType,
                     )}`}
                   >
-                    {getNotificationIcon(notification.notificationType)}
+                    {getNotificationIcon(
+                      notification.notificationType,
+                    )}
                   </div>
 
                   <div className="smarthealth-receptionist-notification-item-content">
+                    {/* Notification heading */}
                     <div className="smarthealth-receptionist-notification-item-top">
                       <div className="smarthealth-receptionist-notification-item-heading">
                         <span className="smarthealth-receptionist-notification-type">
-                          {notification.notificationType || "Notification"}
+                          {notification.notificationType ||
+                            "Notification"}
                         </span>
 
-                        {isUnread && (
-                          <span className="smarthealth-receptionist-notification-unread-badge">
-                            Unread
-                          </span>
-                        )}
+                        <span
+                          className={`smarthealth-receptionist-notification-status ${
+                            isUnread
+                              ? "smarthealth-receptionist-notification-status-unread"
+                              : "smarthealth-receptionist-notification-status-read"
+                          }`}
+                        >
+                          {isUnread ? "Unread" : "Read"}
+                        </span>
                       </div>
 
                       <span className="smarthealth-receptionist-notification-relative-time">
-                        {formatRelativeTime(notification.createdAt)}
+                        {formatRelativeTime(
+                          notification.createdAt,
+                        )}
                       </span>
                     </div>
 
+                    {/* Recipient information */}
+                    <div className="smarthealth-receptionist-notification-recipient">
+                      <span className="smarthealth-receptionist-notification-recipient-label">
+                        Recipient
+                      </span>
+
+                      <span className="smarthealth-receptionist-notification-recipient-name">
+                        {notification.recipientName ||
+                          "Unknown recipient"}
+                      </span>
+
+                      {notification.recipientEmail && (
+                        <span className="smarthealth-receptionist-notification-recipient-email">
+                          {notification.recipientEmail}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Notification message */}
                     <p className="smarthealth-receptionist-notification-message">
                       {notification.message}
                     </p>
 
+                    {/* Creation and read information */}
                     <div className="smarthealth-receptionist-notification-item-bottom">
                       <span className="smarthealth-receptionist-notification-date">
-                        {formatDate(notification.createdAt)}
+                        Created: {formatDate(notification.createdAt)}
                       </span>
 
-                      {isUnread && (
-                        <button
-                          type="button"
-                          className="smarthealth-receptionist-notification-read-button"
-                          onClick={() =>
-                            handleMarkAsRead(notification.notificationId)
-                          }
-                          disabled={markingId === notification.notificationId}
-                        >
-                          {markingId === notification.notificationId
-                            ? "Updating..."
-                            : "Mark as Read"}
-                        </button>
-                      )}
-
-                      {!isUnread && notification.readAt && (
+                      {notification.readAt ? (
                         <span className="smarthealth-receptionist-notification-read-time">
-                          Read {formatRelativeTime(notification.readAt)}
+                          Read {formatRelativeTime(
+                            notification.readAt,
+                          )}
+                        </span>
+                      ) : (
+                        <span className="smarthealth-receptionist-notification-pending-read">
+                          Awaiting recipient
                         </span>
                       )}
                     </div>
