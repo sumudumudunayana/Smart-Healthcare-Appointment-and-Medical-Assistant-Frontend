@@ -542,3 +542,556 @@
     padding: 18px;
   }
 }
+
+
+/* =========================================================
+   SPECIALIZATION DESCRIPTION FIELD
+========================================================= */
+
+.smarthealth-admin-specialization-description-field {
+  position: relative;
+  min-width: 0;
+}
+
+.smarthealth-admin-specialization-field label span,
+.smarthealth-admin-specialization-modal-field label span {
+  color: #dc5353;
+}
+
+.smarthealth-admin-specialization-field textarea,
+.smarthealth-admin-specialization-modal-field textarea {
+  display: block;
+  width: 100%;
+  min-height: 100px;
+  padding: 12px 13px;
+  border: 1px solid #d7e5df;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #29473b;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-admin-specialization-field textarea::placeholder,
+.smarthealth-admin-specialization-modal-field textarea::placeholder {
+  color: #a1ada7;
+}
+
+.smarthealth-admin-specialization-field textarea:focus,
+.smarthealth-admin-specialization-modal-field textarea:focus {
+  border-color: #159a68;
+  box-shadow: 0 0 0 3px rgba(21, 154, 104, 0.09);
+}
+
+.smarthealth-admin-specialization-field textarea:disabled,
+.smarthealth-admin-specialization-modal-field textarea:disabled {
+  background: #f5f8f6;
+  cursor: not-allowed;
+}
+
+.smarthealth-admin-specialization-character-count {
+  display: block;
+  margin-top: 6px;
+  color: #8b9991;
+  font-size: 11px;
+  text-align: right;
+}
+
+.smarthealth-admin-specialization-add-form {
+  align-items: flex-start;
+}
+
+.smarthealth-admin-specialization-add-form
+  .smarthealth-admin-specialization-field {
+  min-width: 0;
+}
+
+.smarthealth-admin-specialization-add-form
+  .smarthealth-admin-specialization-description-field {
+  flex: 1.4;
+}
+
+.smarthealth-admin-specialization-add-form
+  .smarthealth-admin-specialization-submit {
+  align-self: flex-start;
+  margin-top: 25px;
+}
+
+
+/* =========================================================
+   SPECIALIZATION TABLE UPDATES
+========================================================= */
+
+.smarthealth-admin-specializations-table {
+  min-width: 850px;
+  table-layout: auto;
+}
+
+.smarthealth-admin-specializations-table th,
+.smarthealth-admin-specializations-table td {
+  vertical-align: middle;
+}
+
+.smarthealth-admin-specializations-table th:first-child,
+.smarthealth-admin-specializations-table td:first-child {
+  width: 55px;
+}
+
+.smarthealth-admin-specializations-table th:nth-child(2) {
+  min-width: 190px;
+}
+
+.smarthealth-admin-specializations-table th:nth-child(3) {
+  min-width: 250px;
+}
+
+.smarthealth-admin-specializations-table
+  .smarthealth-admin-specialization-actions-column {
+  min-width: 190px;
+  white-space: nowrap;
+}
+
+.smarthealth-admin-specialization-number-column {
+  width: 55px;
+}
+
+.smarthealth-admin-specialization-description-text {
+  max-width: 380px;
+  margin: 0;
+  color: #77867e;
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.smarthealth-admin-specialization-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   EDIT AND DELETE BUTTONS
+========================================================= */
+
+.smarthealth-admin-specialization-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 7px 11px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smarthealth-admin-specialization-action-button > span {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.smarthealth-admin-specialization-action-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.smarthealth-admin-specialization-action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.smarthealth-admin-specialization-edit-button {
+  border-color: #cce9da;
+  background: #edf8f1;
+  color: #168653;
+}
+
+.smarthealth-admin-specialization-edit-button:hover:not(:disabled) {
+  border-color: #9bd4b5;
+  background: #dff2e6;
+}
+
+.smarthealth-admin-specialization-delete-button {
+  border-color: #f1d6d6;
+  background: #fff2f2;
+  color: #c54848;
+}
+
+.smarthealth-admin-specialization-delete-button:hover:not(:disabled) {
+  border-color: #e9b7b7;
+  background: #ffe4e4;
+}
+
+.smarthealth-admin-specialization-delete-spinner {
+  width: 11px;
+  height: 11px;
+  border: 2px solid rgba(197, 72, 72, 0.25);
+  border-top-color: #c54848;
+  border-radius: 50%;
+  animation: smarthealth-specializations-spin 0.7s linear infinite;
+}
+
+
+/* =========================================================
+   EDIT MODAL OVERLAY
+========================================================= */
+
+.smarthealth-admin-specialization-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  background: rgba(15, 35, 26, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-sizing: border-box;
+  animation: smarthealth-specialization-overlay-in 0.2s ease;
+}
+
+
+/* =========================================================
+   EDIT MODAL CONTAINER
+========================================================= */
+
+.smarthealth-admin-specialization-modal {
+  width: 100%;
+  max-width: 540px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  border: 1px solid #e0ebe5;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 24px 80px rgba(12, 38, 25, 0.22);
+  animation: smarthealth-specialization-modal-in 0.25s ease;
+}
+
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.smarthealth-admin-specialization-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 23px 25px;
+  border-bottom: 1px solid #edf3f0;
+}
+
+.smarthealth-admin-specialization-modal-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+
+.smarthealth-admin-specialization-modal-icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 12px;
+  background: #e9f6ef;
+  color: #168c5f;
+  font-size: 21px;
+}
+
+.smarthealth-admin-specialization-modal-heading h2 {
+  margin: 0;
+  color: #24483a;
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.smarthealth-admin-specialization-modal-heading p {
+  margin: 5px 0 0;
+  color: #84918b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.smarthealth-admin-specialization-modal-close {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  border-radius: 9px;
+  background: #f3f7f5;
+  color: #64766c;
+  font-size: 25px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.smarthealth-admin-specialization-modal-close:hover:not(:disabled) {
+  background: #e5eee9;
+  color: #29473b;
+}
+
+.smarthealth-admin-specialization-modal-close:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   MODAL FORM
+========================================================= */
+
+.smarthealth-admin-specialization-modal-form {
+  padding: 24px 25px 25px;
+}
+
+.smarthealth-admin-specialization-modal-field {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.smarthealth-admin-specialization-modal-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #40564b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smarthealth-admin-specialization-modal-field input {
+  display: block;
+  width: 100%;
+  height: 45px;
+  padding: 0 13px;
+  border: 1px solid #d7e5df;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #29473b;
+  font-family: inherit;
+  font-size: 13px;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smarthealth-admin-specialization-modal-field input::placeholder {
+  color: #a1ada7;
+}
+
+.smarthealth-admin-specialization-modal-field input:focus {
+  border-color: #159a68;
+  box-shadow: 0 0 0 3px rgba(21, 154, 104, 0.09);
+}
+
+.smarthealth-admin-specialization-modal-field input:disabled {
+  background: #f5f8f6;
+  cursor: not-allowed;
+}
+
+.smarthealth-admin-specialization-modal-field textarea {
+  min-height: 125px;
+}
+
+.smarthealth-admin-specialization-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid #edf3f0;
+}
+
+
+/* =========================================================
+   MODAL FOOTER BUTTONS
+========================================================= */
+
+.smarthealth-admin-specialization-modal-cancel,
+.smarthealth-admin-specialization-modal-save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 17px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smarthealth-admin-specialization-modal-cancel {
+  border-color: #dce7e1;
+  background: #ffffff;
+  color: #5d7065;
+}
+
+.smarthealth-admin-specialization-modal-cancel:hover:not(:disabled) {
+  background: #f3f7f5;
+}
+
+.smarthealth-admin-specialization-modal-save {
+  background: #159a68;
+  color: #ffffff;
+}
+
+.smarthealth-admin-specialization-modal-save:hover:not(:disabled) {
+  background: #11885b;
+  transform: translateY(-1px);
+}
+
+.smarthealth-admin-specialization-modal-cancel:disabled,
+.smarthealth-admin-specialization-modal-save:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.smarthealth-admin-specialization-modal-save > span {
+  line-height: 1;
+}
+
+
+/* =========================================================
+   MODAL ANIMATIONS
+========================================================= */
+
+@keyframes smarthealth-specialization-overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes smarthealth-specialization-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =========================================================
+   TABLET RESPONSIVENESS
+========================================================= */
+
+@media (max-width: 800px) {
+  .smarthealth-admin-specialization-add-form {
+    align-items: stretch;
+  }
+
+  .smarthealth-admin-specialization-add-form
+    .smarthealth-admin-specialization-submit {
+    align-self: stretch;
+    margin-top: 0;
+  }
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVENESS
+========================================================= */
+
+@media (max-width: 600px) {
+  .smarthealth-admin-specialization-modal-overlay {
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .smarthealth-admin-specialization-modal {
+    max-height: calc(100vh - 24px);
+    margin: auto 0;
+    border-radius: 14px;
+  }
+
+  .smarthealth-admin-specialization-modal-header {
+    padding: 18px;
+  }
+
+  .smarthealth-admin-specialization-modal-heading {
+    gap: 10px;
+  }
+
+  .smarthealth-admin-specialization-modal-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .smarthealth-admin-specialization-modal-heading h2 {
+    font-size: 16px;
+  }
+
+  .smarthealth-admin-specialization-modal-heading p {
+    font-size: 11px;
+  }
+
+  .smarthealth-admin-specialization-modal-form {
+    padding: 20px 18px;
+  }
+
+  .smarthealth-admin-specialization-modal-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .smarthealth-admin-specialization-modal-cancel,
+  .smarthealth-admin-specialization-modal-save {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .smarthealth-admin-specialization-actions {
+    gap: 6px;
+  }
+
+  .smarthealth-admin-specialization-action-button {
+    padding: 7px 9px;
+    font-size: 10px;
+  }
+}
