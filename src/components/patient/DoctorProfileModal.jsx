@@ -48,21 +48,16 @@ const formatTime = (time) => {
 const formatDate = (dateString) => {
   if (!dateString) return "";
 
-  return new Date(`${dateString}T00:00:00`).toLocaleDateString(
-    undefined,
-    {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    },
-  );
+  return new Date(`${dateString}T00:00:00`).toLocaleDateString(undefined, {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 };
 
 const getErrorMessage = (error, fallback) =>
-  error?.response?.data?.message ||
-  error?.response?.data?.title ||
-  fallback;
+  error?.response?.data?.message || error?.response?.data?.title || fallback;
 
 const DoctorProfileModal = ({ doctorId, onClose }) => {
   const [doctor, setDoctor] = useState(null);
@@ -147,10 +142,7 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
       console.error("Failed to load existing appointments:", error);
       setAppointments([]);
       toast.error(
-        getErrorMessage(
-          error,
-          "Unable to check appointment availability.",
-        ),
+        getErrorMessage(error, "Unable to check appointment availability."),
       );
     } finally {
       setLoadingAppointments(false);
@@ -188,10 +180,9 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
   const selectedWeekday = useMemo(() => {
     if (!selectedDate) return "";
 
-    return new Date(`${selectedDate}T12:00:00`).toLocaleDateString(
-      "en-US",
-      { weekday: "long" },
-    );
+    return new Date(`${selectedDate}T12:00:00`).toLocaleDateString("en-US", {
+      weekday: "long",
+    });
   }, [selectedDate]);
 
   // Only schedules marked Available are displayed for booking.
@@ -214,8 +205,7 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
       appointments
         .filter(
           (appointment) =>
-            String(appointment.status || "").toLowerCase() !==
-            "cancelled",
+            String(appointment.status || "").toLowerCase() !== "cancelled",
         )
         .map((appointment) => normalizeTime(appointment.appointmentTime)),
     );
@@ -231,11 +221,7 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
       const start = toMinutes(schedule.startTime);
       const end = toMinutes(schedule.endTime);
 
-      if (
-        !Number.isFinite(start) ||
-        !Number.isFinite(end) ||
-        end <= start
-      ) {
+      if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
         return;
       }
 
@@ -306,9 +292,7 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
     }
 
     if (bookedTimes.has(selectedTime)) {
-      toast.error(
-        "This time is already booked. Please choose another time.",
-      );
+      toast.error("This time is already booked. Please choose another time.");
       await fetchAppointments();
       setSelectedTime("");
       setSelectedScheduleId("");
@@ -360,8 +344,7 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
     }
   };
 
-  const isActive =
-    String(doctor?.status || "").toLowerCase() === "active";
+  const isActive = String(doctor?.status || "").toLowerCase() === "active";
 
   return (
     <div
@@ -404,10 +387,7 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
 
         <div className="smarthealth-doctor-modal__body">
           {loadingProfile && (
-            <div
-              className="smarthealth-doctor-modal__state"
-              role="status"
-            >
+            <div className="smarthealth-doctor-modal__state" role="status">
               <span className="smarthealth-doctor-modal__spinner" />
               Loading doctor details...
             </div>
@@ -424,8 +404,7 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
             <>
               <section className="smarthealth-doctor-modal__profile">
                 <div className="smarthealth-doctor-modal__avatar">
-                  {doctor.fullName?.trim()?.charAt(0)?.toUpperCase() ||
-                    "D"}
+                  {doctor.fullName?.trim()?.charAt(0)?.toUpperCase() || "D"}
                 </div>
 
                 <div className="smarthealth-doctor-modal__profile-info">
@@ -447,9 +426,7 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
                     {doctor.specialization || "Specialization not provided"}
                   </p>
 
-                  <p>
-                    {doctor.department || "Department not assigned"}
-                  </p>
+                  <p>{doctor.department || "Department not assigned"}</p>
                 </div>
               </section>
 
@@ -477,9 +454,7 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
 
                   <div>
                     <span>License number</span>
-                    <strong>
-                      {doctor.licenseNumber || "Not provided"}
-                    </strong>
+                    <strong>{doctor.licenseNumber || "Not provided"}</strong>
                   </div>
                 </div>
               </section>
@@ -494,8 +469,8 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
 
                 {!isActive && (
                   <p className="smarthealth-doctor-modal__notice">
-                    This doctor is not currently marked as active.
-                    Booking is disabled.
+                    This doctor is not currently marked as active. Booking is
+                    disabled.
                   </p>
                 )}
 
@@ -519,22 +494,18 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
                 <div className="smarthealth-doctor-modal__slot-heading">
                   <h4>Available times</h4>
 
-                  {loadingAppointments && (
-                    <span>Checking availability...</span>
-                  )}
+                  {loadingAppointments && <span>Checking availability...</span>}
                 </div>
 
-                {!loadingAppointments &&
-                  availableSchedules.length === 0 && (
-                    <div className="smarthealth-doctor-modal__empty">
-                      <strong>No available schedule</strong>
-                      <p>
-                        This doctor has no available schedule for{" "}
-                        {selectedWeekday || "the selected day"}.
-                        Try another date.
-                      </p>
-                    </div>
-                  )}
+                {!loadingAppointments && availableSchedules.length === 0 && (
+                  <div className="smarthealth-doctor-modal__empty">
+                    <strong>No available schedule</strong>
+                    <p>
+                      This doctor has no available schedule for{" "}
+                      {selectedWeekday || "the selected day"}. Try another date.
+                    </p>
+                  </div>
+                )}
 
                 {!loadingAppointments &&
                   availableSchedules.length > 0 &&
@@ -542,8 +513,7 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
                     <div className="smarthealth-doctor-modal__empty">
                       <strong>No bookable times</strong>
                       <p>
-                        No future appointment times are available for
-                        this date.
+                        No future appointment times are available for this date.
                       </p>
                     </div>
                   )}
@@ -575,14 +545,10 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
                         }
                         onClick={() => handleSelectSlot(slot)}
                         aria-pressed={selected}
-                        title={
-                          slot.booked ? "Already booked" : "Select time"
-                        }
+                        title={slot.booked ? "Already booked" : "Select time"}
                       >
                         <span>{slot.label}</span>
-                        {slot.booked && (
-                          <small>Booked</small>
-                        )}
+                        {slot.booked && <small>Booked</small>}
                       </button>
                     );
                   })}
@@ -608,8 +574,7 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
                 <form onSubmit={handleBooking}>
                   <div className="smarthealth-doctor-modal__symptoms-field">
                     <label htmlFor="smarthealth-doctor-modal-symptoms">
-                      Symptoms or reason for visit{" "}
-                      <span>(optional)</span>
+                      Symptoms or reason for visit <span>(optional)</span>
                     </label>
 
                     <textarea
@@ -618,9 +583,7 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
                       maxLength="2000"
                       placeholder="Briefly describe your symptoms..."
                       value={symptoms}
-                      onChange={(event) =>
-                        setSymptoms(event.target.value)
-                      }
+                      onChange={(event) => setSymptoms(event.target.value)}
                       disabled={booking || !isActive}
                     />
                   </div>
@@ -629,8 +592,7 @@ const DoctorProfileModal = ({ doctorId, onClose }) => {
                     <div className="smarthealth-doctor-modal__selection">
                       <span>Selected appointment</span>
                       <strong>
-                        {formatDate(selectedDate)} ·{" "}
-                        {formatTime(selectedTime)}
+                        {formatDate(selectedDate)} · {formatTime(selectedTime)}
                       </strong>
                     </div>
                   )}
