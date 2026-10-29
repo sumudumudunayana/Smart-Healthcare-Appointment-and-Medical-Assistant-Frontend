@@ -7,9 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ============================================================
   // RESTORE LOGIN SESSION
-  // ============================================================
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -29,9 +27,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  // ============================================================
   // LOGIN
-  // ============================================================
 
   const login = async (email, password) => {
     const response = await authService.login({
@@ -57,9 +53,7 @@ export const AuthProvider = ({ children }) => {
     return response;
   };
 
-  // ============================================================
   // REGISTER
-  // ============================================================
 
   const register = async (fullName, email, phone, password) => {
     const response = await authService.register({
@@ -72,9 +66,7 @@ export const AuthProvider = ({ children }) => {
     return response;
   };
 
-  // ============================================================
   // LOGOUT
-  // ============================================================
 
   const logout = async () => {
     const refreshToken = localStorage.getItem("refreshToken");
