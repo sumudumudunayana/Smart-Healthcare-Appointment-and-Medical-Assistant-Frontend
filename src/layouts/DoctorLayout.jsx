@@ -17,38 +17,27 @@ const DoctorLayout = () => {
 
   return (
     <div className="smarthealth-doctor-layout">
-
       {/* =====================================================
           SIDEBAR
       ====================================================== */}
 
-      <Sidebar
-        isOpen={sidebarOpen}
-        onClose={handleCloseSidebar}
-      />
-
+      <Sidebar isOpen={sidebarOpen} onClose={handleCloseSidebar} />
 
       {/* =====================================================
           MAIN AREA
       ====================================================== */}
 
       <div className="smarthealth-doctor-layout-main">
-
         {/* Navbar */}
 
-        <Navbar
-          onMenuClick={handleMenuClick}
-        />
-
+        <Navbar onMenuClick={handleMenuClick} />
 
         {/* Page Content */}
 
         <main className="smarthealth-doctor-layout-content">
           <Outlet />
         </main>
-
       </div>
-
     </div>
   );
 };
