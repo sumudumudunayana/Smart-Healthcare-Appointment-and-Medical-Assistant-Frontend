@@ -17,38 +17,27 @@ const AdminLayout = () => {
 
   return (
     <div className="smarthealth-admin-layout">
-
       {/* =====================================================
           SIDEBAR
       ====================================================== */}
 
-      <Sidebar
-        isOpen={sidebarOpen}
-        onClose={handleCloseSidebar}
-      />
-
+      <Sidebar isOpen={sidebarOpen} onClose={handleCloseSidebar} />
 
       {/* =====================================================
           MAIN AREA
       ====================================================== */}
 
       <div className="smarthealth-admin-layout-main">
-
         {/* Navbar */}
 
-        <Navbar
-          onMenuClick={handleMenuClick}
-        />
-
+        <Navbar onMenuClick={handleMenuClick} />
 
         {/* Page Content */}
 
         <main className="smarthealth-admin-layout-content">
           <Outlet />
         </main>
-
       </div>
-
     </div>
   );
 };

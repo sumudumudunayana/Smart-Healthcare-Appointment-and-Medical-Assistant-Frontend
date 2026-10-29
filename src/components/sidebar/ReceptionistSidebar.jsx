@@ -161,9 +161,7 @@ const ReceptionistSidebar = ({ onNavigate }) => {
       ====================================================== */}
 
       <div className="smarthealth-sidebar-section">
-        <span className="smarthealth-sidebar-section-title">
-          COMMUNICATION
-        </span>
+        <span className="smarthealth-sidebar-section-title">COMMUNICATION</span>
 
         <NavLink
           to="/receptionist/notifications"
@@ -184,9 +182,7 @@ const ReceptionistSidebar = ({ onNavigate }) => {
       ====================================================== */}
 
       <div className="smarthealth-sidebar-section">
-        <span className="smarthealth-sidebar-section-title">
-          AI AGENT HELP
-        </span>
+        <span className="smarthealth-sidebar-section-title">AI AGENT HELP</span>
 
         <NavLink
           to="/receptionist/ai-billing"
