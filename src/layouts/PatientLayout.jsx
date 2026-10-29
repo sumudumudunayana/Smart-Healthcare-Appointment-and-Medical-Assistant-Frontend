@@ -18,10 +18,7 @@ const PatientLayout = () => {
   return (
     <div className="smarthealth-patient-layout">
       {/* Patient Sidebar */}
-      <PatientSidebar
-        isOpen={sidebarOpen}
-        onClose={handleCloseSidebar}
-      />
+      <PatientSidebar isOpen={sidebarOpen} onClose={handleCloseSidebar} />
 
       {/* Main Area */}
       <div className="smarthealth-patient-layout-main">
