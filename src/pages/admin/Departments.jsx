@@ -69,8 +69,7 @@ const Departments = () => {
 
     return departments.filter((department) => {
       const name = department.departmentName?.toLowerCase() || "";
-      const departmentDescription =
-        department.description?.toLowerCase() || "";
+      const departmentDescription = department.description?.toLowerCase() || "";
       const departmentLocation = department.location?.toLowerCase() || "";
 
       return (
@@ -278,9 +277,7 @@ const Departments = () => {
       await departmentService.delete(department.departmentId);
 
       setDepartments((current) =>
-        current.filter(
-          (item) => item.departmentId !== department.departmentId,
-        ),
+        current.filter((item) => item.departmentId !== department.departmentId),
       );
 
       // Close the edit modal if this department is being edited.
@@ -545,8 +542,7 @@ const Departments = () => {
                           className="smarthealth-admin-department-action-button smarthealth-admin-department-delete-button"
                           onClick={() => handleDelete(department)}
                           disabled={
-                            deletingId === department.departmentId ||
-                            updating
+                            deletingId === department.departmentId || updating
                           }
                           aria-label={`Delete ${department.departmentName}`}
                           title="Delete department"
