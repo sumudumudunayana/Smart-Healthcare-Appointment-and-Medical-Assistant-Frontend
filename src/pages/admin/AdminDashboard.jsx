@@ -67,7 +67,7 @@ const AdminDashboard = () => {
       }
 
       const appointmentDate = new Date(
-        `${appointment.appointmentDate}T00:00:00`
+        `${appointment.appointmentDate}T00:00:00`,
       );
 
       return (
@@ -86,33 +86,27 @@ const AdminDashboard = () => {
       todayAppointments: todayAppointments.length,
 
       scheduled: appointments.filter(
-        (appointment) =>
-          appointment.status?.toLowerCase() === "scheduled"
+        (appointment) => appointment.status?.toLowerCase() === "scheduled",
       ).length,
 
       completed: appointments.filter(
-        (appointment) =>
-          appointment.status?.toLowerCase() === "completed"
+        (appointment) => appointment.status?.toLowerCase() === "completed",
       ).length,
 
       cancelled: appointments.filter(
-        (appointment) =>
-          appointment.status?.toLowerCase() === "cancelled"
+        (appointment) => appointment.status?.toLowerCase() === "cancelled",
       ).length,
 
       noShow: appointments.filter(
-        (appointment) =>
-          appointment.status?.toLowerCase() === "noshow"
+        (appointment) => appointment.status?.toLowerCase() === "noshow",
       ).length,
 
       activeDoctors: doctors.filter(
-        (doctor) =>
-          doctor.status?.toLowerCase() === "active"
+        (doctor) => doctor.status?.toLowerCase() === "active",
       ).length,
 
       inactiveDoctors: doctors.filter(
-        (doctor) =>
-          doctor.status?.toLowerCase() !== "active"
+        (doctor) => doctor.status?.toLowerCase() !== "active",
       ).length,
     };
   }, [users, doctors, departments, specializations, appointments]);
@@ -121,11 +115,11 @@ const AdminDashboard = () => {
     return [...appointments]
       .sort((a, b) => {
         const dateA = new Date(
-          `${a.appointmentDate}T${a.appointmentTime || "00:00:00"}`
+          `${a.appointmentDate}T${a.appointmentTime || "00:00:00"}`,
         );
 
         const dateB = new Date(
-          `${b.appointmentDate}T${b.appointmentTime || "00:00:00"}`
+          `${b.appointmentDate}T${b.appointmentTime || "00:00:00"}`,
         );
 
         return dateB - dateA;
@@ -183,12 +177,7 @@ const AdminDashboard = () => {
 
     const date = new Date();
 
-    date.setHours(
-      Number(hours),
-      Number(minutes),
-      0,
-      0
-    );
+    date.setHours(Number(hours), Number(minutes), 0, 0);
 
     return date.toLocaleTimeString("en-US", {
       hour: "numeric",
@@ -209,7 +198,6 @@ const AdminDashboard = () => {
 
   return (
     <div className="smarthealth-admin-dashboard">
-
       {/* =====================================================
           HEADER
       ====================================================== */}
@@ -220,13 +208,9 @@ const AdminDashboard = () => {
             Administrator Dashboard
           </p>
 
-          <h1>
-            Welcome back, {user?.fullName || "Administrator"}
-          </h1>
+          <h1>Welcome back, {user?.fullName || "Administrator"}</h1>
 
-          <p>
-            Here's an overview of your healthcare management system.
-          </p>
+          <p>Here's an overview of your healthcare management system.</p>
         </div>
 
         <div className="smarthealth-admin-dashboard-date">
@@ -248,11 +232,8 @@ const AdminDashboard = () => {
       ====================================================== */}
 
       <section className="smarthealth-admin-statistics-grid">
-
         <div className="smarthealth-admin-stat-card">
-          <div className="smarthealth-admin-stat-icon users-icon">
-            👥
-          </div>
+          <div className="smarthealth-admin-stat-icon users-icon">👥</div>
 
           <div>
             <span>Total Users</span>
@@ -261,9 +242,7 @@ const AdminDashboard = () => {
         </div>
 
         <div className="smarthealth-admin-stat-card">
-          <div className="smarthealth-admin-stat-icon doctors-icon">
-            🩺
-          </div>
+          <div className="smarthealth-admin-stat-icon doctors-icon">🩺</div>
 
           <div>
             <span>Total Doctors</span>
@@ -272,9 +251,7 @@ const AdminDashboard = () => {
         </div>
 
         <div className="smarthealth-admin-stat-card">
-          <div className="smarthealth-admin-stat-icon departments-icon">
-            🏥
-          </div>
+          <div className="smarthealth-admin-stat-icon departments-icon">🏥</div>
 
           <div>
             <span>Departments</span>
@@ -305,16 +282,13 @@ const AdminDashboard = () => {
         </div>
 
         <div className="smarthealth-admin-stat-card">
-          <div className="smarthealth-admin-stat-icon today-icon">
-            📌
-          </div>
+          <div className="smarthealth-admin-stat-icon today-icon">📌</div>
 
           <div>
             <span>Today's Appointments</span>
             <strong>{statistics.todayAppointments}</strong>
           </div>
         </div>
-
       </section>
 
       {/* =====================================================
@@ -322,7 +296,6 @@ const AdminDashboard = () => {
       ====================================================== */}
 
       <section className="smarthealth-admin-dashboard-grid">
-
         {/* Appointment Overview */}
 
         <div className="smarthealth-admin-panel">
@@ -334,7 +307,6 @@ const AdminDashboard = () => {
           </div>
 
           <div className="smarthealth-admin-appointment-overview">
-
             <div className="smarthealth-admin-overview-item">
               <div className="overview-number scheduled-number">
                 {statistics.scheduled}
@@ -366,7 +338,6 @@ const AdminDashboard = () => {
 
               <span>No Show</span>
             </div>
-
           </div>
         </div>
 
@@ -381,7 +352,6 @@ const AdminDashboard = () => {
           </div>
 
           <div className="smarthealth-admin-doctor-overview">
-
             <div className="smarthealth-admin-doctor-total">
               <strong>{statistics.totalDoctors}</strong>
               <span>Total Doctors</span>
@@ -393,9 +363,7 @@ const AdminDashboard = () => {
                 Active Doctors
               </div>
 
-              <strong>
-                {statistics.activeDoctors}
-              </strong>
+              <strong>{statistics.activeDoctors}</strong>
             </div>
 
             <div className="smarthealth-admin-doctor-status-row">
@@ -404,14 +372,10 @@ const AdminDashboard = () => {
                 Inactive Doctors
               </div>
 
-              <strong>
-                {statistics.inactiveDoctors}
-              </strong>
+              <strong>{statistics.inactiveDoctors}</strong>
             </div>
-
           </div>
         </div>
-
       </section>
 
       {/* =====================================================
@@ -419,7 +383,6 @@ const AdminDashboard = () => {
       ====================================================== */}
 
       <section className="smarthealth-admin-panel smarthealth-admin-recent-panel">
-
         <div className="smarthealth-admin-panel-header">
           <div>
             <h2>Recent Appointments</h2>
@@ -435,9 +398,7 @@ const AdminDashboard = () => {
           <div className="smarthealth-admin-empty">
             <div>📅</div>
             <h3>No appointments found</h3>
-            <p>
-              There are currently no appointments in the system.
-            </p>
+            <p>There are currently no appointments in the system.</p>
           </div>
         ) : (
           <div className="smarthealth-admin-table-wrapper">
@@ -455,56 +416,35 @@ const AdminDashboard = () => {
               <tbody>
                 {recentAppointments.map((appointment) => (
                   <tr key={appointment.appointmentId}>
-
                     <td>
                       <div className="smarthealth-admin-person">
                         <div className="smarthealth-admin-person-avatar">
-                          {appointment.patientName
-                            ?.charAt(0)
-                            ?.toUpperCase() || "P"}
+                          {appointment.patientName?.charAt(0)?.toUpperCase() ||
+                            "P"}
                         </div>
 
-                        <span>
-                          {appointment.patientName || "-"}
-                        </span>
+                        <span>{appointment.patientName || "-"}</span>
                       </div>
                     </td>
 
-                    <td>
-                      {appointment.doctorName || "-"}
-                    </td>
+                    <td>{appointment.doctorName || "-"}</td>
+
+                    <td>{formatDate(appointment.appointmentDate)}</td>
+
+                    <td>{formatTime(appointment.appointmentTime)}</td>
 
                     <td>
-                      {formatDate(
-                        appointment.appointmentDate
-                      )}
-                    </td>
-
-                    <td>
-                      {formatTime(
-                        appointment.appointmentTime
-                      )}
-                    </td>
-
-                    <td>
-                      <span
-                        className={getStatusClass(
-                          appointment.status
-                        )}
-                      >
+                      <span className={getStatusClass(appointment.status)}>
                         {appointment.status || "Unknown"}
                       </span>
                     </td>
-
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         )}
-
       </section>
-
     </div>
   );
 };

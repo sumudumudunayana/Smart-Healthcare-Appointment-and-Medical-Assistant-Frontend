@@ -51,17 +51,13 @@ const Receptionists = () => {
     }
 
     return receptionists.filter((receptionist) => {
-      const name =
-        receptionist.fullName?.toLowerCase() || "";
+      const name = receptionist.fullName?.toLowerCase() || "";
 
-      const receptionistEmail =
-        receptionist.email?.toLowerCase() || "";
+      const receptionistEmail = receptionist.email?.toLowerCase() || "";
 
-      const receptionistPhone =
-        receptionist.phone?.toLowerCase() || "";
+      const receptionistPhone = receptionist.phone?.toLowerCase() || "";
 
-      const status =
-        receptionist.status?.toLowerCase() || "";
+      const status = receptionist.status?.toLowerCase() || "";
 
       return (
         name.includes(term) ||
@@ -119,18 +115,15 @@ const Receptionists = () => {
 
       setReceptionists((current) =>
         [...current, created].sort((a, b) =>
-          a.fullName.localeCompare(b.fullName)
-        )
+          a.fullName.localeCompare(b.fullName),
+        ),
       );
 
       resetForm();
 
       toast.success("Receptionist created successfully.");
     } catch (error) {
-      console.error(
-        "Failed to create receptionist:",
-        error
-      );
+      console.error("Failed to create receptionist:", error);
 
       const message =
         error.response?.data?.message ||
@@ -145,13 +138,11 @@ const Receptionists = () => {
 
   return (
     <div className="smarthealth-admin-receptionists">
-
       {/* =====================================================
           PAGE HEADER
       ====================================================== */}
 
       <section className="smarthealth-admin-receptionists-header">
-
         <div>
           <span className="smarthealth-admin-receptionists-eyebrow">
             Management
@@ -160,19 +151,16 @@ const Receptionists = () => {
           <h1>Receptionists</h1>
 
           <p>
-            Manage receptionists who support hospital
-            administration and patient services.
+            Manage receptionists who support hospital administration and patient
+            services.
           </p>
         </div>
 
         <div className="smarthealth-admin-receptionists-count">
           <span>Total</span>
 
-          <strong>
-            {receptionists.length}
-          </strong>
+          <strong>{receptionists.length}</strong>
         </div>
-
       </section>
 
       {/* =====================================================
@@ -180,40 +168,28 @@ const Receptionists = () => {
       ====================================================== */}
 
       <section className="smarthealth-admin-receptionist-form-card">
-
         <div className="smarthealth-admin-receptionist-form-header">
-
-          <div className="smarthealth-admin-receptionist-form-icon">
-            +
-          </div>
+          <div className="smarthealth-admin-receptionist-form-icon">+</div>
 
           <div>
             <h2>Add Receptionist</h2>
 
-            <p>
-              Create a new receptionist account.
-            </p>
+            <p>Create a new receptionist account.</p>
           </div>
-
         </div>
 
         <form
           className="smarthealth-admin-receptionist-form"
           onSubmit={handleSubmit}
         >
-
           <div className="smarthealth-admin-receptionist-field">
-            <label htmlFor="receptionistFullName">
-              Full Name
-            </label>
+            <label htmlFor="receptionistFullName">Full Name</label>
 
             <input
               id="receptionistFullName"
               type="text"
               value={fullName}
-              onChange={(event) =>
-                setFullName(event.target.value)
-              }
+              onChange={(event) => setFullName(event.target.value)}
               placeholder="e.g. Sarah Perera"
               maxLength={150}
               disabled={creating}
@@ -221,17 +197,13 @@ const Receptionists = () => {
           </div>
 
           <div className="smarthealth-admin-receptionist-field">
-            <label htmlFor="receptionistEmail">
-              Email
-            </label>
+            <label htmlFor="receptionistEmail">Email</label>
 
             <input
               id="receptionistEmail"
               type="email"
               value={email}
-              onChange={(event) =>
-                setEmail(event.target.value)
-              }
+              onChange={(event) => setEmail(event.target.value)}
               placeholder="e.g. sarah@hospital.com"
               maxLength={150}
               disabled={creating}
@@ -239,17 +211,13 @@ const Receptionists = () => {
           </div>
 
           <div className="smarthealth-admin-receptionist-field">
-            <label htmlFor="receptionistPhone">
-              Phone
-            </label>
+            <label htmlFor="receptionistPhone">Phone</label>
 
             <input
               id="receptionistPhone"
               type="text"
               value={phone}
-              onChange={(event) =>
-                setPhone(event.target.value)
-              }
+              onChange={(event) => setPhone(event.target.value)}
               placeholder="e.g. 0771234567"
               maxLength={30}
               disabled={creating}
@@ -257,17 +225,13 @@ const Receptionists = () => {
           </div>
 
           <div className="smarthealth-admin-receptionist-field">
-            <label htmlFor="receptionistPassword">
-              Temporary Password
-            </label>
+            <label htmlFor="receptionistPassword">Temporary Password</label>
 
             <input
               id="receptionistPassword"
               type="password"
               value={password}
-              onChange={(event) =>
-                setPassword(event.target.value)
-              }
+              onChange={(event) => setPassword(event.target.value)}
               placeholder="Enter initial password"
               maxLength={100}
               disabled={creating}
@@ -291,9 +255,7 @@ const Receptionists = () => {
               </>
             )}
           </button>
-
         </form>
-
       </section>
 
       {/* =====================================================
@@ -301,27 +263,20 @@ const Receptionists = () => {
       ====================================================== */}
 
       <section className="smarthealth-admin-receptionists-list-card">
-
         <div className="smarthealth-admin-receptionists-list-header">
-
           <div>
             <h2>All Receptionists</h2>
 
-            <p>
-              View and search registered receptionists.
-            </p>
+            <p>View and search registered receptionists.</p>
           </div>
 
           <div className="smarthealth-admin-receptionists-search">
-
             <span>⌕</span>
 
             <input
               type="text"
               value={searchTerm}
-              onChange={(event) =>
-                setSearchTerm(event.target.value)
-              }
+              onChange={(event) => setSearchTerm(event.target.value)}
               placeholder="Search receptionists..."
             />
 
@@ -334,9 +289,7 @@ const Receptionists = () => {
                 ×
               </button>
             )}
-
           </div>
-
         </div>
 
         {/* =================================================
@@ -344,71 +297,44 @@ const Receptionists = () => {
         ================================================== */}
 
         {loading ? (
-
           <div className="smarthealth-admin-receptionists-loading">
-
             <div className="smarthealth-admin-receptionists-spinner"></div>
 
-            <p>
-              Loading receptionists...
-            </p>
-
+            <p>Loading receptionists...</p>
           </div>
-
         ) : filteredReceptionists.length === 0 ? (
-
           /* ===============================================
              EMPTY STATE
           ================================================ */
 
           <div className="smarthealth-admin-receptionists-empty">
-
-            <div className="smarthealth-admin-receptionists-empty-icon">
-              ♟
-            </div>
+            <div className="smarthealth-admin-receptionists-empty-icon">♟</div>
 
             {searchTerm ? (
               <>
-                <h3>
-                  No matching receptionists
-                </h3>
+                <h3>No matching receptionists</h3>
 
-                <p>
-                  No receptionist matches "{searchTerm}".
-                </p>
+                <p>No receptionist matches "{searchTerm}".</p>
 
-                <button
-                  type="button"
-                  onClick={() => setSearchTerm("")}
-                >
+                <button type="button" onClick={() => setSearchTerm("")}>
                   Clear Search
                 </button>
               </>
             ) : (
               <>
-                <h3>
-                  No receptionists found
-                </h3>
+                <h3>No receptionists found</h3>
 
-                <p>
-                  Add your first receptionist using
-                  the form above.
-                </p>
+                <p>Add your first receptionist using the form above.</p>
               </>
             )}
-
           </div>
-
         ) : (
-
           /* ===============================================
              TABLE
           ================================================ */
 
           <div className="smarthealth-admin-receptionists-table-wrapper">
-
             <table className="smarthealth-admin-receptionists-table">
-
               <thead>
                 <tr>
                   <th>#</th>
@@ -420,81 +346,61 @@ const Receptionists = () => {
               </thead>
 
               <tbody>
+                {filteredReceptionists.map((receptionist, index) => (
+                  <tr key={receptionist.userId}>
+                    <td>
+                      <span className="smarthealth-admin-receptionist-number">
+                        {index + 1}
+                      </span>
+                    </td>
 
-                {filteredReceptionists.map(
-                  (receptionist, index) => (
-
-                    <tr
-                      key={receptionist.userId}
-                    >
-
-                      <td>
-                        <span className="smarthealth-admin-receptionist-number">
-                          {index + 1}
+                    <td>
+                      <div className="smarthealth-admin-receptionist-name">
+                        <span className="smarthealth-admin-receptionist-icon">
+                          ♟
                         </span>
-                      </td>
 
-                      <td>
-                        <div className="smarthealth-admin-receptionist-name">
+                        <strong>{receptionist.fullName}</strong>
+                      </div>
+                    </td>
 
-                          <span className="smarthealth-admin-receptionist-icon">
-                            ♟
-                          </span>
+                    <td>
+                      <span className="smarthealth-admin-receptionist-email">
+                        {receptionist.email}
+                      </span>
+                    </td>
 
-                          <strong>
-                            {receptionist.fullName}
-                          </strong>
-
-                        </div>
-                      </td>
-
-                      <td>
-                        <span className="smarthealth-admin-receptionist-email">
-                          {receptionist.email}
+                    <td>
+                      {receptionist.phone ? (
+                        <span className="smarthealth-admin-receptionist-phone">
+                          <span>☎</span>
+                          {receptionist.phone}
                         </span>
-                      </td>
-
-                      <td>
-                        {receptionist.phone ? (
-                          <span className="smarthealth-admin-receptionist-phone">
-                            <span>☎</span>
-                            {receptionist.phone}
-                          </span>
-                        ) : (
-                          <span className="smarthealth-admin-receptionist-muted">
-                            Not specified
-                          </span>
-                        )}
-                      </td>
-
-                      <td>
-                        <span
-                          className={`smarthealth-admin-receptionist-status ${
-                            receptionist.status?.toLowerCase() ===
-                            "active"
-                              ? "smarthealth-admin-receptionist-status-active"
-                              : "smarthealth-admin-receptionist-status-inactive"
-                          }`}
-                        >
-                          {receptionist.status || "Unknown"}
+                      ) : (
+                        <span className="smarthealth-admin-receptionist-muted">
+                          Not specified
                         </span>
-                      </td>
+                      )}
+                    </td>
 
-                    </tr>
-
-                  )
-                )}
-
+                    <td>
+                      <span
+                        className={`smarthealth-admin-receptionist-status ${
+                          receptionist.status?.toLowerCase() === "active"
+                            ? "smarthealth-admin-receptionist-status-active"
+                            : "smarthealth-admin-receptionist-status-inactive"
+                        }`}
+                      >
+                        {receptionist.status || "Unknown"}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
-
             </table>
-
           </div>
-
         )}
-
       </section>
-
     </div>
   );
 };

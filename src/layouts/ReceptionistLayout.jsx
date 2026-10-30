@@ -17,38 +17,27 @@ const ReceptionistLayout = () => {
 
   return (
     <div className="smarthealth-receptionist-layout">
-
       {/* =====================================================
           SIDEBAR
       ====================================================== */}
 
-      <Sidebar
-        isOpen={sidebarOpen}
-        onClose={handleCloseSidebar}
-      />
-
+      <Sidebar isOpen={sidebarOpen} onClose={handleCloseSidebar} />
 
       {/* =====================================================
           MAIN AREA
       ====================================================== */}
 
       <div className="smarthealth-receptionist-layout-main">
-
         {/* Navbar */}
 
-        <Navbar
-          onMenuClick={handleMenuClick}
-        />
-
+        <Navbar onMenuClick={handleMenuClick} />
 
         {/* Page Content */}
 
         <main className="smarthealth-receptionist-layout-content">
           <Outlet />
         </main>
-
       </div>
-
     </div>
   );
 };
