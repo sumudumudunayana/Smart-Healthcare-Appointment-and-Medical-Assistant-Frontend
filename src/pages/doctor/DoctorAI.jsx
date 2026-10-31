@@ -685,8 +685,6 @@ const DoctorAI = () => {
             {triageLoading ? "Assessing..." : "Run AI Triage"}
           </button>
         </div>
-
-        
       </section>
 
       {/* =====================================================
