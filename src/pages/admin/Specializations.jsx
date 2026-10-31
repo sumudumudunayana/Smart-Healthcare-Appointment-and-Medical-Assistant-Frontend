@@ -46,7 +46,7 @@ const Specializations = () => {
       toast.error(
         error.response?.data?.message ||
           error.response?.data?.title ||
-          "Failed to load specializations."
+          "Failed to load specializations.",
       );
     } finally {
       setLoading(false);
@@ -107,8 +107,8 @@ const Specializations = () => {
 
       setSpecializations((current) =>
         [...current, created].sort((a, b) =>
-          (a.name || "").localeCompare(b.name || "")
-        )
+          (a.name || "").localeCompare(b.name || ""),
+        ),
       );
 
       setSpecializationName("");
@@ -121,7 +121,7 @@ const Specializations = () => {
       toast.error(
         error.response?.data?.message ||
           error.response?.data?.title ||
-          "Failed to create specialization."
+          "Failed to create specialization.",
       );
     } finally {
       setCreating(false);
@@ -189,7 +189,7 @@ const Specializations = () => {
         {
           name,
           description: description || null,
-        }
+        },
       );
 
       setSpecializations((current) =>
@@ -201,12 +201,11 @@ const Specializations = () => {
                   ...specialization,
                   ...updated,
                   name: updated?.name ?? name,
-                  description:
-                    updated?.description ?? (description || null),
+                  description: updated?.description ?? (description || null),
                 }
-              : specialization
+              : specialization,
           )
-          .sort((a, b) => (a.name || "").localeCompare(b.name || ""))
+          .sort((a, b) => (a.name || "").localeCompare(b.name || "")),
       );
 
       toast.success("Specialization updated successfully.");
@@ -220,7 +219,7 @@ const Specializations = () => {
       toast.error(
         error.response?.data?.message ||
           error.response?.data?.title ||
-          "Failed to update specialization."
+          "Failed to update specialization.",
       );
     } finally {
       setUpdating(false);
@@ -233,7 +232,7 @@ const Specializations = () => {
 
   const handleDelete = async (specialization) => {
     const confirmed = window.confirm(
-      `Are you sure you want to delete "${specialization.name}"?\n\nThis action cannot be undone.`
+      `Are you sure you want to delete "${specialization.name}"?\n\nThis action cannot be undone.`,
     );
 
     if (!confirmed) {
@@ -243,15 +242,12 @@ const Specializations = () => {
     setDeletingId(specialization.specializationId);
 
     try {
-      await specializationService.delete(
-        specialization.specializationId
-      );
+      await specializationService.delete(specialization.specializationId);
 
       setSpecializations((current) =>
         current.filter(
-          (item) =>
-            item.specializationId !== specialization.specializationId
-        )
+          (item) => item.specializationId !== specialization.specializationId,
+        ),
       );
 
       toast.success("Specialization deleted successfully.");
@@ -261,7 +257,7 @@ const Specializations = () => {
       toast.error(
         error.response?.data?.message ||
           error.response?.data?.title ||
-          "Failed to delete specialization."
+          "Failed to delete specialization.",
       );
     } finally {
       setDeletingId(null);
@@ -285,8 +281,8 @@ const Specializations = () => {
           <h1>Specializations</h1>
 
           <p>
-            Manage the medical specializations available in the
-            healthcare system.
+            Manage the medical specializations available in the healthcare
+            system.
           </p>
         </div>
 
@@ -303,9 +299,7 @@ const Specializations = () => {
 
         <div className="smarthealth-admin-specialization-form-card">
           <div className="smarthealth-admin-specialization-form-header">
-            <div className="smarthealth-admin-specialization-form-icon">
-              +
-            </div>
+            <div className="smarthealth-admin-specialization-form-icon">+</div>
 
             <div>
               <h2>Add Specialization</h2>
@@ -326,9 +320,7 @@ const Specializations = () => {
                 id="specializationName"
                 type="text"
                 value={specializationName}
-                onChange={(event) =>
-                  setSpecializationName(event.target.value)
-                }
+                onChange={(event) => setSpecializationName(event.target.value)}
                 placeholder="e.g. Cardiology"
                 maxLength={100}
                 disabled={creating}
@@ -337,9 +329,7 @@ const Specializations = () => {
             </div>
 
             <div className="smarthealth-admin-specialization-field smarthealth-admin-specialization-description-field">
-              <label htmlFor="specializationDescription">
-                Description
-              </label>
+              <label htmlFor="specializationDescription">Description</label>
 
               <textarea
                 id="specializationDescription"
@@ -384,9 +374,7 @@ const Specializations = () => {
           <div className="smarthealth-admin-specializations-list-header">
             <div>
               <h2>All Specializations</h2>
-              <p>
-                View, search, edit, and remove medical specializations.
-              </p>
+              <p>View, search, edit, and remove medical specializations.</p>
             </div>
 
             <div className="smarthealth-admin-specializations-search">
@@ -430,14 +418,9 @@ const Specializations = () => {
               {searchTerm ? (
                 <>
                   <h3>No matching specializations</h3>
-                  <p>
-                    No specialization matches &quot;{searchTerm}&quot;.
-                  </p>
+                  <p>No specialization matches &quot;{searchTerm}&quot;.</p>
 
-                  <button
-                    type="button"
-                    onClick={() => setSearchTerm("")}
-                  >
+                  <button type="button" onClick={() => setSearchTerm("")}>
                     Clear Search
                   </button>
                 </>
@@ -445,8 +428,7 @@ const Specializations = () => {
                 <>
                   <h3>No specializations found</h3>
                   <p>
-                    Add your first medical specialization using the
-                    form above.
+                    Add your first medical specialization using the form above.
                   </p>
                 </>
               )}
@@ -470,79 +452,69 @@ const Specializations = () => {
                 </thead>
 
                 <tbody>
-                  {filteredSpecializations.map(
-                    (specialization, index) => (
-                      <tr key={specialization.specializationId}>
-                        <td>
-                          <span className="smarthealth-admin-specialization-number">
-                            {index + 1}
+                  {filteredSpecializations.map((specialization, index) => (
+                    <tr key={specialization.specializationId}>
+                      <td>
+                        <span className="smarthealth-admin-specialization-number">
+                          {index + 1}
+                        </span>
+                      </td>
+
+                      <td>
+                        <div className="smarthealth-admin-specialization-name">
+                          <span className="smarthealth-admin-specialization-icon">
+                            ✦
                           </span>
-                        </td>
 
-                        <td>
-                          <div className="smarthealth-admin-specialization-name">
-                            <span className="smarthealth-admin-specialization-icon">
-                              ✦
-                            </span>
+                          <strong>{specialization.name}</strong>
+                        </div>
+                      </td>
 
-                            <strong>{specialization.name}</strong>
-                          </div>
-                        </td>
+                      <td>
+                        <p className="smarthealth-admin-specialization-description-text">
+                          {specialization.description?.trim() ||
+                            "No description provided."}
+                        </p>
+                      </td>
 
-                        <td>
-                          <p className="smarthealth-admin-specialization-description-text">
-                            {specialization.description?.trim() ||
-                              "No description provided."}
-                          </p>
-                        </td>
+                      <td>
+                        <div className="smarthealth-admin-specialization-actions">
+                          <button
+                            type="button"
+                            className="smarthealth-admin-specialization-action-button smarthealth-admin-specialization-edit-button"
+                            onClick={() => openEditModal(specialization)}
+                            disabled={deletingId !== null}
+                            aria-label={`Edit ${specialization.name}`}
+                            title="Edit specialization"
+                          >
+                            <span aria-hidden="true">✎</span>
+                            Edit
+                          </button>
 
-                        <td>
-                          <div className="smarthealth-admin-specialization-actions">
-                            <button
-                              type="button"
-                              className="smarthealth-admin-specialization-action-button smarthealth-admin-specialization-edit-button"
-                              onClick={() =>
-                                openEditModal(specialization)
-                              }
-                              disabled={deletingId !== null}
-                              aria-label={`Edit ${specialization.name}`}
-                              title="Edit specialization"
-                            >
-                              <span aria-hidden="true">✎</span>
-                              Edit
-                            </button>
-
-                            <button
-                              type="button"
-                              className="smarthealth-admin-specialization-action-button smarthealth-admin-specialization-delete-button"
-                              onClick={() =>
-                                handleDelete(specialization)
-                              }
-                              disabled={
-                                deletingId !== null ||
-                                updating
-                              }
-                              aria-label={`Delete ${specialization.name}`}
-                              title="Delete specialization"
-                            >
-                              {deletingId ===
-                              specialization.specializationId ? (
-                                <>
-                                  <span className="smarthealth-admin-specialization-delete-spinner" />
-                                  Deleting...
-                                </>
-                              ) : (
-                                <>
-                                  <span aria-hidden="true">⌫</span>
-                                  Delete
-                                </>
-                              )}
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    )
-                  )}
+                          <button
+                            type="button"
+                            className="smarthealth-admin-specialization-action-button smarthealth-admin-specialization-delete-button"
+                            onClick={() => handleDelete(specialization)}
+                            disabled={deletingId !== null || updating}
+                            aria-label={`Delete ${specialization.name}`}
+                            title="Delete specialization"
+                          >
+                            {deletingId === specialization.specializationId ? (
+                              <>
+                                <span className="smarthealth-admin-specialization-delete-spinner" />
+                                Deleting...
+                              </>
+                            ) : (
+                              <>
+                                <span aria-hidden="true">⌫</span>
+                                Delete
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -556,10 +528,7 @@ const Specializations = () => {
         <div
           className="smarthealth-admin-specialization-modal-overlay"
           onMouseDown={(event) => {
-            if (
-              event.target === event.currentTarget &&
-              !updating
-            ) {
+            if (event.target === event.currentTarget && !updating) {
               closeEditModal();
             }
           }}
@@ -625,9 +594,7 @@ const Specializations = () => {
                 <textarea
                   id="editSpecializationDescription"
                   value={editDescription}
-                  onChange={(event) =>
-                    setEditDescription(event.target.value)
-                  }
+                  onChange={(event) => setEditDescription(event.target.value)}
                   placeholder="Enter specialization description..."
                   maxLength={1000}
                   rows={5}
