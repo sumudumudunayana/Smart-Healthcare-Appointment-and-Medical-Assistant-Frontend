@@ -76,14 +76,12 @@ const Users = () => {
   }, [users, searchTerm, roleFilter, statusFilter]);
 
   const roleOptions = useMemo(
-    () =>
-      [...new Set(users.map((user) => user.role).filter(Boolean))].sort(),
+    () => [...new Set(users.map((user) => user.role).filter(Boolean))].sort(),
     [users],
   );
 
   const statusOptions = useMemo(
-    () =>
-      [...new Set(users.map((user) => user.status).filter(Boolean))].sort(),
+    () => [...new Set(users.map((user) => user.status).filter(Boolean))].sort(),
     [users],
   );
 
@@ -323,8 +321,8 @@ const Users = () => {
           <h1>Users</h1>
 
           <p>
-            View registered users, manage account details, and control
-            account status.
+            View registered users, manage account details, and control account
+            status.
           </p>
         </div>
 
@@ -530,8 +528,7 @@ const Users = () => {
               <tbody>
                 {filteredUsers.map((user) => {
                   const isActive = user.status?.toLowerCase() === "active";
-                  const isChangingStatus =
-                    changingStatusId === user.userId;
+                  const isChangingStatus = changingStatusId === user.userId;
 
                   return (
                     <tr key={user.userId}>
@@ -597,7 +594,9 @@ const Users = () => {
                             }`}
                             onClick={() => handleToggleUserStatus(user)}
                             disabled={isChangingStatus || updating}
-                            title={isActive ? "Deactivate user" : "Activate user"}
+                            title={
+                              isActive ? "Deactivate user" : "Activate user"
+                            }
                             aria-label={`${
                               isActive ? "Deactivate" : "Activate"
                             } ${user.fullName}`}
@@ -696,9 +695,7 @@ const Users = () => {
                   disabled
                 />
 
-                <small>
-                  Email cannot be changed from this screen.
-                </small>
+                <small>Email cannot be changed from this screen.</small>
               </div>
 
               <div className="smarthealth-admin-users-modal-field">
