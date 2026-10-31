@@ -38,16 +38,14 @@ const DoctorPrescriptions = () => {
     try {
       setLoadingPrescriptions(true);
 
-      const data =
-        await prescriptionService.getMyDoctorPrescriptions();
+      const data = await prescriptionService.getMyDoctorPrescriptions();
 
       setPrescriptions(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Failed to load prescriptions:", error);
 
       const message =
-        error.response?.data?.message ||
-        "Failed to load prescriptions.";
+        error.response?.data?.message || "Failed to load prescriptions.";
 
       toast.error(message);
     } finally {
@@ -63,16 +61,14 @@ const DoctorPrescriptions = () => {
     try {
       setLoadingRecords(true);
 
-      const data =
-        await medicalRecordService.getMyDoctorRecords();
+      const data = await medicalRecordService.getMyDoctorRecords();
 
       setMedicalRecords(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Failed to load medical records:", error);
 
       const message =
-        error.response?.data?.message ||
-        "Failed to load medical records.";
+        error.response?.data?.message || "Failed to load medical records.";
 
       toast.error(message);
     } finally {
@@ -111,32 +107,19 @@ const DoctorPrescriptions = () => {
   // ============================================================
 
   const filteredPrescriptions = useMemo(() => {
-    const normalizedSearch = searchTerm
-      .trim()
-      .toLowerCase();
+    const normalizedSearch = searchTerm.trim().toLowerCase();
 
     return prescriptions.filter((prescription) => {
       const matchesSearch =
         !normalizedSearch ||
-        prescription.patientName
-          ?.toLowerCase()
-          .includes(normalizedSearch) ||
-        prescription.medicine
-          ?.toLowerCase()
-          .includes(normalizedSearch) ||
-        prescription.dosage
-          ?.toLowerCase()
-          .includes(normalizedSearch) ||
-        prescription.frequency
-          ?.toLowerCase()
-          .includes(normalizedSearch) ||
-        prescription.duration
-          ?.toLowerCase()
-          .includes(normalizedSearch);
+        prescription.patientName?.toLowerCase().includes(normalizedSearch) ||
+        prescription.medicine?.toLowerCase().includes(normalizedSearch) ||
+        prescription.dosage?.toLowerCase().includes(normalizedSearch) ||
+        prescription.frequency?.toLowerCase().includes(normalizedSearch) ||
+        prescription.duration?.toLowerCase().includes(normalizedSearch);
 
       const matchesRecord =
-        recordFilter === "all" ||
-        prescription.recordId === recordFilter;
+        recordFilter === "all" || prescription.recordId === recordFilter;
 
       return matchesSearch && matchesRecord;
     });
@@ -232,29 +215,21 @@ const DoctorPrescriptions = () => {
         instructions: formData.instructions.trim() || null,
       };
 
-      const createdPrescription =
-        await prescriptionService.create(requestData);
+      const createdPrescription = await prescriptionService.create(requestData);
 
       toast.success("Prescription created successfully.");
 
-      setPrescriptions((previous) => [
-        createdPrescription,
-        ...previous,
-      ]);
+      setPrescriptions((previous) => [createdPrescription, ...previous]);
 
       setSelectedPrescription(createdPrescription);
 
       setShowCreatePanel(false);
       resetForm();
     } catch (error) {
-      console.error(
-        "Failed to create prescription:",
-        error
-      );
+      console.error("Failed to create prescription:", error);
 
       const message =
-        error.response?.data?.message ||
-        "Failed to create prescription.";
+        error.response?.data?.message || "Failed to create prescription.";
 
       toast.error(message);
     } finally {
@@ -269,29 +244,22 @@ const DoctorPrescriptions = () => {
   const totalPrescriptions = prescriptions.length;
 
   const uniquePatients = new Set(
-    prescriptions.map(
-      (prescription) => prescription.patientId
-    )
+    prescriptions.map((prescription) => prescription.patientId),
   ).size;
 
-  const recentPrescriptions = prescriptions.filter(
-    (prescription) => {
-      if (!prescription.createdAt) {
-        return false;
-      }
-
-      const createdDate =
-        new Date(prescription.createdAt);
-
-      const sevenDaysAgo = new Date();
-
-      sevenDaysAgo.setDate(
-        sevenDaysAgo.getDate() - 7
-      );
-
-      return createdDate >= sevenDaysAgo;
+  const recentPrescriptions = prescriptions.filter((prescription) => {
+    if (!prescription.createdAt) {
+      return false;
     }
-  ).length;
+
+    const createdDate = new Date(prescription.createdAt);
+
+    const sevenDaysAgo = new Date();
+
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+    return createdDate >= sevenDaysAgo;
+  }).length;
 
   // ============================================================
   // RENDER
@@ -299,13 +267,11 @@ const DoctorPrescriptions = () => {
 
   return (
     <div className="smarthealth-doctor-prescriptions-page">
-
       {/* ======================================================
           PAGE HEADER
       ======================================================= */}
 
       <div className="smarthealth-doctor-prescriptions-header">
-
         <div className="smarthealth-doctor-prescriptions-header-info">
           <span className="smarthealth-doctor-prescriptions-header-label">
             MEDICAL MANAGEMENT
@@ -316,8 +282,7 @@ const DoctorPrescriptions = () => {
           </h1>
 
           <p className="smarthealth-doctor-prescriptions-description">
-            Create and manage prescriptions for your
-            patients.
+            Create and manage prescriptions for your patients.
           </p>
         </div>
 
@@ -329,10 +294,8 @@ const DoctorPrescriptions = () => {
           <span className="smarthealth-doctor-prescriptions-create-icon">
             +
           </span>
-
           New Prescription
         </button>
-
       </div>
 
       {/* ======================================================
@@ -340,7 +303,6 @@ const DoctorPrescriptions = () => {
       ======================================================= */}
 
       <div className="smarthealth-doctor-prescriptions-summary-grid">
-
         <div className="smarthealth-doctor-prescriptions-summary-card">
           <div className="smarthealth-doctor-prescriptions-summary-icon">
             Rx
@@ -358,9 +320,7 @@ const DoctorPrescriptions = () => {
         </div>
 
         <div className="smarthealth-doctor-prescriptions-summary-card">
-          <div className="smarthealth-doctor-prescriptions-summary-icon">
-            P
-          </div>
+          <div className="smarthealth-doctor-prescriptions-summary-icon">P</div>
 
           <div>
             <span className="smarthealth-doctor-prescriptions-summary-label">
@@ -388,7 +348,6 @@ const DoctorPrescriptions = () => {
             </strong>
           </div>
         </div>
-
       </div>
 
       {/* ======================================================
@@ -396,7 +355,6 @@ const DoctorPrescriptions = () => {
       ======================================================= */}
 
       <div className="smarthealth-doctor-prescriptions-toolbar">
-
         <div className="smarthealth-doctor-prescriptions-search-wrapper">
           <span className="smarthealth-doctor-prescriptions-search-icon">
             ⌕
@@ -407,30 +365,20 @@ const DoctorPrescriptions = () => {
             className="smarthealth-doctor-prescriptions-search-input"
             placeholder="Search patient, medicine, dosage..."
             value={searchTerm}
-            onChange={(event) =>
-              setSearchTerm(event.target.value)
-            }
+            onChange={(event) => setSearchTerm(event.target.value)}
           />
         </div>
 
         <select
           className="smarthealth-doctor-prescriptions-filter-select"
           value={recordFilter}
-          onChange={(event) =>
-            setRecordFilter(event.target.value)
-          }
+          onChange={(event) => setRecordFilter(event.target.value)}
         >
-          <option value="all">
-            All Medical Records
-          </option>
+          <option value="all">All Medical Records</option>
 
           {medicalRecords.map((record) => (
-            <option
-              key={record.recordId}
-              value={record.recordId}
-            >
-              {record.patientName} -{" "}
-              {formatDate(record.appointmentDate)}
+            <option key={record.recordId} value={record.recordId}>
+              {record.patientName} - {formatDate(record.appointmentDate)}
             </option>
           ))}
         </select>
@@ -441,11 +389,8 @@ const DoctorPrescriptions = () => {
           onClick={loadPrescriptions}
           disabled={loadingPrescriptions}
         >
-          {loadingPrescriptions
-            ? "Loading..."
-            : "Refresh"}
+          {loadingPrescriptions ? "Loading..." : "Refresh"}
         </button>
-
       </div>
 
       {/* ======================================================
@@ -453,25 +398,19 @@ const DoctorPrescriptions = () => {
       ======================================================= */}
 
       <div className="smarthealth-doctor-prescriptions-content">
-
         {loadingPrescriptions ? (
           <div className="smarthealth-doctor-prescriptions-loading">
             <div className="smarthealth-doctor-prescriptions-spinner" />
 
-            <p>
-              Loading prescriptions...
-            </p>
+            <p>Loading prescriptions...</p>
           </div>
         ) : filteredPrescriptions.length === 0 ? (
           <div className="smarthealth-doctor-prescriptions-empty">
-
             <div className="smarthealth-doctor-prescriptions-empty-icon">
               Rx
             </div>
 
-            <h2>
-              No prescriptions found
-            </h2>
+            <h2>No prescriptions found</h2>
 
             <p>
               {searchTerm || recordFilter !== "all"
@@ -479,23 +418,19 @@ const DoctorPrescriptions = () => {
                 : "Create your first prescription to see it here."}
             </p>
 
-            {!searchTerm &&
-              recordFilter === "all" && (
-                <button
-                  type="button"
-                  className="smarthealth-doctor-prescriptions-empty-button"
-                  onClick={handleOpenCreatePanel}
-                >
-                  Create Prescription
-                </button>
-              )}
-
+            {!searchTerm && recordFilter === "all" && (
+              <button
+                type="button"
+                className="smarthealth-doctor-prescriptions-empty-button"
+                onClick={handleOpenCreatePanel}
+              >
+                Create Prescription
+              </button>
+            )}
           </div>
         ) : (
           <div className="smarthealth-doctor-prescriptions-table-wrapper">
-
             <table className="smarthealth-doctor-prescriptions-table">
-
               <thead>
                 <tr>
                   <th>Patient</th>
@@ -509,84 +444,54 @@ const DoctorPrescriptions = () => {
               </thead>
 
               <tbody>
-                {filteredPrescriptions.map(
-                  (prescription) => (
-                    <tr
-                      key={
-                        prescription.prescriptionId
-                      }
-                    >
-
-                      <td>
-                        <div className="smarthealth-doctor-prescriptions-patient-cell">
-                          <div className="smarthealth-doctor-prescriptions-patient-avatar">
-                            {prescription.patientName
-                              ?.charAt(0)
-                              ?.toUpperCase() || "P"}
-                          </div>
-
-                          <div>
-                            <strong>
-                              {prescription.patientName ||
-                                "Unknown Patient"}
-                            </strong>
-
-                            <span>
-                              Medical Record
-                            </span>
-                          </div>
+                {filteredPrescriptions.map((prescription) => (
+                  <tr key={prescription.prescriptionId}>
+                    <td>
+                      <div className="smarthealth-doctor-prescriptions-patient-cell">
+                        <div className="smarthealth-doctor-prescriptions-patient-avatar">
+                          {prescription.patientName?.charAt(0)?.toUpperCase() ||
+                            "P"}
                         </div>
-                      </td>
 
-                      <td>
-                        <span className="smarthealth-doctor-prescriptions-medicine">
-                          {prescription.medicine}
-                        </span>
-                      </td>
+                        <div>
+                          <strong>
+                            {prescription.patientName || "Unknown Patient"}
+                          </strong>
 
-                      <td>
-                        {prescription.dosage}
-                      </td>
+                          <span>Medical Record</span>
+                        </div>
+                      </div>
+                    </td>
 
-                      <td>
-                        {prescription.frequency ||
-                          "As directed"}
-                      </td>
+                    <td>
+                      <span className="smarthealth-doctor-prescriptions-medicine">
+                        {prescription.medicine}
+                      </span>
+                    </td>
 
-                      <td>
-                        {prescription.duration}
-                      </td>
+                    <td>{prescription.dosage}</td>
 
-                      <td>
-                        {formatDate(
-                          prescription.createdAt
-                        )}
-                      </td>
+                    <td>{prescription.frequency || "As directed"}</td>
 
-                      <td>
-                        <button
-                          type="button"
-                          className="smarthealth-doctor-prescriptions-view-button"
-                          onClick={() =>
-                            setSelectedPrescription(
-                              prescription
-                            )
-                          }
-                        >
-                          View
-                        </button>
-                      </td>
+                    <td>{prescription.duration}</td>
 
-                    </tr>
-                  )
-                )}
+                    <td>{formatDate(prescription.createdAt)}</td>
+
+                    <td>
+                      <button
+                        type="button"
+                        className="smarthealth-doctor-prescriptions-view-button"
+                        onClick={() => setSelectedPrescription(prescription)}
+                      >
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
-
             </table>
-
           </div>
         )}
-
       </div>
 
       {/* ======================================================
@@ -597,97 +502,72 @@ const DoctorPrescriptions = () => {
         <div
           className="smarthealth-doctor-prescriptions-modal-overlay"
           onMouseDown={(event) => {
-            if (
-              event.target === event.currentTarget
-            ) {
+            if (event.target === event.currentTarget) {
               setSelectedPrescription(null);
             }
           }}
         >
-
           <div className="smarthealth-doctor-prescriptions-view-modal">
-
             <div className="smarthealth-doctor-prescriptions-modal-header">
-
               <div>
                 <span className="smarthealth-doctor-prescriptions-modal-label">
                   PRESCRIPTION DETAILS
                 </span>
 
-                <h2>
-                  {selectedPrescription.medicine}
-                </h2>
+                <h2>{selectedPrescription.medicine}</h2>
               </div>
 
               <button
                 type="button"
                 className="smarthealth-doctor-prescriptions-modal-close"
-                onClick={() =>
-                  setSelectedPrescription(null)
-                }
+                onClick={() => setSelectedPrescription(null)}
               >
                 ×
               </button>
-
             </div>
 
             <div className="smarthealth-doctor-prescriptions-details">
-
               <div className="smarthealth-doctor-prescriptions-detail-patient">
                 <div className="smarthealth-doctor-prescriptions-detail-avatar">
-                  {selectedPrescription.patientName
-                    ?.charAt(0)
-                    ?.toUpperCase() || "P"}
+                  {selectedPrescription.patientName?.charAt(0)?.toUpperCase() ||
+                    "P"}
                 </div>
 
                 <div>
                   <span>Patient</span>
 
                   <strong>
-                    {selectedPrescription.patientName ||
-                      "Unknown Patient"}
+                    {selectedPrescription.patientName || "Unknown Patient"}
                   </strong>
                 </div>
               </div>
 
               <div className="smarthealth-doctor-prescriptions-detail-grid">
-
                 <div className="smarthealth-doctor-prescriptions-detail-item">
                   <span>Medicine</span>
-                  <strong>
-                    {selectedPrescription.medicine}
-                  </strong>
+                  <strong>{selectedPrescription.medicine}</strong>
                 </div>
 
                 <div className="smarthealth-doctor-prescriptions-detail-item">
                   <span>Dosage</span>
-                  <strong>
-                    {selectedPrescription.dosage}
-                  </strong>
+                  <strong>{selectedPrescription.dosage}</strong>
                 </div>
 
                 <div className="smarthealth-doctor-prescriptions-detail-item">
                   <span>Frequency</span>
                   <strong>
-                    {selectedPrescription.frequency ||
-                      "As directed"}
+                    {selectedPrescription.frequency || "As directed"}
                   </strong>
                 </div>
 
                 <div className="smarthealth-doctor-prescriptions-detail-item">
                   <span>Duration</span>
-                  <strong>
-                    {selectedPrescription.duration}
-                  </strong>
+                  <strong>{selectedPrescription.duration}</strong>
                 </div>
 
                 <div className="smarthealth-doctor-prescriptions-detail-item">
                   <span>Created</span>
-                  <strong>
-                    {formatDate(
-                      selectedPrescription.createdAt
-                    )}
-                  </strong>
+                  <strong>{formatDate(selectedPrescription.createdAt)}</strong>
                 </div>
 
                 <div className="smarthealth-doctor-prescriptions-detail-item">
@@ -696,40 +576,28 @@ const DoctorPrescriptions = () => {
                     {selectedPrescription.recordId}
                   </strong>
                 </div>
-
               </div>
 
               <div className="smarthealth-doctor-prescriptions-instructions">
-
-                <span>
-                  Instructions
-                </span>
+                <span>Instructions</span>
 
                 <p>
                   {selectedPrescription.instructions ||
                     "No special instructions provided."}
                 </p>
-
               </div>
-
             </div>
 
             <div className="smarthealth-doctor-prescriptions-modal-footer">
-
               <button
                 type="button"
                 className="smarthealth-doctor-prescriptions-secondary-button"
-                onClick={() =>
-                  setSelectedPrescription(null)
-                }
+                onClick={() => setSelectedPrescription(null)}
               >
                 Close
               </button>
-
             </div>
-
           </div>
-
         </div>
       )}
 
@@ -741,27 +609,19 @@ const DoctorPrescriptions = () => {
         <div
           className="smarthealth-doctor-prescriptions-modal-overlay"
           onMouseDown={(event) => {
-            if (
-              event.target === event.currentTarget &&
-              !savingPrescription
-            ) {
+            if (event.target === event.currentTarget && !savingPrescription) {
               handleCloseCreatePanel();
             }
           }}
         >
-
           <div className="smarthealth-doctor-prescriptions-create-modal">
-
             <div className="smarthealth-doctor-prescriptions-modal-header">
-
               <div>
                 <span className="smarthealth-doctor-prescriptions-modal-label">
                   MEDICAL MANAGEMENT
                 </span>
 
-                <h2>
-                  Create Prescription
-                </h2>
+                <h2>Create Prescription</h2>
               </div>
 
               <button
@@ -772,16 +632,13 @@ const DoctorPrescriptions = () => {
               >
                 ×
               </button>
-
             </div>
 
             <form
               className="smarthealth-doctor-prescriptions-form"
               onSubmit={handleCreatePrescription}
             >
-
               <div className="smarthealth-doctor-prescriptions-form-group">
-
                 <label htmlFor="smarthealth-prescription-record">
                   Medical Record
                   <span>*</span>
@@ -792,10 +649,7 @@ const DoctorPrescriptions = () => {
                   name="recordId"
                   value={formData.recordId}
                   onChange={handleInputChange}
-                  disabled={
-                    loadingRecords ||
-                    savingPrescription
-                  }
+                  disabled={loadingRecords || savingPrescription}
                   required
                 >
                   <option value="">
@@ -805,27 +659,17 @@ const DoctorPrescriptions = () => {
                   </option>
 
                   {medicalRecords.map((record) => (
-                    <option
-                      key={record.recordId}
-                      value={record.recordId}
-                    >
+                    <option key={record.recordId} value={record.recordId}>
                       {record.patientName} —{" "}
-                      {formatDate(
-                        record.appointmentDate
-                      )}
-                      {record.diagnosis
-                        ? ` — ${record.diagnosis}`
-                        : ""}
+                      {formatDate(record.appointmentDate)}
+                      {record.diagnosis ? ` — ${record.diagnosis}` : ""}
                     </option>
                   ))}
                 </select>
-
               </div>
 
               <div className="smarthealth-doctor-prescriptions-form-row">
-
                 <div className="smarthealth-doctor-prescriptions-form-group">
-
                   <label htmlFor="smarthealth-prescription-medicine">
                     Medicine
                     <span>*</span>
@@ -841,11 +685,9 @@ const DoctorPrescriptions = () => {
                     disabled={savingPrescription}
                     required
                   />
-
                 </div>
 
                 <div className="smarthealth-doctor-prescriptions-form-group">
-
                   <label htmlFor="smarthealth-prescription-dosage">
                     Dosage
                     <span>*</span>
@@ -861,15 +703,11 @@ const DoctorPrescriptions = () => {
                     disabled={savingPrescription}
                     required
                   />
-
                 </div>
-
               </div>
 
               <div className="smarthealth-doctor-prescriptions-form-row">
-
                 <div className="smarthealth-doctor-prescriptions-form-group">
-
                   <label htmlFor="smarthealth-prescription-frequency">
                     Frequency
                   </label>
@@ -883,11 +721,9 @@ const DoctorPrescriptions = () => {
                     onChange={handleInputChange}
                     disabled={savingPrescription}
                   />
-
                 </div>
 
                 <div className="smarthealth-doctor-prescriptions-form-group">
-
                   <label htmlFor="smarthealth-prescription-duration">
                     Duration
                     <span>*</span>
@@ -903,13 +739,10 @@ const DoctorPrescriptions = () => {
                     disabled={savingPrescription}
                     required
                   />
-
                 </div>
-
               </div>
 
               <div className="smarthealth-doctor-prescriptions-form-group">
-
                 <label htmlFor="smarthealth-prescription-instructions">
                   Instructions
                 </label>
@@ -923,11 +756,9 @@ const DoctorPrescriptions = () => {
                   onChange={handleInputChange}
                   disabled={savingPrescription}
                 />
-
               </div>
 
               <div className="smarthealth-doctor-prescriptions-form-footer">
-
                 <button
                   type="button"
                   className="smarthealth-doctor-prescriptions-secondary-button"
@@ -942,20 +773,13 @@ const DoctorPrescriptions = () => {
                   className="smarthealth-doctor-prescriptions-submit-button"
                   disabled={savingPrescription}
                 >
-                  {savingPrescription
-                    ? "Creating..."
-                    : "Create Prescription"}
+                  {savingPrescription ? "Creating..." : "Create Prescription"}
                 </button>
-
               </div>
-
             </form>
-
           </div>
-
         </div>
       )}
-
     </div>
   );
 };

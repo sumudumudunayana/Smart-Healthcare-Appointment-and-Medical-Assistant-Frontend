@@ -38,8 +38,7 @@ const DoctorProfile = () => {
       console.error("Failed to load doctor profile:", error);
 
       toast.error(
-        error.response?.data?.message ||
-          "Failed to load your profile."
+        error.response?.data?.message || "Failed to load your profile.",
       );
     } finally {
       setLoading(false);
@@ -81,11 +80,10 @@ const DoctorProfile = () => {
     try {
       setSaving(true);
 
-      const updatedProfile =
-        await userService.updateMyProfile({
-          fullName: trimmedFullName,
-          phone: formData.phone.trim() || null,
-        });
+      const updatedProfile = await userService.updateMyProfile({
+        fullName: trimmedFullName,
+        phone: formData.phone.trim() || null,
+      });
 
       setProfile(updatedProfile);
 
@@ -101,8 +99,7 @@ const DoctorProfile = () => {
       console.error("Failed to update doctor profile:", error);
 
       toast.error(
-        error.response?.data?.message ||
-          "Failed to update your profile."
+        error.response?.data?.message || "Failed to update your profile.",
       );
     } finally {
       setSaving(false);
@@ -125,15 +122,11 @@ const DoctorProfile = () => {
     return (
       <div className="smarthealth-doctor-profile-page">
         <div className="smarthealth-doctor-profile-error">
-          <div className="smarthealth-doctor-profile-error-icon">
-            !
-          </div>
+          <div className="smarthealth-doctor-profile-error-icon">!</div>
 
           <h2>Profile Not Found</h2>
 
-          <p>
-            We could not load your profile information.
-          </p>
+          <p>We could not load your profile information.</p>
 
           <button
             type="button"
@@ -149,7 +142,6 @@ const DoctorProfile = () => {
 
   return (
     <div className="smarthealth-doctor-profile-page">
-
       {/* =====================================================
           PAGE HEADER
       ====================================================== */}
@@ -160,9 +152,7 @@ const DoctorProfile = () => {
             DOCTOR PORTAL
           </span>
 
-          <h1 className="smarthealth-doctor-profile-title">
-            My Profile
-          </h1>
+          <h1 className="smarthealth-doctor-profile-title">My Profile</h1>
 
           <p className="smarthealth-doctor-profile-subtitle">
             View and manage your personal account information.
@@ -186,27 +176,21 @@ const DoctorProfile = () => {
       ====================================================== */}
 
       <div className="smarthealth-doctor-profile-content">
-
         {/* PROFILE SUMMARY */}
 
         <section className="smarthealth-doctor-profile-summary-card">
-
           <div className="smarthealth-doctor-profile-avatar">
             {profile.fullName?.charAt(0)?.toUpperCase() || "D"}
           </div>
 
           <div className="smarthealth-doctor-profile-summary-info">
-
             <h2 className="smarthealth-doctor-profile-name">
               {profile.fullName}
             </h2>
 
-            <p className="smarthealth-doctor-profile-email">
-              {profile.email}
-            </p>
+            <p className="smarthealth-doctor-profile-email">{profile.email}</p>
 
             <div className="smarthealth-doctor-profile-badges">
-
               <span className="smarthealth-doctor-profile-role-badge">
                 {profile.role}
               </span>
@@ -221,16 +205,13 @@ const DoctorProfile = () => {
                 <span className="smarthealth-doctor-profile-status-dot"></span>
                 {profile.status}
               </span>
-
             </div>
           </div>
-
         </section>
 
         {/* PROFILE DETAILS */}
 
         <section className="smarthealth-doctor-profile-details-card">
-
           <div className="smarthealth-doctor-profile-card-header">
             <div>
               <h2 className="smarthealth-doctor-profile-card-title">
@@ -247,11 +228,9 @@ const DoctorProfile = () => {
             className="smarthealth-doctor-profile-form"
             onSubmit={handleSubmit}
           >
-
             {/* FULL NAME */}
 
             <div className="smarthealth-doctor-profile-field">
-
               <label
                 htmlFor="smarthealth-doctor-profile-full-name"
                 className="smarthealth-doctor-profile-label"
@@ -269,13 +248,11 @@ const DoctorProfile = () => {
                 className="smarthealth-doctor-profile-input"
                 placeholder="Enter your full name"
               />
-
             </div>
 
             {/* EMAIL */}
 
             <div className="smarthealth-doctor-profile-field">
-
               <label
                 htmlFor="smarthealth-doctor-profile-email"
                 className="smarthealth-doctor-profile-label"
@@ -294,13 +271,11 @@ const DoctorProfile = () => {
               <span className="smarthealth-doctor-profile-field-note">
                 Email address cannot be changed from this page.
               </span>
-
             </div>
 
             {/* PHONE */}
 
             <div className="smarthealth-doctor-profile-field">
-
               <label
                 htmlFor="smarthealth-doctor-profile-phone"
                 className="smarthealth-doctor-profile-label"
@@ -318,13 +293,11 @@ const DoctorProfile = () => {
                 className="smarthealth-doctor-profile-input"
                 placeholder="Enter your phone number"
               />
-
             </div>
 
             {/* ROLE */}
 
             <div className="smarthealth-doctor-profile-field">
-
               <label
                 htmlFor="smarthealth-doctor-profile-role"
                 className="smarthealth-doctor-profile-label"
@@ -343,13 +316,11 @@ const DoctorProfile = () => {
               <span className="smarthealth-doctor-profile-field-note">
                 Your account role is managed by the administrator.
               </span>
-
             </div>
 
             {/* STATUS */}
 
             <div className="smarthealth-doctor-profile-field">
-
               <label
                 htmlFor="smarthealth-doctor-profile-status"
                 className="smarthealth-doctor-profile-label"
@@ -364,14 +335,12 @@ const DoctorProfile = () => {
                 disabled
                 className="smarthealth-doctor-profile-input smarthealth-doctor-profile-input-readonly"
               />
-
             </div>
 
             {/* ACTIONS */}
 
             {isEditing && (
               <div className="smarthealth-doctor-profile-actions">
-
                 <button
                   type="button"
                   className="smarthealth-doctor-profile-cancel-button"
@@ -388,14 +357,10 @@ const DoctorProfile = () => {
                 >
                   {saving ? "Saving..." : "Save Changes"}
                 </button>
-
               </div>
             )}
-
           </form>
-
         </section>
-
       </div>
     </div>
   );
