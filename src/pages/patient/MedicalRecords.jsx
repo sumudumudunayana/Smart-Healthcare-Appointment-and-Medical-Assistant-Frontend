@@ -9,13 +9,13 @@ import "../../styles/pages/patient/MedicalRecords.css";
 ========================================================= */
 
 const normalizeStatusText = (value) =>
-  String(value ?? "").trim().toLowerCase();
+  String(value ?? "")
+    .trim()
+    .toLowerCase();
 
-const normalizeDate = (value) =>
-  String(value ?? "").slice(0, 10);
+const normalizeDate = (value) => String(value ?? "").slice(0, 10);
 
-const normalizeTime = (value) =>
-  String(value ?? "").slice(0, 5);
+const normalizeTime = (value) => String(value ?? "").slice(0, 5);
 
 const formatDate = (value) => {
   const dateString = normalizeDate(value);
@@ -86,9 +86,7 @@ const formatDateTime = (value) => {
 };
 
 const getErrorMessage = (error, fallback) =>
-  error?.response?.data?.message ||
-  error?.response?.data?.title ||
-  fallback;
+  error?.response?.data?.message || error?.response?.data?.title || fallback;
 
 const getRecordDate = (record) => {
   const date = normalizeDate(record.appointmentDate);
@@ -126,9 +124,7 @@ const MedicalRecords = () => {
     try {
       const response = await api.get("/MedicalRecords/my");
 
-      const data = Array.isArray(response.data)
-        ? response.data
-        : [];
+      const data = Array.isArray(response.data) ? response.data : [];
 
       // Sort newest appointment dates first.
       data.sort((a, b) => {
@@ -174,29 +170,17 @@ const MedicalRecords = () => {
     const search = searchTerm.trim().toLowerCase();
 
     return records.filter((record) => {
-      const doctorName = String(
-        record.doctorName ?? "",
-      ).toLowerCase();
+      const doctorName = String(record.doctorName ?? "").toLowerCase();
 
-      const diagnosis = String(
-        record.diagnosis ?? "",
-      ).toLowerCase();
+      const diagnosis = String(record.diagnosis ?? "").toLowerCase();
 
-      const treatment = String(
-        record.treatment ?? "",
-      ).toLowerCase();
+      const treatment = String(record.treatment ?? "").toLowerCase();
 
-      const notes = String(
-        record.notes ?? "",
-      ).toLowerCase();
+      const notes = String(record.notes ?? "").toLowerCase();
 
-      const appointmentId = String(
-        record.appointmentId ?? "",
-      ).toLowerCase();
+      const appointmentId = String(record.appointmentId ?? "").toLowerCase();
 
-      const recordId = String(
-        record.recordId ?? "",
-      ).toLowerCase();
+      const recordId = String(record.recordId ?? "").toLowerCase();
 
       const matchesSearch =
         !search ||
@@ -211,12 +195,9 @@ const MedicalRecords = () => {
 
       const matchesDate =
         dateFilter === "all" ||
-        (dateFilter === "30days" &&
-          isWithinDays(appointmentDate, 30)) ||
-        (dateFilter === "90days" &&
-          isWithinDays(appointmentDate, 90)) ||
-        (dateFilter === "year" &&
-          isWithinCurrentYear(appointmentDate));
+        (dateFilter === "30days" && isWithinDays(appointmentDate, 30)) ||
+        (dateFilter === "90days" && isWithinDays(appointmentDate, 90)) ||
+        (dateFilter === "year" && isWithinCurrentYear(appointmentDate));
 
       return matchesSearch && matchesDate;
     });
@@ -227,12 +208,12 @@ const MedicalRecords = () => {
   ======================================================= */
 
   const counts = useMemo(() => {
-    const diagnosisCount = records.filter(
-      (record) => String(record.diagnosis ?? "").trim(),
+    const diagnosisCount = records.filter((record) =>
+      String(record.diagnosis ?? "").trim(),
     ).length;
 
-    const treatmentCount = records.filter(
-      (record) => String(record.treatment ?? "").trim(),
+    const treatmentCount = records.filter((record) =>
+      String(record.treatment ?? "").trim(),
     ).length;
 
     return {
@@ -260,15 +241,13 @@ const MedicalRecords = () => {
       {/* PAGE HEADER */}
       <header className="smarthealth-medical-records-header">
         <div>
-          <p className="smarthealth-medical-records-eyebrow">
-            PATIENT PORTAL
-          </p>
+          <p className="smarthealth-medical-records-eyebrow">PATIENT PORTAL</p>
 
           <h1>Medical Records</h1>
 
           <p className="smarthealth-medical-records-subtitle">
-            View your medical history, diagnoses, treatments, and
-            doctor's notes in one place.
+            View your medical history, diagnoses, treatments, and doctor's notes
+            in one place.
           </p>
         </div>
 
@@ -289,9 +268,7 @@ const MedicalRecords = () => {
         aria-label="Medical records summary"
       >
         <article className="smarthealth-medical-records-stat">
-          <div className="smarthealth-medical-records-stat-icon total">
-            ▤
-          </div>
+          <div className="smarthealth-medical-records-stat-icon total">▤</div>
 
           <div>
             <span>Total records</span>
@@ -325,9 +302,7 @@ const MedicalRecords = () => {
       {/* SEARCH AND FILTERS */}
       <section className="smarthealth-medical-records-filters">
         <div className="smarthealth-medical-records-search">
-          <label htmlFor="medical-records-search">
-            Search medical records
-          </label>
+          <label htmlFor="medical-records-search">Search medical records</label>
 
           <input
             id="medical-records-search"
@@ -339,9 +314,7 @@ const MedicalRecords = () => {
         </div>
 
         <div className="smarthealth-medical-records-filter">
-          <label htmlFor="medical-records-date-filter">
-            Appointment date
-          </label>
+          <label htmlFor="medical-records-date-filter">Appointment date</label>
 
           <select
             id="medical-records-date-filter"
@@ -383,9 +356,7 @@ const MedicalRecords = () => {
 
             <h3>Loading medical records</h3>
 
-            <p>
-              Please wait while we retrieve your medical history.
-            </p>
+            <p>Please wait while we retrieve your medical history.</p>
           </div>
         ) : loadError ? (
           <div className="smarthealth-medical-records-state">
@@ -396,8 +367,8 @@ const MedicalRecords = () => {
             <h3>Unable to load medical records</h3>
 
             <p>
-              We couldn't retrieve your medical history. Please check
-              your connection and try again.
+              We couldn't retrieve your medical history. Please check your
+              connection and try again.
             </p>
 
             <button
@@ -410,28 +381,23 @@ const MedicalRecords = () => {
           </div>
         ) : records.length === 0 ? (
           <div className="smarthealth-medical-records-state">
-            <div className="smarthealth-medical-records-state-icon">
-              ▤
-            </div>
+            <div className="smarthealth-medical-records-state-icon">▤</div>
 
             <h3>No medical records yet</h3>
 
             <p>
-              Your medical records will appear here after your doctor
-              creates a record for one of your appointments.
+              Your medical records will appear here after your doctor creates a
+              record for one of your appointments.
             </p>
           </div>
         ) : filteredRecords.length === 0 ? (
           <div className="smarthealth-medical-records-state">
-            <div className="smarthealth-medical-records-state-icon">
-              ⌕
-            </div>
+            <div className="smarthealth-medical-records-state-icon">⌕</div>
 
             <h3>No matching records</h3>
 
             <p>
-              Try changing your search or date filter to find a medical
-              record.
+              Try changing your search or date filter to find a medical record.
             </p>
 
             <button
@@ -478,34 +444,24 @@ const MedicalRecords = () => {
 
                     <div className="smarthealth-medical-records-details-grid">
                       <div className="smarthealth-medical-records-detail">
-                        <span
-                          className="detail-icon"
-                          aria-hidden="true"
-                        >
+                        <span className="detail-icon" aria-hidden="true">
                           ▦
                         </span>
 
                         <div>
                           <span>Appointment date</span>
-                          <strong>
-                            {formatDate(record.appointmentDate)}
-                          </strong>
+                          <strong>{formatDate(record.appointmentDate)}</strong>
                         </div>
                       </div>
 
                       <div className="smarthealth-medical-records-detail">
-                        <span
-                          className="detail-icon"
-                          aria-hidden="true"
-                        >
+                        <span className="detail-icon" aria-hidden="true">
                           ◷
                         </span>
 
                         <div>
                           <span>Appointment time</span>
-                          <strong>
-                            {formatTime(record.appointmentTime)}
-                          </strong>
+                          <strong>{formatTime(record.appointmentTime)}</strong>
                         </div>
                       </div>
                     </div>
@@ -514,8 +470,7 @@ const MedicalRecords = () => {
                       <span>Diagnosis</span>
 
                       <p>
-                        {record.diagnosis?.trim() ||
-                          "No diagnosis provided"}
+                        {record.diagnosis?.trim() || "No diagnosis provided"}
                       </p>
                     </div>
 
@@ -621,16 +576,12 @@ const MedicalRecords = () => {
 
                 <div className="smarthealth-medical-records-modal-field">
                   <span>Appointment date</span>
-                  <strong>
-                    {formatDate(selectedRecord.appointmentDate)}
-                  </strong>
+                  <strong>{formatDate(selectedRecord.appointmentDate)}</strong>
                 </div>
 
                 <div className="smarthealth-medical-records-modal-field">
                   <span>Appointment time</span>
-                  <strong>
-                    {formatTime(selectedRecord.appointmentTime)}
-                  </strong>
+                  <strong>{formatTime(selectedRecord.appointmentTime)}</strong>
                 </div>
 
                 <div className="smarthealth-medical-records-modal-field">
@@ -643,8 +594,7 @@ const MedicalRecords = () => {
                 <h3>Diagnosis</h3>
 
                 <p>
-                  {selectedRecord.diagnosis?.trim() ||
-                    "No diagnosis provided."}
+                  {selectedRecord.diagnosis?.trim() || "No diagnosis provided."}
                 </p>
               </div>
 
