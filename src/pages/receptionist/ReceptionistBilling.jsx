@@ -7,30 +7,19 @@ import billService from "../../services/billService";
 import "../../styles/pages/receptionist/ReceptionistBilling.css";
 
 const ReceptionistBilling = () => {
-  // ============================================================
   // DATA
-  // ============================================================
-
   const [appointments, setAppointments] = useState([]);
   const [bills, setBills] = useState([]);
-
-  // ============================================================
   // SELECTION
-  // ============================================================
-
   const [selectedAppointment, setSelectedAppointment] = useState(null);
 
-  // ============================================================
   // APPOINTMENT FILTERS
-  // ============================================================
 
   const [appointmentSearchTerm, setAppointmentSearchTerm] = useState("");
 
   const [appointmentStatusFilter, setAppointmentStatusFilter] = useState("All");
 
-  // ============================================================
   // BILL FILTERS
-  // ============================================================
 
   const [billSearchTerm, setBillSearchTerm] = useState("");
 
