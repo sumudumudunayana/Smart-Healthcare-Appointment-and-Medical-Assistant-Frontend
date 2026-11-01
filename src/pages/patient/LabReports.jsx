@@ -50,8 +50,7 @@ const formatDateTime = (dateValue) => {
   });
 };
 
-const getReportType = (report) =>
-  report.reportType?.trim() || "General report";
+const getReportType = (report) => report.reportType?.trim() || "General report";
 
 const isValidHttpUrl = (value) => {
   if (!value || typeof value !== "string") return false;
@@ -124,8 +123,7 @@ const LabReports = () => {
           const cutoff = new Date(now);
           cutoff.setDate(cutoff.getDate() - days);
 
-          matchesDate =
-            uploadedDate >= cutoff && uploadedDate <= now;
+          matchesDate = uploadedDate >= cutoff && uploadedDate <= now;
         }
       }
 
@@ -173,8 +171,8 @@ const LabReports = () => {
           <div>
             <h1>Lab Reports</h1>
             <p>
-              Access and review laboratory reports associated with your
-              medical records.
+              Access and review laboratory reports associated with your medical
+              records.
             </p>
           </div>
         </div>
@@ -350,9 +348,7 @@ const LabReports = () => {
               </div>
 
               <h3>No matching reports</h3>
-              <p>
-                Try another search term or change your selected date range.
-              </p>
+              <p>Try another search term or change your selected date range.</p>
 
               <button
                 type="button"
@@ -368,10 +364,7 @@ const LabReports = () => {
         {!loading && !error && filteredReports.length > 0 && (
           <div className="lab-reports-grid">
             {filteredReports.map((report) => (
-              <article
-                className="lab-report-card"
-                key={report.labReportId}
-              >
+              <article className="lab-report-card" key={report.labReportId}>
                 <div className="lab-report-card-top">
                   <div className="lab-report-file-icon">
                     <FiFileText />
@@ -387,9 +380,7 @@ const LabReports = () => {
 
                   <div className="lab-report-meta">
                     <FiUser />
-                    <span>
-                      {report.doctorName || "Doctor unavailable"}
-                    </span>
+                    <span>{report.doctorName || "Doctor unavailable"}</span>
                   </div>
 
                   <div className="lab-report-meta">
@@ -420,10 +411,7 @@ const LabReports = () => {
 
       {/* Report details modal */}
       {selectedReport && (
-        <div
-          className="lab-report-modal-overlay"
-          onClick={handleCloseModal}
-        >
+        <div className="lab-report-modal-overlay" onClick={handleCloseModal}>
           <div
             className="lab-report-modal"
             role="dialog"
@@ -458,9 +446,7 @@ const LabReports = () => {
             <div className="lab-report-modal-body">
               <div className="lab-report-detail-item">
                 <span>Report name</span>
-                <strong>
-                  {selectedReport.reportName || "Not specified"}
-                </strong>
+                <strong>{selectedReport.reportName || "Not specified"}</strong>
               </div>
 
               <div className="lab-report-detail-item">
@@ -470,9 +456,7 @@ const LabReports = () => {
 
               <div className="lab-report-detail-item">
                 <span>Doctor</span>
-                <strong>
-                  {selectedReport.doctorName || "Not available"}
-                </strong>
+                <strong>{selectedReport.doctorName || "Not available"}</strong>
               </div>
 
               <div className="lab-report-detail-item">
@@ -504,8 +488,8 @@ const LabReports = () => {
               {selectedReport.filePath &&
                 !isValidHttpUrl(selectedReport.filePath) && (
                   <p className="lab-report-file-unavailable">
-                    A file path is recorded, but it is not a directly
-                    accessible web URL.
+                    A file path is recorded, but it is not a directly accessible
+                    web URL.
                   </p>
                 )}
 

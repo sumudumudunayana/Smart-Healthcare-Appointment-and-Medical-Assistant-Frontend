@@ -70,9 +70,7 @@ const DoctorSchedule = () => {
       );
 
       if (!currentDoctor) {
-        throw new Error(
-          "The logged-in doctor profile could not be found.",
-        );
+        throw new Error("The logged-in doctor profile could not be found.");
       }
 
       setDoctor(currentDoctor);
@@ -80,21 +78,13 @@ const DoctorSchedule = () => {
       // --------------------------------------------------------
       // Get doctor's schedules
       // --------------------------------------------------------
-      const scheduleData =
-        await doctorScheduleService.getByDoctorId(
-          currentDoctor.doctorId,
-        );
+      const scheduleData = await doctorScheduleService.getByDoctorId(
+        currentDoctor.doctorId,
+      );
 
-      setSchedules(
-        Array.isArray(scheduleData)
-          ? scheduleData
-          : [],
-      );
+      setSchedules(Array.isArray(scheduleData) ? scheduleData : []);
     } catch (error) {
-      console.error(
-        "Failed to load doctor schedule:",
-        error,
-      );
+      console.error("Failed to load doctor schedule:", error);
 
       toast.error(
         error.response?.data?.message ||
@@ -116,23 +106,19 @@ const DoctorSchedule = () => {
   // ============================================================
   const orderedSchedules = useMemo(() => {
     return [...schedules].sort((first, second) => {
-      const firstDay =
-        smarthealthDoctorScheduleDayOrder.indexOf(
-          first.dayOfWeek,
-        );
+      const firstDay = smarthealthDoctorScheduleDayOrder.indexOf(
+        first.dayOfWeek,
+      );
 
-      const secondDay =
-        smarthealthDoctorScheduleDayOrder.indexOf(
-          second.dayOfWeek,
-        );
+      const secondDay = smarthealthDoctorScheduleDayOrder.indexOf(
+        second.dayOfWeek,
+      );
 
       if (firstDay !== secondDay) {
         return firstDay - secondDay;
       }
 
-      return String(first.startTime).localeCompare(
-        String(second.startTime),
-      );
+      return String(first.startTime).localeCompare(String(second.startTime));
     });
   }, [schedules]);
 
@@ -140,31 +126,24 @@ const DoctorSchedule = () => {
   // GROUP SCHEDULES BY DAY
   // ============================================================
   const groupedSchedules = useMemo(() => {
-    return smarthealthDoctorScheduleDayOrder.map(
-      (day) => ({
-        day,
-        schedules: orderedSchedules.filter(
-          (schedule) =>
-            schedule.dayOfWeek === day,
-        ),
-      }),
-    );
+    return smarthealthDoctorScheduleDayOrder.map((day) => ({
+      day,
+      schedules: orderedSchedules.filter(
+        (schedule) => schedule.dayOfWeek === day,
+      ),
+    }));
   }, [orderedSchedules]);
 
   // ============================================================
   // SUMMARY COUNTS
   // ============================================================
-  const availableScheduleCount =
-    schedules.filter(
-      (schedule) =>
-        schedule.availabilityStatus === "Available",
-    ).length;
+  const availableScheduleCount = schedules.filter(
+    (schedule) => schedule.availabilityStatus === "Available",
+  ).length;
 
-  const unavailableScheduleCount =
-    schedules.filter(
-      (schedule) =>
-        schedule.availabilityStatus === "Unavailable",
-    ).length;
+  const unavailableScheduleCount = schedules.filter(
+    (schedule) => schedule.availabilityStatus === "Unavailable",
+  ).length;
 
   // ============================================================
   // FORMAT TIME
@@ -190,10 +169,7 @@ const DoctorSchedule = () => {
 
     const suffix = hours >= 12 ? "PM" : "AM";
 
-    const displayHours =
-      hours % 12 === 0
-        ? 12
-        : hours % 12;
+    const displayHours = hours % 12 === 0 ? 12 : hours % 12;
 
     return `${displayHours}:${minutes} ${suffix}`;
   };
@@ -204,9 +180,7 @@ const DoctorSchedule = () => {
   const handleOpenCreateModal = () => {
     setEditingSchedule(null);
 
-    setScheduleForm(
-      smarthealthDoctorScheduleInitialForm,
-    );
+    setScheduleForm(smarthealthDoctorScheduleInitialForm);
 
     setShowScheduleModal(true);
   };
@@ -218,24 +192,13 @@ const DoctorSchedule = () => {
     setEditingSchedule(schedule);
 
     setScheduleForm({
-      dayOfWeek:
-        schedule.dayOfWeek || "Monday",
+      dayOfWeek: schedule.dayOfWeek || "Monday",
 
-      startTime:
-        String(schedule.startTime || "").slice(
-          0,
-          5,
-        ),
+      startTime: String(schedule.startTime || "").slice(0, 5),
 
-      endTime:
-        String(schedule.endTime || "").slice(
-          0,
-          5,
-        ),
+      endTime: String(schedule.endTime || "").slice(0, 5),
 
-      availabilityStatus:
-        schedule.availabilityStatus ||
-        "Available",
+      availabilityStatus: schedule.availabilityStatus || "Available",
     });
 
     setShowScheduleModal(true);
@@ -252,9 +215,7 @@ const DoctorSchedule = () => {
     setShowScheduleModal(false);
     setEditingSchedule(null);
 
-    setScheduleForm(
-      smarthealthDoctorScheduleInitialForm,
-    );
+    setScheduleForm(smarthealthDoctorScheduleInitialForm);
   };
 
   // ============================================================
@@ -276,33 +237,22 @@ const DoctorSchedule = () => {
     event.preventDefault();
 
     if (!scheduleForm.dayOfWeek) {
-      toast.error(
-        "Please select a day of the week.",
-      );
+      toast.error("Please select a day of the week.");
       return;
     }
 
     if (!scheduleForm.startTime) {
-      toast.error(
-        "Please select a start time.",
-      );
+      toast.error("Please select a start time.");
       return;
     }
 
     if (!scheduleForm.endTime) {
-      toast.error(
-        "Please select an end time.",
-      );
+      toast.error("Please select an end time.");
       return;
     }
 
-    if (
-      scheduleForm.startTime >=
-      scheduleForm.endTime
-    ) {
-      toast.error(
-        "Start time must be before end time.",
-      );
+    if (scheduleForm.startTime >= scheduleForm.endTime) {
+      toast.error("Start time must be before end time.");
       return;
     }
 
@@ -310,8 +260,7 @@ const DoctorSchedule = () => {
       dayOfWeek: scheduleForm.dayOfWeek,
       startTime: `${scheduleForm.startTime}:00`,
       endTime: `${scheduleForm.endTime}:00`,
-      availabilityStatus:
-        scheduleForm.availabilityStatus,
+      availabilityStatus: scheduleForm.availabilityStatus,
     };
 
     try {
@@ -323,32 +272,21 @@ const DoctorSchedule = () => {
           requestData,
         );
 
-        toast.success(
-          "Schedule updated successfully.",
-        );
+        toast.success("Schedule updated successfully.");
       } else {
-        await doctorScheduleService.create(
-          requestData,
-        );
+        await doctorScheduleService.create(requestData);
 
-        toast.success(
-          "Schedule created successfully.",
-        );
+        toast.success("Schedule created successfully.");
       }
 
       setShowScheduleModal(false);
       setEditingSchedule(null);
 
-      setScheduleForm(
-        smarthealthDoctorScheduleInitialForm,
-      );
+      setScheduleForm(smarthealthDoctorScheduleInitialForm);
 
       await loadSchedule(true);
     } catch (error) {
-      console.error(
-        "Failed to save doctor schedule:",
-        error,
-      );
+      console.error("Failed to save doctor schedule:", error);
 
       toast.error(
         error.response?.data?.message ||
@@ -367,9 +305,7 @@ const DoctorSchedule = () => {
     const confirmed = window.confirm(
       `Delete the ${schedule.dayOfWeek} schedule from ${formatTime(
         schedule.startTime,
-      )} to ${formatTime(
-        schedule.endTime,
-      )}?`,
+      )} to ${formatTime(schedule.endTime)}?`,
     );
 
     if (!confirmed) {
@@ -377,24 +313,15 @@ const DoctorSchedule = () => {
     }
 
     try {
-      setDeletingScheduleId(
-        schedule.scheduleId,
-      );
+      setDeletingScheduleId(schedule.scheduleId);
 
-      await doctorScheduleService.delete(
-        schedule.scheduleId,
-      );
+      await doctorScheduleService.delete(schedule.scheduleId);
 
-      toast.success(
-        "Schedule deleted successfully.",
-      );
+      toast.success("Schedule deleted successfully.");
 
       await loadSchedule(true);
     } catch (error) {
-      console.error(
-        "Failed to delete doctor schedule:",
-        error,
-      );
+      console.error("Failed to delete doctor schedule:", error);
 
       toast.error(
         error.response?.data?.message ||
@@ -415,9 +342,7 @@ const DoctorSchedule = () => {
         <div className="smarthealth-doctor-schedule-loading">
           <div className="smarthealth-doctor-schedule-spinner"></div>
 
-          <p>
-            Loading your schedule...
-          </p>
+          <p>Loading your schedule...</p>
         </div>
       </div>
     );
@@ -428,7 +353,6 @@ const DoctorSchedule = () => {
   // ============================================================
   return (
     <div className="smarthealth-doctor-schedule-page">
-
       {/* ======================================================
           PAGE HEADER
       ======================================================= */}
@@ -439,27 +363,20 @@ const DoctorSchedule = () => {
             DOCTOR PORTAL
           </span>
 
-          <h1 className="smarthealth-doctor-schedule-title">
-            My Schedule
-          </h1>
+          <h1 className="smarthealth-doctor-schedule-title">My Schedule</h1>
 
           <p className="smarthealth-doctor-schedule-subtitle">
-            Create and manage your weekly working
-            hours and availability.
+            Create and manage your weekly working hours and availability.
           </p>
         </div>
 
         <div className="smarthealth-doctor-schedule-header-actions">
-
           <button
             type="button"
             className="smarthealth-doctor-schedule-create-button"
             onClick={handleOpenCreateModal}
           >
-            <span className="smarthealth-doctor-schedule-create-icon">
-              +
-            </span>
-
+            <span className="smarthealth-doctor-schedule-create-icon">+</span>
             Create Schedule
           </button>
 
@@ -469,13 +386,9 @@ const DoctorSchedule = () => {
             onClick={() => loadSchedule(true)}
             disabled={refreshing}
           >
-            <span className="smarthealth-doctor-schedule-refresh-icon">
-              ↻
-            </span>
+            <span className="smarthealth-doctor-schedule-refresh-icon">↻</span>
 
-            {refreshing
-              ? "Refreshing..."
-              : "Refresh"}
+            {refreshing ? "Refreshing..." : "Refresh"}
           </button>
         </div>
       </div>
@@ -486,32 +399,17 @@ const DoctorSchedule = () => {
 
       <div className="smarthealth-doctor-schedule-doctor-card">
         <div className="smarthealth-doctor-schedule-doctor-avatar">
-          {(
-            doctor?.fullName ||
-            profile?.fullName ||
-            "D"
-          )
+          {(doctor?.fullName || profile?.fullName || "D")
             .charAt(0)
             .toUpperCase()}
         </div>
 
         <div className="smarthealth-doctor-schedule-doctor-info">
-          <h2>
-            {doctor?.fullName ||
-              profile?.fullName ||
-              "Doctor"}
-          </h2>
+          <h2>{doctor?.fullName || profile?.fullName || "Doctor"}</h2>
 
-          <p>
-            {doctor?.specialization ||
-              "Medical Professional"}
-          </p>
+          <p>{doctor?.specialization || "Medical Professional"}</p>
 
-          {doctor?.department && (
-            <span>
-              {doctor.department}
-            </span>
-          )}
+          {doctor?.department && <span>{doctor.department}</span>}
         </div>
       </div>
 
@@ -520,49 +418,35 @@ const DoctorSchedule = () => {
       ======================================================= */}
 
       <div className="smarthealth-doctor-schedule-summary">
-
         <div className="smarthealth-doctor-schedule-summary-card">
-          <div className="smarthealth-doctor-schedule-summary-icon">
-            ◷
-          </div>
+          <div className="smarthealth-doctor-schedule-summary-icon">◷</div>
 
           <div>
             <span>Total Slots</span>
 
-            <strong>
-              {schedules.length}
-            </strong>
+            <strong>{schedules.length}</strong>
           </div>
         </div>
 
         <div className="smarthealth-doctor-schedule-summary-card">
-          <div className="smarthealth-doctor-schedule-summary-icon">
-            ✓
-          </div>
+          <div className="smarthealth-doctor-schedule-summary-icon">✓</div>
 
           <div>
             <span>Available</span>
 
-            <strong>
-              {availableScheduleCount}
-            </strong>
+            <strong>{availableScheduleCount}</strong>
           </div>
         </div>
 
         <div className="smarthealth-doctor-schedule-summary-card">
-          <div className="smarthealth-doctor-schedule-summary-icon">
-            —
-          </div>
+          <div className="smarthealth-doctor-schedule-summary-icon">—</div>
 
           <div>
             <span>Unavailable</span>
 
-            <strong>
-              {unavailableScheduleCount}
-            </strong>
+            <strong>{unavailableScheduleCount}</strong>
           </div>
         </div>
-
       </div>
 
       {/* ======================================================
@@ -570,16 +454,12 @@ const DoctorSchedule = () => {
       ======================================================= */}
 
       <section className="smarthealth-doctor-schedule-week-card">
-
         <div className="smarthealth-doctor-schedule-section-header">
           <div>
-            <h2>
-              Weekly Schedule
-            </h2>
+            <h2>Weekly Schedule</h2>
 
             <p>
-              Manage the working hours that
-              patients can use when booking
+              Manage the working hours that patients can use when booking
               appointments.
             </p>
           </div>
@@ -587,20 +467,13 @@ const DoctorSchedule = () => {
 
         {schedules.length === 0 ? (
           <div className="smarthealth-doctor-schedule-empty">
+            <div className="smarthealth-doctor-schedule-empty-icon">◷</div>
 
-            <div className="smarthealth-doctor-schedule-empty-icon">
-              ◷
-            </div>
-
-            <h3>
-              No Schedule Available
-            </h3>
+            <h3>No Schedule Available</h3>
 
             <p>
-              You have not created any working
-              hours yet. Create your first
-              schedule to allow patients to
-              find available appointment times.
+              You have not created any working hours yet. Create your first
+              schedule to allow patients to find available appointment times.
             </p>
 
             <button
@@ -610,141 +483,96 @@ const DoctorSchedule = () => {
             >
               Create Your First Schedule
             </button>
-
           </div>
         ) : (
           <div className="smarthealth-doctor-schedule-day-list">
+            {groupedSchedules.map(({ day, schedules: daySchedules }) => (
+              <div
+                key={day}
+                className={`smarthealth-doctor-schedule-day-row ${
+                  daySchedules.length === 0
+                    ? "smarthealth-doctor-schedule-day-row-empty"
+                    : ""
+                }`}
+              >
+                <div className="smarthealth-doctor-schedule-day-name">
+                  <span>{day.substring(0, 3)}</span>
 
-            {groupedSchedules.map(
-              ({
-                day,
-                schedules: daySchedules,
-              }) => (
-                <div
-                  key={day}
-                  className={`smarthealth-doctor-schedule-day-row ${
-                    daySchedules.length === 0
-                      ? "smarthealth-doctor-schedule-day-row-empty"
-                      : ""
-                  }`}
-                >
-
-                  <div className="smarthealth-doctor-schedule-day-name">
-                    <span>
-                      {day.substring(0, 3)}
-                    </span>
-
-                    <strong>
-                      {day}
-                    </strong>
-                  </div>
-
-                  <div className="smarthealth-doctor-schedule-day-slots">
-
-                    {daySchedules.length === 0 ? (
-                      <span className="smarthealth-doctor-schedule-no-slot">
-                        No schedule
-                      </span>
-                    ) : (
-                      daySchedules.map(
-                        (schedule) => (
-                          <div
-                            key={
-                              schedule.scheduleId
-                            }
-                            className="smarthealth-doctor-schedule-slot"
-                          >
-
-                            <div className="smarthealth-doctor-schedule-slot-main">
-
-                              <div className="smarthealth-doctor-schedule-time">
-                                <span className="smarthealth-doctor-schedule-time-icon">
-                                  ◷
-                                </span>
-
-                                <span>
-                                  {formatTime(
-                                    schedule.startTime,
-                                  )}
-
-                                  {" – "}
-
-                                  {formatTime(
-                                    schedule.endTime,
-                                  )}
-                                </span>
-                              </div>
-
-                              <span
-                                className={`smarthealth-doctor-schedule-status ${
-                                  schedule.availabilityStatus ===
-                                  "Available"
-                                    ? "smarthealth-doctor-schedule-status-available"
-                                    : "smarthealth-doctor-schedule-status-unavailable"
-                                }`}
-                              >
-                                <span className="smarthealth-doctor-schedule-status-dot"></span>
-
-                                {
-                                  schedule.availabilityStatus
-                                }
-                              </span>
-
-                            </div>
-
-                            <div className="smarthealth-doctor-schedule-slot-actions">
-
-                              <button
-                                type="button"
-                                className="smarthealth-doctor-schedule-edit-button"
-                                onClick={() =>
-                                  handleOpenEditModal(
-                                    schedule,
-                                  )
-                                }
-                                disabled={
-                                  deletingScheduleId ===
-                                  schedule.scheduleId
-                                }
-                              >
-                                Edit
-                              </button>
-
-                              <button
-                                type="button"
-                                className="smarthealth-doctor-schedule-delete-button"
-                                onClick={() =>
-                                  handleDeleteSchedule(
-                                    schedule,
-                                  )
-                                }
-                                disabled={
-                                  deletingScheduleId ===
-                                  schedule.scheduleId
-                                }
-                              >
-                                {deletingScheduleId ===
-                                schedule.scheduleId
-                                  ? "Deleting..."
-                                  : "Delete"}
-                              </button>
-
-                            </div>
-
-                          </div>
-                        ),
-                      )
-                    )}
-
-                  </div>
-
+                  <strong>{day}</strong>
                 </div>
-              ),
-            )}
 
+                <div className="smarthealth-doctor-schedule-day-slots">
+                  {daySchedules.length === 0 ? (
+                    <span className="smarthealth-doctor-schedule-no-slot">
+                      No schedule
+                    </span>
+                  ) : (
+                    daySchedules.map((schedule) => (
+                      <div
+                        key={schedule.scheduleId}
+                        className="smarthealth-doctor-schedule-slot"
+                      >
+                        <div className="smarthealth-doctor-schedule-slot-main">
+                          <div className="smarthealth-doctor-schedule-time">
+                            <span className="smarthealth-doctor-schedule-time-icon">
+                              ◷
+                            </span>
+
+                            <span>
+                              {formatTime(schedule.startTime)}
+
+                              {" – "}
+
+                              {formatTime(schedule.endTime)}
+                            </span>
+                          </div>
+
+                          <span
+                            className={`smarthealth-doctor-schedule-status ${
+                              schedule.availabilityStatus === "Available"
+                                ? "smarthealth-doctor-schedule-status-available"
+                                : "smarthealth-doctor-schedule-status-unavailable"
+                            }`}
+                          >
+                            <span className="smarthealth-doctor-schedule-status-dot"></span>
+
+                            {schedule.availabilityStatus}
+                          </span>
+                        </div>
+
+                        <div className="smarthealth-doctor-schedule-slot-actions">
+                          <button
+                            type="button"
+                            className="smarthealth-doctor-schedule-edit-button"
+                            onClick={() => handleOpenEditModal(schedule)}
+                            disabled={
+                              deletingScheduleId === schedule.scheduleId
+                            }
+                          >
+                            Edit
+                          </button>
+
+                          <button
+                            type="button"
+                            className="smarthealth-doctor-schedule-delete-button"
+                            onClick={() => handleDeleteSchedule(schedule)}
+                            disabled={
+                              deletingScheduleId === schedule.scheduleId
+                            }
+                          >
+                            {deletingScheduleId === schedule.scheduleId
+                              ? "Deleting..."
+                              : "Delete"}
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         )}
-
       </section>
 
       {/* ======================================================
@@ -755,24 +583,18 @@ const DoctorSchedule = () => {
         <div
           className="smarthealth-doctor-schedule-modal-overlay"
           onMouseDown={(event) => {
-            if (
-              event.target ===
-              event.currentTarget
-            ) {
+            if (event.target === event.currentTarget) {
               handleCloseScheduleModal();
             }
           }}
         >
-
           <div
             className="smarthealth-doctor-schedule-modal"
             role="dialog"
             aria-modal="true"
             aria-labelledby="smarthealth-doctor-schedule-modal-title"
           >
-
             <div className="smarthealth-doctor-schedule-modal-header">
-
               <div>
                 <span className="smarthealth-doctor-schedule-modal-eyebrow">
                   {editingSchedule
@@ -781,14 +603,12 @@ const DoctorSchedule = () => {
                 </span>
 
                 <h2 id="smarthealth-doctor-schedule-modal-title">
-                  {editingSchedule
-                    ? "Edit Schedule"
-                    : "Create Schedule"}
+                  {editingSchedule ? "Edit Schedule" : "Create Schedule"}
                 </h2>
 
                 <p>
-                  Set the day and working hours
-                  for your appointment availability.
+                  Set the day and working hours for your appointment
+                  availability.
                 </p>
               </div>
 
@@ -801,16 +621,13 @@ const DoctorSchedule = () => {
               >
                 ×
               </button>
-
             </div>
 
             <form
               className="smarthealth-doctor-schedule-modal-form"
               onSubmit={handleSaveSchedule}
             >
-
               <div className="smarthealth-doctor-schedule-form-field">
-
                 <label htmlFor="smarthealth-doctor-schedule-day">
                   Day of Week
                 </label>
@@ -818,32 +635,20 @@ const DoctorSchedule = () => {
                 <select
                   id="smarthealth-doctor-schedule-day"
                   name="dayOfWeek"
-                  value={
-                    scheduleForm.dayOfWeek
-                  }
-                  onChange={
-                    handleScheduleFormChange
-                  }
+                  value={scheduleForm.dayOfWeek}
+                  onChange={handleScheduleFormChange}
                   disabled={savingSchedule}
                 >
-                  {smarthealthDoctorScheduleDayOrder.map(
-                    (day) => (
-                      <option
-                        key={day}
-                        value={day}
-                      >
-                        {day}
-                      </option>
-                    ),
-                  )}
+                  {smarthealthDoctorScheduleDayOrder.map((day) => (
+                    <option key={day} value={day}>
+                      {day}
+                    </option>
+                  ))}
                 </select>
-
               </div>
 
               <div className="smarthealth-doctor-schedule-form-row">
-
                 <div className="smarthealth-doctor-schedule-form-field">
-
                   <label htmlFor="smarthealth-doctor-schedule-start-time">
                     Start Time
                   </label>
@@ -852,19 +657,13 @@ const DoctorSchedule = () => {
                     id="smarthealth-doctor-schedule-start-time"
                     type="time"
                     name="startTime"
-                    value={
-                      scheduleForm.startTime
-                    }
-                    onChange={
-                      handleScheduleFormChange
-                    }
+                    value={scheduleForm.startTime}
+                    onChange={handleScheduleFormChange}
                     disabled={savingSchedule}
                   />
-
                 </div>
 
                 <div className="smarthealth-doctor-schedule-form-field">
-
                   <label htmlFor="smarthealth-doctor-schedule-end-time">
                     End Time
                   </label>
@@ -873,21 +672,14 @@ const DoctorSchedule = () => {
                     id="smarthealth-doctor-schedule-end-time"
                     type="time"
                     name="endTime"
-                    value={
-                      scheduleForm.endTime
-                    }
-                    onChange={
-                      handleScheduleFormChange
-                    }
+                    value={scheduleForm.endTime}
+                    onChange={handleScheduleFormChange}
                     disabled={savingSchedule}
                   />
-
                 </div>
-
               </div>
 
               <div className="smarthealth-doctor-schedule-form-field">
-
                 <label htmlFor="smarthealth-doctor-schedule-availability">
                   Availability
                 </label>
@@ -895,33 +687,21 @@ const DoctorSchedule = () => {
                 <select
                   id="smarthealth-doctor-schedule-availability"
                   name="availabilityStatus"
-                  value={
-                    scheduleForm.availabilityStatus
-                  }
-                  onChange={
-                    handleScheduleFormChange
-                  }
+                  value={scheduleForm.availabilityStatus}
+                  onChange={handleScheduleFormChange}
                   disabled={savingSchedule}
                 >
-                  <option value="Available">
-                    Available
-                  </option>
+                  <option value="Available">Available</option>
 
-                  <option value="Unavailable">
-                    Unavailable
-                  </option>
+                  <option value="Unavailable">Unavailable</option>
                 </select>
-
               </div>
 
               <div className="smarthealth-doctor-schedule-modal-actions">
-
                 <button
                   type="button"
                   className="smarthealth-doctor-schedule-modal-cancel"
-                  onClick={
-                    handleCloseScheduleModal
-                  }
+                  onClick={handleCloseScheduleModal}
                   disabled={savingSchedule}
                 >
                   Cancel
@@ -940,16 +720,11 @@ const DoctorSchedule = () => {
                       ? "Update Schedule"
                       : "Create Schedule"}
                 </button>
-
               </div>
-
             </form>
-
           </div>
-
         </div>
       )}
-
     </div>
   );
 };
