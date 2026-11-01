@@ -69,16 +69,12 @@ const ReceptionistAIBilling = () => {
 
   const getPatientName = (bill) => {
     return (
-      getBillValue(bill, "patientName", "PatientName") ||
-      "Unknown Patient"
+      getBillValue(bill, "patientName", "PatientName") || "Unknown Patient"
     );
   };
 
   const getDoctorName = (bill) => {
-    return (
-      getBillValue(bill, "doctorName", "DoctorName") ||
-      "Unknown Doctor"
-    );
+    return getBillValue(bill, "doctorName", "DoctorName") || "Unknown Doctor";
   };
 
   const getTotalAmount = (bill) => {
@@ -97,11 +93,7 @@ const ReceptionistAIBilling = () => {
   };
 
   const getGeneratedDate = (bill) => {
-    return getBillValue(
-      bill,
-      "generatedDate",
-      "GeneratedDate",
-    );
+    return getBillValue(bill, "generatedDate", "GeneratedDate");
   };
 
   const formatCurrency = (amount) => {
@@ -141,28 +133,17 @@ const ReceptionistAIBilling = () => {
   };
 
   const getStatusClass = (status) => {
-    const normalizedStatus = String(status)
-      .toLowerCase()
-      .trim();
+    const normalizedStatus = String(status).toLowerCase().trim();
 
-    if (
-      normalizedStatus === "paid" ||
-      normalizedStatus === "completed"
-    ) {
+    if (normalizedStatus === "paid" || normalizedStatus === "completed") {
       return "smarthealth-receptionist-ai-billing-status-paid";
     }
 
-    if (
-      normalizedStatus === "pending" ||
-      normalizedStatus === "unpaid"
-    ) {
+    if (normalizedStatus === "pending" || normalizedStatus === "unpaid") {
       return "smarthealth-receptionist-ai-billing-status-pending";
     }
 
-    if (
-      normalizedStatus === "cancelled" ||
-      normalizedStatus === "canceled"
-    ) {
+    if (normalizedStatus === "cancelled" || normalizedStatus === "canceled") {
       return "smarthealth-receptionist-ai-billing-status-cancelled";
     }
 
@@ -180,8 +161,7 @@ const ReceptionistAIBilling = () => {
     setValidationResult(null);
 
     const bill = bills.find(
-      (item) =>
-        getBillValue(item, "billId", "BillId") === billId,
+      (item) => getBillValue(item, "billId", "BillId") === billId,
     );
 
     setSelectedBill(bill || null);
@@ -208,19 +188,14 @@ const ReceptionistAIBilling = () => {
       });
 
       if (!response?.success) {
-        toast.error(
-          response?.message ||
-            "Failed to validate the bill.",
-        );
+        toast.error(response?.message || "Failed to validate the bill.");
         return;
       }
 
       let parsedOutput = null;
 
       try {
-        parsedOutput = response.output
-          ? JSON.parse(response.output)
-          : null;
+        parsedOutput = response.output ? JSON.parse(response.output) : null;
       } catch {
         parsedOutput = null;
       }
@@ -231,13 +206,9 @@ const ReceptionistAIBilling = () => {
       });
 
       if (response.requiresHumanApproval) {
-        toast.warning(
-          "This billing validation requires human review.",
-        );
+        toast.warning("This billing validation requires human review.");
       } else {
-        toast.success(
-          "Bill validation completed successfully.",
-        );
+        toast.success("Bill validation completed successfully.");
       }
     } catch (error) {
       console.error("Failed to validate bill:", error);
@@ -273,9 +244,7 @@ const ReceptionistAIBilling = () => {
   };
 
   const getValidationChecks = () => {
-    const checks = getValidationValue(
-      "validationChecks",
-    );
+    const checks = getValidationValue("validationChecks");
 
     return Array.isArray(checks) ? checks : [];
   };
@@ -288,7 +257,6 @@ const ReceptionistAIBilling = () => {
 
   return (
     <div className="smarthealth-receptionist-ai-billing">
-
       {/* ======================================================
           HEADER
       ======================================================= */}
@@ -302,15 +270,13 @@ const ReceptionistAIBilling = () => {
           <h1>AI Billing Assistant</h1>
 
           <p>
-            Use AI-assisted billing validation to identify
-            inconsistencies, potential issues, and billing
-            information that may require human review.
+            Use AI-assisted billing validation to identify inconsistencies,
+            potential issues, and billing information that may require human
+            review.
           </p>
         </div>
 
-        <div className="smarthealth-receptionist-ai-billing-header-icon">
-          ✦
-        </div>
+        <div className="smarthealth-receptionist-ai-billing-header-icon">✦</div>
       </section>
 
       {/* ======================================================
@@ -318,7 +284,6 @@ const ReceptionistAIBilling = () => {
       ======================================================= */}
 
       <section className="smarthealth-receptionist-ai-billing-panel">
-
         <div className="smarthealth-receptionist-ai-billing-panel-header">
           <div>
             <span className="smarthealth-receptionist-ai-billing-section-label">
@@ -328,15 +293,13 @@ const ReceptionistAIBilling = () => {
             <h2>Bill Validation</h2>
 
             <p>
-              Select an existing bill and ask the Billing
-              Validation Agent to review it for potential
-              billing problems.
+              Select an existing bill and ask the Billing Validation Agent to
+              review it for potential billing problems.
             </p>
           </div>
         </div>
 
         <div className="smarthealth-receptionist-ai-billing-form">
-
           <div className="smarthealth-receptionist-ai-billing-field">
             <label htmlFor="smarthealth-receptionist-ai-billing-select">
               Bill
@@ -346,36 +309,22 @@ const ReceptionistAIBilling = () => {
               id="smarthealth-receptionist-ai-billing-select"
               value={selectedBillId}
               onChange={handleBillChange}
-              disabled={
-                loadingBills || validationLoading
-              }
+              disabled={loadingBills || validationLoading}
             >
               <option value="">
-                {loadingBills
-                  ? "Loading bills..."
-                  : "Select a bill"}
+                {loadingBills ? "Loading bills..." : "Select a bill"}
               </option>
 
               {bills.map((bill) => {
-                const billId = getBillValue(
-                  bill,
-                  "billId",
-                  "BillId",
-                );
+                const billId = getBillValue(bill, "billId", "BillId");
 
                 const billNumber = getBillNumber(bill);
-                const patientName =
-                  getPatientName(bill);
-                const totalAmount =
-                  getTotalAmount(bill);
+                const patientName = getPatientName(bill);
+                const totalAmount = getTotalAmount(bill);
 
                 return (
-                  <option
-                    key={billId}
-                    value={billId}
-                  >
-                    {billNumber} — {patientName} —{" "}
-                    {formatCurrency(totalAmount)}
+                  <option key={billId} value={billId}>
+                    {billNumber} — {patientName} — {formatCurrency(totalAmount)}
                   </option>
                 );
               })}
@@ -386,13 +335,9 @@ const ReceptionistAIBilling = () => {
             type="button"
             className="smarthealth-receptionist-ai-billing-primary-button"
             onClick={handleValidateBill}
-            disabled={
-              !selectedBillId || validationLoading
-            }
+            disabled={!selectedBillId || validationLoading}
           >
-            {validationLoading
-              ? "Validating..."
-              : "Validate Bill"}
+            {validationLoading ? "Validating..." : "Validate Bill"}
           </button>
         </div>
 
@@ -402,51 +347,35 @@ const ReceptionistAIBilling = () => {
 
         {selectedBill && (
           <div className="smarthealth-receptionist-ai-billing-selected">
-
             <div className="smarthealth-receptionist-ai-billing-selected-heading">
               <span>Selected Bill</span>
 
-              <strong>
-                {getBillNumber(selectedBill)}
-              </strong>
+              <strong>{getBillNumber(selectedBill)}</strong>
             </div>
 
             <div className="smarthealth-receptionist-ai-billing-selected-grid">
-
               <div>
                 <span>Patient</span>
 
-                <strong>
-                  {getPatientName(selectedBill)}
-                </strong>
+                <strong>{getPatientName(selectedBill)}</strong>
               </div>
 
               <div>
                 <span>Doctor</span>
 
-                <strong>
-                  {getDoctorName(selectedBill)}
-                </strong>
+                <strong>{getDoctorName(selectedBill)}</strong>
               </div>
 
               <div>
                 <span>Amount</span>
 
-                <strong>
-                  {formatCurrency(
-                    getTotalAmount(selectedBill),
-                  )}
-                </strong>
+                <strong>{formatCurrency(getTotalAmount(selectedBill))}</strong>
               </div>
 
               <div>
                 <span>Status</span>
 
-                <strong
-                  className={getStatusClass(
-                    getBillStatus(selectedBill),
-                  )}
-                >
+                <strong className={getStatusClass(getBillStatus(selectedBill))}>
                   {getBillStatus(selectedBill)}
                 </strong>
               </div>
@@ -454,13 +383,8 @@ const ReceptionistAIBilling = () => {
               <div>
                 <span>Generated</span>
 
-                <strong>
-                  {formatDate(
-                    getGeneratedDate(selectedBill),
-                  )}
-                </strong>
+                <strong>{formatDate(getGeneratedDate(selectedBill))}</strong>
               </div>
-
             </div>
           </div>
         )}
@@ -471,13 +395,9 @@ const ReceptionistAIBilling = () => {
 
         {validationResult && (
           <div className="smarthealth-receptionist-ai-billing-result">
-
             <div className="smarthealth-receptionist-ai-billing-result-heading">
-
               <div>
-                <span>
-                  AI Billing Validation
-                </span>
+                <span>AI Billing Validation</span>
 
                 <h3>
                   {selectedBill
@@ -493,7 +413,6 @@ const ReceptionistAIBilling = () => {
               </div>
 
               <div className="smarthealth-receptionist-ai-billing-result-badges">
-
                 {isBillValid !== undefined && (
                   <span
                     className={
@@ -502,9 +421,7 @@ const ReceptionistAIBilling = () => {
                         : "smarthealth-receptionist-ai-billing-invalid-badge"
                     }
                   >
-                    {isBillValid
-                      ? "Bill Valid"
-                      : "Potential Issues Found"}
+                    {isBillValid ? "Bill Valid" : "Potential Issues Found"}
                   </span>
                 )}
 
@@ -513,23 +430,16 @@ const ReceptionistAIBilling = () => {
                     Human Review Required
                   </span>
                 )}
-
               </div>
             </div>
 
             {/* Overall Assessment */}
 
-            {getValidationValue(
-              "overallAssessment",
-            ) && (
+            {getValidationValue("overallAssessment") && (
               <div className="smarthealth-receptionist-ai-billing-result-block">
                 <h4>Overall Assessment</h4>
 
-                <p>
-                  {getValidationValue(
-                    "overallAssessment",
-                  )}
-                </p>
+                <p>{getValidationValue("overallAssessment")}</p>
               </div>
             )}
 
@@ -537,62 +447,41 @@ const ReceptionistAIBilling = () => {
 
             {getValidationChecks().length > 0 && (
               <div className="smarthealth-receptionist-ai-billing-result-block">
-
                 <h4>Validation Checks</h4>
 
                 <div className="smarthealth-receptionist-ai-billing-check-list">
-
-                  {getValidationChecks().map(
-                    (check, index) => {
-                      if (
-                        typeof check === "string"
-                      ) {
-                        return (
-                          <div
-                            className="smarthealth-receptionist-ai-billing-check"
-                            key={index}
-                          >
-                            {check}
-                          </div>
-                        );
-                      }
-
+                  {getValidationChecks().map((check, index) => {
+                    if (typeof check === "string") {
                       return (
                         <div
                           className="smarthealth-receptionist-ai-billing-check"
                           key={index}
                         >
-                          <strong>
-                            {check.name ||
-                              check.check ||
-                              check.title ||
-                              `Validation Check ${
-                                index + 1
-                              }`}
-                          </strong>
-
-                          {check.status && (
-                            <span>
-                              {check.status}
-                            </span>
-                          )}
-
-                          {check.result && (
-                            <p>
-                              {check.result}
-                            </p>
-                          )}
-
-                          {check.details && (
-                            <p>
-                              {check.details}
-                            </p>
-                          )}
+                          {check}
                         </div>
                       );
-                    },
-                  )}
+                    }
 
+                    return (
+                      <div
+                        className="smarthealth-receptionist-ai-billing-check"
+                        key={index}
+                      >
+                        <strong>
+                          {check.name ||
+                            check.check ||
+                            check.title ||
+                            `Validation Check ${index + 1}`}
+                        </strong>
+
+                        {check.status && <span>{check.status}</span>}
+
+                        {check.result && <p>{check.result}</p>}
+
+                        {check.details && <p>{check.details}</p>}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -600,32 +489,24 @@ const ReceptionistAIBilling = () => {
             {/* Issues / Warnings */}
 
             <div className="smarthealth-receptionist-ai-billing-result-grid">
-
               <div className="smarthealth-receptionist-ai-billing-result-card smarthealth-receptionist-ai-billing-issue-card">
                 <h4>Issues</h4>
 
                 {getIssues().length > 0 ? (
                   <ul>
-                    {getIssues().map(
-                      (issue, index) => (
-                        <li key={index}>
-                          {typeof issue ===
-                          "string"
-                            ? issue
-                            : issue.description ||
-                              issue.message ||
-                              issue.issue ||
-                              JSON.stringify(
-                                issue,
-                              )}
-                        </li>
-                      ),
-                    )}
+                    {getIssues().map((issue, index) => (
+                      <li key={index}>
+                        {typeof issue === "string"
+                          ? issue
+                          : issue.description ||
+                            issue.message ||
+                            issue.issue ||
+                            JSON.stringify(issue)}
+                      </li>
+                    ))}
                   </ul>
                 ) : (
-                  <p>
-                    No billing issues identified.
-                  </p>
+                  <p>No billing issues identified.</p>
                 )}
               </div>
 
@@ -634,52 +515,34 @@ const ReceptionistAIBilling = () => {
 
                 {getWarnings().length > 0 ? (
                   <ul>
-                    {getWarnings().map(
-                      (warning, index) => (
-                        <li key={index}>
-                          {typeof warning ===
-                          "string"
-                            ? warning
-                            : warning.description ||
-                              warning.message ||
-                              warning.warning ||
-                              JSON.stringify(
-                                warning,
-                              )}
-                        </li>
-                      ),
-                    )}
+                    {getWarnings().map((warning, index) => (
+                      <li key={index}>
+                        {typeof warning === "string"
+                          ? warning
+                          : warning.description ||
+                            warning.message ||
+                            warning.warning ||
+                            JSON.stringify(warning)}
+                      </li>
+                    ))}
                   </ul>
                 ) : (
-                  <p>
-                    No billing warnings identified.
-                  </p>
+                  <p>No billing warnings identified.</p>
                 )}
               </div>
-
             </div>
 
             {/* AI Reasoning */}
 
-            {getValidationValue(
-              "reasoning",
-            ) && (
+            {getValidationValue("reasoning") && (
               <div className="smarthealth-receptionist-ai-billing-reasoning">
-
                 <strong>AI Reasoning</strong>
 
-                <p>
-                  {getValidationValue(
-                    "reasoning",
-                  )}
-                </p>
-
+                <p>{getValidationValue("reasoning")}</p>
               </div>
             )}
-
           </div>
         )}
-
       </section>
 
       {/* ======================================================
@@ -688,33 +551,23 @@ const ReceptionistAIBilling = () => {
 
       {validationResult?.requiresHumanApproval && (
         <section className="smarthealth-receptionist-ai-billing-panel">
-
           <div className="smarthealth-receptionist-ai-billing-review">
-
             <div className="smarthealth-receptionist-ai-billing-review-icon">
               !
             </div>
 
             <div>
-              <span>
-                Clinical Governance
-              </span>
+              <span>Clinical Governance</span>
 
-              <h2>
-                Human Review Required
-              </h2>
+              <h2>Human Review Required</h2>
 
               <p>
-                The AI billing validation has identified
-                information that requires human review.
-                The AI assistant does not directly modify
-                billing records or perform financial
-                transactions.
+                The AI billing validation has identified information that
+                requires human review. The AI assistant does not directly modify
+                billing records or perform financial transactions.
               </p>
             </div>
-
           </div>
-
         </section>
       )}
 
@@ -724,27 +577,19 @@ const ReceptionistAIBilling = () => {
 
       {!loadingBills && bills.length === 0 && (
         <section className="smarthealth-receptionist-ai-billing-panel">
-
           <div className="smarthealth-receptionist-ai-billing-empty">
-
             <div className="smarthealth-receptionist-ai-billing-empty-icon">
               $
             </div>
 
-            <h3>
-              No bills available
-            </h3>
+            <h3>No bills available</h3>
 
             <p>
-              There are currently no bills available
-              for AI billing validation.
+              There are currently no bills available for AI billing validation.
             </p>
-
           </div>
-
         </section>
       )}
-
     </div>
   );
 };
