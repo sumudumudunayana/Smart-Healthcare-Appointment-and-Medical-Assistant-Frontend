@@ -176,14 +176,9 @@ const PatientProfile = () => {
     }
 
     if (form.dateOfBirth) {
-      const selectedDate = new Date(
-        `${form.dateOfBirth}T00:00:00`
-      );
+      const selectedDate = new Date(`${form.dateOfBirth}T00:00:00`);
 
-      if (
-        Number.isNaN(selectedDate.getTime()) ||
-        selectedDate > new Date()
-      ) {
+      if (Number.isNaN(selectedDate.getTime()) || selectedDate > new Date()) {
         toast.error("Please enter a valid date of birth.");
         return;
       }
@@ -203,10 +198,7 @@ const PatientProfile = () => {
     setSaving(true);
 
     try {
-      const response = await api.put(
-        "/PatientProfile/my",
-        payload
-      );
+      const response = await api.put("/PatientProfile/my", payload);
 
       const data = response.data;
 
@@ -303,7 +295,11 @@ const PatientProfile = () => {
                 onChange={handleChange}
                 placeholder={placeholder}
                 required={required}
-                max={type === "date" ? new Date().toISOString().slice(0, 10) : undefined}
+                max={
+                  type === "date"
+                    ? new Date().toISOString().slice(0, 10)
+                    : undefined
+                }
               />
             )
           ) : (
@@ -363,8 +359,8 @@ const PatientProfile = () => {
         <div>
           <h1>My Profile</h1>
           <p>
-            Manage your personal information and keep your healthcare
-            details up to date.
+            Manage your personal information and keep your healthcare details up
+            to date.
           </p>
         </div>
 
@@ -409,9 +405,7 @@ const PatientProfile = () => {
         </div>
 
         <div className="patient-profile-overview-info">
-          <span className="patient-profile-overline">
-            PATIENT PROFILE
-          </span>
+          <span className="patient-profile-overline">PATIENT PROFILE</span>
 
           <h2>{profile.fullName}</h2>
 
@@ -626,9 +620,8 @@ const PatientProfile = () => {
         <div>
           <h3>Your information matters</h3>
           <p>
-            Keep your contact and medical information accurate. Your profile
-            is associated with your healthcare appointments and medical
-            records.
+            Keep your contact and medical information accurate. Your profile is
+            associated with your healthcare appointments and medical records.
           </p>
         </div>
       </section>
