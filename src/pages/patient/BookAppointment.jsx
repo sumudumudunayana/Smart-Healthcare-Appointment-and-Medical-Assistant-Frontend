@@ -26,10 +26,7 @@ const timeToMinutes = (time) => {
   const normalized = normalizeTime(time);
   const [hours, minutes] = normalized.split(":").map(Number);
 
-  if (
-    !Number.isFinite(hours) ||
-    !Number.isFinite(minutes)
-  ) {
+  if (!Number.isFinite(hours) || !Number.isFinite(minutes)) {
     return null;
   }
 
@@ -49,12 +46,7 @@ const formatTime = (time) => {
   if (minutes === null) return time || "";
 
   const date = new Date();
-  date.setHours(
-    Math.floor(minutes / 60),
-    minutes % 60,
-    0,
-    0
-  );
+  date.setHours(Math.floor(minutes / 60), minutes % 60, 0, 0);
 
   return date.toLocaleTimeString("en-US", {
     hour: "numeric",
@@ -79,15 +71,14 @@ const formatDate = (dateString) => {
 const getWeekday = (dateString) => {
   if (!dateString) return "";
 
-  return new Date(`${dateString}T12:00:00`)
-    .toLocaleDateString("en-US", { weekday: "long" });
+  return new Date(`${dateString}T12:00:00`).toLocaleDateString("en-US", {
+    weekday: "long",
+  });
 };
 
 const getErrorMessage = (error, fallback) => {
   return (
-    error?.response?.data?.message ||
-    error?.response?.data?.title ||
-    fallback
+    error?.response?.data?.message || error?.response?.data?.title || fallback
   );
 };
 
@@ -95,8 +86,7 @@ const isActiveDoctor = (doctor) =>
   String(doctor?.status ?? "").toLowerCase() === "active";
 
 const isAvailableSchedule = (schedule) =>
-  String(schedule?.availabilityStatus ?? "").toLowerCase() ===
-  "available";
+  String(schedule?.availabilityStatus ?? "").toLowerCase() === "available";
 
 const BookAppointment = () => {
   const [searchParams] = useSearchParams();
@@ -107,23 +97,18 @@ const BookAppointment = () => {
   const [doctorsLoading, setDoctorsLoading] = useState(true);
   const [doctorsError, setDoctorsError] = useState(false);
   const [doctorSearch, setDoctorSearch] = useState("");
-  const [selectedDoctorId, setSelectedDoctorId] =
-    useState(initialDoctorId);
+  const [selectedDoctorId, setSelectedDoctorId] = useState(initialDoctorId);
 
   const [schedules, setSchedules] = useState([]);
   const [schedulesLoading, setSchedulesLoading] = useState(false);
   const [schedulesError, setSchedulesError] = useState(false);
 
-  const [appointmentDate, setAppointmentDate] =
-    useState(getLocalDateString());
+  const [appointmentDate, setAppointmentDate] = useState(getLocalDateString());
 
   const [appointments, setAppointments] = useState([]);
-  const [appointmentsLoading, setAppointmentsLoading] =
-    useState(false);
-  const [appointmentsError, setAppointmentsError] =
-    useState(false);
-  const [availabilityReloadKey, setAvailabilityReloadKey] =
-    useState(0);
+  const [appointmentsLoading, setAppointmentsLoading] = useState(false);
+  const [appointmentsError, setAppointmentsError] = useState(false);
+  const [availabilityReloadKey, setAvailabilityReloadKey] = useState(0);
 
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [symptoms, setSymptoms] = useState("");
@@ -132,10 +117,8 @@ const BookAppointment = () => {
 
   const selectedDoctor = useMemo(
     () =>
-      doctors.find(
-        (doctor) => doctor.doctorId === selectedDoctorId
-      ) || null,
-    [doctors, selectedDoctorId]
+      doctors.find((doctor) => doctor.doctorId === selectedDoctorId) || null,
+    [doctors, selectedDoctorId],
   );
 
   const filteredDoctors = useMemo(() => {
@@ -168,18 +151,14 @@ const BookAppointment = () => {
     try {
       const response = await api.get("/Doctors");
 
-      const data = Array.isArray(response.data)
-        ? response.data
-        : [];
+      const data = Array.isArray(response.data) ? response.data : [];
 
       setDoctors(data);
 
       // Keep the requested doctor selected only if it exists.
       if (
         initialDoctorId &&
-        data.some(
-          (doctor) => doctor.doctorId === initialDoctorId
-        )
+        data.some((doctor) => doctor.doctorId === initialDoctorId)
       ) {
         setSelectedDoctorId(initialDoctorId);
       }
@@ -188,9 +167,7 @@ const BookAppointment = () => {
       setDoctors([]);
       setDoctorsError(true);
 
-      toast.error(
-        getErrorMessage(error, "Unable to load doctors.")
-      );
+      toast.error(getErrorMessage(error, "Unable to load doctors."));
     } finally {
       setDoctorsLoading(false);
     }
@@ -220,14 +197,12 @@ const BookAppointment = () => {
 
       try {
         const response = await api.get(
-          `/DoctorSchedules/doctor/${selectedDoctorId}`
+          `/DoctorSchedules/doctor/${selectedDoctorId}`,
         );
 
         if (cancelled) return;
 
-        setSchedules(
-          Array.isArray(response.data) ? response.data : []
-        );
+        setSchedules(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         if (cancelled) return;
 
@@ -236,10 +211,7 @@ const BookAppointment = () => {
         setSchedulesError(true);
 
         toast.error(
-          getErrorMessage(
-            error,
-            "Unable to load this doctor's schedules."
-          )
+          getErrorMessage(error, "Unable to load this doctor's schedules."),
         );
       } finally {
         if (!cancelled) {
@@ -274,21 +246,16 @@ const BookAppointment = () => {
 
       try {
         const response = await api.get(
-          `/Appointments/doctor/${selectedDoctorId}/date/${appointmentDate}`
+          `/Appointments/doctor/${selectedDoctorId}/date/${appointmentDate}`,
         );
 
         if (cancelled) return;
 
-        setAppointments(
-          Array.isArray(response.data) ? response.data : []
-        );
+        setAppointments(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         if (cancelled) return;
 
-        console.error(
-          "Failed to load appointment availability:",
-          error
-        );
+        console.error("Failed to load appointment availability:", error);
 
         setAppointments([]);
         setAppointmentsError(true);
@@ -296,8 +263,8 @@ const BookAppointment = () => {
         toast.error(
           getErrorMessage(
             error,
-            "Could not check appointment availability. Please retry."
-          )
+            "Could not check appointment availability. Please retry.",
+          ),
         );
       } finally {
         if (!cancelled) {
@@ -311,11 +278,7 @@ const BookAppointment = () => {
     return () => {
       cancelled = true;
     };
-  }, [
-    selectedDoctorId,
-    appointmentDate,
-    availabilityReloadKey,
-  ]);
+  }, [selectedDoctorId, appointmentDate, availabilityReloadKey]);
 
   // ---------------------------------------------------------
   // GENERATE AVAILABLE 30-MINUTE SLOTS
@@ -344,12 +307,9 @@ const BookAppointment = () => {
       appointments
         .filter(
           (appointment) =>
-            String(appointment.status ?? "").toLowerCase() !==
-            "cancelled"
+            String(appointment.status ?? "").toLowerCase() !== "cancelled",
         )
-        .map((appointment) =>
-          normalizeTime(appointment.appointmentTime)
-        )
+        .map((appointment) => normalizeTime(appointment.appointmentTime)),
     );
 
     const slots = [];
@@ -360,7 +320,7 @@ const BookAppointment = () => {
           schedule.doctorId === selectedDoctorId &&
           isAvailableSchedule(schedule) &&
           String(schedule.dayOfWeek).toLowerCase() ===
-            selectedWeekday.toLowerCase()
+            selectedWeekday.toLowerCase(),
       )
       .forEach((schedule) => {
         const startMinutes = timeToMinutes(schedule.startTime);
@@ -382,10 +342,7 @@ const BookAppointment = () => {
           const time = minutesToTime(minutes);
 
           // Do not offer times that have already passed today.
-          if (
-            appointmentDate === today &&
-            minutes <= currentMinutes
-          ) {
+          if (appointmentDate === today && minutes <= currentMinutes) {
             continue;
           }
 
@@ -403,8 +360,7 @@ const BookAppointment = () => {
       });
 
     return slots.sort((a, b) => {
-      const timeDifference =
-        timeToMinutes(a.time) - timeToMinutes(b.time);
+      const timeDifference = timeToMinutes(a.time) - timeToMinutes(b.time);
 
       if (timeDifference !== 0) return timeDifference;
 
@@ -463,7 +419,7 @@ const BookAppointment = () => {
 
     if (!isActiveDoctor(selectedDoctor)) {
       toast.error(
-        "This doctor is not currently active. Please select another doctor."
+        "This doctor is not currently active. Please select another doctor.",
       );
       return;
     }
@@ -485,7 +441,7 @@ const BookAppointment = () => {
       appointmentsError
     ) {
       toast.error(
-        "Availability could not be confirmed. Please retry before booking."
+        "Availability could not be confirmed. Please retry before booking.",
       );
       return;
     }
@@ -495,12 +451,12 @@ const BookAppointment = () => {
     const slotStillAvailable = availableSlots.some(
       (slot) =>
         slot.scheduleId === selectedSlot.scheduleId &&
-        slot.time === selectedSlot.time
+        slot.time === selectedSlot.time,
     );
 
     if (!slotStillAvailable) {
       toast.error(
-        "This time slot is no longer available. Please select another time."
+        "This time slot is no longer available. Please select another time.",
       );
 
       setSelectedSlot(null);
@@ -520,10 +476,7 @@ const BookAppointment = () => {
         symptoms: symptoms.trim() || null,
       };
 
-      const response = await api.post(
-        "/Appointments",
-        request
-      );
+      const response = await api.post("/Appointments", request);
 
       setBookingResult(response.data);
       setSelectedSlot(null);
@@ -542,8 +495,8 @@ const BookAppointment = () => {
         toast.error(
           getErrorMessage(
             error,
-            "This time slot has already been booked. Please select another."
-          )
+            "This time slot has already been booked. Please select another.",
+          ),
         );
 
         setSelectedSlot(null);
@@ -552,8 +505,8 @@ const BookAppointment = () => {
         toast.error(
           getErrorMessage(
             error,
-            "Unable to book the appointment. Please try again."
-          )
+            "Unable to book the appointment. Please try again.",
+          ),
         );
       }
     } finally {
@@ -561,25 +514,21 @@ const BookAppointment = () => {
     }
   };
 
-  const availabilityLoading =
-    schedulesLoading || appointmentsLoading;
+  const availabilityLoading = schedulesLoading || appointmentsLoading;
 
-  const availabilityFailed =
-    schedulesError || appointmentsError;
+  const availabilityFailed = schedulesError || appointmentsError;
 
   return (
     <div className="smarthealth-book-appointment">
       <header className="smarthealth-book-appointment-header">
         <div>
-          <p className="smarthealth-book-appointment-eyebrow">
-            PATIENT PORTAL
-          </p>
+          <p className="smarthealth-book-appointment-eyebrow">PATIENT PORTAL</p>
 
           <h1>Book an Appointment</h1>
 
           <p className="smarthealth-book-appointment-subtitle">
-            Choose a doctor, select a convenient time, and
-            confirm your appointment.
+            Choose a doctor, select a convenient time, and confirm your
+            appointment.
           </p>
         </div>
       </header>
@@ -608,17 +557,13 @@ const BookAppointment = () => {
 
             <p>
               <strong>Date:</strong>{" "}
-              {formatDate(
-                bookingResult.appointmentDate || appointmentDate
-              )}
+              {formatDate(bookingResult.appointmentDate || appointmentDate)}
             </p>
 
             <p>
               <strong>Time:</strong>{" "}
               {formatTime(
-                bookingResult.appointmentTime ||
-                  selectedSlot?.time ||
-                  ""
+                bookingResult.appointmentTime || selectedSlot?.time || "",
               )}
             </p>
 
@@ -638,9 +583,7 @@ const BookAppointment = () => {
         {/* STEP 1: SELECT DOCTOR */}
         <section className="smarthealth-book-appointment-card">
           <div className="smarthealth-book-appointment-section-heading">
-            <span className="smarthealth-book-appointment-step">
-              1
-            </span>
+            <span className="smarthealth-book-appointment-step">1</span>
 
             <div>
               <h2>Select a Doctor</h2>
@@ -649,18 +592,14 @@ const BookAppointment = () => {
           </div>
 
           <div className="smarthealth-book-appointment-field">
-            <label htmlFor="book-appointment-search">
-              Search doctors
-            </label>
+            <label htmlFor="book-appointment-search">Search doctors</label>
 
             <input
               id="book-appointment-search"
               type="search"
               placeholder="Search by name, specialization or department"
               value={doctorSearch}
-              onChange={(event) =>
-                setDoctorSearch(event.target.value)
-              }
+              onChange={(event) => setDoctorSearch(event.target.value)}
             />
           </div>
 
@@ -701,12 +640,8 @@ const BookAppointment = () => {
                     disabled={!isActiveDoctor(doctor)}
                   >
                     Dr. {doctor.fullName}
-                    {doctor.specialization
-                      ? ` — ${doctor.specialization}`
-                      : ""}
-                    {!isActiveDoctor(doctor)
-                      ? " (Inactive)"
-                      : ""}
+                    {doctor.specialization ? ` — ${doctor.specialization}` : ""}
+                    {!isActiveDoctor(doctor) ? " (Inactive)" : ""}
                   </option>
                 ))}
               </select>
@@ -724,26 +659,20 @@ const BookAppointment = () => {
           {selectedDoctor && (
             <div className="smarthealth-book-appointment-doctor-summary">
               <div className="smarthealth-book-appointment-doctor-avatar">
-                {selectedDoctor.fullName?.charAt(0)?.toUpperCase() ||
-                  "D"}
+                {selectedDoctor.fullName?.charAt(0)?.toUpperCase() || "D"}
               </div>
 
               <div className="smarthealth-book-appointment-doctor-info">
                 <h3>Dr. {selectedDoctor.fullName}</h3>
 
-                <p>
-                  {selectedDoctor.specialization ||
-                    "General consultation"}
-                </p>
+                <p>{selectedDoctor.specialization || "General consultation"}</p>
 
                 {selectedDoctor.department && (
                   <p>{selectedDoctor.department}</p>
                 )}
 
                 {selectedDoctor.experience != null && (
-                  <p>
-                    {selectedDoctor.experience} years of experience
-                  </p>
+                  <p>{selectedDoctor.experience} years of experience</p>
                 )}
 
                 {!isActiveDoctor(selectedDoctor) && (
@@ -759,15 +688,12 @@ const BookAppointment = () => {
         {/* STEP 2: SELECT DATE AND TIME */}
         <section className="smarthealth-book-appointment-card">
           <div className="smarthealth-book-appointment-section-heading">
-            <span className="smarthealth-book-appointment-step">
-              2
-            </span>
+            <span className="smarthealth-book-appointment-step">2</span>
 
             <div>
               <h2>Choose Date & Time</h2>
               <p>
-                Select a date to view the doctor's available
-                appointment slots.
+                Select a date to view the doctor's available appointment slots.
               </p>
             </div>
           </div>
@@ -808,8 +734,8 @@ const BookAppointment = () => {
           {selectedDoctorId && availabilityFailed && (
             <div className="smarthealth-book-appointment-error">
               <p>
-                Availability could not be confirmed. Time slots
-                are hidden until the information can be loaded.
+                Availability could not be confirmed. Time slots are hidden until
+                the information can be loaded.
               </p>
 
               <button
@@ -823,75 +749,68 @@ const BookAppointment = () => {
             </div>
           )}
 
-          {selectedDoctorId &&
-            !availabilityLoading &&
-            !availabilityFailed && (
-              <>
-                <div className="smarthealth-book-appointment-slots-heading">
-                  <h3>Available time slots</h3>
+          {selectedDoctorId && !availabilityLoading && !availabilityFailed && (
+            <>
+              <div className="smarthealth-book-appointment-slots-heading">
+                <h3>Available time slots</h3>
 
-                  <span>
-                    {availableSlots.length} available
-                  </span>
+                <span>{availableSlots.length} available</span>
+              </div>
+
+              {availableSlots.length > 0 ? (
+                <div className="smarthealth-book-appointment-slots">
+                  {availableSlots.map((slot) => {
+                    const isSelected =
+                      selectedSlot?.scheduleId === slot.scheduleId &&
+                      selectedSlot?.time === slot.time;
+
+                    return (
+                      <button
+                        key={`${slot.scheduleId}-${slot.time}`}
+                        type="button"
+                        className={[
+                          "smarthealth-book-appointment-slot",
+                          isSelected
+                            ? "smarthealth-book-appointment-slot--selected"
+                            : "",
+                        ]
+                          .filter(Boolean)
+                          .join(" ")}
+                        onClick={() => {
+                          setSelectedSlot(slot);
+                          setBookingResult(null);
+                        }}
+                        aria-pressed={isSelected}
+                      >
+                        {formatTime(slot.time)}
+                      </button>
+                    );
+                  })}
                 </div>
+              ) : (
+                <div className="smarthealth-book-appointment-empty">
+                  <h3>No available slots</h3>
 
-                {availableSlots.length > 0 ? (
-                  <div className="smarthealth-book-appointment-slots">
-                    {availableSlots.map((slot) => {
-                      const isSelected =
-                        selectedSlot?.scheduleId ===
-                          slot.scheduleId &&
-                        selectedSlot?.time === slot.time;
-
-                      return (
-                        <button
-                          key={`${slot.scheduleId}-${slot.time}`}
-                          type="button"
-                          className={[
-                            "smarthealth-book-appointment-slot",
-                            isSelected
-                              ? "smarthealth-book-appointment-slot--selected"
-                              : "",
-                          ]
-                            .filter(Boolean)
-                            .join(" ")}
-                          onClick={() => {
-                            setSelectedSlot(slot);
-                            setBookingResult(null);
-                          }}
-                          aria-pressed={isSelected}
-                        >
-                          {formatTime(slot.time)}
-                        </button>
-                      );
-                    })}
-                  </div>
-                ) : (
-                  <div className="smarthealth-book-appointment-empty">
-                    <h3>No available slots</h3>
-
-                    <p>
-                      This doctor has no available slots for the
-                      selected date. Try another date.
-                    </p>
-                  </div>
-                )}
-              </>
-            )}
+                  <p>
+                    This doctor has no available slots for the selected date.
+                    Try another date.
+                  </p>
+                </div>
+              )}
+            </>
+          )}
         </section>
 
         {/* STEP 3: SYMPTOMS AND CONFIRMATION */}
         <section className="smarthealth-book-appointment-card">
           <div className="smarthealth-book-appointment-section-heading">
-            <span className="smarthealth-book-appointment-step">
-              3
-            </span>
+            <span className="smarthealth-book-appointment-step">3</span>
 
             <div>
               <h2>Appointment Details</h2>
               <p>
-                Add any information you would like the doctor to
-                know before your visit.
+                Add any information you would like the doctor to know before
+                your visit.
               </p>
             </div>
           </div>
@@ -910,9 +829,7 @@ const BookAppointment = () => {
               maxLength={2000}
               placeholder="Briefly describe your symptoms or reason for the appointment..."
               value={symptoms}
-              onChange={(event) =>
-                setSymptoms(event.target.value)
-              }
+              onChange={(event) => setSymptoms(event.target.value)}
             />
 
             <p className="smarthealth-book-appointment-character-count">
@@ -935,18 +852,14 @@ const BookAppointment = () => {
             <div>
               <span>Date</span>
               <strong>
-                {appointmentDate
-                  ? formatDate(appointmentDate)
-                  : "Not selected"}
+                {appointmentDate ? formatDate(appointmentDate) : "Not selected"}
               </strong>
             </div>
 
             <div>
               <span>Time</span>
               <strong>
-                {selectedSlot
-                  ? formatTime(selectedSlot.time)
-                  : "Not selected"}
+                {selectedSlot ? formatTime(selectedSlot.time) : "Not selected"}
               </strong>
             </div>
           </div>
@@ -965,15 +878,12 @@ const BookAppointment = () => {
               availabilityFailed
             }
           >
-            {booking
-              ? "Booking appointment..."
-              : "Confirm Appointment"}
+            {booking ? "Booking appointment..." : "Confirm Appointment"}
           </button>
 
           <p className="smarthealth-book-appointment-disclaimer">
-            Your appointment will be submitted to the healthcare
-            system. Please check the selected doctor, date, and time
-            before confirming.
+            Your appointment will be submitted to the healthcare system. Please
+            check the selected doctor, date, and time before confirming.
           </p>
         </section>
       </form>
