@@ -24,7 +24,6 @@
   transition: transform 0.25s ease;
 }
 
-
 /* =========================================================
    SIDEBAR HEADER
    ========================================================= */
@@ -64,14 +63,9 @@
 
   border-radius: 11px;
 
-  background: linear-gradient(
-    135deg,
-    #047857,
-    #10b981
-  );
+  background: linear-gradient(135deg, #047857, #10b981);
 
-  box-shadow:
-    0 5px 14px rgba(5, 150, 105, 0.2);
+  box-shadow: 0 5px 14px rgba(5, 150, 105, 0.2);
 }
 
 .smarthealth-sidebar-logo span {
@@ -110,7 +104,6 @@
   white-space: nowrap;
 }
 
-
 /* =========================================================
    CLOSE BUTTON
    ========================================================= */
@@ -134,7 +127,6 @@
 
   cursor: pointer;
 }
-
 
 /* =========================================================
    USER INFORMATION
@@ -169,11 +161,7 @@
 
   border-radius: 50%;
 
-  background: linear-gradient(
-    135deg,
-    #047857,
-    #10b981
-  );
+  background: linear-gradient(135deg, #047857, #10b981);
 
   color: #ffffff;
 
@@ -208,7 +196,6 @@
   font-weight: 600;
 }
 
-
 /* =========================================================
    NAVIGATION
    ========================================================= */
@@ -238,7 +225,6 @@
   border-radius: 10px;
 }
 
-
 /* =========================================================
    SECTIONS
    ========================================================= */
@@ -261,7 +247,6 @@
 
   letter-spacing: 0.12em;
 }
-
 
 /* =========================================================
    LINKS
@@ -306,7 +291,6 @@
   transform: scale(0.99);
 }
 
-
 /* =========================================================
    LINK ICON
    ========================================================= */
@@ -327,11 +311,9 @@
   transition: color 0.2s ease;
 }
 
-.smarthealth-sidebar-link:hover
-.smarthealth-sidebar-link-icon {
+.smarthealth-sidebar-link:hover .smarthealth-sidebar-link-icon {
   color: #059669;
 }
-
 
 /* =========================================================
    LINK TEXT
@@ -341,31 +323,23 @@
   line-height: 1.3;
 }
 
-
 /* =========================================================
    ACTIVE LINK
    ========================================================= */
 
 .smarthealth-sidebar-link-active {
-  background: linear-gradient(
-    90deg,
-    #ecfdf5,
-    #f0fdf4
-  );
+  background: linear-gradient(90deg, #ecfdf5, #f0fdf4);
 
   color: #047857;
 
   font-weight: 650;
 
-  box-shadow:
-    inset 3px 0 0 #10b981;
+  box-shadow: inset 3px 0 0 #10b981;
 }
 
-.smarthealth-sidebar-link-active
-.smarthealth-sidebar-link-icon {
+.smarthealth-sidebar-link-active .smarthealth-sidebar-link-icon {
   color: #047857;
 }
-
 
 /* =========================================================
    FOOTER
@@ -401,8 +375,7 @@
 
   background: #10b981;
 
-  box-shadow:
-    0 0 0 3px #d1fae5;
+  box-shadow: 0 0 0 3px #d1fae5;
 }
 
 .smarthealth-sidebar-version {
@@ -411,7 +384,6 @@
   font-size: 9px;
   font-weight: 500;
 }
-
 
 /* =========================================================
    MOBILE OVERLAY
@@ -428,18 +400,15 @@
   z-index: 150;
 }
 
-
 /* =========================================================
    TABLET / MOBILE
    ========================================================= */
 
 @media (max-width: 900px) {
-
   .smarthealth-sidebar {
     transform: translateX(-100%);
 
-    box-shadow:
-      15px 0 40px rgba(15, 23, 42, 0.12);
+    box-shadow: 15px 0 40px rgba(15, 23, 42, 0.12);
   }
 
   .smarthealth-sidebar-open {
@@ -456,16 +425,13 @@
     align-items: center;
     justify-content: center;
   }
-
 }
-
 
 /* =========================================================
    MOBILE
    ========================================================= */
 
 @media (max-width: 600px) {
-
   .smarthealth-sidebar {
     width: 280px;
   }
@@ -474,5 +440,4 @@
     height: 68px;
     min-height: 68px;
   }
-
 }
