@@ -583,8 +583,6 @@
   margin: 0;
 }
 
-
-
 /* =========================================================
    PENDING AI APPROVALS
 ========================================================= */
@@ -692,7 +690,8 @@
   background: #ffffff;
 }
 
-.smarthealth-admin-ai-pending-approval-recommendation + .smarthealth-admin-ai-pending-approval-recommendation {
+.smarthealth-admin-ai-pending-approval-recommendation
+  + .smarthealth-admin-ai-pending-approval-recommendation {
   margin-top: 10px;
 }
 
