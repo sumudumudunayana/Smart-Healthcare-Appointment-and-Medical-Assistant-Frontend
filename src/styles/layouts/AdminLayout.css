@@ -30,13 +30,11 @@
   overflow-x: hidden;
 }
 
-
 /* =========================================================
    TABLET / MOBILE
    ========================================================= */
 
 @media (max-width: 900px) {
-
   .smarthealth-admin-layout-main {
     margin-left: 0;
   }
@@ -44,18 +42,14 @@
   .smarthealth-admin-layout-content {
     padding: 22px;
   }
-
 }
-
 
 /* =========================================================
    MOBILE
    ========================================================= */
 
 @media (max-width: 600px) {
-
   .smarthealth-admin-layout-content {
     padding: 16px;
   }
-
 }

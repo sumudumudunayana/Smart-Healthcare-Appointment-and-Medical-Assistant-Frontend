@@ -23,7 +23,6 @@
   z-index: 100;
 }
 
-
 /* =========================================================
    LEFT SECTION
    ========================================================= */
@@ -35,7 +34,6 @@
 
   min-width: 0;
 }
-
 
 /* =========================================================
    MOBILE MENU BUTTON
@@ -81,7 +79,6 @@
   background: #047857;
 }
 
-
 /* =========================================================
    BRAND
    ========================================================= */
@@ -106,14 +103,9 @@
 
   border-radius: 12px;
 
-  background: linear-gradient(
-    135deg,
-    #047857,
-    #10b981
-  );
+  background: linear-gradient(135deg, #047857, #10b981);
 
-  box-shadow:
-    0 5px 14px rgba(5, 150, 105, 0.2);
+  box-shadow: 0 5px 14px rgba(5, 150, 105, 0.2);
 }
 
 .smarthealth-navbar-logo span {
@@ -158,7 +150,6 @@
   white-space: nowrap;
 }
 
-
 /* =========================================================
    RIGHT SECTION
    ========================================================= */
@@ -168,7 +159,6 @@
   align-items: center;
   gap: 18px;
 }
-
 
 /* =========================================================
    NOTIFICATION
@@ -228,7 +218,6 @@
   border: 2px solid #ffffff;
 }
 
-
 /* =========================================================
    PROFILE
    ========================================================= */
@@ -259,7 +248,6 @@
   background: #f0fdf4;
 }
 
-
 /* =========================================================
    AVATAR
    ========================================================= */
@@ -276,21 +264,15 @@
 
   border-radius: 50%;
 
-  background: linear-gradient(
-    135deg,
-    #047857,
-    #10b981
-  );
+  background: linear-gradient(135deg, #047857, #10b981);
 
   color: #ffffff;
 
   font-size: 14px;
   font-weight: 700;
 
-  box-shadow:
-    0 4px 12px rgba(5, 150, 105, 0.2);
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
 }
-
 
 /* =========================================================
    USER INFORMATION
@@ -331,7 +313,6 @@
   line-height: 1.2;
 }
 
-
 /* =========================================================
    PROFILE ARROW
    ========================================================= */
@@ -349,7 +330,6 @@
 .smarthealth-navbar-profile-arrow-open {
   transform: rotate(180deg);
 }
-
 
 /* =========================================================
    PROFILE DROPDOWN
@@ -370,8 +350,7 @@
   border: 1px solid #e5e7eb;
   border-radius: 15px;
 
-  box-shadow:
-    0 18px 45px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
 
   animation: smarthealth-navbar-dropdown-in 0.18s ease-out;
 }
@@ -387,7 +366,6 @@
     transform: translateY(0);
   }
 }
-
 
 /* =========================================================
    DROPDOWN HEADER
@@ -414,11 +392,7 @@
 
   border-radius: 50%;
 
-  background: linear-gradient(
-    135deg,
-    #047857,
-    #10b981
-  );
+  background: linear-gradient(135deg, #047857, #10b981);
 
   color: #ffffff;
 
@@ -456,7 +430,6 @@
   white-space: nowrap;
 }
 
-
 /* =========================================================
    DIVIDER
    ========================================================= */
@@ -468,7 +441,6 @@
 
   background: #f0f0f0;
 }
-
 
 /* =========================================================
    DROPDOWN ITEMS
@@ -529,13 +501,11 @@
   color: #dc2626;
 }
 
-
 /* =========================================================
    TABLET
    ========================================================= */
 
 @media (max-width: 900px) {
-
   .smarthealth-navbar {
     padding: 0 20px;
   }
@@ -551,16 +521,13 @@
   .smarthealth-navbar-profile-arrow {
     display: none;
   }
-
 }
-
 
 /* =========================================================
    MOBILE
    ========================================================= */
 
 @media (max-width: 600px) {
-
   .smarthealth-navbar {
     height: 68px;
     min-height: 68px;
@@ -615,16 +582,13 @@
 
     right: -5px;
   }
-
 }
-
 
 /* =========================================================
    VERY SMALL MOBILE
    ========================================================= */
 
 @media (max-width: 400px) {
-
   .smarthealth-navbar-brand-text {
     display: none;
   }
@@ -632,5 +596,4 @@
   .smarthealth-navbar-profile-menu {
     width: calc(100vw - 28px);
   }
-
 }

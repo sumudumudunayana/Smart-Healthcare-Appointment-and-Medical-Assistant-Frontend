@@ -19,22 +19,17 @@ const EMPTY_BOOKING = {
 };
 
 const getErrorMessage = (error, fallback) =>
-  error.response?.data?.message ||
-  error.response?.data?.title ||
-  fallback;
+  error.response?.data?.message || error.response?.data?.title || fallback;
 
 const formatTime = (time) => {
   if (!time) return "";
 
   const [hours, minutes] = time.split(":").map(Number);
 
-  return new Date(2000, 0, 1, hours, minutes).toLocaleTimeString(
-    "en-US",
-    {
-      hour: "numeric",
-      minute: "2-digit",
-    },
-  );
+  return new Date(2000, 0, 1, hours, minutes).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+  });
 };
 
 const formatDate = (date) =>
@@ -56,9 +51,10 @@ const minutesToTime = (minutes) => {
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
 
-  return `${String(hours).padStart(2, "0")}:${String(
-    remainingMinutes,
-  ).padStart(2, "0")}:00`;
+  return `${String(hours).padStart(2, "0")}:${String(remainingMinutes).padStart(
+    2,
+    "0",
+  )}:00`;
 };
 
 const getLocalDateString = (date = new Date()) => {
@@ -97,9 +93,7 @@ const ReceptionistCreateAppointment = () => {
 
       setPatients(Array.isArray(data) ? data : []);
     } catch (error) {
-      toast.error(
-        getErrorMessage(error, "Unable to load patients."),
-      );
+      toast.error(getErrorMessage(error, "Unable to load patients."));
     } finally {
       setLoadingPatients(false);
     }
@@ -113,9 +107,7 @@ const ReceptionistCreateAppointment = () => {
 
       setDoctors(Array.isArray(data) ? data : []);
     } catch (error) {
-      toast.error(
-        getErrorMessage(error, "Unable to load doctors."),
-      );
+      toast.error(getErrorMessage(error, "Unable to load doctors."));
     } finally {
       setLoadingDoctors(false);
     }
@@ -130,16 +122,13 @@ const ReceptionistCreateAppointment = () => {
     const term = patientSearch.trim().toLowerCase();
 
     return patients.filter((patient) => {
-      const isActive =
-        patient.status?.toLowerCase() === "active";
+      const isActive = patient.status?.toLowerCase() === "active";
 
       const matchesSearch = [
         patient.fullName,
         patient.email,
         patient.phone,
-      ].some((value) =>
-        value?.toLowerCase().includes(term),
-      );
+      ].some((value) => value?.toLowerCase().includes(term));
 
       return isActive && matchesSearch;
     });
@@ -149,17 +138,14 @@ const ReceptionistCreateAppointment = () => {
     const term = doctorSearch.trim().toLowerCase();
 
     return doctors.filter((doctor) => {
-      const isActive =
-        doctor.status?.toLowerCase() === "active";
+      const isActive = doctor.status?.toLowerCase() === "active";
 
       const matchesSearch = [
         doctor.fullName,
         doctor.specialization,
         doctor.department,
         doctor.email,
-      ].some((value) =>
-        value?.toLowerCase().includes(term),
-      );
+      ].some((value) => value?.toLowerCase().includes(term));
 
       return isActive && matchesSearch;
     });
@@ -173,17 +159,12 @@ const ReceptionistCreateAppointment = () => {
 
     try {
       const response = await import("../../services/api").then(
-        ({ default: api }) =>
-          api.get(`/DoctorSchedules/doctor/${doctorId}`),
+        ({ default: api }) => api.get(`/DoctorSchedules/doctor/${doctorId}`),
       );
 
-      setSchedules(
-        Array.isArray(response.data) ? response.data : [],
-      );
+      setSchedules(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
-      toast.error(
-        getErrorMessage(error, "Unable to load doctor schedules."),
-      );
+      toast.error(getErrorMessage(error, "Unable to load doctor schedules."));
     } finally {
       setLoadingSchedules(false);
     }
@@ -215,31 +196,24 @@ const ReceptionistCreateAppointment = () => {
   };
 
   const selectedSchedule = schedules.find(
-    (schedule) =>
-      schedule.scheduleId === booking.scheduleId,
+    (schedule) => schedule.scheduleId === booking.scheduleId,
   );
 
   const loadBookedAppointments = async (doctorId, date) => {
     setLoadingAppointments(true);
 
     try {
-      const data =
-        await appointmentService.getDoctorAppointmentsByDate(
-          doctorId,
-          date,
-        );
-
-      setBookedAppointments(
-        Array.isArray(data) ? data : [],
+      const data = await appointmentService.getDoctorAppointmentsByDate(
+        doctorId,
+        date,
       );
+
+      setBookedAppointments(Array.isArray(data) ? data : []);
     } catch (error) {
       setBookedAppointments([]);
 
       toast.error(
-        getErrorMessage(
-          error,
-          "Unable to check booked appointment times.",
-        ),
+        getErrorMessage(error, "Unable to check booked appointment times."),
       );
     } finally {
       setLoadingAppointments(false);
@@ -256,10 +230,7 @@ const ReceptionistCreateAppointment = () => {
     setBookedAppointments([]);
 
     if (date && selectedDoctor) {
-      await loadBookedAppointments(
-        selectedDoctor.doctorId,
-        date,
-      );
+      await loadBookedAppointments(selectedDoctor.doctorId, date);
     }
   };
 
@@ -274,12 +245,9 @@ const ReceptionistCreateAppointment = () => {
     const bookedTimes = new Set(
       bookedAppointments
         .filter(
-          (appointment) =>
-            appointment.status?.toLowerCase() !== "cancelled",
+          (appointment) => appointment.status?.toLowerCase() !== "cancelled",
         )
-        .map((appointment) =>
-          String(appointment.appointmentTime).slice(0, 8),
-        ),
+        .map((appointment) => String(appointment.appointmentTime).slice(0, 8)),
     );
 
     const slots = [];
@@ -306,11 +274,7 @@ const ReceptionistCreateAppointment = () => {
     }
 
     return slots;
-  }, [
-    selectedSchedule,
-    booking.appointmentDate,
-    bookedAppointments,
-  ]);
+  }, [selectedSchedule, booking.appointmentDate, bookedAppointments]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -325,9 +289,7 @@ const ReceptionistCreateAppointment = () => {
       !booking.appointmentDate ||
       !booking.appointmentTime
     ) {
-      toast.error(
-        "Please select a schedule, date, and appointment time.",
-      );
+      toast.error("Please select a schedule, date, and appointment time.");
       return;
     }
 
@@ -336,24 +298,21 @@ const ReceptionistCreateAppointment = () => {
     );
 
     if (!selectedSlot || selectedSlot.booked || selectedSlot.past) {
-      toast.error(
-        "This appointment time is no longer available.",
-      );
+      toast.error("This appointment time is no longer available.");
       return;
     }
 
     setSaving(true);
 
     try {
-      const created =
-        await appointmentService.createForReceptionist({
-          patientId: booking.patientId,
-          doctorId: booking.doctorId,
-          scheduleId: booking.scheduleId,
-          appointmentDate: booking.appointmentDate,
-          appointmentTime: booking.appointmentTime,
-          symptoms: booking.symptoms.trim() || null,
-        });
+      const created = await appointmentService.createForReceptionist({
+        patientId: booking.patientId,
+        doctorId: booking.doctorId,
+        scheduleId: booking.scheduleId,
+        appointmentDate: booking.appointmentDate,
+        appointmentTime: booking.appointmentTime,
+        symptoms: booking.symptoms.trim() || null,
+      });
 
       toast.success(
         `Appointment booked successfully for ${created.patientName}.`,
@@ -367,12 +326,7 @@ const ReceptionistCreateAppointment = () => {
       setPatientSearch("");
       setDoctorSearch("");
     } catch (error) {
-      toast.error(
-        getErrorMessage(
-          error,
-          "Unable to create the appointment.",
-        ),
-      );
+      toast.error(getErrorMessage(error, "Unable to create the appointment."));
     } finally {
       setSaving(false);
     }
@@ -401,10 +355,11 @@ const ReceptionistCreateAppointment = () => {
       date.setDate(date.getDate() + 1)
     ) {
       if (
-        date.toLocaleDateString("en-US", {
-          weekday: "long",
-        }).toLowerCase() ===
-        selectedSchedule.dayOfWeek?.toLowerCase()
+        date
+          .toLocaleDateString("en-US", {
+            weekday: "long",
+          })
+          .toLowerCase() === selectedSchedule.dayOfWeek?.toLowerCase()
       ) {
         results.push(getLocalDateString(date));
       }
@@ -424,8 +379,8 @@ const ReceptionistCreateAppointment = () => {
           <h1>Book an Appointment</h1>
 
           <p>
-            Select a patient, choose a doctor, and reserve an
-            available appointment slot.
+            Select a patient, choose a doctor, and reserve an available
+            appointment slot.
           </p>
         </div>
       </header>
@@ -446,13 +401,10 @@ const ReceptionistCreateAppointment = () => {
 
           <label className="smarthealth-receptionist-booking__field">
             Search patients
-
             <input
               type="search"
               value={patientSearch}
-              onChange={(event) =>
-                setPatientSearch(event.target.value)
-              }
+              onChange={(event) => setPatientSearch(event.target.value)}
               placeholder="Search by name, email, or phone"
             />
           </label>
@@ -520,13 +472,10 @@ const ReceptionistCreateAppointment = () => {
 
           <label className="smarthealth-receptionist-booking__field">
             Search doctors
-
             <input
               type="search"
               value={doctorSearch}
-              onChange={(event) =>
-                setDoctorSearch(event.target.value)
-              }
+              onChange={(event) => setDoctorSearch(event.target.value)}
               placeholder="Doctor name, specialization, or department"
             />
           </label>
@@ -537,7 +486,8 @@ const ReceptionistCreateAppointment = () => {
                 <strong>{selectedDoctor.fullName}</strong>
 
                 <span>
-                  {selectedDoctor.specialization || "Specialization unavailable"}
+                  {selectedDoctor.specialization ||
+                    "Specialization unavailable"}
                 </span>
 
                 <span>
@@ -609,9 +559,7 @@ const ReceptionistCreateAppointment = () => {
 
             <div>
               <h2>Schedule and appointment time</h2>
-              <p>
-                Select a doctor's schedule, date, and available slot.
-              </p>
+              <p>Select a doctor's schedule, date, and available slot.</p>
             </div>
           </div>
 
@@ -625,7 +573,6 @@ const ReceptionistCreateAppointment = () => {
             <>
               <label className="smarthealth-receptionist-booking__field">
                 Doctor schedule
-
                 <select
                   value={booking.scheduleId}
                   onChange={(event) =>
@@ -651,9 +598,8 @@ const ReceptionistCreateAppointment = () => {
                         key={schedule.scheduleId}
                         value={schedule.scheduleId}
                       >
-                        {schedule.dayOfWeek} ·{" "}
-                        {formatTime(schedule.startTime)} –{" "}
-                        {formatTime(schedule.endTime)}
+                        {schedule.dayOfWeek} · {formatTime(schedule.startTime)}{" "}
+                        – {formatTime(schedule.endTime)}
                       </option>
                     ))}
                 </select>
@@ -663,12 +609,9 @@ const ReceptionistCreateAppointment = () => {
                 <>
                   <label className="smarthealth-receptionist-booking__field">
                     Appointment date
-
                     <select
                       value={booking.appointmentDate}
-                      onChange={(event) =>
-                        handleDateChange(event.target.value)
-                      }
+                      onChange={(event) => handleDateChange(event.target.value)}
                       required
                     >
                       <option value="">Select a date</option>
@@ -694,9 +637,7 @@ const ReceptionistCreateAppointment = () => {
                       <div className="smarthealth-receptionist-booking__slot-grid">
                         {availableSlots.map((slot) => {
                           const disabled =
-                            loadingAppointments ||
-                            slot.booked ||
-                            slot.past;
+                            loadingAppointments || slot.booked || slot.past;
 
                           const selected =
                             booking.appointmentTime === slot.time;
@@ -762,7 +703,6 @@ const ReceptionistCreateAppointment = () => {
 
           <label className="smarthealth-receptionist-booking__field">
             Symptoms or reason for visit
-
             <textarea
               value={booking.symptoms}
               onChange={(event) =>

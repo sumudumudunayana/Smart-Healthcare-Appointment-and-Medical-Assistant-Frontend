@@ -276,8 +276,7 @@
   transition: color 0.2s ease;
 }
 
-.smarthealth-patient-sidebar-link:hover
-.smarthealth-patient-sidebar-icon {
+.smarthealth-patient-sidebar-link:hover .smarthealth-patient-sidebar-icon {
   color: #059669;
 }
 
@@ -294,8 +293,7 @@
   box-shadow: inset 3px 0 0 #10b981;
 }
 
-.smarthealth-patient-sidebar-link-active
-.smarthealth-patient-sidebar-icon {
+.smarthealth-patient-sidebar-link-active .smarthealth-patient-sidebar-icon {
   color: #047857;
 }
 
