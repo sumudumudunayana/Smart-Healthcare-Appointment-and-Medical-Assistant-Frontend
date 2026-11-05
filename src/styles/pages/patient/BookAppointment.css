@@ -127,9 +127,9 @@
   font-weight: 700;
 }
 
-.smarthealth-book-appointment-field label > span:not(
-  .smarthealth-book-appointment-optional
-) {
+.smarthealth-book-appointment-field
+  label
+  > span:not(.smarthealth-book-appointment-optional) {
   color: #dc2626;
 }
 
