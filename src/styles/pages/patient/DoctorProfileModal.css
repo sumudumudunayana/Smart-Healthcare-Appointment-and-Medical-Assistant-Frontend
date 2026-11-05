@@ -156,7 +156,8 @@
   overflow-wrap: anywhere;
 }
 
-.smarthealth-doctor-modal__profile-info .smarthealth-doctor-modal__specialization {
+.smarthealth-doctor-modal__profile-info
+  .smarthealth-doctor-modal__specialization {
   color: #0f766e;
   font-weight: 700;
 }

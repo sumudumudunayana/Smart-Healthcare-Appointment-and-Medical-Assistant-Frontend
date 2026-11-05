@@ -6,12 +6,7 @@ function App() {
     <>
       <AppRoutes />
 
-      <Toaster
-        position="top-right"
-        richColors
-        closeButton
-        duration={3000}
-      />
+      <Toaster position="top-right" richColors closeButton duration={3000} />
     </>
   );
 }

@@ -826,8 +826,7 @@
   font-weight: 750;
 }
 
-.smarthealth-ai-slot-card-selected
-  .smarthealth-ai-slot-select-label {
+.smarthealth-ai-slot-card-selected .smarthealth-ai-slot-select-label {
   color: #0f766e;
 }
 
