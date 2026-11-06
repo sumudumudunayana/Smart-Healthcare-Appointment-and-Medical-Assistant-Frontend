@@ -65,7 +65,9 @@
   cursor: pointer;
   font-size: 13px;
   font-weight: 700;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .smarthealth-my-appointments-refresh:hover:not(:disabled) {
@@ -196,7 +198,9 @@
   outline: none;
   font: inherit;
   font-size: 12px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .smarthealth-my-appointments-search input:focus,
@@ -220,7 +224,9 @@
   font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .smarthealth-my-appointments-clear:hover {
@@ -233,7 +239,8 @@
   min-width: 0;
 }
 
-.smarthealth-my-appointments-list-section + .smarthealth-my-appointments-list-section {
+.smarthealth-my-appointments-list-section
+  + .smarthealth-my-appointments-list-section {
   margin-top: 38px;
   padding-top: 30px;
   border-top: 1px solid #e2e8f0;
@@ -280,7 +287,9 @@
   border: 1px solid #e2e8f0;
   border-radius: 14px;
   box-shadow: 0 4px 16px rgb(15 23 42 / 3%);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .smarthealth-my-appointments-card:hover {
@@ -467,7 +476,10 @@
   cursor: pointer;
   font-size: 11px;
   font-weight: 750;
-  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .smarthealth-my-appointments-cancel-button:hover:not(:disabled) {
@@ -558,7 +570,9 @@
 }
 
 @keyframes smarthealth-my-appointments-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Cancellation confirmation modal */
@@ -586,8 +600,14 @@
 }
 
 @keyframes smarthealth-my-appointments-modal-in {
-  from { opacity: 0; transform: translateY(8px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .smarthealth-my-appointments-modal-icon {
@@ -642,7 +662,9 @@
   cursor: pointer;
   font-size: 12px;
   font-weight: 750;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .smarthealth-my-appointments-modal-back {

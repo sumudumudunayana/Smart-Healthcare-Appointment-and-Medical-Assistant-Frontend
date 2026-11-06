@@ -778,7 +778,8 @@
   border-top: 1px solid #e2e8f0;
 }
 
-.smarthealth-medical-records-modal-footer .smarthealth-medical-records-primary-button {
+.smarthealth-medical-records-modal-footer
+  .smarthealth-medical-records-primary-button {
   margin-top: 0;
   min-width: 100px;
 }

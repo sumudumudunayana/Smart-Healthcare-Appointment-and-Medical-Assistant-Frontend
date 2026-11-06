@@ -577,8 +577,7 @@
   transition: transform 0.2s ease;
 }
 
-.smarthealth-patient-health-card:hover
-.smarthealth-patient-health-arrow {
+.smarthealth-patient-health-card:hover .smarthealth-patient-health-arrow {
   transform: translateX(3px);
 }
 
