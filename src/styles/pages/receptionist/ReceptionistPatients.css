@@ -266,10 +266,6 @@
   }
 }
 
-
-
-
-
 /* =====================================================
    PATIENT ACTION BUTTONS
 ===================================================== */
@@ -553,12 +549,8 @@
   grid-column: 1 / -1;
 }
 
-.smarthealth-patient-edit-grid
-  .smarthealth-receptionist-patient-field
-  input,
-.smarthealth-patient-edit-grid
-  .smarthealth-receptionist-patient-field
-  select,
+.smarthealth-patient-edit-grid .smarthealth-receptionist-patient-field input,
+.smarthealth-patient-edit-grid .smarthealth-receptionist-patient-field select,
 .smarthealth-patient-edit-grid
   .smarthealth-receptionist-patient-field
   textarea {
