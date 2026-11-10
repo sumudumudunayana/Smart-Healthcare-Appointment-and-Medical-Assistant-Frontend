@@ -1,9 +1,7 @@
 import api from "./api";
 
 const doctorScheduleService = {
-  // ============================================================
   // GET SCHEDULES FOR A DOCTOR
-  // ============================================================
   getByDoctorId: async (doctorId) => {
     const response = await api.get(
       `/DoctorSchedules/doctor/${doctorId}`
@@ -12,9 +10,7 @@ const doctorScheduleService = {
     return response.data;
   },
 
-  // ============================================================
   // CREATE DOCTOR SCHEDULE
-  // ============================================================
   create: async (scheduleData) => {
     const response = await api.post(
       "/DoctorSchedules",
@@ -24,9 +20,7 @@ const doctorScheduleService = {
     return response.data;
   },
 
-  // ============================================================
   // UPDATE DOCTOR SCHEDULE
-  // ============================================================
   update: async (scheduleId, scheduleData) => {
     const response = await api.put(
       `/DoctorSchedules/${scheduleId}`,
