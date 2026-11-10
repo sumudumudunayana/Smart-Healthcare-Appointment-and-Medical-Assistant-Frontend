@@ -72,7 +72,6 @@ api.interceptors.request.use(
 
 /**
  * RESPONSE INTERCEPTOR
- *
  * Refresh the access token when an authenticated request
  * returns 401, then retry the original request once.
  */
