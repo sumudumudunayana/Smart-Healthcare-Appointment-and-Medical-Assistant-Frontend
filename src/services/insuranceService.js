@@ -1,9 +1,7 @@
 import api from "./api";
 
 const insuranceService = {
-  // ============================================================
   // INSURANCE POLICIES
-  // ============================================================
 
   getAllPolicies: async () => {
     const response = await api.get("/InsurancePolicies");
@@ -27,9 +25,7 @@ const insuranceService = {
     return response.data;
   },
 
-  // ============================================================
   // INSURANCE CLAIMS
-  // ============================================================
 
   getClaimsByBill: async (billId) => {
     const response = await api.get(

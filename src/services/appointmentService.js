@@ -12,9 +12,7 @@ const appointmentService = {
     return response.data;
   },
 
-  // ============================================================
   // PATIENT APPOINTMENTS
-  // ============================================================
   getMyAppointments: async () => {
     const response = await api.get(
       "/Appointments/my"
