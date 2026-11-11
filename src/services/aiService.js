@@ -1,9 +1,7 @@
 import api from "./api";
 
 const aiService = {
-  // =========================================================
   // AI ORCHESTRATOR
-  // =========================================================
 
   process: async (requestData) => {
     const response = await api.post("/ai/process", requestData);
@@ -11,10 +9,7 @@ const aiService = {
     return response.data;
   },
 
-  // =========================================================
   // AI WORKFLOWS
-  // =========================================================
-
   getWorkflows: async () => {
     const response = await api.get("/ai/workflows");
 
@@ -27,10 +22,7 @@ const aiService = {
     return response.data;
   },
 
-  // =========================================================
   // AI APPROVALS
-  // =========================================================
-
   getPendingApprovals: async () => {
     const response = await api.get("/ai/approvals/pending");
 
