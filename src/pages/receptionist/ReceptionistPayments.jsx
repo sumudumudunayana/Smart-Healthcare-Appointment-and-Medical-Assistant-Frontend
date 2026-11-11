@@ -7,30 +7,18 @@ import paymentService from "../../services/paymentService";
 import "../../styles/pages/receptionist/ReceptionistPayments.css";
 
 const ReceptionistPayments = () => {
-  // ============================================================
   // DATA
-  // ============================================================
-
   const [bills, setBills] = useState([]);
   const [payments, setPayments] = useState([]);
 
-  // ============================================================
   // SELECTED BILL
-  // ============================================================
-
   const [selectedBill, setSelectedBill] = useState(null);
 
-  // ============================================================
   // PAYMENT FORM
-  // ============================================================
-
   const [paymentAmount, setPaymentAmount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("Cash");
 
-  // ============================================================
   // FILTERS
-  // ============================================================
-
   const [billSearchTerm, setBillSearchTerm] = useState("");
   const [paymentSearchTerm, setPaymentSearchTerm] = useState("");
 
@@ -38,10 +26,7 @@ const ReceptionistPayments = () => {
 
   const [paymentMethodFilter, setPaymentMethodFilter] = useState("All");
 
-  // ============================================================
   // LOADING
-  // ============================================================
-
   const [loading, setLoading] = useState(true);
   const [processingPayment, setProcessingPayment] = useState(false);
 
