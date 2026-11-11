@@ -27,10 +27,7 @@ const ReceptionistPatients = () => {
   const [modalLoading, setModalLoading] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  // --------------------------------------------------
   // LOAD PATIENTS
-  // --------------------------------------------------
-
   const load = useCallback(async () => {
     setLoading(true);
 
@@ -48,10 +45,7 @@ const ReceptionistPatients = () => {
     load();
   }, [load]);
 
-  // --------------------------------------------------
   // SEARCH PATIENTS
-  // --------------------------------------------------
-
   const filtered = useMemo(() => {
     const term = search.trim().toLowerCase();
 

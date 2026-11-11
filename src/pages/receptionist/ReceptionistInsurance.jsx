@@ -40,10 +40,7 @@ const ReceptionistInsurance = () => {
     claimDetails: "",
   });
 
-  // ============================================================
   // LOAD DATA
-  // ============================================================
-
   const loadInsuranceData = async () => {
     try {
       setLoading(true);
@@ -106,10 +103,7 @@ const ReceptionistInsurance = () => {
     loadInsuranceData();
   }, []);
 
-  // ============================================================
   // POLICY HELPERS
-  // ============================================================
-
   const isPolicyExpired = (policy) => {
     if (!policy.endDate) {
       return false;
