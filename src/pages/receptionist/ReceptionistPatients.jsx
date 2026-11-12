@@ -59,10 +59,7 @@ const ReceptionistPatients = () => {
     );
   }, [patients, search]);
 
-  // --------------------------------------------------
   // HELPERS
-  // --------------------------------------------------
-
   const initials = (name) =>
     name
       ?.split(/\s+/)
@@ -83,10 +80,7 @@ const ReceptionistPatients = () => {
   const getErrorMessage = (error, fallback) =>
     error.response?.data?.message || error.response?.data?.title || fallback;
 
-  // --------------------------------------------------
   // OPEN VIEW / EDIT MODAL
-  // --------------------------------------------------
-
   const openModal = async (patient, mode) => {
     setModalMode(mode);
     setSelectedPatient(patient);
