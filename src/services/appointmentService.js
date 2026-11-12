@@ -37,9 +37,7 @@ const appointmentService = {
     return response.data;
   },
 
-  // ============================================================
   // RECEPTIONIST APPOINTMENTS
-  // ============================================================
   getReceptionistAppointments: async () => {
     const response = await api.get(
       "/Appointments/receptionist"
@@ -48,10 +46,8 @@ const appointmentService = {
     return response.data;
   },
 
-  // ============================================================
   // GET DOCTOR APPOINTMENTS FOR A SPECIFIC DATE
   // Used to identify booked appointment slots.
-  // ============================================================
   getDoctorAppointmentsByDate: async (doctorId, date) => {
     const response = await api.get(
       `/Appointments/doctor/${doctorId}/date/${date}`
