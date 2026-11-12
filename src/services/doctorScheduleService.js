@@ -30,9 +30,7 @@ const doctorScheduleService = {
     return response.data;
   },
 
-  // ============================================================
   // DELETE DOCTOR SCHEDULE
-  // ============================================================
   delete: async (scheduleId) => {
     const response = await api.delete(
       `/DoctorSchedules/${scheduleId}`

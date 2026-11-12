@@ -45,10 +45,7 @@ const aiService = {
     return response.data;
   },
 
-  // =========================================================
   // AI RECOMMENDATIONS
-  // =========================================================
-
   getWorkflowRecommendations: async (workflowId) => {
     const response = await api.get(
       `/ai/recommendations/workflow/${workflowId}`,

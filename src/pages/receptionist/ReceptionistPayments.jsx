@@ -30,10 +30,7 @@ const ReceptionistPayments = () => {
   const [loading, setLoading] = useState(true);
   const [processingPayment, setProcessingPayment] = useState(false);
 
-  // ============================================================
   // LOAD PAYMENT DATA
-  // ============================================================
-
   const loadPaymentData = async () => {
     try {
       setLoading(true);
@@ -61,10 +58,7 @@ const ReceptionistPayments = () => {
     loadPaymentData();
   }, []);
 
-  // ============================================================
   // CALCULATE TOTAL PAID FOR EACH BILL
-  // ============================================================
-
   const getBillPaidAmount = (billId) => {
     return payments
       .filter(
