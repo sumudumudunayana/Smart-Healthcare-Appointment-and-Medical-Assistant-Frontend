@@ -1,9 +1,7 @@
 import api from "./api";
 
 const appointmentService = {
-  // ============================================================
   // DOCTOR APPOINTMENTS
-  // ============================================================
   getDoctorAppointments: async () => {
     const response = await api.get(
       "/Appointments/doctor/my"
@@ -21,9 +19,7 @@ const appointmentService = {
     return response.data;
   },
 
-  // ============================================================
   // APPOINTMENT BY ID
-  // ============================================================
   getById: async (appointmentId) => {
     const response = await api.get(
       `/Appointments/${appointmentId}`
@@ -32,9 +28,7 @@ const appointmentService = {
     return response.data;
   },
 
-  // ============================================================
   // CANCEL APPOINTMENT
-  // ============================================================
   cancel: async (appointmentId) => {
     const response = await api.patch(
       `/Appointments/${appointmentId}/cancel`
