@@ -111,10 +111,7 @@ const ReceptionistPatients = () => {
     }
   };
 
-  // --------------------------------------------------
   // CLOSE MODAL
-  // --------------------------------------------------
-
   const closeModal = () => {
     if (saving) return;
 
@@ -123,10 +120,7 @@ const ReceptionistPatients = () => {
     setFormData(EMPTY_FORM);
   };
 
-  // --------------------------------------------------
   // HANDLE FORM CHANGES
-  // --------------------------------------------------
-
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -136,10 +130,7 @@ const ReceptionistPatients = () => {
     }));
   };
 
-  // --------------------------------------------------
   // UPDATE PATIENT
-  // --------------------------------------------------
-
   const handleUpdate = async (event) => {
     event.preventDefault();
 
