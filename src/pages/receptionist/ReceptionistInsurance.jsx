@@ -143,10 +143,7 @@ const ReceptionistInsurance = () => {
     });
   }, [policies, policySearchTerm, policyStatusFilter]);
 
-  // ============================================================
   // CLAIM FILTERING
-  // ============================================================
-
   const filteredClaims = useMemo(() => {
     const search = claimSearchTerm.trim().toLowerCase();
 
@@ -165,10 +162,7 @@ const ReceptionistInsurance = () => {
     });
   }, [claims, claimSearchTerm, claimStatusFilter]);
 
-  // ============================================================
   // BILL HELPERS
-  // ============================================================
-
   const getBillPatientId = (bill) => {
     return bill.patientId;
   };
