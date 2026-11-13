@@ -36,10 +36,7 @@ const ReceptionistDashboard = () => {
     loadDashboard();
   }, []);
 
-  // ============================================================
   // DATE HELPERS
-  // ============================================================
-
   const getTodayString = () => {
     const today = new Date();
 
@@ -61,10 +58,7 @@ const ReceptionistDashboard = () => {
     return new Date(`${date}T${time}`);
   };
 
-  // ============================================================
   // DASHBOARD STATISTICS
-  // ============================================================
-
   const statistics = useMemo(() => {
     const today = getTodayString();
 
@@ -93,10 +87,7 @@ const ReceptionistDashboard = () => {
     };
   }, [appointments]);
 
-  // ============================================================
   // TODAY'S APPOINTMENTS
-  // ============================================================
-
   const todayAppointments = useMemo(() => {
     const today = getTodayString();
 
