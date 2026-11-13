@@ -72,10 +72,7 @@ const ReceptionistPayments = () => {
       );
   };
 
-  // ============================================================
   // BILLS WITH OUTSTANDING BALANCE
-  // ============================================================
-
   const outstandingBills = useMemo(() => {
     return bills.filter((bill) => {
       const paidAmount = getBillPaidAmount(bill.billId);
@@ -86,10 +83,7 @@ const ReceptionistPayments = () => {
     });
   }, [bills, payments]);
 
-  // ============================================================
   // FILTER OUTSTANDING BILLS
-  // ============================================================
-
   const filteredOutstandingBills = useMemo(() => {
     const normalizedSearch = billSearchTerm.trim().toLowerCase();
 
@@ -102,10 +96,7 @@ const ReceptionistPayments = () => {
     });
   }, [outstandingBills, billSearchTerm]);
 
-  // ============================================================
   // FILTER PAYMENT HISTORY
-  // ============================================================
-
   const filteredPayments = useMemo(() => {
     const normalizedSearch = paymentSearchTerm.trim().toLowerCase();
 
